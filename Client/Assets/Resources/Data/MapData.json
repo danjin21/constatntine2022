@@ -1,0 +1,258 @@
+﻿{
+  "maps": [
+    {
+	  "mapId": "1",
+      "name": "낯선 숲 I",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/1",
+    },
+    {
+      "mapId": "2",
+      "name": "낯선 숲 II",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/1",
+    },
+    {
+	  "mapId": "3",
+      "name": "낯선 숲 III",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/1",
+    },
+	{
+	  "mapId": "4",
+      "name": "달팽이 캠프",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/1",
+	},
+	{
+	  "mapId": "10100000",
+      "name": "던전 초입",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/1",
+	},
+	{
+	  "mapId": "10100010",
+      "name": "던전 I",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "1", "count" : "30"} // 무르
+	  ]
+	},
+	{
+	  "mapId": "10100020",
+      "name": "던전 II",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "1", "count" : "15"}, // 무르
+		{ "monsterId" : "2", "count" : "15"}, // 블루무르
+
+	  ]
+	},
+	{
+	  "mapId": "10100030",
+      "name": "던전 III",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "1", "count" : "18"}, // 무르
+		{ "monsterId" : "2", "count" : "9"}, // 블루무르
+		{ "monsterId" : "3", "count" : "9"}, // 레드무르
+
+
+	  ]
+	},
+	{
+	  "mapId": "10100031",
+      "name": "던전 캠프",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "10100032",
+      "name": "오래된 왕좌",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "5", "count" : "20"}, // 고블린
+
+	  ]
+	},
+	{
+	  "mapId": "10100040",
+      "name": "던전 IV",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+	  	{ "monsterId" : "1", "count" : "18"}, // 무르
+		{ "monsterId" : "5", "count" : "20"}, // 고블린
+		{ "monsterId" : "12", "count" : "9"}, // 주황버섯
+	  ]
+	},
+	{
+	  "mapId": "10100041",
+      "name": "숨겨진 길 I",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "5", "count" : "25"}, // 고블린
+		{ "monsterId" : "13", "count" : "9"}, // 민달팽이
+	  ]
+	},
+	{
+	  "mapId": "10100042",
+      "name": "숨겨진 길 II",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "5", "count" : "25"}, // 고블린
+	  ]
+
+	},
+	{
+	  "mapId": "10100043",
+      "name": "고대의 벽",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "10100044",
+      "name": "노파의 방",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "10100050",
+      "name": "던전 V",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "5", "count" : "15"}, // 고블린
+		{ "monsterId" : "6", "count" : "15"}, // 고블린주술사
+		{ "monsterId" : "7", "count" : "15"}, // 고블린주술사
+	  ]
+	},
+	{
+	  "mapId": "10100051",
+      "name": "마법모자의 방",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "10100060",
+      "name": "던전 VI",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+  		{ "monsterId" : "5", "count" : "20"}, // 고블린
+		{ "monsterId" : "6", "count" : "20"}, // 고블린주술사
+		{ "monsterId" : "7", "count" : "20"}, // 고블린주술사
+
+	  ]
+	},
+	{
+	  "mapId": "10100061",
+      "name": "고대석상의 방",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "10100070",
+      "name": "막다른 길",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100000",
+      "name": "하이네겐",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100001",
+      "name": "하이네겐 서쪽필드",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100002",
+      "name": "하이네겐 북쪽필드",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100003",
+      "name": "하이네겐 동쪽필드",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100004",
+      "name": "하이네겐 남쪽필드",
+      "townName": "하이네겐",
+	  "townId" : "20100000",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100005",
+      "name": "하이네겐 서쪽 숲 | ",
+      "townName": "하이네겐",
+	  "townId" : "20100005",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100006",
+      "name": "하이네겐 서쪽 숲 II ",
+      "townName": "하이네겐",
+	  "townId" : "20100005",
+	  "soundPath" : "Sounds/Bgm/2",
+	},
+	{
+	  "mapId": "20100007",
+      "name": "하이네겐 서쪽 숲 III ",
+      "townName": "하이네겐",
+	  "townId" : "20100006",
+	  "soundPath" : "Sounds/Bgm/2",
+	  "spawnTime": "5",
+	  "monsters" : [
+		{ "monsterId" : "1", "count" : "25"}, // 무르
+
+	  ]
+	},
+
+  ]
+} 

@@ -1,0 +1,219 @@
+﻿{
+
+
+  "monsters": [
+    {
+      "id": "1","name": "무르",
+	  "stat":{
+	    "level": "1",
+		"maxHp" : "8", 
+		"attack": "22",
+		"speed" : "80.0",
+		"exp" : "3",
+		"dex" : "1600", // 움직임딜레이 초
+		
+	  },
+	  "rewards": [
+	  	    //{"probability" : "3","itemId" : "1","count" : "1"},
+		    //{"probability" : "3","itemId" : "2","count" : "1"}, 
+		    //{"probability" : "3","itemId" : "1000","count" : "1"}, 
+		    //{"probability" : "3","itemId" : "2000","count" : "1"}, 
+		    //{"probability" : "0","itemId" : "90000","count" : "5"},
+		    //{"probability" : "50","itemId" : "92000","count" : "5"},
+		  {"probability" : "30","itemId" : "99999","count" : "30"},
+		  {"probability" : "50","itemId" : "100001","count" : "1"},
+		  //{"probability" : "50","itemId" : "1000","count" : "1"}, 
+		  //{"probability" : "50","itemId" : "1","count" : "1"}, 
+
+		   //{"probability" : "100","itemId" : "93112","count" : "1"},
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/2",
+    },
+    {
+      "id": "2","name": "블루무르",
+	  "stat":{
+	    "level": "2",
+		"maxHp" : "30", 
+		"attack": "27",
+		"speed" : "80.0",
+		"exp" : "5",
+		"dex" : "1600", // 움직임딜레이 초
+	  },
+	  "rewards": [
+		  {"probability" : "10","itemId" : "99999","count" : "40"},
+		  {"probability" : "20","itemId" : "100002","count" : "1"},
+		  {"probability" : "50","itemId" : "90002","count" : "1"},
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/2",
+    },
+    {
+      "id": "3","name": "레드무르",
+	  "stat":{
+	    "level": "4",
+		"maxHp" : "80", 
+		"attack": "35",
+		"speed" : "80.0",
+		"exp" : "10",
+		"dex" : "1600", // 움직임딜레이 초
+	  },
+	  "rewards": [
+		  {"probability" : "30","itemId" : "99999","count" : "60"},
+		  {"probability" : "50","itemId" : "100003","count" : "1"},
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/2",
+    },
+    {
+      "id": "4","name": "무르윙",
+	  "stat":{
+	    "level": "6",
+		"maxHp" : "30", 
+		"attack": "40",
+		"speed" : "80.0",
+		"exp" : "15",
+		"dex" : "1600", // 움직임딜레이 초
+	  },
+	  "rewards": [
+
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/2",
+    },
+	{
+      "id": "5","name": "고블린",
+	  "stat":{
+	    "level": "7",
+		"maxHp" : "60", 
+		"attack": "50",
+		"speed" : "80.0",
+		"exp" : "20",
+		"dex" : "800", // 움직임딜레이
+	  },
+	  "rewards": [
+		  {"probability" : "20","itemId" : "93012","count" : "1"},
+		  {"probability" : "20","itemId" : "92000","count" : "1"},
+		  {"probability" : "20","itemId" : "93010","count" : "1"},
+		  {"probability" : "20","itemId" : "91001","count" : "1"},
+		  {"probability" : "20","itemId" : "91000","count" : "1"},
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/1",
+    },
+	{
+      "id": "6","name": "고블린 주술사",
+	  "stat":{
+	    "level": "8",
+		"maxHp" : "50", 
+		"attack": "30",
+		"speed" : "80.0",
+		"exp" : "25",
+		"dex" : "1600", // 움직임딜레이
+	  },
+	  "rewards": [
+
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/1",
+    },
+	{
+      "id": "7","name": "고블린 전사",
+	  "stat":{
+	    "level": "10",
+		"maxHp" : "100", 
+		"attack": "60",
+		"speed" : "80.0",
+		"exp" : "30",
+		"dex" : "0", // 움직임딜레이
+	  },
+	  "rewards": [
+
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/1",
+    },
+	{
+      "id": "8","name": "고블린 사냥꾼",
+	  "stat":{
+	    "level": "10",
+		"maxHp" : "60", 
+		"attack": "60",
+		"speed" : "80.0",
+		"exp" : "30",
+		"dex" : "1600", // 움직임딜레이
+	  },
+	  "rewards": [
+
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/1",	  
+    },
+	{
+      "id": "9","name": "황금고블린",
+	  "stat":{
+	    "level": "6",
+		"maxHp" : "60", 
+		"attack": "40",
+		"speed" : "100.0",
+		"exp" : "15",
+		"dex" : "1600", // 움직임딜레이 1.6초
+	  },
+	  "rewards": [
+
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/1",
+    },
+	{
+      "id": "10","name": "킹 고블린",
+	  "stat":{
+	    "level": "15",
+		"maxHp" : "300", 
+		"attack": "100",
+		"speed" : "80.0",
+		"exp" : "80",
+		"dex" : "1600", // 움직임딜레이
+	  },
+	  "rewards": [
+
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/1",
+    },
+	{
+      "id": "11","name": "발록",
+	  "stat":{
+	    "level": "20",
+		"maxHp" : "1000", 
+		"attack": "150",
+		"speed" : "80.0",
+		"exp" : "100",
+		"dex" : "1600", // 움직임딜레이
+	  },
+	  "rewards": [
+
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/1",
+    },
+    {
+      "id": "12","name": "민달팽이",
+	  "stat":{
+	    "level": "4",
+		"maxHp" : "80", 
+		"attack": "35",
+		"speed" : "80.0",
+		"exp" : "10",
+		"dex" : "1600", // 움직임딜레이 초
+	  },
+	  "rewards": [
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/2",
+    },
+    {
+      "id": "13","name": "주황버섯",
+	  "stat":{
+	    "level": "4",
+		"maxHp" : "80", 
+		"attack": "35",
+		"speed" : "80.0",
+		"exp" : "10",
+		"dex" : "1600", // 움직임딜레이 초
+	  },
+	  "rewards": [
+	  ],
+	  "HitSoundPath" : "Sounds/Hit/2",
+    },
+
+  ]
+} 

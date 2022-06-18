@@ -1,0 +1,962 @@
+fileFormatVersion: 2
+guid: 082499425c8641d439229c1fae541a07
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5361767761384371793
+    second: Idle_Move_goblin_0
+  - first:
+      213: 3383708703604487846
+    second: Idle_Move_goblin_0
+  - first:
+      213: -3214856640438640097
+    second: Idle_Move_goblin_1
+  - first:
+      213: 6386362271572698
+    second: Idle_Move_goblin_1
+  - first:
+      213: 8515093360347568717
+    second: Idle_Move_goblin_2
+  - first:
+      213: 1884788005335052980
+    second: Idle_Move_goblin_3
+  - first:
+      213: 3864347287957900233
+    second: Idle_Move_goblin_4
+  - first:
+      213: 6224561671021562635
+    second: Idle_Move_goblin_5
+  - first:
+      213: 3385179539165887377
+    second: Idle_Move_goblin_6
+  - first:
+      213: 2637912466875292585
+    second: Idle_Move_goblin_7
+  - first:
+      213: 4126203528043738312
+    second: Idle_Move_goblin_8
+  - first:
+      213: 745024096795313698
+    second: Idle_Move_goblin_9
+  - first:
+      213: 5173457929334209511
+    second: Idle_Move_goblin_10
+  - first:
+      213: -769912014305899884
+    second: Idle_Move_goblin_11
+  - first:
+      213: -2000463708299077084
+    second: Idle_Move_goblin_12
+  - first:
+      213: 8694118661551724444
+    second: Idle_Move_goblin_13
+  - first:
+      213: 4246980662188599415
+    second: Idle_Move_goblin_14
+  - first:
+      213: 5857748833186668988
+    second: Idle_Move_goblin_15
+  - first:
+      213: -8618059002591793696
+    second: Idle_Move_goblin_16
+  - first:
+      213: -4791500120834525094
+    second: Idle_Move_goblin_17
+  - first:
+      213: 1409585863925453542
+    second: Idle_Move_goblin_18
+  - first:
+      213: -6745000490832970145
+    second: Idle_Move_goblin_19
+  - first:
+      213: -9055730270280292876
+    second: Idle_Move_goblin_20
+  - first:
+      213: -7086950991305571613
+    second: Idle_Move_goblin_21
+  - first:
+      213: -2853509302312846233
+    second: Idle_Move_goblin_22
+  - first:
+      213: 1418286689928617571
+    second: Idle_Move_goblin_23
+  - first:
+      213: 3653946224117664265
+    second: Idle_Move_goblin_24
+  - first:
+      213: 2506369168576705742
+    second: Idle_Move_goblin_25
+  - first:
+      213: -4732125325406764806
+    second: Idle_Move_goblin_26
+  - first:
+      213: 4469551458423704630
+    second: Idle_Move_goblin_27
+  - first:
+      213: 5253044875653016762
+    second: Idle_Move_goblin_28
+  - first:
+      213: -7639306555040692865
+    second: Idle_Move_goblin_29
+  - first:
+      213: -2660367344071762591
+    second: Idle_Move_goblin_2
+  - first:
+      213: 3652896208668157006
+    second: Idle_Move_goblin_3
+  - first:
+      213: 159767068503868159
+    second: Idle_Move_goblin_4
+  - first:
+      213: 8461174112688253336
+    second: Idle_Move_goblin_5
+  - first:
+      213: -5842814048340669695
+    second: Idle_Move_goblin_6
+  - first:
+      213: 6409549351007847591
+    second: Idle_Move_goblin_7
+  - first:
+      213: 7671584540083325362
+    second: Idle_Move_goblin_8
+  - first:
+      213: -3485415661387302592
+    second: Idle_Move_goblin_9
+  - first:
+      213: -1892945942612418338
+    second: Idle_Move_goblin_10
+  - first:
+      213: -654790865133265384
+    second: Idle_Move_goblin_11
+  - first:
+      213: 577535928536677762
+    second: Idle_Move_goblin_12
+  - first:
+      213: 8327700357652424527
+    second: Idle_Move_goblin_13
+  - first:
+      213: 6429995151535182839
+    second: Idle_Move_goblin_14
+  - first:
+      213: 6648062074742208518
+    second: Idle_Move_goblin_15
+  - first:
+      213: -5282713911144560976
+    second: Idle_Move_goblin_16
+  - first:
+      213: 498319356168138470
+    second: Idle_Move_goblin_17
+  - first:
+      213: 5925078725422291672
+    second: Idle_Move_goblin_18
+  - first:
+      213: -5931554240048562086
+    second: Idle_Move_goblin_19
+  - first:
+      213: 4540743637185052304
+    second: Idle_Move_goblin_20
+  - first:
+      213: -4561785153606163451
+    second: Idle_Move_goblin_21
+  - first:
+      213: -5813926297603800538
+    second: Idle_Move_goblin_22
+  - first:
+      213: 4271276749912146979
+    second: Idle_Move_goblin_23
+  - first:
+      213: 5136196877844174059
+    second: Idle_Move_goblin_24
+  - first:
+      213: 180551630495837634
+    second: Idle_Move_goblin_25
+  - first:
+      213: 815209964100461805
+    second: Idle_Move_goblin_26
+  - first:
+      213: -7845746571988462010
+    second: Idle_Move_goblin_27
+  - first:
+      213: -8757604988721962613
+    second: Idle_Move_goblin_28
+  - first:
+      213: 3567839013983622122
+    second: Idle_Move_goblin_29
+  - first:
+      213: 2383539691760492498
+    second: Idle_Move_goblin_30
+  - first:
+      213: -940441046346147616
+    second: Idle_Move_goblin_31
+  - first:
+      213: 8499091641879465849
+    second: Idle_Move_goblin_32
+  - first:
+      213: 8454309405489532847
+    second: Idle_Move_goblin_33
+  - first:
+      213: -6858141752870607803
+    second: Idle_Move_goblin_34
+  - first:
+      213: -841378318316893337
+    second: Idle_Move_goblin_35
+  - first:
+      213: -2592238590068878418
+    second: Idle_Move_goblin_30
+  - first:
+      213: 1042755901777888544
+    second: Idle_Move_goblin_31
+  - first:
+      213: -1096485508661387484
+    second: Idle_Move_goblin_32
+  - first:
+      213: 8162273394999150823
+    second: Idle_Move_goblin_33
+  - first:
+      213: -4142671133348794269
+    second: Idle_Move_goblin_34
+  - first:
+      213: 2574205587529604290
+    second: Idle_Move_goblin_35
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Idle_Move_goblin_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a63eb5632955fe20800000000000000
+      internalID: 3383708703604487846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 448
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad2aa96dc50b61000800000000000000
+      internalID: 6386362271572698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 448
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16d9d8ceef9741bd0800000000000000
+      internalID: -2660367344071762591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 448
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4469077fb1b1b230800000000000000
+      internalID: 3652896208668157006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff28af46d4b973200800000000000000
+      internalID: 159767068503868159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_5
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 384
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 899a389b6012c6570800000000000000
+      internalID: 8461174112688253336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10b0eff54972aeea0800000000000000
+      internalID: -5842814048340669695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_7
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 384
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a4882dec2b43f850800000000000000
+      internalID: 6409549351007847591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b98b005e71f67a60800000000000000
+      internalID: 7671584540083325362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_9
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 320
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0493d682ce051afc0800000000000000
+      internalID: -3485415661387302592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_10
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 320
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed0e197c1b7eab5e0800000000000000
+      internalID: -1892945942612418338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 320
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81e9f896d27b9e6f0800000000000000
+      internalID: -654790865133265384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d3479fdd1d30800800000000000000
+      internalID: 577535928536677762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_13
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 256
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f4724cd6a5fe19370800000000000000
+      internalID: 8327700357652424527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f31db2d58eeb3950800000000000000
+      internalID: 6429995151535182839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_15
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 256
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60871c9eb39a24c50800000000000000
+      internalID: 6648062074742208518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b6c634dfa700b6b0800000000000000
+      internalID: -5282713911144560976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_17
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ee6a1170d26ae600800000000000000
+      internalID: 498319356168138470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_18
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8da150755bb1a3250800000000000000
+      internalID: 5925078725422291672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_19
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5081fb68d2eeada0800000000000000
+      internalID: -5931554240048562086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09eb786b746f30f30800000000000000
+      internalID: 4540743637185052304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_21
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50467a9729841b0c0800000000000000
+      internalID: -4561785153606163451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_22
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6220609f5d8c05fa0800000000000000
+      internalID: -5813926297603800538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_23
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32406e7e29f964b30800000000000000
+      internalID: 4271276749912146979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_24
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be45f5009df674740800000000000000
+      internalID: 5136196877844174059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_25
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2cd625750c2718200800000000000000
+      internalID: 180551630495837634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_26
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de42197a425305b00800000000000000
+      internalID: 815209964100461805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_27
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64693e2bf0f4e1390800000000000000
+      internalID: -7845746571988462010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_28
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b81e90c99acb67680800000000000000
+      internalID: -8757604988721962613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Idle_Move_goblin_29
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f758c78b92bbbf590800000000000000
+      internalID: -7639306555040692865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

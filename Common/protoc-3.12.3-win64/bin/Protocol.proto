@@ -1,0 +1,644 @@
+syntax = "proto3";
+
+package Protocol;
+import "google/protobuf/timestamp.proto";
+option csharp_namespace = "Google.Protobuf.Protocol";
+
+enum MsgId {
+  //PERSON = 0;
+  //C_CHAT = 1;
+  //S_CHAT = 2;
+
+
+
+  S_ENTER_GAME = 0;
+  S_LEAVE_GAME = 1;
+  S_SPAWN = 2;
+  S_DESPAWN = 3;
+  C_MOVE = 4;
+  S_MOVE = 5;
+  C_SKILL = 6;
+  S_SKILL = 7;
+  S_CHANGE_HP = 8;
+  S_DIE = 9;
+  S_CONNECTED = 10; // 야 클라야 너 서버에 접속되었어.
+  C_LOGIN = 11; // 나 로그인해도 돼?
+  S_LOGIN = 12; // 그래 로그인 해~
+  C_ENTER_GAME = 13; // S_ENTER_GAME 과 이산가족...!!
+  C_CREATE_PLAYER = 14;
+  S_CREATE_PLAYER = 15;
+  S_ITEM_LIST = 16; // 아이템 목록을 보내주겠다.
+  S_ADD_ITEM = 17; // 아이템을 넣어준다.
+
+  // 무기 장비 요청 전송 스텟 변화 
+  C_EQUIP_ITEM = 18;
+  S_EQUIP_ITEM = 19;
+  S_CHANGE_STAT = 20;
+
+  S_PING = 21;
+  C_PONG = 22;
+
+  // 맵이동
+
+  S_MOVE_MAP = 23;
+
+  // 게임종료
+
+  C_LOGOUT = 24;
+  S_LOGOUT = 25;
+
+  //일반채팅
+  C_CHAT = 26;
+  S_CHAT = 27;
+
+  // 소비 아이템 사용
+  C_USE_ITEM = 28;
+  S_USE_ITEM = 29;
+
+  // 단축키 관련
+  C_KEY_SETTING = 30;
+  S_KEY_SETTING = 31;
+
+  // 경험치 및 레벨업
+  S_EXP = 32;
+
+  // 단축키 모두 알려주기 (초기)
+  S_KEY_SETTING_LIST = 33;
+
+  // 아이템 버리기
+  C_DROP_ITEM = 34;
+  S_DROP_ITEM = 35;
+
+  // NPC 정보 및 퀘스트 & 상점 
+  C_NPC = 36;
+  S_NPC = 37;
+
+  // C_SHOP : C_NPC
+  S_SHOP = 38;
+
+  C_PURCHASE = 39;
+  // S_PURCHASE L ADD_ITEM
+
+  C_SELL = 40;
+  // S_SELL : S_DROP_ITEM;
+
+  C_STAT_UP = 41;
+  S_STAT_UP = 42;
+
+  // 단축키 사용
+  C_SHORT_KEY = 43;
+
+  // 스킬 모두 알려주기 (초기)
+  S_SKILL_LIST = 44;
+
+  // 텔레포트 ( My Player 용)
+  S_TELEPORT = 45;
+
+  S_CHANGE_MP = 46;
+
+  // 아이템 위치변경
+  C_SLOT_CHANGE = 47;
+
+  // 서버의 아이템 위치변경은 List 보내주는것으로 갈음
+
+  S_QUEST_LIST = 48;
+
+  // 접속자 및 랭킹
+
+  C_USERS = 49;
+  S_USERS = 50;
+
+
+}
+
+
+
+enum CreatureState{
+    IDLE = 0;
+    MOVING = 1;
+    SKILL = 2;
+    DEAD = 3;
+    HIT = 4;
+}
+
+enum MoveDir{
+    UP = 0;
+    DOWN = 1;
+    LEFT = 2;
+    RIGHT = 3;
+}
+
+
+enum GameObjectType{
+    NONE = 0;
+    PLAYER = 1;
+    MONSTER = 2;
+    PROJECTILE = 3;
+    DROP_ITEM =4;
+    NPC = 5;
+}
+
+enum QuestAction{
+
+    GET = 0;
+    SUCCESS = 1;
+}
+
+/*message C_Chat {
+  string context = 1;
+}
+
+message S_Chat {
+  string context = 1;
+}*/
+
+
+enum SkillType{
+    SKILL_NONE = 0;
+    SKILL_AUTO = 1;
+    SKILL_PROJECTILE = 2;
+    ITEM_DROP = 3;
+
+}
+
+
+enum PlayerServerState{
+    SERVER_STATE_LOGIN = 0;
+    SERVER_STATE_LOBBY = 1;
+    SERVER_STATE_GAME = 2;
+}
+
+
+enum ItemType{
+    ITEM_TYPE_NONE= 0;
+    ITEM_TYPE_WEAPON = 1;
+    ITEM_TYPE_ARMOR = 2;
+    ITEM_TYPE_CONSUMABLE = 3;
+    ITEM_TYPE_ETC = 4;
+}
+
+enum WeaponType{
+    WEAPON_TYPE_NONE = 0;
+    WEAPON_TYPE_SWORD = 1;
+    WEAPON_TYPE_BOW = 2;
+}
+
+
+
+enum ArmorType{
+    ARMOR_TYPE_NONE = 0;
+    ARMOR_TYPE_HELMET = 1;
+    ARMOR_TYPE_ARMOR = 2;
+    ARMOR_TYPE_BOOTS = 3;
+    ARMOR_TYPE_PANTS = 4;
+    ARMOR_TYPE_SHIELD = 5;
+}
+
+
+enum ConsumableType{
+    CONSUMABLE_TYPE_NONE = 0;
+    CONSUMABLE_TYPE_POTION = 1;
+    CONSUMABLE_TYPE_SKILL = 2;
+}
+
+enum EtcType{
+    ETC_TYPE_NONE = 0;
+    ETC_TYPE_MONEY= 1;
+}
+
+message S_EnterGame {
+
+  ObjectInfo player = 1;
+
+}
+
+
+message S_LeaveGame{
+}
+
+message S_Spawn{
+  repeated ObjectInfo objects = 1;
+}
+
+message S_Despawn {
+
+  repeated int32 objectIds = 1;
+}
+
+
+message C_Move {
+  PositionInfo posInfo = 1;
+}
+
+message S_Move {
+
+  int32 objectId = 1;
+  PositionInfo posInfo = 2;
+
+}
+
+message C_Skill{
+    SkillInfo info = 1;
+}
+
+message S_Skill{
+    int32 objectId =1;
+    SkillInfo info = 2;
+    int32 targetId = 3;
+    int32 damage = 4;
+}
+
+message S_ChangeHp {
+    int32 objectId = 1;
+    int32 hp = 2;
+    int32 damage = 3;
+    int32 skillId = 4;
+    repeated int32 multiDamage = 5;
+    //int32 hpDiff = 3;
+}
+
+message S_Die{
+    int32 objectId = 1;
+    int32 attackerId = 2;
+    int32 damage = 3;
+}
+
+// 너무 길어지면 다른 프로토를 만들고 include 를 해도됨
+
+message S_Connected{
+    
+}
+
+// 이 단계에서 Account나 Password 를 친다거나, uinique 아이디를 보내서 인증을 받는다.
+message C_Login{
+    string uniqueId = 1;
+    string password = 2;
+}
+
+// 이 단계에서 캐릭터 목록을 보내준다.  -> 캐릭터 정보를 보내주는 패킷을 보내준다.
+// 지금은 그냥 해준다. ( 왜냐하면 패킷을 만들면 패킷 핸들러를 또 추가해줘야하기 때문)
+message S_Login{
+    int32 loginOk = 1; // 0 or 1 ( 실패 or 성공)
+    repeated LobbyPlayerInfo players = 2;
+}
+
+// 나 그냥 캐릭터 새로 만들래~
+message C_CreatePlayer{
+    string name = 1;
+    int32 hair = 2;
+    int32 face = 3;
+    int32 skin = 4;
+    int32 gender =5 ;
+
+    // 나중에는 스텟도
+}
+
+message S_CreatePlayer{
+    LobbyPlayerInfo player = 1;
+}
+
+
+// 나 어떤 캐릭터로 접속할래~
+message C_EnterGame{
+    string name = 1;
+    // 경우에 따라서는 캐릭터의 실제 DB ID나 캐릭터의 슬롯 인덱스로 하기도 한다.
+    
+}
+
+// 아이템 목록을 넣어준다.
+message S_ItemList{
+    
+    repeated ItemInfo items = 1;
+}
+
+// 아이템을 넣어준다.
+message S_AddItem{
+    
+    repeated ItemInfo items = 1;
+}
+
+
+message C_EquipItem{
+    int32 itemDbId = 1;
+    bool equipped = 2;
+}
+
+message S_EquipItem{
+    int32 itemDbId = 1;
+    bool equipped = 2;
+}
+
+message S_ChangeStat{
+    int32 objectId = 1;
+    StatInfo statInfo = 2;
+}
+
+message S_Ping{
+
+}
+
+message C_Pong{
+
+}
+
+message S_MoveMap{
+    StatInfo statInfo = 1;
+}
+
+
+
+message C_Logout{
+
+}
+
+message S_Logout{
+
+}
+
+
+message C_Chat{
+
+    string message = 1;
+
+}
+
+message S_Chat{
+
+    int32 objectId = 1;
+    string name = 2;
+    string message = 3;
+  
+}
+
+
+
+message C_UseItem{
+    int32 itemDbId = 1;
+}
+
+message S_UseItem{
+    int32 itemDbId = 1;
+    int32 count = 2;
+}
+
+message C_KeySetting{
+    int32 key = 1;
+    int32 type = 2;
+    int32 action = 3;
+}
+
+// 키셋팅 리스트를 건네준다.
+message S_KeySetting{
+    repeated KeySettingInfo keySettingInfo = 1;
+}
+
+message S_Exp{
+    int32 exp = 1;
+    bool levelUp = 2;
+    int32 totalExp =3;
+}
+
+
+
+// 키셋팅 목록을 모두 건네준다(초기)
+message S_KeySettingList{
+    repeated KeySettingInfo keySettingInfo = 1;
+}
+
+
+
+
+message C_DropItem{
+       int32 itemDbId = 1;
+       int32 count = 2;
+}
+
+message S_DropItem{
+    int32 itemDbId = 1;
+    int32 count = 2;
+}
+
+
+message C_Npc{
+    int32 objectId = 1;
+    int32 quest = 2; // 퀘스트 
+    int32 order = 3; // status, get,lose,check,req 등
+}
+
+message S_Npc{
+    ObjectInfo npcInfo = 1;
+    int32 dialogue = 2;
+    repeated ItemInfo rewards = 3;
+    // 퀘스트 정보
+    repeated QuestInfo quests = 4;
+}
+
+message S_Shop{
+   
+   ObjectInfo npcInfo = 1;
+   repeated ItemInfo items = 2;
+}
+
+
+message C_Purchase{
+    int32 templateId = 1;
+    int32 count = 2;
+    int32 npcId = 3;
+}
+
+message C_Sell{
+
+    int32 itemDbId = 1;
+    int32 count = 2;
+    int32 npcId = 3;
+}
+
+message C_StatUp{
+
+    int32 stat = 1;
+
+}
+
+message S_StatUp{
+
+    StatInfo stat = 1;
+}
+
+
+message C_ShortKey{
+    int32 action =1;
+}
+
+// 키셋팅 목록을 모두 건네준다(초기)
+message S_SkillList{
+    repeated SkillInfo skillInfo = 1;
+}
+
+
+message S_Teleport {
+
+  int32 objectId = 1;
+  PositionInfo posInfo = 2;
+
+}
+
+message S_ChangeMp {
+    int32 objectId = 1;
+    int32 mp = 2;
+    int32 damage = 3;
+    //int32 hpDiff = 3;
+}
+
+message C_SlotChange {
+    int32 itemDbId = 1;
+    int32 slot = 2;
+}
+
+// 퀘스트 목록을 모두 건네준다
+message S_QuestList{
+    repeated  QuestInfo QuestInfo = 1;
+}
+
+
+message C_Users {
+
+}
+
+message S_Users {
+    repeated ObjectInfo objectInfo = 1;
+}
+
+
+// Info
+message LobbyPlayerInfo{
+
+    int32 playerDbId = 1;
+    string name = 2;
+    StatInfo statInfo = 3;
+
+}
+
+
+message ObjectInfo {
+  int32 objectId = 1;
+  string name = 2;
+  PositionInfo posInfo = 3;
+  StatInfo statInfo = 4;
+}
+
+message PositionInfo {
+    CreatureState state = 1;
+    MoveDir moveDir =2;
+    int32 posX = 3;
+    int32 posY = 4;
+}
+
+message StatInfo{
+    int32 level = 1;
+    int32 hp = 2;
+    int32 maxHp = 3;
+    int32 attack = 4; // 18 ( 15+3 );
+    float speed = 5;
+    int32 totalExp = 6;
+    int32 map = 7;
+    int32 posX = 8;
+    int32 posY = 9;
+    int32 face = 10;
+    int32 hair = 11;
+    int32 skin = 12;
+    int32 gender = 13;
+    int32 mp = 14;
+    int32 maxMp = 15;
+    int32 exp = 16;
+    int32 gold = 17;
+    int32 def = 18;
+    int32 str = 19;
+    int32 dex = 20;
+    int32 int = 21;
+    int32 luk = 22;
+    int32 templateId =23;
+    int32 Helmet = 24;
+    int32 RightHand = 25;
+    int32 LeftHand = 26;
+    int32 Shirts = 27;
+    int32 Pants = 28;
+    int32 Shoes = 29;
+    int32 statPoint = 30;
+    int32 hairColor = 31;
+
+}
+
+
+message SkillInfo{
+    int32 skillId= 1;
+    int32 skillLevel = 2;
+    int32 slot = 3;
+    int32 ownerDbId = 4;
+    int32 skillDbId =5;
+}
+
+
+message ItemInfo{
+    int32 itemDbId = 1;
+    int32 templateId = 2; // 데이터시트에서 찾아서 그 아이템의 상세정보를 찾는다. UI모양이나 이름 등
+    int32 count= 3;
+    int32 slot =4;
+    bool equipped =5;
+    int32 price = 6;
+
+    int32 reqStr = 7;
+    int32 reqDex = 8;
+    int32 reqInt = 9;
+    int32 reqLuk = 10;
+    int32 reqLev = 11;
+    int32 reqPop = 12;
+
+    int32 upgradeSlot = 13;
+    int32 str = 14;
+    int32 dex  = 15;
+    int32 int = 16;
+    int32 luk = 17;
+    int32 hp = 18;
+    int32 mp = 19;
+    int32 wAtk = 20;
+    int32 mAtk = 21;
+    int32 wDef = 22;
+    int32 mDef = 23;
+    int32 speed = 24;
+    int32 atkSpeed = 25;
+    int32 durability = 26;
+    int32 enhance = 27;
+    int32 wPnt = 28;
+    int32 mPnt = 29;
+
+}
+
+message PortalInfo{
+    int32 portalId = 1;
+    int32 map = 2;
+    int32 posX = 3;
+    int32 posY = 4;
+    int32 destMap = 5;
+    int32 destPosX = 6;
+    int32 destPosY = 7;
+}
+
+message KeySettingInfo{
+
+    int32 keyDbId = 1;
+    int32 ownerDbId =2;
+    int32 key = 3;
+    int32 type = 4;
+    int32 action =5;
+
+}
+
+message QuestInfo{
+
+    int32 questDbId = 1;
+    int32 npcId = 2;
+    int32 questTemplateId = 3;
+    int32 playerId = 4;
+    int32 status = 5;
+
+}

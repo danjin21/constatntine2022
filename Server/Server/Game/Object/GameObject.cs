@@ -333,8 +333,20 @@ namespace Server.Game
                 {
 
 
+
+                    //OnDead(attacker, damage);
+
                     if (A.IsFinal == false)
                         OnDead(attacker, damage);
+                    else
+                    {
+                        // 화살이 하나라면 그냥 바로 죽게 만든다.
+                        if(shot== 1)
+                        {
+                            OnDead(attacker, damage);
+                        }
+
+                    }
 
 
                 }

@@ -208,58 +208,118 @@ namespace Server.Game
                         if (skillPacket.Info.SkillId == 9001000)
                         {
 
-                            if (target != null)
+
+                            // 화살을 들고 있다면 화살 하나를 소환한다.
+
+                            // 플레이어가 착용한 무기가 활이 아니면 리턴
+
+                            Console.WriteLine("@1");
+                            Item bowItem = null;
+                            bowItem = player.Inven.Find(i => i.Equipped && i.ItemType == ItemType.Weapon);
+
+                            Console.WriteLine("@2");
+                            if (((Weapon)bowItem).WeaponType == WeaponType.Bow)
                             {
-                                // TODO : 피격판정
 
-                                //if (target.ObjectType == GameObjectType.Monster)
-                                //{
-                                //    // 반이상 왔을때만
-                                //    if (Math.Abs(target.moveProcess) < (int)((32 * 1000 / target.Speed) / 2))
-                                //    {
-                                //        int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
-                                //        realDamage = target.OnDamaged(player, TryAttack);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
-                                //    }
+                                DataManager.SkillDict.TryGetValue(2001001, out skillData);
 
-                                //}
-                                //else if(target.ObjectType == GameObjectType.Player)
-                                //{
 
-                                //    // 반이상 왔을때만
-                                //    if (Math.Abs(target.moveProcess) < (int)((32 * 1000 / target.Speed) / 2))
-                                //    {
-                                //        int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
-                                //        realDamage = target.OnDamaged(player, TryAttack);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
-                                //    }
+                                Console.WriteLine("@3");
+                                // TODO : Arrow ( 일단 에로우만 넣음 )
+                                Arrow arrow = ObjectManager.Instance.Add<Arrow>();
+                                if (arrow == null)
+                                    break; // 아래까지 내려가야 하므로
 
-                                //    //// 플레이어도 반이상 왔을때 타격하는것 연구해 봐야함.
+                                arrow.Owner = player;
 
-                                //    //int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
-                                //    //realDamage = target.OnDamaged(player, TryAttack);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
-                                //}
 
-                                // 멈춰있는 상태 ( movetick은 가만히 있고, 환경시간만 증가하므로 계속 음수가 될수밖에 없다.)
-                                if((target._nextMoveTick - Environment.TickCount64) < (int)((32 * 1000 / target.Speed) / 2.0f))
+                                // 스킬 데이터가 없으면 return 
+                                // 임시로 더블샷 스킬데이터로 넣어준다
+
+
+                                // 투사체 에게 스킬 데이터를 넣어준다.
+                                arrow.Data = skillData;
+
+                                arrow.PosInfo.State = CreatureState.Moving;
+                                arrow.PosInfo.MoveDir = player.PosInfo.MoveDir;
+                                arrow.PosInfo.PosX = player.PosInfo.PosX;
+                                arrow.PosInfo.PosY = player.PosInfo.PosY;
+
+                                Console.WriteLine("@4");
+
+                                // 투사체의 스피드를 데이터에서 불러온다.
+                                arrow.Speed = skillData.projectile.speed;
+                                arrow.IsFinal = true;
+                                Push(EnterGame, arrow, false); // => JobQueue 화  
+
+
+                                Console.WriteLine("@5" + skillData.skillType);
+                            }
+                            else // 활 안들고 있을때
+                            {
+                                if (target != null)
                                 {
-                                    int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
-                                    realDamage = target.OnDamaged(player, TryAttack, skillPacket.Info.SkillId, 1, player);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
-                                }
-                                else
-                                {
-                                    // 반을 못넘어왔지만, 걷는게 아니고 멈춰있었던 거라면 데미지를 준다.
-                                    if(target.State != CreatureState.Moving)
+                                    // TODO : 피격판정
+
+                                    //if (target.ObjectType == GameObjectType.Monster)
+                                    //{
+                                    //    // 반이상 왔을때만
+                                    //    if (Math.Abs(target.moveProcess) < (int)((32 * 1000 / target.Speed) / 2))
+                                    //    {
+                                    //        int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
+                                    //        realDamage = target.OnDamaged(player, TryAttack);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
+                                    //    }
+
+                                    //}
+                                    //else if(target.ObjectType == GameObjectType.Player)
+                                    //{
+
+                                    //    // 반이상 왔을때만
+                                    //    if (Math.Abs(target.moveProcess) < (int)((32 * 1000 / target.Speed) / 2))
+                                    //    {
+                                    //        int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
+                                    //        realDamage = target.OnDamaged(player, TryAttack);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
+                                    //    }
+
+                                    //    //// 플레이어도 반이상 왔을때 타격하는것 연구해 봐야함.
+
+                                    //    //int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
+                                    //    //realDamage = target.OnDamaged(player, TryAttack);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
+                                    //}
+
+
+
+
+                                    // 멈춰있는 상태 ( movetick은 가만히 있고, 환경시간만 증가하므로 계속 음수가 될수밖에 없다.)
+                                    if ((target._nextMoveTick - Environment.TickCount64) < (int)((32 * 1000 / target.Speed) / 2.0f))
                                     {
                                         int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
                                         realDamage = target.OnDamaged(player, TryAttack, skillPacket.Info.SkillId, 1, player);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
                                     }
+                                    else
+                                    {
+                                        // 반을 못넘어왔지만, 걷는게 아니고 멈춰있었던 거라면 데미지를 준다.
+                                        if (target.State != CreatureState.Moving)
+                                        {
+                                            int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
+                                            realDamage = target.OnDamaged(player, TryAttack, skillPacket.Info.SkillId, 1, player);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
+                                        }
 
-                                    //Console.WriteLine("###다 안왔죵? 둘의 차이 : " + (target._nextMoveTick - Environment.TickCount64));
+                                        //Console.WriteLine("###다 안왔죵? 둘의 차이 : " + (target._nextMoveTick - Environment.TickCount64));
+                                    }
+
+                                    //Console.WriteLine("멈춰있고 떄릴때 몬스터의 실시간 이동 진행과정 = " + target._nextMoveTick + "/환경시간 : "+ Environment.TickCount64 + "/ 둘의 차이 : " + (target._nextMoveTick- Environment.TickCount64) + "/ 반의 거리 : " + (int)((32 * 1000 / target.Speed) / 2.0f));
+
+
+
+
+
+
                                 }
 
-                                //Console.WriteLine("멈춰있고 떄릴때 몬스터의 실시간 이동 진행과정 = " + target._nextMoveTick + "/환경시간 : "+ Environment.TickCount64 + "/ 둘의 차이 : " + (target._nextMoveTick- Environment.TickCount64) + "/ 반의 거리 : " + (int)((32 * 1000 / target.Speed) / 2.0f));
-
-
                             }
+
+
                         }
 
 

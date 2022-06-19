@@ -22,6 +22,8 @@ public class UI_DialoguePopup : UI_Popup
 
     public SpriteRenderer A;
 
+    public  Coroutine CoTyping;
+
     int TempNum = 0;
     int Status = 0;
     int Order = 0;
@@ -113,7 +115,13 @@ public class UI_DialoguePopup : UI_Popup
 
         Index = index;
 
-        GetText((int)Texts.DialogueText).text = text;    
+        // 바로 뜨는것이 아니라, 하나씩 뜨게 한다.
+        //GetText((int)Texts.DialogueText).text = text;
+
+        if (CoTyping != null)
+            StopCoroutine(CoTyping);
+
+        CoTyping = StartCoroutine(_typing(text));
 
         if(npcInfo !=null)
             GetText((int)Texts.NpcNameText).text = npcInfo.Name;
@@ -393,7 +401,17 @@ public class UI_DialoguePopup : UI_Popup
         Managers.UI.ClosePopupUI(this);
     }
 
+    IEnumerator _typing(string DialogueText)
+    {
 
+        for(int i  = 0; i <= DialogueText.Length; i++)
+        {
+            GetText((int)Texts.DialogueText).text = DialogueText.Substring(0, i);
+
+            yield return new WaitForSeconds(0.02f);
+
+        }
+    }
 
 
 

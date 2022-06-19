@@ -41,10 +41,24 @@ public class UI_SelectServerPopup_Item : UI_Base
     void OnClickButton(PointerEventData evt)
     {
 
+
+        StartCoroutine(Delay());
+    }
+
+
+    IEnumerator Delay()
+    {
+        // Sound
+        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+
+        yield return new WaitForSeconds(0.5f);
+
         Managers.Network.ConnectToGame(Info);
         Managers.Scene.LoadScene(Define.Scene.Game);
         Managers.UI.ClosePopupUI();
+
+
     }
 
-  
+
 }

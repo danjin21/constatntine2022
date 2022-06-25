@@ -39,7 +39,7 @@ public class SoundManager
                            //_audioSources[i].volume = 0.05f;
                     _audioSources[i].volume = 0.00f;
                 else if( i==1) // effect
-                    _audioSources[i].volume = 0.5f;
+                    _audioSources[i].volume = 1.0f;
 
             }
 

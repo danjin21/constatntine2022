@@ -72,6 +72,8 @@ public class UI_GameScene : UI_Scene
         //                Application.Quit(); // 어플리케이션 종료
         //#endif
 
+        // Sound
+        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         // 서버한테 로그아웃 하겠다고 하는 곳
         C_Logout logout = new C_Logout();
@@ -82,13 +84,18 @@ public class UI_GameScene : UI_Scene
 
     public void OnClickUsers()
     {
+        // Sound
+        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         // User 창이 이미 켜져있는지 확인한다.
 
         GameObject UserList = GameObject.Find("UI_UserListPopup");
 
         if (UserList != null)
+        {           
+            Managers.UI.ClosePopupUI(UserList.GetComponent<UI_UserListPopup>());
             return;
+        }
 
 
         // 서버한테 접속 유저를 물어본다.
@@ -100,6 +107,9 @@ public class UI_GameScene : UI_Scene
 
     public void Change(PointerEventData evt)
     {
+        // Sound
+        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+
         // 스위칭
 
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;

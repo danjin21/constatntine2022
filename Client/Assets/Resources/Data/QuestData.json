@@ -30,7 +30,7 @@
 		},
 		{
 			"index":"151",
-			"script" : "고마워~",
+			"script" : "", // QuestDialogue - 고마워~
 			"statusChange" : "2",
 			"getItem": [
   	  			{
@@ -105,7 +105,7 @@
 		},
 		{
 			"index":"321",
-			"script" : "약소하지만 받아줘! 모험에 도움이 될거야.",
+			"script" : "", // QuestDialogue - 약소하지만 받아줘! 모험에 도움이 될거야.
 			"statusChange" : "-1",
 			"getItem": [
   	  			{
@@ -194,7 +194,7 @@
 		},
 		{
 			"index":"221",
-			"script":"오랜 시간 많이 힘들었을텐데 넌 이 방패를 받을 자격이 있어! 고생많았다!",
+			"script":"", // QuestDialogue - 오랜 시간 많이 힘들었을텐데 넌 이 방패를 받을 자격이 있어! 고생많았다!
 			"statusChange" : "-1",
 			"loseItem": [
   	  			{

@@ -112,18 +112,18 @@
         },
 
 
-		// Map 10100010 ºÏÂÊ Æ÷Å»
+		// Map 10100010 ³²ÂÊ Æ÷Å»
 		{
-            "portalId": "1010001000","map": "10100010","destMap": "10100000",
-            "posX": "-1","posY": "11","destPosX":  "-1","destPosY":  "-11"
+            "portalId": "1010001000","map": "10100010","destMap": "20100000",
+            "posX": "-1","posY": "-12","destPosX":  "-1","destPosY":  "2"
         },
 		{
-            "portalId": "1010001001","map": "10100010","destMap": "10100000",
-            "posX": "0","posY": "11","destPosX":  "0","destPosY":  "-11"
+            "portalId": "1010001001","map": "10100010","destMap": "20100000",
+            "posX": "0","posY": "-12","destPosX":  "0","destPosY":  "2"
         },
 		{
-            "portalId": "1010001002","map": "10100010","destMap": "10100000",
-            "posX": "1","posY": "11","destPosX":  "1","destPosY":  "-11"
+            "portalId": "1010001002","map": "10100010","destMap": "20100000",
+            "posX": "1","posY": "-12","destPosX":  "1","destPosY":  "2"
         },
 		// Map 10100010 µ¿ÂÊ Æ÷Å»
 		{
@@ -637,14 +637,17 @@
 
 		// Map 20100000 ´øÀü Æ÷Å»
 		{
-            "portalId": "2010000023","map": "20100000","destMap": "10100000",
-            "posX": "-1","posY": "3","destPosX":  "-1","destPosY":  "5"
+            "portalId": "2010000023","map": "20100000","destMap": "10100010",
+            "posX": "-1","posY": "3","destPosX":  "-1","destPosY":  "-11"
         },
 		{
-            "portalId": "2010000024","map": "20100000","destMap": "10100000",
-            "posX": "0","posY": "3","destPosX":  "0","destPosY":  "5"
+            "portalId": "2010000024","map": "20100000","destMap": "10100010",
+            "posX": "0","posY": "3","destPosX":  "0","destPosY":  "-11"
         },
-
+		{
+            "portalId": "2010000025","map": "20100000","destMap": "10100010",
+            "posX": "1","posY": "3","destPosX":  "0","destPosY":  "-11"
+        },
 
 
 		// Map 20100001 µ¿ÂÊ Æ÷Å»

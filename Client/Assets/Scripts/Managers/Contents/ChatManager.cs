@@ -80,6 +80,9 @@ public class ChatManager
     public void Send()
     {
 
+        // Sound
+        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+
         //if (ChatInput.text == "")
         //{
         //    //ChatInput.Select();

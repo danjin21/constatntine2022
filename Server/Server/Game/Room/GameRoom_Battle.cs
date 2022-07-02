@@ -218,7 +218,7 @@ namespace Server.Game
                             bowItem = player.Inven.Find(i => i.Equipped && i.ItemType == ItemType.Weapon);
 
                             Console.WriteLine("@2");
-                            if (((Weapon)bowItem).WeaponType == WeaponType.Bow)
+                            if (bowItem != null && ((Weapon)bowItem).WeaponType == WeaponType.Bow)
                             {
 
                                 DataManager.SkillDict.TryGetValue(2001001, out skillData);

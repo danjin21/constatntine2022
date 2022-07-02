@@ -276,6 +276,9 @@ public class UI_Stat : UI_Base
 
     public void Stat_Up(int stat)
     {
+        // Sound
+        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+
         C_StatUp statupPacket = new C_StatUp();
         statupPacket.Stat = stat;
 

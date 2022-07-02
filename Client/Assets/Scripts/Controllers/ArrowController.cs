@@ -71,7 +71,7 @@ public class ArrowController : BaseController
 
 
         //float run = 0.55f;
-        float run = 0.65f;
+        float run = 0.55f;
 
         switch (Dir)
         {

@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 3015739214004112005}
   - component: {fileID: 8202551601559637409}
   - component: {fileID: 545780053864273924}
+  - component: {fileID: 8894180538184366765}
   m_Layer: 5
   m_Name: Stats01Button
   m_TagString: Untagged
@@ -1040,6 +1041,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &8894180538184366765
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651036515603578237}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a6b5712a2ecc2f4ab6b1b63e8e5267a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1778036319235422711
 GameObject:
   m_ObjectHideFlags: 0
@@ -1745,6 +1765,7 @@ GameObject:
   - component: {fileID: 2392887976797063266}
   - component: {fileID: 452385339526499740}
   - component: {fileID: 4672713549151410582}
+  - component: {fileID: 9072782129086270660}
   m_Layer: 5
   m_Name: Stats03Button
   m_TagString: Untagged
@@ -1852,6 +1873,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &9072782129086270660
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4153513987768119363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a6b5712a2ecc2f4ab6b1b63e8e5267a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4192314593489772062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2246,6 +2286,7 @@ GameObject:
   - component: {fileID: 1230202330587082475}
   - component: {fileID: 3678274019455828305}
   - component: {fileID: 8743007334019098734}
+  - component: {fileID: 2892731134479613212}
   m_Layer: 5
   m_Name: Stats02Button
   m_TagString: Untagged
@@ -2353,6 +2394,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &2892731134479613212
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691894263042778508}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a6b5712a2ecc2f4ab6b1b63e8e5267a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4782720853997169015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5358,6 +5418,7 @@ GameObject:
   - component: {fileID: 601951852819962958}
   - component: {fileID: 5910563311173796257}
   - component: {fileID: 4935628548711226990}
+  - component: {fileID: 4966805048385572333}
   m_Layer: 5
   m_Name: Stats04Button
   m_TagString: Untagged
@@ -5465,6 +5526,25 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!95 &4966805048385572333
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8664219535017566368}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a6b5712a2ecc2f4ab6b1b63e8e5267a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8763102134564595989
 GameObject:
   m_ObjectHideFlags: 0

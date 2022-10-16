@@ -85,97 +85,7 @@ namespace Server.Game
             if (questData == null)
                 return;
 
-            // 아이템을 주는 경우
-            if (questData.dialogue[Order].getItem != null && questData.dialogue[Order].getItem.Count != 0)
-            {
 
-
-                S_Npc snpcPacket = new S_Npc();
-                snpcPacket.NpcInfo = npc.Info;
-
-                int GetItemCount = questData.dialogue[Order].getItem.Count;
-
-                int? emptySlot = player.Inven.GetEmptySlot();
-
-                // 몇칸이상 슬롯이 비어있는지 확인하는 기능을 넣어야 한다.
-                int emptySlots = player.Inven.GetEmptySlots(GetItemCount);
-
-
-                // 아이템 슬롯이 없을때 || 아이템 갯수보다 슬롯이 적을때
-                if (emptySlot ==null || emptySlots < GetItemCount )
-                {
-                    snpcPacket.Dialogue = questData.dialogue[Order+1].index;
-
-                    player.Session.Send(snpcPacket);
-                    return;
-                }
-                else
-                {
-
-                    // 이미 갖고 있는 아이템일때
-
-                    // 아이템 슬롯이 있을때
-                    snpcPacket.Dialogue = questData.dialogue[Order].index;
-
-
-                    // 아이템 준다.
-                    int i = 0;
-
-                    foreach (QuestItemData questItemData in questData.dialogue[Order].getItem)
-                    {
-                        
-
-                        RewardData newData = new RewardData();
-                        newData.itemId = questItemData.itemId;
-                        newData.count = questItemData.quantity;
-                        // 원래 장비템 같은 경우에는 여기에 능력치 넣어줘야함
-                        newData.itemInfo = new ItemInfo();
-
-
-
-                        // 장비인경우 가치를 넣어준다.
-                        ItemData itemData = null;
-                        DataManager.ItemDict.TryGetValue(newData.itemId, out itemData);
-                       
-                        if (itemData == null)
-                            continue;
-
-                        if (itemData.itemType == ItemType.Weapon || itemData.itemType == ItemType.Armor)
-                        {
-
-                            newData.itemInfo.UpgradeSlot = 7; // 처음에는 어쩔 수 없음
-                            newData.itemInfo.Str = itemData.Str;
-                            newData.itemInfo.Dex = itemData.Dex;
-                            newData.itemInfo.Int = itemData.Int;
-                            newData.itemInfo.Luk = itemData.Luk;
-                            newData.itemInfo.Hp = itemData.Hp;
-                            newData.itemInfo.Mp = itemData.Mp;
-                            newData.itemInfo.WAtk = itemData.WAtk;
-                            newData.itemInfo.MAtk = itemData.MAtk;
-                            newData.itemInfo.WDef = itemData.WDef;
-                            newData.itemInfo.MDef = itemData.MDef;
-                            newData.itemInfo.Speed = itemData.Speed;
-                            newData.itemInfo.AtkSpeed = itemData.AtkSpeed;
-                            newData.itemInfo.Durability = itemData.Durability;
-                            newData.itemInfo.Enhance = itemData.Enhance;
-                            newData.itemInfo.WPnt = itemData.WPnt;
-                            newData.itemInfo.MPnt = itemData.MPnt;
-                        }
-
-
-                        // 여러개 동시에 줄때에는 이것 이용해야함
-                        DbTransaction.RewardPlayer(player, newData, room, (int)(emptySlot + i));
-
-                        i += 1;
-
-                    }
-                }
-
-
-                player.Session.Send(snpcPacket);
-
-                Console.WriteLine("퀘스트 getItem 변경 요청");
-            }
 
             // 아이템을 잃는 경우
             if (questData.dialogue[Order].loseItem != null && questData.dialogue[Order].loseItem.Count != 0)
@@ -306,6 +216,98 @@ namespace Server.Game
 
             //}
 
+
+            // 아이템을 주는 경우
+            if (questData.dialogue[Order].getItem != null && questData.dialogue[Order].getItem.Count != 0)
+            {
+
+
+                S_Npc snpcPacket = new S_Npc();
+                snpcPacket.NpcInfo = npc.Info;
+
+                int GetItemCount = questData.dialogue[Order].getItem.Count;
+
+                int? emptySlot = player.Inven.GetEmptySlot();
+
+                // 몇칸이상 슬롯이 비어있는지 확인하는 기능을 넣어야 한다.
+                int emptySlots = player.Inven.GetEmptySlots(GetItemCount);
+
+
+                // 아이템 슬롯이 없을때 || 아이템 갯수보다 슬롯이 적을때
+                if (emptySlot == null || emptySlots < GetItemCount)
+                {
+                    snpcPacket.Dialogue = questData.dialogue[Order + 1].index;
+
+                    player.Session.Send(snpcPacket);
+                    return;
+                }
+                else
+                {
+
+                    // 이미 갖고 있는 아이템일때
+
+                    // 아이템 슬롯이 있을때
+                    snpcPacket.Dialogue = questData.dialogue[Order].index;
+
+
+                    // 아이템 준다.
+                    int i = 0;
+
+                    foreach (QuestItemData questItemData in questData.dialogue[Order].getItem)
+                    {
+
+
+                        RewardData newData = new RewardData();
+                        newData.itemId = questItemData.itemId;
+                        newData.count = questItemData.quantity;
+                        // 원래 장비템 같은 경우에는 여기에 능력치 넣어줘야함
+                        newData.itemInfo = new ItemInfo();
+
+
+
+                        // 장비인경우 가치를 넣어준다.
+                        ItemData itemData = null;
+                        DataManager.ItemDict.TryGetValue(newData.itemId, out itemData);
+
+                        if (itemData == null)
+                            continue;
+
+                        if (itemData.itemType == ItemType.Weapon || itemData.itemType == ItemType.Armor)
+                        {
+
+                            newData.itemInfo.UpgradeSlot = 7; // 처음에는 어쩔 수 없음
+                            newData.itemInfo.Str = itemData.Str;
+                            newData.itemInfo.Dex = itemData.Dex;
+                            newData.itemInfo.Int = itemData.Int;
+                            newData.itemInfo.Luk = itemData.Luk;
+                            newData.itemInfo.Hp = itemData.Hp;
+                            newData.itemInfo.Mp = itemData.Mp;
+                            newData.itemInfo.WAtk = itemData.WAtk;
+                            newData.itemInfo.MAtk = itemData.MAtk;
+                            newData.itemInfo.WDef = itemData.WDef;
+                            newData.itemInfo.MDef = itemData.MDef;
+                            newData.itemInfo.Speed = itemData.Speed;
+                            newData.itemInfo.AtkSpeed = itemData.AtkSpeed;
+                            newData.itemInfo.Durability = itemData.Durability;
+                            newData.itemInfo.Enhance = itemData.Enhance;
+                            newData.itemInfo.WPnt = itemData.WPnt;
+                            newData.itemInfo.MPnt = itemData.MPnt;
+                        }
+
+
+                        // 여러개 동시에 줄때에는 이것 이용해야함
+                        DbTransaction.RewardPlayer(player, newData, room, (int)(emptySlot + i));
+
+                        i += 1;
+
+                    }
+                }
+
+
+                player.Session.Send(snpcPacket);
+
+                Console.WriteLine("퀘스트 getItem 변경 요청");
+            }
 
 
             // ★☆★☆★☆★☆★☆★☆★☆ 퀘스트 주기전에 먼저 아이템 주고 확인하고, 퀘스트를 주자.★☆★☆★☆★☆★☆★☆★☆

@@ -97,6 +97,7 @@ namespace Server.Game
                             statupPacket.Stat.Luk = player.Stat.Luk;
                             statupPacket.Stat.StatPoint = player.Stat.StatPoint;
 
+
                             // 모은것 패킹
                             player.Session.Send(statupPacket);
                         }

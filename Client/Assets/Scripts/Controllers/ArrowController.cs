@@ -65,13 +65,16 @@ public class ArrowController : BaseController
     {
 
 
+
         //// 이동이 아니면 리턴한다
         //if (State != CreatureState.Moving)
         //    return;
 
 
         //float run = 0.55f;
-        float run = 0.55f;
+        //float run = 0.55f;
+
+        float run = 0.7f;
 
         switch (Dir)
         {
@@ -89,7 +92,16 @@ public class ArrowController : BaseController
                 break;
         }
 
+        //Vector3Int A = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
 
+        //if (Managers.Map.CanGo(A))
+        //{
+
+        //}
+        //else
+        //{
+        //    Managers.Resource.Destroy(gameObject);
+        //}
 
 
     }

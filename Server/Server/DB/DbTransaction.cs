@@ -400,9 +400,19 @@ namespace Server.DB
                 StatInfo stat = null;
 
 
-                player.Stat.Level += 1;
+     
                 DataManager.StatDict.TryGetValue(player.Stat.Level, out stat);
 
+                if (stat == null)
+                {
+
+                    Console.WriteLine("Stat 정보가 없습니다.");
+                    return;
+                  
+                }
+
+
+                player.Stat.Level += 1;
                 player.Stat.Exp = 0;
                 LevelUp = true;
                 player.Stat.TotalExp = stat.TotalExp;
@@ -410,6 +420,11 @@ namespace Server.DB
                 // 스텟 포인트 추가
 
                 player.Stat.StatPoint += 5;
+
+                // 전체 체력 및 마나 회복
+
+                player.Stat.MaxHp += 23;
+                player.Stat.MaxMp += 11;
 
             }
 
@@ -421,6 +436,9 @@ namespace Server.DB
             playerDb.Level = player.Stat.Level;
             playerDb.TotalExp = player.Stat.TotalExp;
             playerDb.StatPoint = player.Stat.StatPoint;
+
+            playerDb.MaxHp = player.Stat.MaxHp;
+            playerDb.MaxMp = player.Stat.MaxMp;
 
 
 
@@ -437,6 +455,9 @@ namespace Server.DB
                     db.Entry(playerDb).Property(nameof(playerDb.TotalExp)).IsModified = true; // "TotalExp"
                     db.Entry(playerDb).Property(nameof(playerDb.StatPoint)).IsModified = true; // "StatPoint"
 
+                    db.Entry(playerDb).Property(nameof(playerDb.MaxHp)).IsModified = true; // "TotalExp"
+                    db.Entry(playerDb).Property(nameof(playerDb.MaxMp)).IsModified = true; // "StatPoint"
+
 
                     //db.SaveChanges();
                     bool success = db.SaveChangesEx(); // 예외 처리
@@ -452,6 +473,20 @@ namespace Server.DB
                             expPacket.TotalExp = player.Stat.TotalExp;
 
                             player.Session.Send(expPacket);
+
+                            // 스텟도 올려주자
+
+
+                            // 레벨업한 사실과, MaxHp, MaxMp 변동 된 것을 '다른' 클라'들'한테 보여준다.
+
+                            S_LevelUp levelupPacket = new S_LevelUp();
+                            levelupPacket.ObjectId = player.Info.ObjectId;
+                            levelupPacket.StatInfo = new StatInfo();
+                            levelupPacket.StatInfo.MaxHp = player.Stat.MaxHp;
+                            levelupPacket.StatInfo.MaxMp = player.Stat.MaxMp;
+
+                            room.Broadcast(player.CellPos, levelupPacket);
+
                         }
                         );
                     }

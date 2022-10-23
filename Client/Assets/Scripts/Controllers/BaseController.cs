@@ -62,6 +62,25 @@ public class BaseController : MonoBehaviour
         }
     }
 
+    public virtual int MaxHp
+    {
+        get { return Stat.MaxHp; }
+        set
+        {
+            Stat.MaxHp = value;
+        }
+    }
+
+    public virtual int MaxMp
+    {
+        get { return Stat.MaxMp; }
+        set
+        {
+            Stat.MaxMp = value;
+        }
+    }
+
+
     //[SerializeField]
     //public float _speed;
 

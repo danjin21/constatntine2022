@@ -48,6 +48,29 @@ public class CreatureController : BaseController
     }
 
 
+    // BaseController를 따르되, UpdateHpBar()를 추가로 실행한다.
+    public override int MaxHp
+    {
+        get { return Stat.MaxHp; }
+        set
+        {
+            base.MaxHp = value;
+            UpdateHpBar();
+        }
+    }
+
+    public override int MaxMp
+    {
+        get { return Stat.MaxMp; }
+        set
+        {
+            base.MaxMp = value;
+        }
+    }
+
+
+
+
     public virtual int TotalStr { get { return 0; } }
     public virtual int TotalDex { get { return 0; } }
     public virtual int TotalInt { get { return 0; } }

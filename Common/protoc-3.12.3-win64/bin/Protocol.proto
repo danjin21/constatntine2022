@@ -108,6 +108,10 @@ enum MsgId {
   C_USERS = 49;
   S_USERS = 50;
 
+  // 레벨업 표시
+
+  S_LEVEL_UP = 51;
+
 
 }
 
@@ -507,6 +511,14 @@ message C_Users {
 message S_Users {
     repeated ObjectInfo objectInfo = 1;
 }
+
+message S_LevelUp{
+
+    int32 objectId = 1;
+    StatInfo statInfo = 2;
+
+}
+
 
 
 // Info

@@ -243,7 +243,8 @@ public class UI_Stat : UI_Base
         MyPlayerController player = Managers.Object.MyPlayer;
         Get<Text>((int)Texts.MpText).text = $"{player.Stat.Mp}/{player.Stat.MaxMp}";
         Get<Text>((int)Texts.HpText).text = $"{player.Stat.Hp}/{player.Stat.MaxHp}";
-        
+
+
         // 게이지 업데이트
         SetHpBar(player.Stat.Hp, player.Stat.MaxHp);
         SetMpBar(player.Stat.Mp, player.Stat.MaxMp);

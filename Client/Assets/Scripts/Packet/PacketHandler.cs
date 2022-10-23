@@ -615,9 +615,11 @@ class PacketHandler
             cc.Stat.Shirts = changePacket.StatInfo.Shirts;
             cc.Stat.Pants = changePacket.StatInfo.Pants;
             cc.Stat.Shoes = changePacket.StatInfo.Shoes;
+
         }
 
         cc.GetComponent<CharacterAnimation>().CharacterApearance_Refresh();
+
 
     }
 
@@ -1192,5 +1194,36 @@ class PacketHandler
 
 
     }
+
+
+
+    public static void S_LevelUpHandler(PacketSession session, IMessage packet)
+    {
+        S_LevelUp levelupPacket = packet as S_LevelUp;
+
+
+        GameObject go = Managers.Object.FindById(levelupPacket.ObjectId); // 우선 받는 놈의 아이디를 받는다.
+
+        if (go == null)
+            return;
+
+
+        CreatureController cc = go.GetComponent<CreatureController>();
+
+        if (cc != null)
+        {
+            // Stat을 통해 바꿔주면 안되고, 바로 Hp 로 바꿔줘야 업데이트가 됨.
+            //cc.Stat.Hp = changePacket.Hp;
+            cc.MaxHp = levelupPacket.StatInfo.MaxHp;
+            cc.MaxMp = levelupPacket.StatInfo.MaxMp;
+
+
+            //// TODO : UI
+            //Debug.Log($"ChangeHp : {changePacket.Hp}");
+
+        }
+        //Debug.Log("S_MoveHandler");
+    }
+
 
 }

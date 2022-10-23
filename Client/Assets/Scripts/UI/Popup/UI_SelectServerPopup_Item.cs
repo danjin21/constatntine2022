@@ -49,7 +49,7 @@ public class UI_SelectServerPopup_Item : UI_Base
     IEnumerator Delay()
     {
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         yield return new WaitForSeconds(0.5f);
 

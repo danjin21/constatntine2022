@@ -10,6 +10,10 @@ using Google.Protobuf;
 using TMPro;
 using UnityEngine.EventSystems;
 
+using System.Text.RegularExpressions;
+
+
+
 public class ChatManager
 {
 
@@ -58,12 +62,15 @@ public class ChatManager
         }
 
 
+
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             Send();
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             ChatInput.text = "";
             ChatInput.DeactivateInputField();
@@ -73,7 +80,30 @@ public class ChatManager
         }
 
 
+        if (ChatInput.interactable == true)
+            CaptureText();
+
+
+
+
+
     }
+
+
+    // 인풋 값 실시간 복사하는 부분 ( TMP -> 일반  TEXT로 표기하기 위함 )
+
+    public void CaptureText()
+    {
+        string A = Regex.Replace(ChatInput.transform.GetChild(0).transform.GetChild(2).gameObject.GetComponent<TMP_Text>().text, @"<[u|U|/](.|\n)*?>", string.Empty);
+              
+        ChatInput.transform.GetChild(0).transform.GetChild(3).gameObject.GetComponent<Text>().text = A;
+    }
+    
+
+
+
+       
+
 
 
     #region 채팅
@@ -81,7 +111,7 @@ public class ChatManager
     {
 
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         //if (ChatInput.text == "")
         //{
@@ -151,6 +181,8 @@ public class ChatManager
         Debug.Log("@@2");
         Debug.Log("Input.imeCompositionMode 4 : " + Input.imeCompositionMode + "." + Input.imeIsSelected);
 
+        CaptureText();
+
     }
 
 
@@ -171,6 +203,8 @@ public class ChatManager
         }
     }
     #endregion
+
+
 
 
 

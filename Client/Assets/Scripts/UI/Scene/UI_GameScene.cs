@@ -73,7 +73,7 @@ public class UI_GameScene : UI_Scene
         //#endif
 
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         // 서버한테 로그아웃 하겠다고 하는 곳
         C_Logout logout = new C_Logout();
@@ -85,7 +85,7 @@ public class UI_GameScene : UI_Scene
     public void OnClickUsers()
     {
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         // User 창이 이미 켜져있는지 확인한다.
 
@@ -108,7 +108,7 @@ public class UI_GameScene : UI_Scene
     public void Change(PointerEventData evt)
     {
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         // 스위칭
 

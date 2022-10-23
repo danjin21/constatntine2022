@@ -47,7 +47,7 @@ public class UI_UserListPopup : UI_Popup
     void OnClickCloseButton(PointerEventData evt)
     {
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         Managers.UI.ClosePopupUI(this);
 

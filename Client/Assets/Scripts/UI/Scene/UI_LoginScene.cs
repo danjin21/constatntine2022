@@ -107,7 +107,7 @@ public class UI_LoginScene : UI_Scene
     public void OnClickCreateButton(PointerEventData evt)
     {
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         string account = Get<GameObject>((int)GameObjects.AccountName).GetComponent<InputField>().text;
         string password = Get<GameObject>((int)GameObjects.Password).GetComponent<InputField>().text;
@@ -136,7 +136,7 @@ public class UI_LoginScene : UI_Scene
     {
 
         // Sound
-        Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
+        //Managers.Sound.Play("UI/Button/Slick Button", Define.Sound.Effect);
 
         string account = Get<GameObject>((int)GameObjects.AccountName).GetComponent<InputField>().text;
         string password = Get<GameObject>((int)GameObjects.Password).GetComponent<InputField>().text;

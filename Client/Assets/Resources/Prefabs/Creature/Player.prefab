@@ -300,7 +300,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Blocked: 0
+  IsDead: 0
   DamagePocket: {fileID: 0}
+  _skillId: -1
 --- !u!95 &3203848888725675927
 Animator:
   serializedVersion: 3
@@ -335,12 +337,14 @@ MonoBehaviour:
   Hair: 0
   Face: 0
   Skin: 0
+  HairColor: 0
   Helmet: -1
   RightHand: -1
   LeftHand: -1
   Shirts: -1
   Pants: -1
   Shoes: -1
+  weaponKind: -1
   HeadList: []
   FaceList: []
   HairList: []
@@ -350,13 +354,16 @@ MonoBehaviour:
   Body_Attack_List: []
   Body_Spell_List: []
   Body_Drop_List: []
+  Body_Bow_Attack_List: []
   ArmorList: []
   ArmorList_OneHand: []
   Armor_Attack_List: []
   Armor_Spell_List: []
   Armor_Drop_List: []
+  Armor_Bow_Attack_List: []
   RightHandList: []
   RightHand_Attack_List: []
+  RightHand_Bow_Attack_List: []
 --- !u!1 &3311010197057562287
 GameObject:
   m_ObjectHideFlags: 0

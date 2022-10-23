@@ -10,6 +10,7 @@ public class Title : MonoBehaviour
     {
 
         //Screen.SetResolution(1152, 864, false);
+        //Screen.SetResolution(1280, 960, false);
         Screen.SetResolution(1280, 960, false);
     }
 

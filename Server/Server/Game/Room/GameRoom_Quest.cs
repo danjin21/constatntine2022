@@ -112,6 +112,7 @@ namespace Server.Game
                     if (item == null)
                     {
                         checkItem = false;
+                        Console.WriteLine("테스트1");
                         break;
                     }
                     else
@@ -119,6 +120,14 @@ namespace Server.Game
                         // 혹시라도 장비템을 끼고 있었다면, break;
                         if (item.Equipped == true)
                             break;
+
+                        // 만약 갖고 있는 아이템의 갯수가 적다면, break;
+                        if(item.Count < questItemData.quantity)
+                        {
+                            checkItem = false;
+                            break;
+                        }
+
 
                         // item의 버릴 개수를 item의 Count 에 넣어둔다.
                         // 주의점 : 이때 new item으로 만들어서 기본 변수와 견결을 끊는다.
@@ -136,6 +145,8 @@ namespace Server.Game
 
                         //loseItem_New.Count = questItemData.quantity;
                         //loseItems.Add(loseItem_New); // 잃어버릴 아이템들의 리스트를 넣는다.
+
+                       
                     }
                 }
 

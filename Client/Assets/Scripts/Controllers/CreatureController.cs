@@ -172,6 +172,7 @@ public class CreatureController : BaseController
     }
 
 
+
     public void DamageText( int damage, int skillId)
     {
         GameObject hudText = Managers.Resource.Instantiate("Effect/DamageText");

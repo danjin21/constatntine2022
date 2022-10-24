@@ -1208,14 +1208,21 @@ class PacketHandler
             return;
 
 
-        CreatureController cc = go.GetComponent<CreatureController>();
+        PlayerController pc = go.GetComponent<PlayerController>();
 
-        if (cc != null)
+        if (pc != null)
         {
             // Stat을 통해 바꿔주면 안되고, 바로 Hp 로 바꿔줘야 업데이트가 됨.
             //cc.Stat.Hp = changePacket.Hp;
-            cc.MaxHp = levelupPacket.StatInfo.MaxHp;
-            cc.MaxMp = levelupPacket.StatInfo.MaxMp;
+            pc.MaxHp = levelupPacket.StatInfo.MaxHp;
+            pc.MaxMp = levelupPacket.StatInfo.MaxMp;
+
+
+            pc.LevelUp();
+
+
+
+
 
 
             //// TODO : UI

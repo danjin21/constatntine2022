@@ -45,7 +45,8 @@ namespace Server.Game
                 //스킬사용
                 C_Skill skillPacket = new C_Skill() { Info = new SkillInfo() };
                 skillPacket.Info.SkillId = shortKeyPacket.Action; // 힐
-                HandleSkill(player, skillPacket);
+                HandleSkill 
+                    (player, skillPacket);
           
 
             }

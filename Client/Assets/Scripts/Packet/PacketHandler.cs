@@ -1017,7 +1017,8 @@ class PacketHandler
         popup.RefreshDialogue(npcChat, Dialogue.Dialogue, npcController);
 
 
-
+        // 맵에 있는 NPC들의 퀘스트 아이콘들을 리프레쉬 해준다
+        // => UI_DialoguePopup 으로 이동
 
     }
 

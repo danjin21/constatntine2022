@@ -76,6 +76,22 @@ public class UI_DialoguePopup : UI_Popup
 
         Managers.UI.ClosePopupUI(this);
 
+
+        // 맵에 있는 모든 npc 들의 퀘스트 리프레쉬를 해준다.
+
+        foreach (GameObject obj in Managers.Object._objects.Values)
+        {
+            NpcController A = obj.transform.GetComponent<NpcController>();
+
+            // NPC 라면,
+            if (A != null)
+            {
+                A.QuestIconRefresh();
+            }
+
+
+        }
+
     }
 
     void OnClickYesButton(PointerEventData evt)
@@ -247,6 +263,10 @@ public class UI_DialoguePopup : UI_Popup
 
         SendAction();
 
+
+
+
+  
 
     }
 

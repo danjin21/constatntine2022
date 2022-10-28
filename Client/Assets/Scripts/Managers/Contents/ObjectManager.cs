@@ -9,7 +9,7 @@ public class ObjectManager
     public MyPlayerController MyPlayer { get; set; }
     
     // 서버한테 아이디를 받음 (ID,GameObject)
-    Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
+    public Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
     // List<GameObject> _objects = new List<GameObject>();
 
     int DropItem_objectCount = 0;

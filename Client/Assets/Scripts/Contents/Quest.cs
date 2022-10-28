@@ -73,6 +73,9 @@ public class Quest
         quest.QuestTemplateId = questInfo.QuestTemplateId;
         quest.Status = questInfo.Status;
 
+        // 엔피씨 아이디 넣어준다
+        quest.NpcId = questData.npc;
+
         return quest;
     }
 

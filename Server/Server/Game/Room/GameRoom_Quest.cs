@@ -85,11 +85,13 @@ namespace Server.Game
             if (questData == null)
                 return;
 
-
+            bool IsNormal = true;
+            bool IsAlreadyPacket = false;
 
             // 아이템을 잃는 경우
             if (questData.dialogue[Order].loseItem != null && questData.dialogue[Order].loseItem.Count != 0)
             {
+                IsNormal = false;
 
                 S_Npc snpcPacket = new S_Npc();
                 snpcPacket.NpcInfo = npc.Info;
@@ -163,9 +165,34 @@ namespace Server.Game
                     // 아이템이 있을때
                     snpcPacket.Dialogue = questData.dialogue[Order].index;
 
+
+                    // 아이템을 잃기 전에, 아이템 창에 슬롯이 있는지 본다.
+                    if (questData.dialogue[Order].getItem != null && questData.dialogue[Order].getItem.Count != 0)
+                    {
+
+                        int GetItemCount = questData.dialogue[Order].getItem.Count;
+
+                        int? emptySlot = player.Inven.GetEmptySlot();
+
+                        // 몇칸이상 슬롯이 비어있는지 확인하는 기능을 넣어야 한다.
+                        int emptySlots = player.Inven.GetEmptySlots(GetItemCount);
+
+
+                        // 아이템 슬롯이 없을때 || 아이템 갯수보다 슬롯이 적을때
+                        if (emptySlot == null || emptySlots < GetItemCount)
+                        {
+
+
+                            snpcPacket.Dialogue = questData.dialogue[Order + 2].index;
+
+                            player.Session.Send(snpcPacket);
+                            return;
+                        }
+                    }
+
                     // 아이템을 없앤다
                     // 검증된 아이템이다.
-                    foreach(Item t in loseItems)
+                    foreach (Item t in loseItems)
                     {
                         Console.WriteLine("삭제요청 : " + t.ItemDbId + "/" + t.Count + "개");
 
@@ -176,11 +203,11 @@ namespace Server.Game
                         int originalItemCount = originItem.Count;
 
                         //포션이거나, 기타 아이템일 경우 갯수를 줄여주고, 0일때 서버 메모리에서 지워준다.
-                        if(t.ItemType == ItemType.Consumable || t.ItemType == ItemType.Etc)
+                        if (t.ItemType == ItemType.Consumable || t.ItemType == ItemType.Etc)
                         {
                             originItem.Count -= t.Count;
 
-                            if(originItem.Count <= 0)
+                            if (originItem.Count <= 0)
                             {
                                 originItem.Count = 0;
                                 player.Inven.Delete(originItem);
@@ -203,17 +230,13 @@ namespace Server.Game
                 }
 
                 player.Session.Send(snpcPacket);
+                
+                // 아래 아이템 얻는 부분에서 패킷 또 보내는것 방지하기 위해 표시
+                IsAlreadyPacket = true;
 
                 Console.WriteLine("퀘스트 loseItem 변경 요청");
             }
-            // get 이나 lose 없이 status만 변경하려고 할 경우
-            else
-            {
-                S_Npc snpcPacket = new S_Npc();
-                snpcPacket.NpcInfo = npc.Info;
-                snpcPacket.Dialogue = questData.dialogue[Order].index;
-                player.Session.Send(snpcPacket);
-            }
+
             //if (questData.dialogue[Order].checkItem != null && questData.dialogue[Order].checkItem.Count != 0)
             //    Console.WriteLine("퀘스트 checkItem 변경 요청");
 
@@ -231,7 +254,7 @@ namespace Server.Game
             // 아이템을 주는 경우
             if (questData.dialogue[Order].getItem != null && questData.dialogue[Order].getItem.Count != 0)
             {
-
+                IsNormal = false;
 
                 S_Npc snpcPacket = new S_Npc();
                 snpcPacket.NpcInfo = npc.Info;
@@ -255,7 +278,6 @@ namespace Server.Game
                 else
                 {
 
-                    // 이미 갖고 있는 아이템일때
 
                     // 아이템 슬롯이 있을때
                     snpcPacket.Dialogue = questData.dialogue[Order].index;
@@ -266,6 +288,8 @@ namespace Server.Game
 
                     foreach (QuestItemData questItemData in questData.dialogue[Order].getItem)
                     {
+
+
 
 
                         RewardData newData = new RewardData();
@@ -307,18 +331,34 @@ namespace Server.Game
 
 
                         // 여러개 동시에 줄때에는 이것 이용해야함
-                        DbTransaction.RewardPlayer(player, newData, room, (int)(emptySlot + i));
+                        //DbTransaction.RewardPlayer(player, newData, room, (int)(emptySlot + i));
 
+                        // 멀티슬롯 할 필요가 없다. 알아서 해준다.
+                        DbTransaction.RewardPlayer(player, newData, room);
+
+
+                        // 이미 갖고 있는 아이템일때는 카운트만 증가
                         i += 1;
 
                     }
                 }
 
-
-                player.Session.Send(snpcPacket);
+                if(IsAlreadyPacket == false)
+                    player.Session.Send(snpcPacket);
 
                 Console.WriteLine("퀘스트 getItem 변경 요청");
             }
+
+
+            // get 이나 lose 없이 status만 변경하려고 할 경우
+            if (IsNormal == true)
+            {
+                S_Npc snpcPacket = new S_Npc();
+                snpcPacket.NpcInfo = npc.Info;
+                snpcPacket.Dialogue = questData.dialogue[Order].index;
+                player.Session.Send(snpcPacket);
+            }
+
 
 
             // ★☆★☆★☆★☆★☆★☆★☆ 퀘스트 주기전에 먼저 아이템 주고 확인하고, 퀘스트를 주자.★☆★☆★☆★☆★☆★☆★☆

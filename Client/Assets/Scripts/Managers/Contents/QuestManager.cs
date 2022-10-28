@@ -62,6 +62,36 @@ public class QuestManager : MonoBehaviour
 
     }
 
+    public List<int> Get_Quests_Npc(int npcId)
+    {
+
+        // 여기서 찾을게 아니라, Quest DB Data에서 찾아야한다.
+
+        List<int> Keys = new List<int>();
+
+        var matchingKeys = Managers.Data.QuestDict.Where(x => x.Value.npc == npcId).Select(x => x.Key);
+
+
+
+        foreach ( int t in matchingKeys)
+        {
+            //Quest tempQuest = null;
+            //Quests.TryGetValue(t, out tempQuest);
+
+            // TODO
+            //Debug.Log($"엔피시 : {t}");
+
+            Keys.Add(t);
+        }
+
+        return Keys;
+
+
+
+
+    }
+
+ 
 
     public void Clear()
     {

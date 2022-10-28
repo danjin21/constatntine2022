@@ -1154,7 +1154,7 @@ public class CharacterAnimation : MonoBehaviour
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4];
         transform.GetChild(4).GetComponent<SpriteRenderer>().sprite = HairList[Hair * 4];
 
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[0 + RightHand * 4];
+
         transform.GetChild(6).localPosition = new Vector3(-10, -1, -5);
 
         // 마지막 3타 공격 모션 주먹쥔것과 검쥔것
@@ -1176,6 +1176,7 @@ public class CharacterAnimation : MonoBehaviour
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[0];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[0 + (Shirts * 12)];
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[0 + RightHand * 4];
         }
 
 
@@ -1329,7 +1330,7 @@ public class CharacterAnimation : MonoBehaviour
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[1];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4 + 1];
         transform.GetChild(4).GetComponent<SpriteRenderer>().sprite = HairList[Hair * 4 + 1];
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[1 + RightHand * 4];
+
 
         transform.GetChild(1).localPosition = new Vector3(0, 0, 0);
         transform.GetChild(2).localPosition = new Vector3(0, 16, -1);
@@ -1358,6 +1359,7 @@ public class CharacterAnimation : MonoBehaviour
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[3];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[3 + (Shirts * 12)];
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[1 + RightHand * 4];
         }
 
         // 활이 아니면
@@ -1520,7 +1522,7 @@ public class CharacterAnimation : MonoBehaviour
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4 + 2];
         transform.GetChild(4).GetComponent<SpriteRenderer>().sprite = HairList[Hair * 4 + 2];
 
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[2 + RightHand * 4];
+
 
         // 마지막 3타 공격 모션 주먹쥔것과 검쥔것
         if (RightHand == -1)
@@ -1543,6 +1545,7 @@ public class CharacterAnimation : MonoBehaviour
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[6];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[6 + (Shirts * 12)];
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[2 + RightHand * 4];
         }
 
 
@@ -1697,7 +1700,7 @@ public class CharacterAnimation : MonoBehaviour
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4 + 3];
         transform.GetChild(4).GetComponent<SpriteRenderer>().sprite = HairList[Hair * 4 + 3];
 
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[3 + RightHand * 4];
+ 
 
         transform.GetChild(1).localPosition = new Vector3(0, 0, 0);
         transform.GetChild(2).localPosition = new Vector3(0, 16, -1);
@@ -1727,6 +1730,7 @@ public class CharacterAnimation : MonoBehaviour
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[9];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[9 + (Shirts * 12)];
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHandList[3 + RightHand * 4];
         }
 
         transform.GetChild(6).localPosition = new Vector3(10, -1, 1);

@@ -175,11 +175,12 @@ namespace Server.Game
                         int? emptySlot = player.Inven.GetEmptySlot();
 
                         // 몇칸이상 슬롯이 비어있는지 확인하는 기능을 넣어야 한다.
-                        int emptySlots = player.Inven.GetEmptySlots(GetItemCount);
+                        List<int> emptySlots = new List<int>();
+                        emptySlots = player.Inven.GetEmptySlots(GetItemCount);
 
 
                         // 아이템 슬롯이 없을때 || 아이템 갯수보다 슬롯이 적을때
-                        if (emptySlot == null || emptySlots < GetItemCount)
+                        if (emptySlot == null || emptySlots.Count < GetItemCount)
                         {
 
 
@@ -264,11 +265,12 @@ namespace Server.Game
                 int? emptySlot = player.Inven.GetEmptySlot();
 
                 // 몇칸이상 슬롯이 비어있는지 확인하는 기능을 넣어야 한다.
-                int emptySlots = player.Inven.GetEmptySlots(GetItemCount);
+                List<int> emptySlots = new List<int>();
+                emptySlots = player.Inven.GetEmptySlots(GetItemCount);
 
 
                 // 아이템 슬롯이 없을때 || 아이템 갯수보다 슬롯이 적을때
-                if (emptySlot == null || emptySlots < GetItemCount)
+                if (emptySlot == null || emptySlots.Count < GetItemCount)
                 {
                     snpcPacket.Dialogue = questData.dialogue[Order + 1].index;
 
@@ -327,18 +329,50 @@ namespace Server.Game
                             newData.itemInfo.Enhance = itemData.Enhance;
                             newData.itemInfo.WPnt = itemData.WPnt;
                             newData.itemInfo.MPnt = itemData.MPnt;
+
+                          
                         }
-
-
-                        // 여러개 동시에 줄때에는 이것 이용해야함
-                        //DbTransaction.RewardPlayer(player, newData, room, (int)(emptySlot + i));
-
-                        // 멀티슬롯 할 필요가 없다. 알아서 해준다.
-                        DbTransaction.RewardPlayer(player, newData, room);
+                       
 
 
                         // 이미 갖고 있는 아이템일때는 카운트만 증가
-                        i += 1;
+
+                        int slot = emptySlots[i];
+
+
+                        // 장비일때는 emptSlots 대로 준다.
+                        if (itemData.itemType == ItemType.Weapon || itemData.itemType == ItemType.Armor)
+                        {
+                            // 여러개 동시에 줄때에는 이것 이용해야함
+                            DbTransaction.RewardPlayer(player, newData, room, slot);
+                            i += 1;
+
+                        }
+                        else // 중복 가능할 때는, 중복 여부에 따라 분배하고 ,슬로수를 증가시킨다.
+                        {
+                            Item AlreadyItem = null;
+                            AlreadyItem = player.Inven.Get_template(questItemData.itemId);
+
+                            // 중복이면 그냥 리워드만해준다.
+                            if (AlreadyItem == null)
+                            {
+                                // 여러개 동시에 줄때에는 이것 이용해야함
+                                DbTransaction.RewardPlayer(player, newData, room, slot);
+                                i += 1;
+                            }
+                            else
+                            {
+                                DbTransaction.RewardPlayer(player, newData, room);
+                            }
+
+                        }
+
+
+
+
+
+
+                  
 
                     }
                 }

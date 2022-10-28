@@ -95,9 +95,9 @@ namespace Server.Game
             return null;
         }
 
-        public int GetEmptySlots(int count)
+        public List<int> GetEmptySlots(int count)
         {
-            int slotCount = 0;
+            List<int> slotCount = new List<int>();
 
             // 아이템 창에 슬롯 비어있는게 얼마나 되는지 알려준다.
 
@@ -105,7 +105,7 @@ namespace Server.Game
             {
                 Item item = Items.Values.FirstOrDefault(i => i.Slot == slot);
                 if (item == null)
-                    slotCount += 1;
+                    slotCount.Add(slot);
             }
 
 

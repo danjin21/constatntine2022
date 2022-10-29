@@ -295,6 +295,7 @@ namespace Server.Game
                 changePacket.Hp = Stat.Hp;
                 changePacket.Damage = damage;
                 changePacket.SkillId = skillId;
+                changePacket.AttackerId = Owner.Id; // 화살이니까 Owner의 아이디를 준다.
 
                 for (int i = 0; i < shot; i++)
                 {
@@ -313,6 +314,7 @@ namespace Server.Game
                 changePacket.Hp = Stat.Hp;
                 changePacket.Damage = damage;
                 changePacket.SkillId = skillId;
+                changePacket.AttackerId = attacker.Id; 
 
                 for (int i = 0; i < shot; i++)
                 {
@@ -390,6 +392,8 @@ namespace Server.Game
             changePacket.ObjectId = Id;
             changePacket.Hp = Stat.Hp;
             changePacket.Damage = -healdamage;
+            changePacket.AttackerId = healer.Id;
+
             Room.Broadcast(CellPos, changePacket);
 
         }

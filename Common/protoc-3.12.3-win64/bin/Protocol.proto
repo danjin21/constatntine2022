@@ -258,6 +258,8 @@ message S_ChangeHp {
     int32 damage = 3;
     int32 skillId = 4;
     repeated int32 multiDamage = 5;
+    int32 attackerId = 6;
+
     //int32 hpDiff = 3;
 }
 

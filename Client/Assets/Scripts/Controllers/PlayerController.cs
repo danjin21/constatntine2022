@@ -519,9 +519,9 @@ public class PlayerController : CreatureController
         CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
     }
 
-    public override void OnDamaged(int damage, int skillId, List<int> DamageList)
+    public override void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
     {
-        base.OnDamaged(damage,skillId, DamageList);
+        base.OnDamaged(damage,skillId, DamageList, attackerId);
         Debug.Log("Player Hit !");
     }
 

@@ -154,43 +154,53 @@
 	  "quest" : "-1",
 	  "posX" : "-7",
 	  "posY" : "-1",
-	  "products" : [
-  	  	  {
-			"templateId" : "1",
-			//"cost" : "1000"
-		  },
-  	  	  {
-			"templateId" : "2",
-			//"cost" : "1500"
-		  },
-  	  	  {
-			"templateId" : "1000",
-			//"cost" : "3500"
-		  },
-  	  	  {
-			"templateId" : "2000",
-			//"cost" : "2500"
-		  },
-  	  	  {
-			"templateId" : "90000",
-			//"cost" : "50"
-		  },
-  	  	  {
-			"templateId" : "90001",
-		  },
-  	  	  {
-			"templateId" : "91001",
-		  },
-  	  	  {
-			"templateId" : "92000",
-		  },
-  	  	  {
-			"templateId" : "93012",
-		  },
-  	  	  {
-			"templateId" : "93112",
-		  },
-	  ],
+    "products": [
+      {
+        "templateId": "1"
+        //"cost" : "1000"
+      },
+      {
+        "templateId": "2"
+        //"cost" : "1500"
+      },
+      {
+        "templateId": "1000"
+        //"cost" : "3500"
+      },
+      {
+        "templateId": "2000"
+        //"cost" : "2500"
+      },
+      {
+        "templateId": "90000"
+        //"cost" : "50"
+      },
+      {
+        "templateId": "90001"
+      },
+      {
+        "templateId": "90002"
+      },
+      {
+        "templateId": "90003"
+      },
+      {
+        "templateId": "90100"
+      },
+      {
+        "templateId": "91001"
+      },
+      {
+        "templateId": "92000"
+      },
+      {
+        "templateId": "93012"
+      },
+      {
+        "templateId": "93112"
+      }
+
+    ],
 	  "merchant" : "1",
 	  "iconPath": "Textures/Npc/10000/0"
     }

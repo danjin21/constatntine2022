@@ -407,6 +407,7 @@ namespace Server.DB
                 {
 
                     Console.WriteLine("Stat 정보가 없습니다.");
+                    player.Stat.Exp = 0;
                     return;
                   
                 }

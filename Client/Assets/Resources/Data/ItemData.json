@@ -69,91 +69,111 @@
 			"int": "1",
         }
     ],
-    "consumables": [
-        {
-            "id": "90000",
-            "name": "빨간포션",
-            "consumableType": "Potion",
-            "hp": "50",
-			"price" : "50",
-			"sellPrice": "10",
-            "iconPath": "Textures/Item/potion/0",
-			"desc": "HP를 50 회복시켜주는 포션이다."
-        },
-        {
-            "id": "90001",
-            "name": "파란포션",
-            "consumableType": "Potion",
-            "mp": "50",
-			"price" : "50",
-			"sellPrice": "10",
-            "iconPath": "Textures/Item/potion/1",
-			"desc": "MP를 50 회복시켜주는 포션이다."
-        },
-        {
-            "id": "91000",
-            "name": "마법책 - 이격",
-            "consumableType": "Skill",
-            "enhance": "1001000",
-			"price" : "10000",
-			"sellPrice": "0",
-            "iconPath": "Textures/Item/91000",
-			"desc": "스킬 이격을 배울 수 있는 마법책이다."
-        },
-        {
-            "id": "91001",
-            "name": "마법책 - 삼격",
-            "consumableType": "Skill",
-            "enhance": "1001001",
-			"price" : "5000",
-			"sellPrice": "0",
-            "iconPath": "Textures/Item/91000",
-			"desc": "스킬 삼격을 배울 수 있는 마법책이다."
-        },
-        {
-            "id": "92000",
-            "name": "마법책 - 더블샷",
-            "consumableType": "Skill",
-            "enhance": "2001000",
-			"price" : "4000",
-			"sellPrice": "0",
-            "iconPath": "Textures/Item/92000",
-			"desc": "스킬 더블샷을 배울 수 있는 마법책이다."
+  "consumables": [
+    {
+      "id": "90000",
+      "name": "빨간포션",
+      "consumableType": "Potion",
+      "hp": "50",
+      "price": "50",
+      "sellPrice": "10",
+      "iconPath": "Textures/Item/potion/0",
+      "desc": "HP를 50 회복시켜주는 포션이다."
+    },
+    {
+      "id": "90001",
+      "name": "파란포션",
+      "consumableType": "Potion",
+      "mp": "50",
+      "price": "50",
+      "sellPrice": "10",
+      "iconPath": "Textures/Item/potion/1",
+      "desc": "MP를 50 회복시켜주는 포션이다."
+    },
+    {
+      "id": "90002",
+      "name": "주황포션",
+      "consumableType": "Potion",
+      "hp": "150",
+      "price": "150",
+      "sellPrice": "10",
+      "iconPath": "Textures/Item/potion/2",
+      "desc": "HP를 150 회복시켜주는 포션이다."
+    },
+    {
+      "id": "90003",
+      "name": "하얀포션",
+      "consumableType": "Potion",
+      "hp": "300",
+      "price": "300",
+      "sellPrice": "10",
+      "iconPath": "Textures/Item/potion/3",
+      "desc": "HP를 300 회복시켜주는 포션이다."
+    },
+    {
+      "id": "91000",
+      "name": "마법책 - 이격",
+      "consumableType": "Skill",
+      "enhance": "1001000",
+      "price": "10000",
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/91000",
+      "desc": "스킬 이격을 배울 수 있는 마법책이다."
+    },
+    {
+      "id": "91001",
+      "name": "마법책 - 삼격",
+      "consumableType": "Skill",
+      "enhance": "1001001",
+      "price": "5000",
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/91000",
+      "desc": "스킬 삼격을 배울 수 있는 마법책이다."
+    },
+    {
+      "id": "92000",
+      "name": "마법책 - 더블샷",
+      "consumableType": "Skill",
+      "enhance": "2001000",
+      "price": "4000",
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/92000",
+      "desc": "스킬 더블샷을 배울 수 있는 마법책이다."
 
-        },
-        {
-            "id": "93012",
-            "name": "마법책 - 힐",
-            "consumableType": "Skill",
-            "enhance": "3101002",
-			"price" : "3000",
-			"sellPrice": "0",
-            "iconPath": "Textures/Item/93000",
-			"desc": "스킬 힐을 배울 수 있는 마법책이다."
-        },
-        {
-            "id": "93112",
-            "name": "마법책 - 썬더볼트",
-            "consumableType": "Skill",
-            "enhance": "3111002",
-			"price" : "12000",
-			"sellPrice": "0",
-            "iconPath": "Textures/Item/93000",
-			"desc": "스킬 썬더볼트를 배울 수 있는 마법책이다."
-        },
-        {
-            "id": "90002",
-            "name": "마을 귀환 주문서",
-            "consumableType": "Potion",
-            "mp": "0",
-			"price" : "50",
-			"sellPrice": "100",
-            "iconPath": "Textures/Item/potion/2",
-			"desc": "가까운 마을로 이동시켜준다.",
-			"isTown" : "-1"
-        },
+    },
+    {
+      "id": "93012",
+      "name": "마법책 - 힐",
+      "consumableType": "Skill",
+      "enhance": "3101002",
+      "price": "3000",
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/93000",
+      "desc": "스킬 힐을 배울 수 있는 마법책이다."
+    },
+    {
+      "id": "93112",
+      "name": "마법책 - 썬더볼트",
+      "consumableType": "Skill",
+      "enhance": "3111002",
+      "price": "12000",
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/93000",
+      "desc": "스킬 썬더볼트를 배울 수 있는 마법책이다."
+    },
+    {
+      "id": "90100",
+      "name": "마을 귀환 주문서",
+      "consumableType": "Potion",
+      "mp": "0",
+      "price": "50",
+      "sellPrice": "100",
+      "iconPath": "Textures/Item/potion/100",
+      "desc": "가까운 마을로 이동시켜준다.",
+      "isTown": "-1"
+    }
 
-    ],
+  ],
 	"etcs": [
         {
             "id": "99999",

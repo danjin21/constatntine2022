@@ -44,6 +44,7 @@ public class CreatureController : BaseController
         set
         {
             base.Mp = value;
+            UpdateHpBar();
         }
     }
 
@@ -65,6 +66,7 @@ public class CreatureController : BaseController
         set
         {
             base.MaxMp = value;
+            UpdateHpBar();
         }
     }
 
@@ -127,7 +129,7 @@ public class CreatureController : BaseController
         base.UpdateAnimation();
     }
 
-    public virtual void OnDamaged(int damage, int skillId, List<int> DamageList)
+    public virtual void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
     {
 
         // 내가 당하는거니까 이건 없어도 됨
@@ -135,7 +137,7 @@ public class CreatureController : BaseController
         //    return;
 
 
-        _coSkill = StartCoroutine(CoStartDamageDelay(damage, skillId, DamageList));
+        _coSkill = StartCoroutine(CoStartDamageDelay(damage, skillId, DamageList, attackerId));
 
         //if (Hp != 0)
         //     effect = Managers.Resource.Instantiate("Effect/Hit_Effect_Sword",transform);
@@ -147,14 +149,17 @@ public class CreatureController : BaseController
     }
 
 
-    IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList)
+    IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId)
     {
-        if(damage >0)
+
+    
+
+        if (damage >0)
             HitEffect(skillId);
 
         for (int i = 0; i < DamageList.Count; i++)
         {
-            DamageText(DamageList[i], skillId);
+            DamageText(DamageList[i], skillId, attackerId);
 
             if (this.GetType() == typeof(MonsterController))
             {
@@ -173,14 +178,23 @@ public class CreatureController : BaseController
 
 
 
-    public void DamageText( int damage, int skillId)
+    public void DamageText( int damage, int skillId, int attackerId)
     {
+        GameObject Attacker = Managers.Object.FindById(attackerId);
+
+
         GameObject hudText = Managers.Resource.Instantiate("Effect/DamageText");
 
         if (damage > 0)
         {
             Color color;
-            ColorUtility.TryParseHtmlString("#FFF820", out color);
+
+            if (Attacker.GetComponent<CreatureController>().GetType() == typeof(MonsterController))
+                ColorUtility.TryParseHtmlString("#ffb9b9", out color);
+            else
+               ColorUtility.TryParseHtmlString("#FFF820", out color);
+
+
             hudText.transform.GetChild(0).GetComponent<Text>().color = color;
 
             hudText.GetComponent<DmgText>().damage = damage.ToString();
@@ -190,6 +204,8 @@ public class CreatureController : BaseController
             hudText.transform.SetParent(DamagePocket.transform);
 
             //HitEffect(skillId);
+
+
 
         }
         else if (damage == 0)

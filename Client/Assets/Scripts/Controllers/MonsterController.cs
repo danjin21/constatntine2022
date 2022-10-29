@@ -176,12 +176,12 @@ public class MonsterController : CreatureController
     //}
 
 
-    public override void OnDamaged(int damage, int skillId, List<int> DamageList)
+    public override void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
     {
         // Managers.Object.Remove(Id); // 몬스터와의 충돌을 이제 없애기 위해.
         // Managers.Resource.Destroy(gameObject); // 몬스터 그 자체를 없애기 위해.
 
-        base.OnDamaged(damage,skillId, DamageList);
+        base.OnDamaged(damage,skillId, DamageList, attackerId);
 
         Managers.Sound.Play(HitSoundPath, Define.Sound.Effect);
     }

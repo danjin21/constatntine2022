@@ -328,7 +328,7 @@ class PacketHandler
                 DamageList.Add(changePacket.MultiDamage[i]);
             }
 
-            cc.OnDamaged(changePacket.Damage, changePacket.SkillId, DamageList);
+            cc.OnDamaged(changePacket.Damage,changePacket.SkillId, DamageList ,changePacket.AttackerId);
 
             //// TODO : UI
             //Debug.Log($"ChangeHp : {changePacket.Hp}");
@@ -1116,7 +1116,6 @@ class PacketHandler
         if (cc != null)
         {
             // Stat을 통해 바꿔주면 안되고, 바로 Hp 로 바꿔줘야 업데이트가 됨.
-            //cc.Stat.Hp = changePacket.Hp;
             cc.Mp = changePacket.Mp;
 
             // 리프레쉬
@@ -1124,10 +1123,7 @@ class PacketHandler
             UI_Inventory invenUI = gameSceneUI.InvenUI;
             invenUI.RefreshUI();
             gameSceneUI.StatUI.RefreshUI(); // 스텟도 리프레쉬 해준다.
-            //cc.OnDamaged(changePacket.Damage);
 
-            //// TODO : UI
-            //Debug.Log($"ChangeHp : {changePacket.Hp}");
 
         }
         //Debug.Log("S_MoveHandler");
@@ -1221,13 +1217,6 @@ class PacketHandler
 
             pc.LevelUp();
 
-
-
-
-
-
-            //// TODO : UI
-            //Debug.Log($"ChangeHp : {changePacket.Hp}");
 
         }
         //Debug.Log("S_MoveHandler");

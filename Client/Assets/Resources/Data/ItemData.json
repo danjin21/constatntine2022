@@ -1,74 +1,78 @@
 ﻿{
-    "weapons": [
-        {
-            "id": "1",
-            "name": "초보자의 검",
-            "weaponType": "Sword",
-            "wAtk": "20",
-			"price" : "1000",
-			"sellPrice": "200",
-			"attackSpeed" : "4",
-            "iconPath":  "Textures/Item/sword",
-			"reqStr" : "0",
-			"reqDex" : "0",
-			"reqInt" : "0",
-			"reqLuk" : "0",
-			"reqLev" : "0",
-			"reqPop" : "0",
-			"str": "1",
-        },
-        {
-            "id": "2",
-            "name": "초보자의 활",
-            "weaponType": "Bow",
-            "wAtk": "5",
-			"price" : "1500",
-			"sellPrice": "300",
-			"attackSpeed" : "4",
-            "iconPath": "Textures/Item/bow",
-			"reqStr" : "0",
-			"reqDex" : "0",
-			"reqInt" : "0",
-			"reqLuk" : "0",
-			"reqLev" : "0",
-			"reqPop" : "0",
-			"dex": "1",
-        }
-    ],
-    "armors": [
-        {
-            "id": "1000",
-            "name": "초보자의 갑옷",
-            "armorType": "Armor",
-            "wDef": "15",
-			"price" : "3500",
-			"sellPrice": "700",
-            "iconPath": "Textures/Item/armor",
-			"reqStr" : "0",
-			"reqDex" : "0",
-			"reqInt" : "0",
-			"reqLuk" : "0",
-			"reqLev" : "0",
-			"reqPop" : "0",
-			"int": "1",
-        },
-        {
-            "id": "2000",
-            "name": "초보자의 투구",
-            "armorType": "Helmet",
-            "wDef": "5",
-			"price" : "2500",
-			"sellPrice": "500",
-            "iconPath": "Textures/Item/helmet",
-			"reqStr" : "0",
-			"reqDex" : "0",
-			"reqInt" : "0",
-			"reqLuk" : "0",
-			"reqLev" : "0",
-			"reqPop" : "0",
-			"int": "1",
-        }
-    ],
+  "weapons": [
+    {
+      "id": "1",
+      "name": "초보자의 검",
+      "weaponType": "Sword",
+      "wAtk": "20",
+      "price": "1000",
+      "sellPrice": "200",
+      "attackSpeed": "4",
+      "iconPath": "Textures/Item/sword",
+      "reqStr": "0",
+      "reqDex": "0",
+      "reqInt": "0",
+      "reqLuk": "0",
+      "reqLev": "0",
+      "reqPop": "0",
+      "str": "1",
+      "upgradeSlot" :  "7",
+    },
+    {
+      "id": "2",
+      "name": "초보자의 활",
+      "weaponType": "Bow",
+      "wAtk": "5",
+      "price": "1500",
+      "sellPrice": "300",
+      "attackSpeed": "4",
+      "iconPath": "Textures/Item/bow",
+      "reqStr": "0",
+      "reqDex": "0",
+      "reqInt": "0",
+      "reqLuk": "0",
+      "reqLev": "0",
+      "reqPop": "0",
+      "dex": "1",
+      "upgradeSlot": "7"
+    }
+  ],
+  "armors": [
+    {
+      "id": "1000",
+      "name": "초보자의 갑옷",
+      "armorType": "Armor",
+      "wDef": "15",
+      "price": "3500",
+      "sellPrice": "700",
+      "iconPath": "Textures/Item/armor",
+      "reqStr": "0",
+      "reqDex": "0",
+      "reqInt": "0",
+      "reqLuk": "0",
+      "reqLev": "0",
+      "reqPop": "0",
+      "int": "1",
+      "upgradeSlot": "7"
+    },
+    {
+      "id": "2000",
+      "name": "초보자의 투구",
+      "armorType": "Helmet",
+      "wDef": "5",
+      "price": "2500",
+      "sellPrice": "500",
+      "iconPath": "Textures/Item/helmet",
+      "reqStr": "0",
+      "reqDex": "0",
+      "reqInt": "0",
+      "reqLuk": "0",
+      "reqLev": "0",
+      "reqPop": "0",
+      "int": "1",
+      "upgradeSlot": "7"
+    }
+  ],
   "consumables": [
     {
       "id": "90000",
@@ -174,57 +178,57 @@
     }
 
   ],
-	"etcs": [
-        {
-            "id": "99999",
-            "name": "루크",
-            "etcType": "money",
-            "damage": "0",
-			"price" : "0",
-			"sellPrice": "0",
-            "iconPath": "Textures/Item/money",
-			"desc" : "콘스탄틴 공식 재화이다."
-        },
-        {
-            "id": "100000",
-            "name": "린다의 손수건",
-            "etcType": "none",
-            "damage": "0",
-			"price" : "0",
-			"sellPrice": "0",
-            "iconPath": "Textures/Item/Etc/100000",
-			"desc" : "린다가 새로 만든 손수건이다."
+  "etcs": [
+    {
+      "id": "99999",
+      "name": "루크",
+      "etcType": "money",
+      "damage": "0",
+      "price": "0",
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/money",
+      "desc": "콘스탄틴 공식 재화이다."
+    },
+    {
+      "id": "100000",
+      "name": "린다의 손수건",
+      "etcType": "none",
+      "damage": "0",
+      "price": "0",
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/Etc/100000",
+      "desc": "린다가 새로 만든 손수건이다."
 
-        },
-        {
-            "id": "100001",
-            "name": "슬라임의 액체",
-            "etcType": "none",
-            "damage": "0",
-			"price" : "0",
-			"sellPrice": "20",
-            "iconPath": "Textures/Item/Etc/100001",
-			"desc": "슬라임에게서 떨어져 나온 초록색 액체이다."
-        },
-        {
-            "id": "100002",
-            "name": "펄라임의 푸른액체",
-            "etcType": "none",
-            "damage": "0",
-			"price" : "0",
-			"sellPrice": "35",
-            "iconPath": "Textures/Item/Etc/100002",
-			"desc": "펄라임에게서 떨어져 나온 푸른색 액체이다."
-        },
-        {
-            "id": "100003",
-            "name": "블라임의 붉은액체",
-            "etcType": "none",
-            "damage": "0",
-			"price" : "0",
-			"sellPrice": "50",
-            "iconPath": "Textures/Item/Etc/100003",
-			"desc": "블라임에게서 떨어져 나온 붉은색 액체이다."
-        },
-    ]
+    },
+    {
+      "id": "100001",
+      "name": "슬라임의 액체",
+      "etcType": "none",
+      "damage": "0",
+      "price": "0",
+      "sellPrice": "20",
+      "iconPath": "Textures/Item/Etc/100001",
+      "desc": "슬라임에게서 떨어져 나온 초록색 액체이다."
+    },
+    {
+      "id": "100002",
+      "name": "펄라임의 푸른액체",
+      "etcType": "none",
+      "damage": "0",
+      "price": "0",
+      "sellPrice": "35",
+      "iconPath": "Textures/Item/Etc/100002",
+      "desc": "펄라임에게서 떨어져 나온 푸른색 액체이다."
+    },
+    {
+      "id": "100003",
+      "name": "블라임의 붉은액체",
+      "etcType": "none",
+      "damage": "0",
+      "price": "0",
+      "sellPrice": "50",
+      "iconPath": "Textures/Item/Etc/100003",
+      "desc": "블라임에게서 떨어져 나온 붉은색 액체이다."
+    },
+  ]
 } 

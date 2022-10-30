@@ -80,6 +80,52 @@ namespace Server.Game
                     DataManager.ItemDict.TryGetValue(productData.templateId, out itemData);
                     info.Price = itemData.price;
 
+                    // 아이템 데이터로부터 아이템의 정보를 부러온다.
+
+                    if (itemData.itemType == ItemType.Weapon )
+                    {
+                        WeaponData WeaponData = (WeaponData)itemData;
+                    
+
+                        info.ReqStr = WeaponData.reqStr;
+                        info.ReqDex = WeaponData.reqDex;
+                        info.ReqInt = WeaponData.reqInt;
+                        info.ReqLuk = WeaponData.reqLuk;
+                        info.ReqLev = WeaponData.reqLev;
+                        info.ReqPop = WeaponData.reqPop;
+                    }
+                    else if(itemData.itemType == ItemType.Armor)
+                    {
+                        ArmorData ArmorData = (ArmorData)itemData;
+
+
+                        info.ReqStr = ArmorData.reqStr;
+                        info.ReqDex = ArmorData.reqDex;
+                        info.ReqInt = ArmorData.reqInt;
+                        info.ReqLuk = ArmorData.reqLuk;
+                        info.ReqLev = ArmorData.reqLev;
+                        info.ReqPop = ArmorData.reqPop;
+                    }
+
+                    info.UpgradeSlot = itemData.UpgradeSlot;
+                    info.Str = itemData.Str;
+                    info.Dex = itemData.Dex;
+                    info.Int = itemData.Int;
+                    info.Luk = itemData.Luk;
+                    info.Hp = itemData.Hp;
+                    info.Mp = itemData.Mp;
+                    info.WAtk = itemData.WAtk;
+                    info.MAtk = itemData.MAtk;
+                    info.WDef = itemData.WDef;
+                    info.MDef = itemData.MDef;
+                    info.Speed = itemData.Speed;
+                    info.AtkSpeed = itemData.AtkSpeed;
+                    info.Durability = itemData.Durability;
+                    info.Enhance = itemData.Enhance;
+                    info.WPnt = itemData.WPnt;
+                    info.MPnt = itemData.MPnt;
+
+
                     shopPacket.Items.Add(info);
                 }
 

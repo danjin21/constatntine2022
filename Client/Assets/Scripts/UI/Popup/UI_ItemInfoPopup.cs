@@ -206,6 +206,122 @@ public class UI_ItemInfoPopup : UI_Popup
 
     }
 
+
+
+    public void SetItemInfo_TemplateId(int TemplateId, ItemInfo ItemInfo)
+    {
+        // 아이템 정보를 넣어준다.
+        Item Item = Item.MakeItem(ItemInfo);
+
+
+        ItemData itemData = null;
+        Managers.Data.ItemDict.TryGetValue(TemplateId, out itemData);
+
+
+        Get<Text>((int)Texts.ItemNameText).text = $"[{itemData.name}]";
+
+
+
+        if (itemData.itemType == ItemType.Weapon || itemData.itemType == ItemType.Armor)
+        {
+
+
+
+            Get<Text>((int)Texts.ReqLevText).text = $"REQ LEV : {Item.ReqLev}";
+            Get<Text>((int)Texts.ReqStrText).text = $"REQ STR : {Item.ReqStr}";
+            Get<Text>((int)Texts.ReqDexText).text = $"REQ DEX : {Item.ReqDex}";
+            Get<Text>((int)Texts.ReqIntText).text = $"REQ INT : {Item.ReqInt}";
+            Get<Text>((int)Texts.ReqLukText).text = $"REQ LUK : {Item.ReqLuk}";
+            Get<Text>((int)Texts.ReqPopText).text = $"REQ POP : {Item.ReqPop}";
+
+            if (Item.ReqLev <= 0)
+                Get<Text>((int)Texts.ReqLevText).text = $"REQ LEV : *";
+            if (Item.ReqStr <= 0)
+                Get<Text>((int)Texts.ReqStrText).text = $"REQ STR : *";
+            if (Item.ReqDex <= 0)
+                Get<Text>((int)Texts.ReqDexText).text = $"REQ DEX : *";
+            if (Item.ReqInt <= 0)
+                Get<Text>((int)Texts.ReqIntText).text = $"REQ INT : *";
+            if (Item.ReqLuk <= 0)
+                Get<Text>((int)Texts.ReqLukText).text = $"REQ LUK : *";
+            if (Item.ReqPop <= 0)
+                Get<Text>((int)Texts.ReqPopText).text = $"REQ POP : *";
+
+            ReqInfoList.SetActive(true);
+            JobList.SetActive(true);
+
+            NextText().text = $"업그레이드 : {Item.UpgradeSlot}";
+
+            //if (Item.ItemType == ItemType.Weapon)
+            //    NextText().text = $"공격력 : {((Weapon)Item).Damage}";
+            //else
+            //    NextText().text = $"방어력 : {((Armor)Item).Defence}";
+
+            if (Item.Str > 0)
+                NextText().text = $"STR + {Item.Str}";
+
+            if (Item.Dex > 0)
+                NextText().text = $"DEX + {Item.Dex}";
+
+            if (Item.Int > 0)
+                NextText().text = $"INT + {Item.Int}";
+
+            if (Item.Luk > 0)
+                NextText().text = $"LUK + {Item.Luk}";
+
+            if (Item.Hp > 0)
+                NextText().text = $"HP + {Item.Hp}";
+
+            if (Item.Mp > 0)
+                NextText().text = $"MP + {Item.Mp}";
+
+            if (Item.WAtk > 0)
+                NextText().text = $"물리공격력 + {Item.WAtk}";
+
+            if (Item.MAtk > 0)
+                NextText().text = $"마법공격력 + {Item.MAtk}";
+
+            if (Item.WDef > 0)
+                NextText().text = $"물리방어력 + {Item.WDef}";
+
+            if (Item.MDef > 0)
+                NextText().text = $"마법저항력 + {Item.MDef}";
+
+            if (Item.Speed > 0)
+                NextText().text = $"이동속도 + {Item.Speed}";
+
+            if (Item.AtkSpeed > 0)
+                NextText().text = $"공격속도 + {Item.AtkSpeed}";
+
+
+            if (Item.WPnt > 0)
+                NextText().text = $"물리관통력 + {Item.WPnt}";
+
+            if (Item.MPnt > 0)
+                NextText().text = $"마법관통력 + {Item.MPnt}";
+
+        }
+        else
+        {
+
+
+            ReqInfoList.SetActive(false);
+            JobList.SetActive(false);
+
+            // 장비템 아닌 경우 설명창을 넣어준다.
+
+            Text A = NextText();
+            A.rectTransform.sizeDelta = new Vector2(A.rectTransform.sizeDelta.x, 30);
+            A.text = itemData.desc;
+        }
+
+
+        Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);
+        Get<Image>((int)Texts.ItemNameText).sprite = icon;
+
+    }
+
+
     public void AddStat()
     {
 
@@ -296,4 +412,10 @@ public class UI_ItemInfoPopup : UI_Popup
         }
 
     }
+
+
+
+
+
+
 }

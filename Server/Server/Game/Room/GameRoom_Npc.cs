@@ -267,7 +267,7 @@ namespace Server.Game
 
             {
                 rewardData.itemInfo = new ItemInfo();
-                rewardData.itemInfo.UpgradeSlot = 7; // 처음에는 어쩔 수 없음
+                rewardData.itemInfo.UpgradeSlot = itemData.UpgradeSlot; // 처음에는 어쩔 수 없음
                 rewardData.itemInfo.Str = itemData.Str;
                 rewardData.itemInfo.Dex = itemData.Dex;
                 rewardData.itemInfo.Int = itemData.Int;

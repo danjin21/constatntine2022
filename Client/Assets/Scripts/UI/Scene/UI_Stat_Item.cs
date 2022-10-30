@@ -18,6 +18,8 @@ public class UI_Stat_Item : UI_Base
     private bool m_IsOneClick = false;
     private double m_Timer = 0;
 
+    public GameObject ItemInfoPopup;
+
     //  한박자 느리게 해야 아이템 먹어지는게 초기화된다.
     public void Update()
     {
@@ -30,6 +32,13 @@ public class UI_Stat_Item : UI_Base
 
     }
 
+    public void OnDisable()
+    {
+        GameObject.Destroy(ItemInfoPopup);
+        ItemInfoPopup = null;
+    }
+
+
 
     public override void Init()
     {
@@ -39,12 +48,30 @@ public class UI_Stat_Item : UI_Base
         {
             //Debug.Log("마우스 해당 아이템에 들어왔따.");
 
+            if (ItemInfoPopup == null)
+            {
+                GameObject go = Managers.Resource.Instantiate("UI/Popup/UI_ItemInfoPopup");
+                ItemInfoPopup = go;
+
+                // ItemDbID로 슬롯 정보가져오기
+
+                Item CurrentItem = Managers.Inven.Get(ItemDbId);
+
+                // 아이템 정보는 Inventory 에서 갖고오라고 하고, 여기는 그냥 Slot만 넘겨준다.
+                ItemInfoPopup.GetComponent<UI_ItemInfoPopup>().SetItemInfo(CurrentItem.Slot);
+
+                ItemInfoPopup.transform.GetChild(0).transform.position = this.transform.position;
+
+            }
 
         }, Define.UIEvent.Enter);
 
         _icon.gameObject.BindEvent((e) =>
         {
             //Debug.Log("마우스 해당 아이템으로부터 나갔다.");
+
+            GameObject.Destroy(ItemInfoPopup);
+            ItemInfoPopup = null;
 
 
         }, Define.UIEvent.Exit);
@@ -82,6 +109,11 @@ public class UI_Stat_Item : UI_Base
             }
 
         }, Define.UIEvent.Click);
+
+
+
+
+
     }
 
 

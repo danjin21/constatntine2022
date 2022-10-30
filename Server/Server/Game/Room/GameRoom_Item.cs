@@ -76,7 +76,45 @@ namespace Server.Game
 
             //-> 해당 슬롯에 아이템 있는지 확인
             if (B == null)
+            {
+
+                // A 하나의 슬롯만 바꾸는 경우임
+
+                A.Slot = slotChangePacket.Slot;
+
+                // DB 상관없이 바로 클라에 리스트 패킷을 보내준다.
+
+                // 클라한테 패킷 보내기
+                S_ItemList itemListPacket_Single = new S_ItemList();
+
+                foreach (Item t in player.Inven.Items.Values)
+                {
+                    // 아이템 디비정보를 이용해서 아이템을 만들어준다.
+                    Item item = t;
+
+                    // 아무 문제가 없으면
+                    if (item != null)
+                    {
+
+                        // 패킷에 해당 아이템 정보를 넣어준다.
+                        ItemInfo info = new ItemInfo();
+
+                        info.MergeFrom(item.Info);
+
+                        itemListPacket_Single.Items.Add(info);
+                    }
+                }
+
+                player.Session.Send(itemListPacket_Single);
+
+
+                // DB에서 슬롯을 변경한다.
+
+                DbTransaction.SlotChange_Single(player, this, A);
+
+       
                 return;
+            }
 
             //-> 각자 아이템 슬롯 변경
             int templateSlot = A.Slot;

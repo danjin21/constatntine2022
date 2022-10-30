@@ -1218,6 +1218,68 @@ namespace Server.DB
             });
 
         }
+
+
+
+
+
+        public static void SlotChange_Single(Player player, GameRoom room, Item itemA)
+        {
+            if (player == null || itemA == null  || room == null)
+                return;
+
+            ItemDb itemDb_A = new ItemDb()
+            {
+                ItemDbId = itemA.ItemDbId,
+                Slot = itemA.Slot
+            };
+
+            Instance.Push(() =>
+            {
+                using (AppDbContext db = new AppDbContext())
+                {
+                    //// 슬롯만 바꾼다.
+                    //db.Entry(itemDb_A).State = EntityState.Unchanged;
+                    //db.Entry(itemDb_A).Property(nameof(ItemDb.Count)).IsModified = true;
+
+                    //db.Entry(itemDb_B).State = EntityState.Unchanged;
+                    //db.Entry(itemDb_B).Property(nameof(ItemDb.Count)).IsModified = true;
+
+                    // 그냥 바로 없애준다. 
+                    List<ItemDb> items = db.Items
+                        .Where(i => i.OwnerDbId == player.PlayerDbId) // 메모리에 들고 있는 플레이어 ID. 해킹걱정X
+                        .ToList();
+
+                    foreach (ItemDb dbt in items)
+                    {
+                        if (dbt.ItemDbId == itemDb_A.ItemDbId)
+                        {
+                            dbt.Slot = itemDb_A.Slot;
+                        }
+                    }
+
+                    // 공통 DB 저장
+                    bool success = db.SaveChangesEx(); // 예외 처리
+
+
+                    if (!success)
+                    {
+                        // 실패했으면 Kick or 로그를 남긴다. 
+                    }
+                    else
+                    {
+
+                      
+                    }
+                }
+            });
+
+        }
+
+
+
+
+
     }
 
 

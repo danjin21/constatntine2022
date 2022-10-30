@@ -17,6 +17,9 @@ public class UI_Inventory_Item : UI_Base
     [SerializeField]
     Text _count = null;
 
+    [SerializeField]
+    Image _backgroundImage = null;
+    public int EmptySlot = -1;
 
     public int ItemDbId { get; private set; }
     public int TemplateId { get; private set; }
@@ -30,6 +33,7 @@ public class UI_Inventory_Item : UI_Base
 
     public GameObject ItemInfoPopup;
 
+    public int SlotOrder { get; private set; }
 
     enum Buttons
     {
@@ -129,9 +133,17 @@ public class UI_Inventory_Item : UI_Base
                         // DbID 까지 같을때
                         if (Managers.KeySetting.ChangeItemDbId == ItemDbId)
                         {
-                            ItemDrop();
+                            // UI 일때만 버린다
+                            if (EventSystem.current.IsPointerOverGameObject() == false)
+                            {
+                                ItemDrop();
+                          
+                            }
+
                             Managers.KeySetting.ChangeKey = -1;
                             Managers.KeySetting.ChangeItemDbId = -1;
+
+
                         }
                     }
                 }
@@ -165,6 +177,36 @@ public class UI_Inventory_Item : UI_Base
 
         GetImage((int)Buttons.SellButton).gameObject.BindEvent(OnClickSellButton);
         GetImage((int)Buttons.SellButton).gameObject.SetActive(false);
+
+
+
+        // 배경이미지
+
+        _backgroundImage = transform.GetChild(0).GetComponent<Image>();
+
+        _backgroundImage.gameObject.BindEvent((e) =>
+        {
+            // 왼쪽 클릭이 아니면 리턴
+            if (e.button == PointerEventData.InputButton.Left)
+            {
+                Debug.Log($"클릭된 슬롯은 {Slot}입니다.");
+
+
+                // 서버에서, 빈칸일때 슬롯 바꾸는거 만들고 처리해줘야함
+
+                C_SlotChange slotchangePacket = new C_SlotChange();
+                slotchangePacket.ItemDbId = Managers.KeySetting.ChangeItemDbId;
+                slotchangePacket.Slot = SlotOrder;
+
+                Managers.Network.Send(slotchangePacket);
+
+                Managers.KeySetting.ChangeKey = -1;
+                Managers.KeySetting.ChangeItemDbId = -1;
+
+            }
+
+        }, Define.UIEvent.Click);
+
 
         _icon.gameObject.BindEvent((e) =>
         {
@@ -373,6 +415,30 @@ public class UI_Inventory_Item : UI_Base
         }
 
         CloseButtons();
+
+
+
+        // Inventory 창의 순서를 찾는다. =======================================
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+        UI_Inventory invenUI = gameSceneUI.InvenUI;
+
+        int order = 0;
+
+        foreach (UI_Inventory_Item t in invenUI.Items)
+        {
+            if (t == this)
+            {
+                SlotOrder = order;
+                break;
+            }
+
+            order++;
+        }
+
+        // Inventory 창의 순서를 찾는다. 끝  =======================================
+
+
     }
 
     void OnClickDropButton(PointerEventData evt)

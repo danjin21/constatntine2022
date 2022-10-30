@@ -478,8 +478,22 @@ public class MyPlayerController : PlayerController
                     }
                 }
 
+                if(key.Action == 2001000)
+                {
+                    Item bowItem = null;
+                    bowItem = Managers.Inven.Find(i => i.Equipped && i.ItemType == ItemType.Weapon);
+
+                    if (((Weapon)bowItem).WeaponType != WeaponType.Bow)
+                    {
+                        Managers.Chat.ChatRPC("<color=#F78181>활을 착용해야 사용할 수 있습니다.</color>");
+                        SkillCool();
+                        return;
+                    }
+                }
+
             }
 
+            // 타입이 맞는지 확인
 
 
 

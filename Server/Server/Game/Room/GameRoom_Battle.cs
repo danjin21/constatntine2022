@@ -174,11 +174,6 @@ namespace Server.Game
             // TODO : 스킬 사용 가능 여부 체크
             info.PosInfo.State = CreatureState.Skill;
 
-            // 스킬쓰자마자 남들에게 알려준다.
-            S_Move IdleMovePacket = new S_Move();
-            IdleMovePacket.ObjectId = player.Info.ObjectId;
-            IdleMovePacket.PosInfo = player.PosInfo;
-            Broadcast(player.CellPos, IdleMovePacket);
 
 
 
@@ -589,8 +584,10 @@ namespace Server.Game
 
                         if (((Weapon)bowItem).WeaponType != WeaponType.Bow)
                         {
+                            // 중단해야 하므로
+                            return;
                             // TODO : 스킬 사용 가능 여부 체크
-                            break; // 아래까지 내려가야 하므로
+                            // break; // 아래까지 내려가야 하므로
                         }
 
                         // TODO : Arrow ( 일단 에로우만 넣음 )
@@ -738,6 +735,14 @@ namespace Server.Game
             changePacket.Mp = player.Stat.Mp;
             changePacket.Damage = MpConsume;
             Broadcast(player.CellPos, changePacket);
+
+
+
+            // 스킬쓰자마자 남들에게 알려준다.
+            S_Move IdleMovePacket = new S_Move();
+            IdleMovePacket.ObjectId = player.Info.ObjectId;
+            IdleMovePacket.PosInfo = player.PosInfo;
+            Broadcast(player.CellPos, IdleMovePacket);
 
 
 

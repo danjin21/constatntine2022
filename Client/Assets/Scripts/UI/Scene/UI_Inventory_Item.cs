@@ -161,7 +161,7 @@ public class UI_Inventory_Item : UI_Base
 
     public override void Init()
     {
-        m_DoubleClickSecond = 0.15f;
+        m_DoubleClickSecond = 0.25f;
 
         Bind<Image>(typeof(Buttons));
         GetImage((int)Buttons.DropButton).gameObject.BindEvent(OnClickDropButton);

@@ -30,7 +30,7 @@ namespace Server.DB
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options
-                .UseLoggerFactory(_logger)  //☆★_logger
+                .UseLoggerFactory(_logger)  //☆★_logger DB 정보 보여주는 곳
                 .UseSqlServer(ConfigManager.Config == null ? _connectionString : ConfigManager.Config.connectionString);
                 // 서버 연결되기 전에는 null 되므로 _connectionString 에서 불러오고, 서버 연결된 후에는 config 통해 갖고옴. 연결 문자열을 넣는거임.
 

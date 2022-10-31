@@ -90,19 +90,11 @@ public class UI_Inventory_Item : UI_Base
             // 커서 이미지
             CursorManager obj = FindObjectOfType((typeof(CursorManager))) as CursorManager;
 
-
-
             if (obj.transform.GetChild(0).gameObject.activeInHierarchy == false)
             {
                 obj.transform.GetChild(0).gameObject.SetActive(true);
                 obj.transform.GetChild(0).GetComponent<Image>().sprite = _icon.sprite;
             }
-
-
-
-
-
-
 
 
             //C_SlotChange slotchangePacket = new C_SlotChange();
@@ -169,7 +161,7 @@ public class UI_Inventory_Item : UI_Base
 
     public override void Init()
     {
-        m_DoubleClickSecond = 0.3f;
+        m_DoubleClickSecond = 0.15f;
 
         Bind<Image>(typeof(Buttons));
         GetImage((int)Buttons.DropButton).gameObject.BindEvent(OnClickDropButton);

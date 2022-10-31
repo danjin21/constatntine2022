@@ -30,6 +30,11 @@ namespace Server
 		List<ArraySegment<byte>> _reserveQueue = new List<ArraySegment<byte>>();
 
 
+		// 패킷 모아 보내기
+
+		int _reservedSendBytes = 0;
+		long _lastSendTick = 0;
+
 		long _pingpongTick = 0;
 		public void Ping()
         {
@@ -125,6 +130,7 @@ namespace Server
 			lock (_lock)
 			{
 				_reserveQueue.Add(sendBuffer);
+				_reservedSendBytes += sendBuffer.Length;
 			}
 			//Send(new ArraySegment<byte>(sendBuffer));
 		}
@@ -137,9 +143,20 @@ namespace Server
 
 			lock(_lock)
             {
-				// 값이 없으면 리턴
-				if (_reserveQueue.Count == 0)
+				// 한텀 기다리고 모아보내기 20221031 추가
+				// 0.1초가 지났거나, 너무 패킷이 많이 모일 때 ( 1만 바이트)
+				long delta = (System.Environment.TickCount64 - _lastSendTick);
+				if (delta < 100 & _reservedSendBytes < 10000)
 					return;
+
+				// 패킷 모아 보내기
+
+				_reservedSendBytes = 0;
+				_lastSendTick = System.Environment.TickCount64;
+
+				// 값이 없으면 리턴
+				//if (_reserveQueue.Count == 0)
+				//	return;
 
 				sendList = _reserveQueue;
 				_reserveQueue = new List<ArraySegment<byte>>();

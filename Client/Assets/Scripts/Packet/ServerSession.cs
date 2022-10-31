@@ -43,7 +43,9 @@ public class ServerSession : PacketSession
 	public override void OnDisconnected(EndPoint endPoint)
 	{
 		Debug.Log($"OnDisconnected : {endPoint}");
-	}
+        Debug.Log("로그아웃 되었습니다.");
+
+    }
 
 	public override void OnRecvPacket(ArraySegment<byte> buffer)
 	{

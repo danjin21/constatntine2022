@@ -79,6 +79,16 @@ public class UI_GameScene : UI_Scene
         C_Logout logout = new C_Logout();
         Managers.Network.Send(logout);
 
+        //Managers.s_instance = null;
+
+        // 매니저 모든 값들 초기화
+        // 임시방편임..
+        GameObject.Destroy(GameObject.Find("@Managers"));
+        GameObject.Destroy(GameObject.Find("@Pool_Root"));
+        GameObject.Destroy(GameObject.Find("@Sound"));
+
+        // 로그인 창으로 가게 해준다.
+        Managers.Scene.LoadScene(Define.Scene.Login);
 
     }
 

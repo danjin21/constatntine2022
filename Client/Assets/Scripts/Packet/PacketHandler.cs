@@ -653,7 +653,9 @@ class PacketHandler
 
     public static void S_LogoutHandler(PacketSession session, IMessage packet)
     {
+        S_Logout logoutPacekt = packet as S_Logout;
 
+        Debug.Log("로그아웃 되었습니다.11");
         // session._disconnected = 1 이됨. 그러면 나중에 안받음.
         //Managers.Network.DisconnectFromGame();
         //Managers.Scene.LoadScene(Define.Scene.Login);

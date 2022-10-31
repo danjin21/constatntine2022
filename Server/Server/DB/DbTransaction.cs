@@ -427,6 +427,16 @@ namespace Server.DB
                 player.Stat.MaxHp += 23;
                 player.Stat.MaxMp += 11;
 
+                // 레벨업한 사실과, MaxHp, MaxMp 변동 된 것을 '다른' 클라'들'한테 보여준다.
+
+                S_LevelUp levelupPacket = new S_LevelUp();
+                levelupPacket.ObjectId = player.Info.ObjectId;
+                levelupPacket.StatInfo = new StatInfo();
+                levelupPacket.StatInfo.MaxHp = player.Stat.MaxHp;
+                levelupPacket.StatInfo.MaxMp = player.Stat.MaxMp;
+
+                room.Broadcast(player.CellPos, levelupPacket);
+
             }
 
 
@@ -478,15 +488,7 @@ namespace Server.DB
                             // 스텟도 올려주자
 
 
-                            // 레벨업한 사실과, MaxHp, MaxMp 변동 된 것을 '다른' 클라'들'한테 보여준다.
-
-                            S_LevelUp levelupPacket = new S_LevelUp();
-                            levelupPacket.ObjectId = player.Info.ObjectId;
-                            levelupPacket.StatInfo = new StatInfo();
-                            levelupPacket.StatInfo.MaxHp = player.Stat.MaxHp;
-                            levelupPacket.StatInfo.MaxMp = player.Stat.MaxMp;
-
-                            room.Broadcast(player.CellPos, levelupPacket);
+                  
 
                         }
                         );

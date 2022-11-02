@@ -587,7 +587,7 @@ public class BaseController : MonoBehaviour
 
             }
 
-            State = CreatureState.Moving;
+            //State = CreatureState.Moving;
 
 
         }
@@ -757,7 +757,7 @@ public class BaseController : MonoBehaviour
 
             //Debug.Log("(" + (A.x - transform.position.x) + "," + (A.y - transform.position.y) + ")");
 
-            State = CreatureState.Moving;
+            //State = CreatureState.Moving;
 
 
         }

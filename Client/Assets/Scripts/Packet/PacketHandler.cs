@@ -129,6 +129,12 @@ class PacketHandler
             {
 
                 ////멈춰있을떄 서버와의 위치 동기화
+
+                // 걷고있을땐 동기화 안되게...
+                if (myPC.State == CreatureState.Moving)
+                    return;
+                
+                
                 ////PosInfo = TempPosInfo;
 
                 //PosInfo.PosX = TempPosInfo.PosX;

@@ -653,9 +653,16 @@ class PacketHandler
 
     public static void S_LogoutHandler(PacketSession session, IMessage packet)
     {
-        S_Logout logoutPacekt = packet as S_Logout;
 
-        Debug.Log("로그아웃 되었습니다.11");
+        // 이거 패킷 오기전에  Disconnected가 되서.. 그냥 
+
+        // UI_GameScene의 OnClickedExit 부터 로그인 창으로 가게만들었따.
+
+
+
+        //S_Logout logoutPacekt = packet as S_Logout;
+
+        //Debug.Log("로그아웃 되었습니다.11");
         // session._disconnected = 1 이됨. 그러면 나중에 안받음.
         //Managers.Network.DisconnectFromGame();
         //Managers.Scene.LoadScene(Define.Scene.Login);
@@ -681,14 +688,21 @@ class PacketHandler
 
         //Managers.s_instance = null;
 
+
+
+
+
+
+
+
         // 매니저 모든 값들 초기화
         // 임시방편임..
-        GameObject.Destroy(GameObject.Find("@Managers"));
-        GameObject.Destroy(GameObject.Find("@Pool_Root"));
-        GameObject.Destroy(GameObject.Find("@Sound"));
+        //GameObject.Destroy(GameObject.Find("@Managers"));
+        //GameObject.Destroy(GameObject.Find("@Pool_Root"));
+        //GameObject.Destroy(GameObject.Find("@Sound"));
 
-        // 로그인 창으로 가게 해준다.
-        Managers.Scene.LoadScene(Define.Scene.Login);
+        //// 로그인 창으로 가게 해준다.
+        //Managers.Scene.LoadScene(Define.Scene.Login);
     }
 
 

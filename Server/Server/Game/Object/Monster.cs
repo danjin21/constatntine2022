@@ -117,14 +117,7 @@ namespace Server.Game
 
             if (_target == null)
             {
-                Player target = Room.FindPlayer(p =>
-                {
-                    Vector2Int dir = p.CellPos - CellPos;
-
-                // 사정 거리 안에 있는지 확인
-                return dir.cellIdistFromZero <= _searchCellDist;
-
-                });
+                Player target = Room.FindClosestPlayer(CellPos, _searchCellDist);
 
                 if (target == null)
                 {

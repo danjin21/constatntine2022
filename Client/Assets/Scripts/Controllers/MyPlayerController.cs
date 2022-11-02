@@ -555,9 +555,11 @@ public class MyPlayerController : PlayerController
     // 이건 자체적으로 실행 => 어차피 서버에서는 700임
     public void ShortKeyCool()
     {
- 
 
-            _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
+
+        //_coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
+
+        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.35f);
 
     }
 

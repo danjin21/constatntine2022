@@ -42,14 +42,21 @@ namespace Server.Game
             int x = (cellPos.x - Map.MinX) / ZoneCells;
             int y = (Map.MaxY - cellPos.y) / ZoneCells;
 
-            if (x < 0 || x >= Zones.GetLength(1))
-                return null;
-
-            if (y < 0 || y >= Zones.GetLength(0))
-                return null;
-
-            return Zones[y, x];
+            return GetZone(y, x);
         }
+
+        public Zone GetZone(int indexY, int indexX)
+        {
+            if (indexX < 0 || indexX >= Zones.GetLength(1))
+                return null;
+
+            if (indexY < 0 || indexY >= Zones.GetLength(0))
+                return null;
+
+            return Zones[indexY, indexX];
+
+        }
+
 
         public void Init(int mapId, int zoneCells)
         {
@@ -539,7 +546,7 @@ namespace Server.Game
 
         // TODO GameRoom 내부에서 update로 돌아가기때문에 괜찮으나,
         // 그러지 않고, 외부에서 호출되면 버그가 생길 수 있다.
-        public Player FindPlayer(Func<GameObject,bool> condition)
+        Player FindPlayer(Func<GameObject,bool> condition)
         {
             foreach(Player player in _players.Values)
             {
@@ -550,7 +557,33 @@ namespace Server.Game
             return null;
         }
 
+        // 살짝 부담스러운 함수
+        // 길이 없으면 또 다른 유저를 찾아나설거임.
+        public Player FindClosestPlayer(Vector2Int pos, int range)
+        {
+            List<Player> players = GetAdjacentPlayers(pos, range);
 
+            players.Sort((left, right) =>
+            {
+                int leftDist = (left.CellPos - pos).cellIdistFromZero;
+                int rightDist = (right.CellPos - pos).cellIdistFromZero;
+
+                return leftDist - rightDist;
+            });
+
+            foreach(Player player in players)
+            {
+                List<Vector2Int> path = Map.FindPath(pos, player.CellPos, checkObjects: true);
+
+                if (path.Count < 2 || path.Count > range)
+                    continue;
+
+                return player;
+
+            }
+
+            return null;
+        }
 
 
         // Room 내부에서 쓰이기 때문에 괜찮다(?)고 하는데..
@@ -595,19 +628,51 @@ namespace Server.Game
             //}
         }
 
-        public List<Zone> GetAdjacentZones(Vector2Int cellPos,int cells = GameRoom.VisionCells)
+
+        public List<Player> GetAdjacentPlayers(Vector2Int pos, int range)
+        {
+            List<Zone> zones = GetAdjacentZones(pos, range);
+            return zones.SelectMany(z => z.Players).ToList();
+
+        }
+
+
+        // zone 들이 있음
+        // ㅁㅁㅁㅁㅁㅁ
+        // ㅁㅁㅁㅁㅁㅁ
+        // ㅁㅁㅁㅁㅁㅁ
+        // ㅁㅁㅁㅁㅁㅁ
+        // 가운데에서, 사각형으로 4꼭지를 잡고,
+        // 그 4꼭지가 있는 존들을 가져온다.
+        // #### 범위를 더 크게 가져올 수 있다.
+
+        public List<Zone> GetAdjacentZones(Vector2Int cellPos,int range = GameRoom.VisionCells)
         {
             HashSet<Zone> zones = new HashSet<Zone>();
 
-            // 4방향을 모두 갖는 자료구조 
-            int[] delta = new int[2] { -cells, +cells };
-            foreach(int dy in delta)
+            int maxY = cellPos.y + range;
+            int minY = cellPos.y - range;
+            int maxX = cellPos.x + range;
+            int minX = cellPos.x - range;
+
+            // 좌측 상단
+            Vector2Int leftTop = new Vector2Int(minX, maxY);
+
+            int minIndexY = (Map.MaxY - leftTop.y) / ZoneCells;
+            int minIndexX = (leftTop.x - Map.MinX) / ZoneCells;
+        
+
+            // 우측 하단
+            Vector2Int rightBottom = new Vector2Int(maxX, minY);
+
+            int maxIndexY = (Map.MaxY - rightBottom.y) / ZoneCells;
+            int maxIndexX = (rightBottom.x - Map.MinX) / ZoneCells;
+
+            for (int x = minIndexX; x <= maxIndexX; x++)
             {
-                foreach(int dx in delta)
+                for(int y = minIndexY; y<=maxIndexY; y++)
                 {
-                    int y = cellPos.y + dy;
-                    int x = cellPos.x + dx;
-                    Zone zone = GetZone(new Vector2Int(x, y));
+                    Zone zone = GetZone(y, x);
 
                     if (zone == null)
                         continue;
@@ -615,6 +680,23 @@ namespace Server.Game
                     zones.Add(zone);
                 }
             }
+
+            // 4방향을 모두 갖는 자료구조 
+            //int[] delta = new int[2] { -range, +range };
+            //foreach(int dy in delta)
+            //{
+            //    foreach(int dx in delta)
+            //    {
+            //        int y = cellPos.y + dy;
+            //        int x = cellPos.x + dx;
+            //        Zone zone = GetZone(new Vector2Int(x, y));
+
+            //        if (zone == null)
+            //            continue;
+
+            //        zones.Add(zone);
+            //    }
+            //}
 
             return zones.ToList();
         }

@@ -619,8 +619,7 @@ namespace Server
 		public void HandleLogout(C_Logout logoutPacket)
         {
 
-
-
+            Console.WriteLine("로그아웃 되었습니다.1");
 
 			TokenDb tokenDb = new TokenDb();
 			tokenDb.TokenDbId = TokenDbId;
@@ -643,10 +642,13 @@ namespace Server
 					ServerState = PlayerServerState.ServerStateLogin;
 
 
+
 					S_Logout slogoutPacket = new S_Logout();
 					Send(slogoutPacket);
-
+					Console.WriteLine("로그아웃 되었습니다.2");
 					SaveAndDisconnect();
+
+				
 				}
 
 

@@ -227,7 +227,32 @@ public class ObjectManager
     //    _objects.Add(id, go);
     //}
 
-    public void Remove(int id)
+    //public void Remove(int id)
+    //{
+
+    //    if (MyPlayer != null && MyPlayer.Id == id)
+    //        return;
+
+    //    // 중복되게 추가가 오면 무시를 한다.
+    //    if (_objects.ContainsKey(id) == false)
+    //        return;
+
+    //    GameObject go = FindById(id);
+    //    if (go == null)
+    //        return;
+
+    //    _objects.Remove(id);
+
+    //    // 맵 오브젝트 리스트에서 뺀다.
+    //    Managers.Map.ApplyLeave(go, go.GetComponent<BaseController>().CellPos.x, go.GetComponent<BaseController>().CellPos.y);
+
+
+
+    //    Managers.Resource.Destroy(go);
+    //}
+
+
+    public void Remove(int id, float time = 0)
     {
 
         if (MyPlayer != null && MyPlayer.Id == id)
@@ -247,26 +272,6 @@ public class ObjectManager
         Managers.Map.ApplyLeave(go, go.GetComponent<BaseController>().CellPos.x, go.GetComponent<BaseController>().CellPos.y);
 
 
-
-        Managers.Resource.Destroy(go);
-    }
-
-
-    public void Remove(int id, float time)
-    {
-
-        if (MyPlayer != null && MyPlayer.Id == id)
-            return;
-
-        // 중복되게 추가가 오면 무시를 한다.
-        if (_objects.ContainsKey(id) == false)
-            return;
-
-        GameObject go = FindById(id);
-        if (go == null)
-            return;
-
-        _objects.Remove(id);
 
         Managers.Resource.Destroy(go,time);
     }

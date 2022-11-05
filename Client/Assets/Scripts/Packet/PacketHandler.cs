@@ -85,7 +85,9 @@ class PacketHandler
         foreach (int id in despawnPacket.ObjectIds)
         {
             if (Managers.Object.FindById(id) != null && Managers.Object.FindById(id).GetComponent<BaseController>().State == CreatureState.Dead)
+            {
                 return;
+            }
 
             // 화살은 안지워준다. 클라이언트에서 처리
             // 혹시 몰라서 늦게라도 안지워졌을 경우, 서버에 따라 지워지게만든다.
@@ -97,8 +99,8 @@ class PacketHandler
             GameObject A = null;
             A = Managers.Object.FindById(id);
 
-     
-            //Managers.Object.Remove(id);
+
+            Managers.Object.Remove(id);
 
         }
 

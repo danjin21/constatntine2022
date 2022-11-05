@@ -43,6 +43,9 @@ public class MapManager
 
     public bool CanGo(Vector3Int cellPos)
     {
+
+
+
         //if (cellPos.x < MinX || cellPos.x > MaxX)
         //    return false;
         //if (cellPos.y < MinY || cellPos.y > MaxY)
@@ -57,7 +60,12 @@ public class MapManager
 
         int x = cellPos.x - MinX;
         int y = MaxY - cellPos.y - 1;
+
+  
+
         return !_collision[y, x];
+
+  
     }
 
     public bool ApplyLeave(GameObject gameObject, int PosX, int PosY)
@@ -123,7 +131,11 @@ public class MapManager
 
         int x = cellPos.x - MinX;
         int y = MaxY - cellPos.y - 1;
+
         return _objects[y, x];
+
+
+
     }
 
 

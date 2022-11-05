@@ -132,7 +132,12 @@ public class BaseController : MonoBehaviour
                 return;
 
             // Creature 일 경우에만 Map의 Object 리스트에 반영해준다.
-            if(this.GetType() == typeof(CreatureController))
+            if (this.GetType() == typeof(PlayerController) ||
+                this.GetType() == typeof(MyPlayerController) ||
+                this.GetType() == typeof(MonsterController) ||
+                   this.GetType() == typeof(NpcController)
+                )
+                //if (this.GetType() == typeof(CreatureController) )
                 Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, value.x, value.y);
 
             PosInfo.PosX = value.x;

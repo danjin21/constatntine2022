@@ -64,7 +64,7 @@ public class ArrowController : BaseController
 
 
 
-    protected override void UpdateMoving()
+    protected  void UpdateMoving_2()
     {
 
         //// 이동이 아니면 리턴한다
@@ -135,16 +135,34 @@ public class ArrowController : BaseController
 
 
 
-    protected void UpdateMoving_2()
+    protected override void UpdateMoving()
     {
 
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hitData;
+ 
 
-        if (Physics.Raycast(ray,out hitData))
+        Vector3 destPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        Vector3Int destPosInt = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
+
+
+        Vector3Int CellPosInt = Managers.Map.CurrentGrid.WorldToCell(destPosInt) - new Vector3Int ( 0, 1,0);
+        Debug.Log("망치망치" + CellPos + "/" + CellPosInt +$"{destPos} / {destPosInt}");
+
+
+        if (Managers.Map.CanGo(CellPosInt))
         {
-            // The Ray hit something!
-            Debug.Log("감지");
+
+        }
+        else
+        {
+            Managers.Object.Remove(Id);
+        }
+
+
+
+        if (Managers.Map.Find(CellPosInt) != null)
+        {
+            Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
+            Managers.Object.Remove(Id);
         }
 
         //// 이동이 아니면 리턴한다
@@ -178,12 +196,17 @@ public class ArrowController : BaseController
         }
 
 
+
+
+
+
+
         // 진짜 Myplayer처럼 셀단위로 움직이게 하거나..
         // 그냥 겹치는 경우 오브젝트를 확인..
 
         //Vector3Int A = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
 
-   
+
         //Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(A) + new Vector3(16.0f, 36.0f, 0);
 
 
@@ -192,7 +215,7 @@ public class ArrowController : BaseController
 
         //if (Managers.Map.CanGo(destPosInt))
         //{
-            
+
         //}
         //else
         //{
@@ -328,11 +351,7 @@ public class ArrowController : BaseController
 
         if (Managers.Map.CanGo(destPos))
         {
-
-          
-
             CellPos = destPos;
-
         }
         else
         {

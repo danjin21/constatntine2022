@@ -117,7 +117,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Blocked: 0
+  IsDead: 0
   DamagePocket: {fileID: 0}
+  HitSoundPath: 
+  _skillId: -1
 --- !u!1001 &7711755002126598308
 PrefabInstance:
   m_ObjectHideFlags: 0

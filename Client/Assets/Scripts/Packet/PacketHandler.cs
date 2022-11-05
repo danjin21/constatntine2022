@@ -94,7 +94,11 @@ class PacketHandler
             //if (Managers.Object.FindById(id) != null && Managers.Object.FindById(id).GetComponent<ArrowController>() != null)
             //    return;
 
-            Managers.Object.Remove(id);
+            GameObject A = null;
+            A = Managers.Object.FindById(id);
+
+     
+            //Managers.Object.Remove(id);
 
         }
 
@@ -157,11 +161,13 @@ class PacketHandler
                 //CellPos = destPosInt;
 
                 //SyncPos(); //부드럽게 이동하는것 방지
-                return;
+
+
+                //return;
             }
 
 
-
+            // 위치 동기화시켜주자
 
 
 
@@ -193,6 +199,7 @@ class PacketHandler
             if (bc.PosHistory.Count > 0)
             {
                 bc.PosInfo = bc.PosHistory[0];
+
             }
 
 

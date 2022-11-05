@@ -39,6 +39,7 @@ public class MapManager
     public int SizeY { get { return MaxY - MinY + 1; } }
 
     bool[,] _collision;
+    GameObject[,] _objects;
 
     public bool CanGo(Vector3Int cellPos)
     {
@@ -58,6 +59,73 @@ public class MapManager
         int y = MaxY - cellPos.y - 1;
         return !_collision[y, x];
     }
+
+    public bool ApplyLeave(GameObject gameObject, int PosX, int PosY)
+    {
+        // 캐릭터의 위치가 현재 맵을 벗어나 있는지 체크 | 진형쓰룰
+        if (PosX < MinX || PosX >= MaxX)
+            return false;
+        if (PosY < MinY || PosY >= MaxY)
+            return false;
+
+        // 있는 공간에서 사라지게만듬
+        {
+            int x = PosX - MinX;
+            int y = MaxY - PosY - 1;
+            if (_objects[y, x] == gameObject)
+                _objects[y, x] = null;
+
+            Debug.Log($"#####{gameObject.name}가 ##{x}/{y}에서 사라졌다.");
+        }
+        return true;
+    }
+
+
+    // collision : 충돌 영향을 안주겠다.
+    public bool ApplyMove(GameObject gameObject, int PosX, int PosY, int Next_PosX, int Next_PosY)
+    {
+
+        // 있는 공간에서 사라지게만듬
+        {
+            int x = PosX - MinX;
+            int y = MaxY - PosY - 1;
+            if (_objects[y, x] == gameObject)
+                _objects[y, x] = null;
+
+            Debug.Log($"##{gameObject.name}의 이전 위치 ##{x}/{y}");
+        }
+
+        // 현재 위치에 추가해줌.
+        {
+            int x = Next_PosX - MinX;
+            int y = MaxY - Next_PosY - 1;
+            _objects[y, x] = gameObject;
+
+            Debug.Log($"##{gameObject.name}의 현재 위치 ##{x}/{y}");
+        }
+
+    
+
+        return true;
+    }
+
+
+
+    // 좌표에 플레이어가 있는지 확인
+    public GameObject Find(Vector3Int cellPos)
+    {
+        // 진형쓰룰
+        if (cellPos.x < MinX || cellPos.x >= MaxX)
+            return null;
+        if (cellPos.y < MinY || cellPos.y >= MaxY)
+            return null;
+
+
+        int x = cellPos.x - MinX;
+        int y = MaxY - cellPos.y - 1;
+        return _objects[y, x];
+    }
+
 
     public void LoadMap(int mapId)
     {
@@ -88,6 +156,8 @@ public class MapManager
         int xCount = MaxX - MinX ;
         int yCount = MaxY - MinY ;
         _collision = new bool[yCount, xCount];
+        _objects = new GameObject[yCount, xCount];
+
 
         for (int y = 0; y < yCount; y++)
         {

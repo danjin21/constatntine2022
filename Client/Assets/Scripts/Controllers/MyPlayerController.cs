@@ -672,6 +672,8 @@ public class MyPlayerController : PlayerController
 
     protected override void MoveToNextPos()
     {
+
+
         // 이동 취약점
         //// 이동하기전에 서버랑 동기화
         //PosInfo = TempPosInfo;

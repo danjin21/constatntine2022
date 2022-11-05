@@ -131,6 +131,10 @@ public class BaseController : MonoBehaviour
             if (PosInfo.PosX == value.x && PosInfo.PosY == value.y)
                 return;
 
+            // Creature 일 경우에만 Map의 Object 리스트에 반영해준다.
+            if(this.GetType() == typeof(CreatureController))
+                Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, value.x, value.y);
+
             PosInfo.PosX = value.x;
             PosInfo.PosY = value.y;
             _updated = true;
@@ -772,7 +776,7 @@ public class BaseController : MonoBehaviour
 
     protected virtual void MoveToNextPos()
     {
-
+ 
 
     }
 

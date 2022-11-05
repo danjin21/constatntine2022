@@ -25,11 +25,13 @@ public class ObjectManager
     public void Add(ObjectInfo info, bool myPlayer = false)
     {
         if (MyPlayer != null && MyPlayer.Id == info.ObjectId)
-            return;
+            return ;
 
         // 중복되게 추가가 오면 무시를 한다.
         if (_objects.ContainsKey(info.ObjectId))
-            return;
+            return ;
+
+        GameObject resultObject = null;
 
 
         GameObjectType objectType = GetObjectTypeById(info.ObjectId);
@@ -52,6 +54,8 @@ public class ObjectManager
 
                 Debug.Log("플레이어 생서잉요" + MyPlayer);
 
+                resultObject = go;
+
             }
             else
             {
@@ -69,6 +73,8 @@ public class ObjectManager
                 // 참조값은 equal로 넣지 않고 복사인 MetgeFrom 으로 복사한다.
                 pc.Stat.MergeFrom(info.StatInfo);
                 pc.SyncPos();
+
+                resultObject = go;
             }
         }
         else if(objectType == GameObjectType.Monster)
@@ -86,6 +92,8 @@ public class ObjectManager
             mc.SyncPos();
 
             Debug.Log("몬스터의 TemplateId = " + mc.Stat.TemplateId);
+
+            resultObject = go;
         }
         else if(objectType == GameObjectType.Projectile)
         {
@@ -102,6 +110,9 @@ public class ObjectManager
             //ac.Dir = info.PosInfo.MoveDir;
             //ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
             ac.SyncPos();
+
+
+            resultObject = go;
 
 
 
@@ -139,6 +150,8 @@ public class ObjectManager
             //ac.Dir = info.PosInfo.MoveDir;
             //ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
             dc.SyncPos();
+
+            resultObject = go;
         }
         else if(objectType == GameObjectType.Npc)
         {
@@ -188,7 +201,23 @@ public class ObjectManager
                 }
             }
 
+            resultObject = go;
         }
+
+        if(resultObject != null  )
+        {
+            CreatureController cc = resultObject.GetComponent<CreatureController>();
+
+            // 크리쳐인경우에만 오브젝트 타일에 넣어준다.
+            // DropItem이나 화살 같은건 안됨
+            if (cc == null)
+                return;
+
+            // Map의 Object 리스트에 반영해준다.
+            Managers.Map.ApplyMove(resultObject, resultObject.GetComponent<BaseController>().PosInfo.PosX, resultObject.GetComponent<BaseController>().PosInfo.PosY, resultObject.GetComponent<BaseController>().PosInfo.PosX, resultObject.GetComponent<BaseController>().PosInfo.PosY);
+
+        }
+
 
 
     }
@@ -213,6 +242,11 @@ public class ObjectManager
             return;
 
         _objects.Remove(id);
+
+        // 맵 오브젝트 리스트에서 뺀다.
+        Managers.Map.ApplyLeave(go, go.GetComponent<BaseController>().CellPos.x, go.GetComponent<BaseController>().CellPos.y);
+
+
 
         Managers.Resource.Destroy(go);
     }

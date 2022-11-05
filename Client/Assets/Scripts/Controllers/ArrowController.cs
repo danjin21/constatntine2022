@@ -138,7 +138,14 @@ public class ArrowController : BaseController
     protected void UpdateMoving_2()
     {
 
+        Ray ray = new Ray(transform.position, transform.forward);
+        RaycastHit hitData;
 
+        if (Physics.Raycast(ray,out hitData))
+        {
+            // The Ray hit something!
+            Debug.Log("감지");
+        }
 
         //// 이동이 아니면 리턴한다
         //if (State != CreatureState.Moving)
@@ -269,17 +276,21 @@ public class ArrowController : BaseController
 
     protected override void MoveToNextPos()
     {
-        if (Managers.Map.CanGo(CellPos))
-        {
+        // 화살은 base.MoveToNextPos 안해준다.
 
-        }
-        else
-        {
-            Debug.Log("화살막힘3");
-            Blocked = true;
-            Managers.Object.Remove(Id);
-        }
+        //if (Managers.Map.CanGo(CellPos))
+        //{
+          
 
+        //}
+        //else
+        //{
+        //    Debug.Log("화살막힘3");
+        //    Blocked = true;
+        //    Managers.Object.Remove(Id);
+        //}
+
+        
 
         Vector3Int destPos = CellPos;
 
@@ -308,28 +319,24 @@ public class ArrowController : BaseController
         }
 
 
+        if (Managers.Map.Find(destPos) != null)
+        {
+            Debug.Log("화살막힘4" + Managers.Map.Find(destPos).name);
+            Managers.Object.Remove(Id);
+        }
+
 
         if (Managers.Map.CanGo(destPos))
         {
 
+          
 
-            if (Managers.Object.FindCreature(destPos) == null)
-            {
-                CellPos = destPos;
-                Blocked = false;
-            }
-            else
-            {
-                Debug.Log("화살막힘1");
-                Blocked = true;
-                Managers.Object.Remove(Id);
-            }
+            CellPos = destPos;
 
         }
         else
         {
             Debug.Log("화살막힘2");
-            Blocked = true;
             Managers.Object.Remove(Id);
         }
 

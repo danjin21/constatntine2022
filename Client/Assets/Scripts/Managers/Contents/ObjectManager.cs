@@ -98,7 +98,7 @@ public class ObjectManager
             ArrowController ac = go.GetComponent<ArrowController>();
             ac.PosInfo = info.PosInfo;
             ac.Stat = info.StatInfo;
-
+            ac.Id = info.ObjectId; // 화살 ID 추가 20221104
             //ac.Dir = info.PosInfo.MoveDir;
             //ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
             ac.SyncPos();

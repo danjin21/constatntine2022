@@ -6,6 +6,9 @@ using static Define;
 
 public class ArrowController : BaseController
 {
+    float run;
+
+
     protected override void Init()
     {
 
@@ -30,7 +33,10 @@ public class ArrowController : BaseController
 
         base.Init();
 
+        Debug.Log("화살의 ID = " + Id);
         //_speed = 500.0f;
+
+        run = 1.0f;
 
     }
 
@@ -58,10 +64,78 @@ public class ArrowController : BaseController
 
 
 
-
-
-
     protected override void UpdateMoving()
+    {
+
+        //// 이동이 아니면 리턴한다
+        //if (State != CreatureState.Moving)
+        //    return;
+
+        Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 36.0f, 0);
+        Vector3 moveDir = destPos - transform.position;
+
+
+
+
+
+        // 도착 여부 체크
+        float dist = moveDir.magnitude;
+
+
+        Vector3Int destPosInt = new Vector3Int((int)destPos.x, (int)destPos.y, (int)destPos.z);
+
+        if (dist < Speed * Time.smoothDeltaTime)
+        {
+           
+
+            if (Managers.Map.CanGo(destPosInt))
+                transform.position = destPosInt;
+
+            //GameObject CurrentObject;
+
+            //CurrentObject = Managers.Object.FindCreature(destPosInt);
+
+            //if (CurrentObject != null && CurrentObject != gameObject)
+            //{
+               
+            //    Managers.Object.Remove(Id);
+            //}
+           
+
+            MoveToNextPos();
+
+        }
+        else
+        {
+            Vector3 A = transform.position;
+
+            // 살짝 다 안왔을 때에는 채워주고 난뒤에 이동시킨다.
+            // 0.00001 <-- 이부분은 time.deltatime 으로 조정해줘야ㅕ할듯
+            if (Mathf.Abs(moveDir.x) > 0.000001f && Mathf.Abs(moveDir.y) > 0.000001f)
+            {
+
+                if (Mathf.Abs(moveDir.y) > Mathf.Abs(moveDir.x))
+                {
+                    transform.position = new Vector3(destPos.x, transform.position.y, transform.position.z);
+                }
+                else if (Mathf.Abs(moveDir.y) < Mathf.Abs(moveDir.x))
+                {
+                    transform.position = new Vector3(transform.position.x, destPos.y, transform.position.z);
+                }
+            }
+            else
+            {
+                transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime * run;
+
+            }
+        }
+
+
+    }
+
+
+
+    protected void UpdateMoving_2()
     {
 
 
@@ -96,15 +170,28 @@ public class ArrowController : BaseController
                 break;
         }
 
+
+        // 진짜 Myplayer처럼 셀단위로 움직이게 하거나..
+        // 그냥 겹치는 경우 오브젝트를 확인..
+
         //Vector3Int A = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
 
-        //if (Managers.Map.CanGo(A))
-        //{
+   
+        //Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(A) + new Vector3(16.0f, 36.0f, 0);
 
+
+        //Vector3Int destPosInt = new Vector3Int((int)destPos.x, (int)destPos.y, (int)destPos.z);
+        //Debug.Log("화살의 위치" + destPosInt);
+
+        //if (Managers.Map.CanGo(destPosInt))
+        //{
+            
         //}
         //else
         //{
-        //    Managers.Resource.Destroy(gameObject);
+        //    Debug.Log("호우우");
+        //    //Managers.Object.Remove(Id);
+        //    //Managers.Resource.Destroy(gameObject);
         //}
 
 
@@ -177,9 +264,76 @@ public class ArrowController : BaseController
     //            Managers.Resource.Destroy(gameObject);
     //        }
 
-        
+
     //}
 
+    protected override void MoveToNextPos()
+    {
+        if (Managers.Map.CanGo(CellPos))
+        {
 
+        }
+        else
+        {
+            Debug.Log("화살막힘3");
+            Blocked = true;
+            Managers.Object.Remove(Id);
+        }
+
+
+        Vector3Int destPos = CellPos;
+
+        switch (Dir)
+        {
+            case MoveDir.Up:
+                destPos += Vector3Int.up;
+
+                break;
+
+            case MoveDir.Down:
+                destPos += Vector3Int.down;
+
+
+                break;
+
+            case MoveDir.Left:
+                destPos += Vector3Int.left;
+
+                break;
+
+            case MoveDir.Right:
+                destPos += Vector3Int.right;
+
+                break;
+        }
+
+
+
+        if (Managers.Map.CanGo(destPos))
+        {
+
+
+            if (Managers.Object.FindCreature(destPos) == null)
+            {
+                CellPos = destPos;
+                Blocked = false;
+            }
+            else
+            {
+                Debug.Log("화살막힘1");
+                Blocked = true;
+                Managers.Object.Remove(Id);
+            }
+
+        }
+        else
+        {
+            Debug.Log("화살막힘2");
+            Blocked = true;
+            Managers.Object.Remove(Id);
+        }
+
+
+    }
 
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using static Define;
 using WindowsInput;
+using System;
 
 public class MyPlayerController : PlayerController
 {
@@ -260,6 +261,24 @@ public class MyPlayerController : PlayerController
         }
 
 
+        // 거리가 2칸이상일 경우에만 서버 대로 움직이게 해준다.
+
+        if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
+        {
+            Debug.Log($"CellPos X = {CellPos.x}/{CellPos.y} / Temp = {TempPosInfo.PosX}/{TempPosInfo.PosY}");
+
+            int difX = Math.Abs(CellPos.x - TempPosInfo.PosX);
+            int difY = Math.Abs(CellPos.y - TempPosInfo.PosY);
+
+            Debug.Log($"{difX}/{difY}");
+
+            if (difX <= 1 && difY <= 1)
+                return;
+        }
+
+        // 일정 시간 지난후에... 핑 검사후 그다음에 돌아가게.. 혹은 2칸 이상일 경우에만..
+
+
         Vector3Int A;
         A = new Vector3Int(TempPosInfo.PosX, TempPosInfo.PosY, 0);
         Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(A) + new Vector3(16.0f, 36.0f, 0);
@@ -296,12 +315,12 @@ public class MyPlayerController : PlayerController
 
 
         // -----------------------------------------------------------------//
+        Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
 
 
         // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
         PosInfo.PosX = TempPosInfo.PosX;
         PosInfo.PosY = TempPosInfo.PosY;
-        //CellPos = destPosInt;
 
 
     }
@@ -736,6 +755,8 @@ public class MyPlayerController : PlayerController
 
 
         Vector3Int destPos = CellPos;
+        // destPos 를 TempPos 로 바꾸면, 서버에 따라 움직이는게 된다.
+
 
         switch (Dir)
         {
@@ -767,8 +788,10 @@ public class MyPlayerController : PlayerController
 
         if (Managers.Map.CanGo(destPos))
         {
-            if (Managers.Object.FindCreature(destPos) == null)
+
+            if(Managers.Map.Find(destPos) == null)
             {
+
                 CellPos = destPos;
                 Blocked = false;
             }
@@ -776,6 +799,17 @@ public class MyPlayerController : PlayerController
             {
                 Blocked = true;
             }
+
+            //if (Managers.Object.FindCreature(destPos) == null)
+            //{
+                
+            //        CellPos = destPos;
+            //        Blocked = false;
+            //}
+            //else
+            //{
+            //    Blocked = true;
+            //}
 
 
         }

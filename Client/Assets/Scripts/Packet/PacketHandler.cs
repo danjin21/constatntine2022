@@ -2,6 +2,7 @@
 using Google.Protobuf;
 using Google.Protobuf.Protocol;
 using ServerCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -145,17 +146,31 @@ class PacketHandler
 
                 // 걷고있을땐 동기화 안되게...
                 if (myPC.State == CreatureState.Moving)
+                {
+                    Managers.Map.ApplyMove(myPC.gameObject, myPC.PosInfo.PosX, myPC.PosInfo.PosY, myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
+
+
+                    myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
+                    myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
+
+                   
                     return;
+                }
+
                 
+
+
                 
+
+
                 ////PosInfo = TempPosInfo;
 
                 //PosInfo.PosX = TempPosInfo.PosX;
                 //PosInfo.PosY = TempPosInfo.PosY;
 
                 // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
-                myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
-                myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
+                //myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
+                //myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
 
                 //myPC.SyncPos();
 

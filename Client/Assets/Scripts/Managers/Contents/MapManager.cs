@@ -83,7 +83,7 @@ public class MapManager
             if (_objects[y, x] == gameObject)
                 _objects[y, x] = null;
 
-            Debug.Log($"#####{gameObject.name}가 ##{x}/{y}에서 사라졌다.");
+            //Debug.Log($"#####{gameObject.name}가 ##{x}/{y}에서 사라졌다.");
         }
         return true;
     }
@@ -100,7 +100,7 @@ public class MapManager
             if (_objects[y, x] == gameObject)
                 _objects[y, x] = null;
 
-            Debug.Log($"##{gameObject.name}의 이전 위치 ##{x}/{y}");
+            //Debug.Log($"##{gameObject.name}의 이전 위치 ##{x}/{y}");
         }
 
         // 현재 위치에 추가해줌.
@@ -109,7 +109,7 @@ public class MapManager
             int y = MaxY - Next_PosY - 1;
             _objects[y, x] = gameObject;
 
-            Debug.Log($"##{gameObject.name}의 현재 위치 ##{x}/{y}");
+            //Debug.Log($"##{gameObject.name}의 현재 위치 ##{x}/{y}");
         }
 
     

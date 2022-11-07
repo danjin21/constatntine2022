@@ -35,6 +35,11 @@ namespace Server.Game
 
             foreach (ClientSession session in A)
             {
+                // session 중에 유저가 없으면 리턴
+                // 캐릭터 생성중일것임
+                if (session.MyPlayer == null)
+                    return;
+
                 ServerUsersPacket.ObjectInfo.Add(session.MyPlayer.Info);
             }
 

@@ -52,6 +52,8 @@ namespace Server.Game
             //Stat.Speed = 50.0f;
 
             State = CreatureState.Idle;
+
+            updateTime = 3000;
         }
 
 

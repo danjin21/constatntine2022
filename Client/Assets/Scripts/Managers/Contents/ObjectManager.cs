@@ -12,7 +12,7 @@ public class ObjectManager
     public Dictionary<int, GameObject> _objects = new Dictionary<int, GameObject>();
     // List<GameObject> _objects = new List<GameObject>();
 
-    int DropItem_objectCount = 0;
+    //int DropItem_objectCount = 0;
 
     public static GameObjectType GetObjectTypeById(int id)
     {
@@ -129,8 +129,9 @@ public class ObjectManager
             dc.Id = info.ObjectId;
 
             // 드랍아이템별 같은 위치일때 레이어 구분을 위해 히스토리 남김.
-            dc.DropItemLayerBack = DropItem_objectCount;
-            DropItem_objectCount += 1;
+            //dc.DropItemLayerBack = DropItem_objectCount;
+            dc.DropItemLayerBack = info.ObjectId;
+            //DropItem_objectCount += 1;
 
 
             Debug.Log("Template ID : " + dc.Stat.TemplateId + "/ ObjectId :" + dc.Id );

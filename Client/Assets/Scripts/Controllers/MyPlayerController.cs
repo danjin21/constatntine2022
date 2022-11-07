@@ -64,7 +64,7 @@ public class MyPlayerController : PlayerController
     protected override void Init()
     {
         base.Init();
-        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -100);
+        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
 
         // 카메라 높이 및 너비 구하기
         //height =  Camera.main.orthographicSize;
@@ -113,7 +113,7 @@ public class MyPlayerController : PlayerController
         //    Camera.main.transform.position = new Vector3(transform.position.x - xRange * 32 + A, Camera.main.transform.position.y, -10);
         //}
 
-        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -100);
+        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
 
 
 

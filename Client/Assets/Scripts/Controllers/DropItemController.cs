@@ -22,9 +22,9 @@ public class DropItemController : BaseController
 
         float layer = 20f / Id;
 
-        DestPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f + 80.0f, 20 - DropItemLayerBack / 10.00f);
+        DestPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f + 80.0f, -(DropItemLayerBack % 10000000) / 100000.000000f);
 
-        CurrentPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f, 20 - DropItemLayerBack/10.00f);
+        CurrentPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f,  - (DropItemLayerBack%10000000)/100000.000000f);
         transform.position = CurrentPos;
 
         // 초기에 레이어 설정

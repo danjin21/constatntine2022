@@ -433,8 +433,15 @@ public class MyPlayerController : PlayerController
 
 
             // 90000 : 물약이면 그냥 이동되게 만든다. => 이부분은 약간 서버가 봐야될것 같긴함
-            if (_actionKeyPressed != true && key.Action != 90000 && key.Action != 90001 && key.Action != 3101000)
+            if (_actionKeyPressed != true  && key.Action != 3101000)
             {
+                //if(key.Action != 90000 && key.Action != 90001)
+                // 물약인 경우만
+                if (key.Action >= 90000 && key.Action <= 90100)
+                {
+
+                }
+                else
                     _actionKeyPressed = true;
             }
 
@@ -477,8 +484,15 @@ public class MyPlayerController : PlayerController
                 // 텔레포트나 물약 아니면 멈추게 만든다 -> 이건 서버쪽에서도 관리해야할듯?
                 if (key.Action != 3101000)
                 {
+
+                    //Idle 일때 액션이 되게
+
+                    if (State != CreatureState.Idle)
+                        return;
+
                     MoveReset = true;
                     _moveKeyPressed = false;
+
                 }
 
                 // 텔레포트인데, 방향키를 누르고 있지 않으면 return 한다.
@@ -512,10 +526,10 @@ public class MyPlayerController : PlayerController
 
             }
 
+
+
+ 
             // 타입이 맞는지 확인
-
-
-
 
             C_ShortKey shortKey = new C_ShortKey()
             {

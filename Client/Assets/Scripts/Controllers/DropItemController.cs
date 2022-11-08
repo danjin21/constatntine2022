@@ -20,7 +20,6 @@ public class DropItemController : BaseController
 
         _sprite = GetComponent<SpriteRenderer>();
 
-        float layer = 20f / Id;
 
         DestPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f + 80.0f, -(DropItemLayerBack % 10000000) / 100000.000000f);
 

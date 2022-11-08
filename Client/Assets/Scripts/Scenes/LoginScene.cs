@@ -20,10 +20,11 @@ public class LoginScene : BaseScene
         //Managers.Web.BaseUrl = "https://49.142.31.135:5001/api";
         //Managers.Web.BaseUrl = "https://127.0.0.1:5001/api";
 
+        //Managers.Web.BaseUrl = "https://1.222.183.124:5001/api";
         Managers.Web.BaseUrl = "https://1.222.183.124:5001/api";
 
 
-       
+
         //WebPacket.SendCreateAccount("Rookiss", "1234");
 
         //Screen.SetResolution(1920, 1080, false);

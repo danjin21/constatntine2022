@@ -260,7 +260,7 @@ public class PlayerController : CreatureController
         effect.transform.SetParent(this.transform);
 
         // 게임 이펙트를 몇초 후에 삭제
-        GameObject.Destroy(effect, 4.0f);
+        Managers.Resource.Destroy(effect, 4.0f);
 
         // 레벨업 텍스트
 
@@ -330,7 +330,7 @@ public class PlayerController : CreatureController
             effect.transform.SetParent(this.transform);
 
             // 게임 이펙트를 몇초 후에 삭제
-            GameObject.Destroy(effect, 4.0f);
+            Managers.Resource.Destroy(effect, 4.0f);
 
 
         }
@@ -356,7 +356,7 @@ public class PlayerController : CreatureController
             //effect.transform.SetParent(this.transform);
 
             // 게임 이펙트를 몇초 후에 삭제
-            GameObject.Destroy(effect, 4.0f);
+            Managers.Resource.Destroy(effect, 4.0f);
 
         }
         else if (skillId == 3101000)
@@ -371,7 +371,7 @@ public class PlayerController : CreatureController
             effect.transform.GetChild(0).GetComponent<ParticleSystemRenderer>().sortingOrder = _sprite.sortingOrder;
             //effect.transform.SetParent(this.transform);
             //effect.transform.parent = this.transform;
-            GameObject.Destroy(effect, 5.0f);
+            Managers.Resource.Destroy(effect, 5.0f);
         }
         else if (skillId == 9001001)
         {

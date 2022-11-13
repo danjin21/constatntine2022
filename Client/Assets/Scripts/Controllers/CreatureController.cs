@@ -262,7 +262,7 @@ public class CreatureController : BaseController
                     effect.GetComponent<Animator>().Play("Thunderbolt");
                     effect.transform.parent = this.transform;
                     // 게임 이펙트를 몇초 후에 삭제
-                    GameObject.Destroy(effect, 0.3f);
+                    Managers.Resource.Destroy(effect, 0.3f);
 
                     //GameObject effect = Managers.Resource.Instantiate("Effect/Skill/310/3101000", this.transform);
                     //effect.transform.position = transform.position + new Vector3(0, 0, -9);
@@ -285,7 +285,7 @@ public class CreatureController : BaseController
                     effect.GetComponent<Animator>().Play("PowerStrike");
                     effect.transform.parent = this.transform;
                     // 게임 이펙트를 몇초 후에 삭제
-                    GameObject.Destroy(effect, 0.3f);
+                    Managers.Resource.Destroy(effect, 0.3f);
 
                     //GameObject effect = Managers.Resource.Instantiate("Effect/Skill/310/3101000", this.transform);
                     //effect.transform.position = transform.position + new Vector3(0, 0, -9);
@@ -310,7 +310,7 @@ public class CreatureController : BaseController
                     effect.GetComponent<Animator>().Play("Hit_Sword");
                     effect.transform.parent = this.transform;
                     // 게임 이펙트를 몇초 후에 삭제
-                    GameObject.Destroy(effect, 0.3f);
+                    Managers.Resource.Destroy(effect, 0.3f);
 
                     break;
                 }
@@ -344,7 +344,7 @@ public class CreatureController : BaseController
         effect.transform.parent = this.transform;
 
         // 게임 이펙트를 몇초 후에 삭제
-        GameObject.Destroy(effect, 0.5f);
+        Managers.Resource.Destroy(effect, 0.5f);
 
         // Hp바 비활성화
 
@@ -395,7 +395,7 @@ public class CreatureController : BaseController
         //    Debug.Log("??");
         //}
         // 게임 이펙트를 몇초 후에 삭제
-        GameObject.Destroy(effect, 0.2f);
+        Managers.Resource.Destroy(effect, 0.2f);
 
 
     }

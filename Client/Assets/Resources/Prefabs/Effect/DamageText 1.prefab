@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4697478224606581718}
   - component: {fileID: 4697478224606581719}
   m_Layer: 5
-  m_Name: DamageText
+  m_Name: DamageText 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,6 +211,7 @@ MonoBehaviour:
   alphaSpeed: 0
   destroyTime: 0
   damage: 
+  isFade: 0
 --- !u!114 &1624716164
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -116,6 +116,7 @@ MonoBehaviour:
   alphaSpeed: 0
   destroyTime: 0
   LevelUpMessage: 
+  isFade: 0
 --- !u!1 &4697478226206745678
 GameObject:
   m_ObjectHideFlags: 0

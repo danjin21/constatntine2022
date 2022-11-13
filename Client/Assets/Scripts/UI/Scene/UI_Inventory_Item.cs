@@ -413,7 +413,13 @@ public class UI_Inventory_Item : UI_Base
         // Inventory 창의 순서를 찾는다. =======================================
 
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+        if (gameSceneUI == null)
+            return;
+
+
         UI_Inventory invenUI = gameSceneUI.InvenUI;
+
 
         int order = 0;
 

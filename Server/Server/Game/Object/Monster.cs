@@ -53,7 +53,7 @@ namespace Server.Game
 
             State = CreatureState.Idle;
 
-            updateTime = 3000;
+            updateTime = 1000;
         }
 
 
@@ -62,10 +62,11 @@ namespace Server.Game
 
         IJob _job;
 
-        int updateTime = 200;
+        int updateTime = 1000;
 
         public override void Update()
         {
+
             switch (State)
             {
                 case CreatureState.Idle:

@@ -114,13 +114,12 @@ public class CreatureController : BaseController
     }
 
     // BaseController를 따르되, AddHpBar만 추가로 해준다.
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         AddHpBar();
 
         DamagePocket = transform.Find("DamagePocket").gameObject;
-
     }
 
 

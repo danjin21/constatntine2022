@@ -8,8 +8,13 @@ public class ArrowController : BaseController
 {
     float run;
 
+    public void OnEnable()
+    {
+        // Init();
+    }
 
-    protected override void Init()
+
+    public override void Init()
     {
 
         switch(Dir)

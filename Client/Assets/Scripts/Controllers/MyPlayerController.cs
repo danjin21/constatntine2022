@@ -61,7 +61,7 @@ public class MyPlayerController : PlayerController
     public bool MoveReset;
     public float MoveResetCount;
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);

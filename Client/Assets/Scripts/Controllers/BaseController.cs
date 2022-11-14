@@ -419,7 +419,7 @@ public class BaseController : MonoBehaviour
  
     }
 
-    protected virtual void Init()
+    public virtual void Init()
     {
         //_speed = 90;
 
@@ -843,6 +843,11 @@ public class BaseController : MonoBehaviour
             }
             else
             {
+
+                // 이펙트는 제외
+                if (child.tag == "HitEffect")
+                    return;
+
                 child.GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 0.3f * Time.smoothDeltaTime);
             }
         }
@@ -856,37 +861,7 @@ public class BaseController : MonoBehaviour
         }
 
 
-        //// 목표한 위치까지는 온다.
-
-        //Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 36.0f, 0);
-        //Vector3 moveDir = destPos - transform.position;
-
-        //// 도착 여부 체크
-        //float dist = moveDir.magnitude;
-
-
-        //Vector3Int destPosInt = new Vector3Int((int)destPos.x, (int)destPos.y, (int)destPos.z);
-
-
-        //if (dist < Speed * Time.smoothDeltaTime)
-        //{
-        //    if (Managers.Map.CanGo(destPosInt))
-        //        transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
-
-
-        //    this.transform.GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 0.05f);
-
-        //    Managers.Object.Remove(Id, 5.0f);
-
-        //    // 다 도착한 후에 삭제해준다.
-        //    //State = CreatureState.Idle;
-        //}
-        //else
-        //{
-        //    transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
-        //}
-
-        //Debug.Log("나의상태는 " + State + " 입니다.");
+        
     }
 
 

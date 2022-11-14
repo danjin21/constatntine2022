@@ -133,6 +133,9 @@ public class ObjectManager
             dc.DropItemLayerBack = info.ObjectId;
             //DropItem_objectCount += 1;
 
+            // 불러오자마자 레이아웃이 뒤틀리는 적이 있어서..
+      
+
 
             Debug.Log("Template ID : " + dc.Stat.TemplateId + "/ ObjectId :" + dc.Id );
 

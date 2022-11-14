@@ -15,7 +15,7 @@ public class DropItemController : BaseController
     public Vector3 DestPos;
     public Vector3 CurrentPos;
 
-    protected override void Init()
+    public override void Init()
     {
 
         _sprite = GetComponent<SpriteRenderer>();

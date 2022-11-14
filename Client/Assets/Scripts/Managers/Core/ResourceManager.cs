@@ -65,19 +65,23 @@ public class ResourceManager
 
     IEnumerator CoDestroyObject(GameObject go, float time)
     {
+
         yield return new WaitForSeconds(time);
 
-        Poolable poolable = go.GetComponent<Poolable>();
-        if (poolable != null)
+        if (go != null)
         {
-            Managers.Pool.Push(poolable);
-        }
-        else
-        {
-            Object.Destroy(go);
+            Poolable poolable = go.GetComponent<Poolable>();
+            if (poolable != null)
+            {
+                Managers.Pool.Push(poolable);
+            }
+            else
+            {
+                Object.Destroy(go);
+            }
+
         }
 
- 
 
     }
 

@@ -14,7 +14,7 @@ public class PlayerController : CreatureController
     protected Coroutine _coSkill;
     public int _skillId = -1;
 
-    protected override void Init()
+    public override void Init()
     {
         base.Init();
         // 소환될때 바라보는 방향 갱신        
@@ -530,9 +530,6 @@ public class PlayerController : CreatureController
     {
         base.OnDead(damage);
     }
-
-
-
 
 
 

@@ -55,7 +55,7 @@ public class MonsterController : CreatureController
     //}
     public int _skillId = -1;
 
-    protected override void Init()
+    public override void Init()
     {
 
         base.Init();

@@ -114,7 +114,7 @@ namespace Server.Game
 
             if (_nextSearchTick > Environment.TickCount64)
                 return;
-            _nextSearchTick = Environment.TickCount64 + 200; // 0.2초가 지났으면 0.2초더 증가시켜준다.
+            _nextSearchTick = Environment.TickCount64 + 3000; // 0.2초가 지났으면 0.2초더 증가시켜준다.
 
             // 이미 타겟이 있는 경우에는 거리를 보지 않는다.
 

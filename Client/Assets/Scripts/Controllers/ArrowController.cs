@@ -7,6 +7,11 @@ using static Define;
 public class ArrowController : BaseController
 {
     float run;
+    public int shot;
+
+    public List<ArrowController> childArrowList = new List<ArrowController>();
+
+    public bool IsParent;
 
     public void OnEnable()
     {
@@ -17,7 +22,28 @@ public class ArrowController : BaseController
     public override void Init()
     {
 
-        switch(Dir)
+        if (IsParent)
+        {
+            for (int i = 0; i < shot - 1; i++)
+            {
+                GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
+                ArrowController ac = go.GetComponent<ArrowController>();
+                ac.PosInfo = this.PosInfo;
+                ac.Stat = this.Stat;
+                ac.SyncPos();
+                ac.IsParent = false;
+                childArrowList.Add(ac);
+                Debug.Log("child 수 " + childArrowList.Count);
+                ac.gameObject.SetActive(false);
+
+            }
+
+            StartCoroutine(coMultiShot(0.1f));
+        }
+
+
+
+        switch (Dir)
         {
             case MoveDir.Up:
                 transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -33,7 +59,7 @@ public class ArrowController : BaseController
                 break;
         }
 
-        State = CreatureState.Moving;
+
  
 
         base.Init();
@@ -43,6 +69,17 @@ public class ArrowController : BaseController
 
         run = 1.0f;
 
+    
+        State = CreatureState.Moving;
+    }
+
+    IEnumerator coMultiShot(float time)
+    {
+        foreach(ArrowController child in childArrowList)
+        {
+            yield return new WaitForSeconds(time);
+            child.gameObject.SetActive(true);
+        }
     }
 
     protected override void UpdateIdle()
@@ -150,7 +187,7 @@ public class ArrowController : BaseController
 
 
         Vector3Int CellPosInt = Managers.Map.CurrentGrid.WorldToCell(destPosInt) - new Vector3Int ( 0, 1,0);
-        Debug.Log("망치망치" + CellPos + "/" + CellPosInt +$"{destPos} / {destPosInt}");
+        //Debug.Log("망치망치" + CellPos + "/" + CellPosInt +$"{destPos} / {destPosInt}");
 
 
         if (Managers.Map.CanGo(CellPosInt))
@@ -160,6 +197,7 @@ public class ArrowController : BaseController
         else
         {
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
 
@@ -168,6 +206,7 @@ public class ArrowController : BaseController
         {
             Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
         //// 이동이 아니면 리턴한다
@@ -351,6 +390,7 @@ public class ArrowController : BaseController
         {
             Debug.Log("화살막힘4" + Managers.Map.Find(destPos).name);
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
 
@@ -362,9 +402,34 @@ public class ArrowController : BaseController
         {
             Debug.Log("화살막힘2");
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
 
     }
 
+
+    public void removeChild()
+    {
+        if (IsParent == false)
+            return;
+
+        // 서버에서 먼저 지워질경우가 있어서.. 그 경우에는..
+        // 그.. S_DespawnHandler 부분에서 이 함수 실행하게 만든다.
+
+
+        int i = 1;
+
+        Debug.Log($"childArrowList Count = " + childArrowList.Count);
+
+        foreach (ArrowController child in childArrowList)
+        {
+            Managers.Resource.Destroy(child.gameObject, 0.1f * i);
+
+            i++;
+
+            Debug.Log($"@@@@{i}");
+        }
+
+    }
 }

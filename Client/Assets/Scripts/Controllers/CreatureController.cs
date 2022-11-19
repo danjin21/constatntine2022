@@ -16,6 +16,7 @@ public class CreatureController : BaseController
 
     protected Coroutine _coSkill;
 
+
     // BaseController를 따르되, UpdateHpBar()를 추가로 실행한다.
     public override StatInfo Stat
     {

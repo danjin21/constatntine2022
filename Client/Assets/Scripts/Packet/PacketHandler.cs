@@ -103,6 +103,14 @@ class PacketHandler
 
             Managers.Object.Remove(id);
 
+            // 화살일경우에는 자식 화살들도 지워지게 해야한다.
+
+            if (A != null &&  A.GetComponent<ArrowController>() != null)
+            {
+                A.GetComponent<ArrowController>().removeChild();
+            }
+        
+
         }
 
 

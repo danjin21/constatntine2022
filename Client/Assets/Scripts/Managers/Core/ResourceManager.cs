@@ -59,14 +59,26 @@ public class ResourceManager
         if (go == null)
             return;
 
+        Managers.Instance.StartCoroutine(coDestory(go, time));
+    }
+
+    // 시간지나면 지워지게 (풀링때문에 넣음)
+    IEnumerator coDestory(GameObject go, float time)
+    {
+        yield return new WaitForSeconds(time);
+
+
         Poolable poolable = go.GetComponent<Poolable>();
         if (poolable != null)
         {
             Managers.Pool.Push(poolable);
-            return;
+     
+        }
+        else
+        {
+            Object.Destroy(go, time);
         }
 
-        Object.Destroy(go,time);
     }
 
 

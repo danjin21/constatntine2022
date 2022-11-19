@@ -612,8 +612,24 @@ public class MyPlayerController : PlayerController
 
         // 단축키 누른 직후 방향키 전환하면 안되게
 
+
+        //if (_actionKeyPressed == true)
+        //{
+        //    return;
+        //}
+
+
         if (_coShortKeyCooltime != null)
-            return;
+        {
+
+            // 물약은 제외
+            //if (_actionKeyPressed == true)
+                return;
+        }
+
+        // 스킬 쓸때는 못나가게?
+        //if (_coSkillCooltime != null)
+        //    return;
 
 
         //_moveKeyPressed = true;

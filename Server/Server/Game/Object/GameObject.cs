@@ -334,9 +334,12 @@ namespace Server.Game
                 if (attacker.ObjectType == GameObjectType.Projectile)
                 {
 
+                    if(shot ==1)
+                        OnDead(attacker, damage);
+                    else if(shot > 1)
+                        Room.PushAfter(100*(shot-1), OnDead, attacker, damage);
 
-
-                    OnDead(attacker, damage);
+                   
 
                     //if (A.IsFinal == false)
                     //    OnDead(attacker, damage);

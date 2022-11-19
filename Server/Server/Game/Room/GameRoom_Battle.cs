@@ -55,7 +55,8 @@ namespace Server.Game
                 // 갈 수 없는지 체크
                 if (Map.CanGo(new Vector2Int(movePosInfo.PosX, movePosInfo.PosY)) == false)
                 {
-                    player.State = CreatureState.Idle; // 갈수 없으니까 플레이어의 상태를 Idle로 바꿔준다.
+                    // 20221119 이거땜에 그.. 텔레포트가 안써져서.. 일단.. 그대로 둠
+                    //player.State = CreatureState.Idle; // 갈수 없으니까 플레이어의 상태를 Idle로 바꿔준다.
 
                     // 남들에게 알려준다.
                     S_Move IdleMovePacket = new S_Move();

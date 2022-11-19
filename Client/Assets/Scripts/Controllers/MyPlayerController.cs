@@ -480,6 +480,10 @@ public class MyPlayerController : PlayerController
             if (_coShortKeyCooltime != null)
                 return;
 
+            // Shrot_Potion 키 쿨타임
+            if (_coShortKeyCooltime_Potion != null)
+                return;
+
 
             // 액션이 스킬인지 확인
             Skills PlayerSkill = Managers.Skill.Find(i => i.SkillId == key.Action);

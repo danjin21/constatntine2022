@@ -330,6 +330,10 @@ public class MyPlayerController : PlayerController
     public Coroutine _coConsumeCooltime;
     [SerializeField]
     public Coroutine _coShortKeyCooltime;
+    [SerializeField]
+    public Coroutine _coShortKeyCooltime_Potion;
+
+    
 
     IEnumerator CoInputCooltime(float time)
     {
@@ -350,7 +354,15 @@ public class MyPlayerController : PlayerController
         _coShortKeyCooltime = null;
     }
 
+    // 물약은 따로 
+    IEnumerator CoInputCooltime_ShortKey_Potion(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _coShortKeyCooltime_Potion = null;
+    }
 
+
+    
 
     void UpdateGetInput()
     {
@@ -536,7 +548,14 @@ public class MyPlayerController : PlayerController
                 Action = key.Action
             };
             Managers.Network.Send(shortKey);
-            ShortKeyCool();
+
+            // 물약을 먹고 있으면 이동 안되는것 해결
+            if (ConsumeKey == -1)
+                ShortKeyCool();
+            else
+                ShortKeyCool_Potion();
+
+
             Debug.Log("누르고 있슴다.");
 
             //UseSkill(key.Action);
@@ -588,15 +607,15 @@ public class MyPlayerController : PlayerController
     // 이건 자체적으로 실행 => 어차피 서버에서는 700임
     public void ShortKeyCool()
     {
-
-
         //_coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
-
         _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.35f);
-
     }
 
-
+    // 이건 자체적으로 실행 => 어차피 서버에서는 700임
+    public void ShortKeyCool_Potion()
+    {
+        _coShortKeyCooltime_Potion = StartCoroutine("CoInputCooltime_ShortKey_Potion", 0.35f);
+    }
 
 
     // 키보드 입력

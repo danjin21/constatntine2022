@@ -16,6 +16,7 @@ public class UI_GameScene : UI_Scene
     public Text Mp;
     public Text Exp;
 
+    public GameObject MapAlert;
 
     enum Buttons
     {
@@ -36,6 +37,9 @@ public class UI_GameScene : UI_Scene
         Mp = GameObject.Find("Mp/MpText").GetComponent<Text>();
         Exp = GameObject.Find("Exp/ExpText").GetComponent<Text>();
 
+
+        MapAlert = GameObject.Find("MapAlert");
+        MapAlert.SetActive(false);
 
         SkillUI.gameObject.SetActive(false);
 

@@ -4,117 +4,121 @@
       "level": "1",
       "maxHp": "200",
       "attack": "30",
-	  "speed" : " 80", // 90
+      "speed": " 80", // 90
       "totalExp": "15",
-	  "map" : "20100005",
-	  "posX" : "-11",
-	  "posY" : "0",
-	  "def" : "5",
-	  "dex" : "10",
-	  "exp":"0",
-	  "gold": "10000",
-	  "int" : "10",
-	  "luk" : "10",
-	  "maxMp" : "50",
-	  "mp" : "50",
-	  "str" : "10"
+      "map": "20100005",
+      "posX": "-11",
+      "posY": "0",
+      "def": "5",
+      "dex": "10",
+      "exp": "0",
+      "gold": "10000",
+      "int": "10",
+      "luk": "10",
+      "maxMp": "50",
+      "mp": "50",
+      "str": "10"
 
     },
     {
       "level": "2",
       "maxHp": "250",
       "attack": "25",
-	  "speed" : " 90.0",
+      "speed": " 90.0",
       "totalExp": "30",
-	  "map" : "20100005",
-	  "posX" : "-11",
-	  "posY" : "0"
+      "map": "20100005",
+      "posX": "-11",
+      "posY": "0"
     },
     {
       "level": "3",
       "maxHp": "300",
       "attack": "30",
-	  "speed" : " 90.0",
+      "speed": " 90.0",
       "totalExp": "60",
-	  "map" : "20100005",
-	  "posX" : "-11",
-	  "posY" : "0"
+      "map": "20100005",
+      "posX": "-11",
+      "posY": "0"
     },
-	{
+    {
       "level": "4",
-      "totalExp": "120",
+      "totalExp": "120"
     },
-	{
+    {
       "level": "5",
-      "totalExp": "240",
+      "totalExp": "240"
     },
-	{
+    {
       "level": "6",
-      "totalExp": "480",
+      "totalExp": "480"
     },
-	{
+    {
       "level": "7",
-      "totalExp": "960",
+      "totalExp": "960"
     },
-	{
+    {
       "level": "8",
-      "totalExp": "1920",
+      "totalExp": "1920"
     },
-	{
+    {
       "level": "9",
-      "totalExp": "3840",
+      "totalExp": "3840"
     },
-	{
+    {
       "level": "10",
-      "totalExp": "7680",
+      "totalExp": "7680"
     },
-	{
+    {
       "level": "11",
-      "totalExp": "15360",
+      "totalExp": "15360"
     },
-	{
+    {
       "level": "12",
-      "totalExp": "30720",
+      "totalExp": "30720"
     },
-	{
+    {
       "level": "13",
-      "totalExp": "61440",
+      "totalExp": "61440"
     },
-	{
+    {
       "level": "14",
-      "totalExp": "122880",
+      "totalExp": "122880"
     },
-	{
+    {
       "level": "15",
-      "totalExp": "245760",
+      "totalExp": "245760"
     },
-	{
+    {
       "level": "16",
-      "totalExp": "491520",
+      "totalExp": "491520"
     },
-	{
+    {
       "level": "17",
-      "totalExp": "983040",
+      "totalExp": "983040"
     },
-	{
+    {
       "level": "18",
-      "totalExp": "1966080",
+      "totalExp": "1966080"
     },
-	{
+    {
       "level": "19",
-      "totalExp": "3932160",
+      "totalExp": "3932160"
     },
-	{
+    {
       "level": "20",
-      "totalExp": "7864320",
+      "totalExp": "7864320"
     },
-	{
+    {
       "level": "21",
-      "totalExp": "15728640",
+      "totalExp": "15728640"
     },
-	{
+    {
       "level": "22",
-      "totalExp": "0",
+      "totalExp": "15728640"
     },
+    {
+      "level": "23",
+      "totalExp": "0"
+    }
   ]
-} 
+}

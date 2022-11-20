@@ -330,8 +330,8 @@ public class UI_Stat : UI_Base
         //go.transform.localPosition = new Vector3(0, 0, 0);
 
         go.transform.GetChild(0).GetComponent<Text>().color = new Color(1, 1, 1, 1);
-        go.transform.GetChild(0).GetComponent<Outline>().effectColor = new Color(0, 0, 0, 0.6f);
-        go.transform.GetChild(0).GetComponent<Shadow>().effectColor = new Color(0, 0, 0, 0.6f);
+        go.transform.GetChild(0).GetComponent<Outline>().effectColor = new Color(0.3f, 0.3f, 0.3f, 0.6f);
+        go.transform.GetChild(0).GetComponent<Shadow>().effectColor = new Color(0.3f, 0.3f, 0.3f, 0.6f);
 
 
 

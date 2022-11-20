@@ -53,7 +53,7 @@ namespace Server.Game
 
             State = CreatureState.Idle;
 
-            updateTime = 1000;
+            updateTime = 200;
         }
 
 
@@ -62,7 +62,7 @@ namespace Server.Game
 
         IJob _job;
 
-        int updateTime = 1000;
+        int updateTime = 200;
 
         public override void Update()
         {

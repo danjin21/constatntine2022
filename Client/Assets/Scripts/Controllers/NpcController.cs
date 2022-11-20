@@ -80,7 +80,7 @@ public class NpcController : CreatureController
 
                     Debug.Log("물음표");
                     GameObject QuestIcon = Managers.Resource.Instantiate("Effect/QuestIcon/QuestIcon", transform);
-                    QuestIcon.transform.position = transform.position + new Vector3(0, 40f, 0);
+                    QuestIcon.transform.position = transform.position + new Vector3(0, 48f, 0);
 
                     QuestIcons.Add(QuestIcon);
 
@@ -105,7 +105,7 @@ public class NpcController : CreatureController
                 {
                     Debug.Log("진행중 말풍선");
                     GameObject QuestIcon = Managers.Resource.Instantiate("Effect/QuestIcon/QuestIcon", transform);
-                    QuestIcon.transform.position = transform.position + new Vector3(0,40f,0);
+                    QuestIcon.transform.position = transform.position + new Vector3(0, 48f, 0);
 
                     QuestIcons.Add(QuestIcon);
                 }

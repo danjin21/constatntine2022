@@ -103,7 +103,7 @@ class PacketHandler
 		if (createPlayerPacket.Face < 0 || createPlayerPacket.Face > Face_End ||
 			createPlayerPacket.Hair < 0 || createPlayerPacket.Hair > Hair_End ||
 			createPlayerPacket.Skin < 0 || createPlayerPacket.Skin > Skin_End ||
-				createPlayerPacket.Gender < 0 || createPlayerPacket.Gender > 1)
+				createPlayerPacket.Gender < 1 || createPlayerPacket.Gender > 2)
 			return;
 
 

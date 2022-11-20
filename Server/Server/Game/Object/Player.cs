@@ -303,8 +303,13 @@ namespace Server.Game
                 return;
 
             // 소비 부분 리턴
-            if (item.ItemType == ItemType.Consumable)
+            //if (item.ItemType == ItemType.Consumable)
+            //    return;
+
+            // 무기나 장비 아니면 리턴
+            if (item.ItemType != ItemType.Armor && item.ItemType != ItemType.Weapon)
                 return;
+
 
             // 착용 요청이라면, 겹치는 부위 해제
 

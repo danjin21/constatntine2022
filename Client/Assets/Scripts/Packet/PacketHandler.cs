@@ -147,9 +147,8 @@ class PacketHandler
                 // 걷고있을땐 동기화 안되게...
                 if (myPC.State == CreatureState.Moving)
                 {
+
                     Managers.Map.ApplyMove(myPC.gameObject, myPC.PosInfo.PosX, myPC.PosInfo.PosY, myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
-
-
                     myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
                     myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
 

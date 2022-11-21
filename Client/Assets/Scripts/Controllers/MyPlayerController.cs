@@ -13,6 +13,7 @@ public class MyPlayerController : PlayerController
     bool _actionKeyPressed = false;
     public bool _moveKeyPressed = false;
     public float count = 0;
+    public float count_checkDistance = 0; 
 
     public int WeaponDamage { get; private set; }
     public int ArmorDefence { get;  private set; }
@@ -213,6 +214,18 @@ public class MyPlayerController : PlayerController
     //}
 
 
+    //[SerializeField]
+    //public Coroutine _coCheckDistance;
+
+
+
+    //IEnumerator CoCheckDistance(float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    _coSkillCooltime = null;
+    //}
+
+
 
     protected override void UpdateIdle()
     {
@@ -272,8 +285,20 @@ public class MyPlayerController : PlayerController
 
             Debug.Log($"{difX}/{difY}");
 
+            // 시간 체크를 한다.
+            count_checkDistance += Time.smoothDeltaTime;
+
+
             if (difX <= 1 && difY <= 1)
                 return;
+
+            // 3초 동안 다른 상태면 이동시켜준다. ( 서버가 조금 느리게 답변을 주기 때문 )
+            if (count_checkDistance < 3.00f)
+                return;
+        }
+        else
+        {
+            count_checkDistance = 0;
         }
 
         // 일정 시간 지난후에... 핑 검사후 그다음에 돌아가게.. 혹은 2칸 이상일 경우에만..
@@ -302,10 +327,7 @@ public class MyPlayerController : PlayerController
         }
         else
         {
-
             transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
-
-
         }
 
         // -----------------------------------------------------------------//
@@ -324,6 +346,7 @@ public class MyPlayerController : PlayerController
 
 
     }
+
     [SerializeField]
     public Coroutine _coSkillCooltime;
     [SerializeField]
@@ -792,6 +815,7 @@ public class MyPlayerController : PlayerController
 
 
         Vector3Int destPos = CellPos;
+        // Vector3Int destPos = new Vector3Int(TempPosInfo.PosX, TempPosInfo.PosY, CellPos.z);
         // destPos 를 TempPos 로 바꾸면, 서버에 따라 움직이는게 된다.
 
 

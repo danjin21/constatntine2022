@@ -91,7 +91,8 @@ namespace Server.Game
 
             Broadcast(player.CellPos,resMovePacket);
 
-            
+            //Console.WriteLine($"S_Move : {resMovePacket.PosInfo.PosX},{resMovePacket.PosInfo.PosY}");
+
 
             if ( Map.IsPortal(new Vector2Int(movePosInfo.PosX, movePosInfo.PosY)) != null)
             {
@@ -611,8 +612,8 @@ namespace Server.Game
                         Console.WriteLine($"arrow speed : { arrow.Speed}");
                         //EnterGame(arrow);
                         arrow.IsFinal = true;
-                        arrow.shot = 2;
-                        arrow.Stat.Hp = 2; // 이건 4개 소환하기 위해 쓴거임.
+                        arrow.shot = 4;
+                        arrow.Stat.Hp = 4; // 이건 4개 소환하기 위해 쓴거임.
 
                         // shot 과 hp 4 로 하면 4발이나간다.
 

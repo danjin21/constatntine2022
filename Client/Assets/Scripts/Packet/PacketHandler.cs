@@ -260,6 +260,10 @@ class PacketHandler
 
             // 서버에서 받은 실제 플레이어의 위치를 저장해준다.
             myPC.UpdatePositionUI(myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
+
+            // 텔레포트도 사용한거니까
+            // myPC.UseSkill(3101000);
+            Debug.Log("dfaf");
             return;
         }
 

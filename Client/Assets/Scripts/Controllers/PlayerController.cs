@@ -386,6 +386,10 @@ public class PlayerController : CreatureController
 
         if (skillId != 3101000)
             Managers.Object.MyPlayer.SkillCool();
+
+
+
+  
     }
 
 
@@ -423,6 +427,8 @@ public class PlayerController : CreatureController
         _coSkill = null;
 
         CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
+
+
     }
 
     IEnumerator CoStartShootArrow()

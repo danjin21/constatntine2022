@@ -188,11 +188,12 @@ public class MyPlayerController : PlayerController
             switch (State)
             {
                 case CreatureState.Idle:
-                    if(MoveReset == false)
+                if (MoveReset == false)
                         GetDirInput();
                     break;
                 case CreatureState.Moving:
-                    if (MoveReset == false)
+
+                if (MoveReset == false)
                         GetDirInput();
                     break;
 
@@ -201,7 +202,7 @@ public class MyPlayerController : PlayerController
             base.UpdateController();
         //}
 
-
+      
 
     }
 
@@ -348,15 +349,17 @@ public class MyPlayerController : PlayerController
     }
 
     [SerializeField]
-    public Coroutine _coSkillCooltime;
+    public Coroutine _coSkillCooltime = null;
     [SerializeField]
-    public Coroutine _coConsumeCooltime;
+    public Coroutine _coConsumeCooltime = null;
     [SerializeField]
-    public Coroutine _coShortKeyCooltime;
+    public Coroutine _coShortKeyCooltime = null;
     [SerializeField]
-    public Coroutine _coShortKeyCooltime_Potion;
+    public Coroutine _coShortKeyCooltime_Potion = null;
+    [SerializeField]
+    public Coroutine _coShortKeyCooltime_Teleport = null;
 
-    
+
 
     IEnumerator CoInputCooltime(float time)
     {
@@ -373,9 +376,25 @@ public class MyPlayerController : PlayerController
 
     IEnumerator CoInputCooltime_ShortKey(float time)
     {
+        // 서버에서 받아야지만 되게
+        // yield return null;
+
+        // 서버에서 응답 안받을 경우를 대비
         yield return new WaitForSeconds(time);
-        _coShortKeyCooltime = null;
+
+        if (_coShortKeyCooltime != null)
+            _coShortKeyCooltime = null;
     }
+
+    public override void UseSkill(int skillId)
+    {
+        _coShortKeyCooltime = null;
+
+        base.UseSkill(skillId);
+
+        // StopCoroutine(_coShortKeyCooltime);
+    }
+
 
     // 물약은 따로 
     IEnumerator CoInputCooltime_ShortKey_Potion(float time)
@@ -384,8 +403,14 @@ public class MyPlayerController : PlayerController
         _coShortKeyCooltime_Potion = null;
     }
 
+    // 텔레포트 따로
+    IEnumerator CoInputCooltime_ShortKey_Teleport(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _coShortKeyCooltime_Teleport = null;
+    }
 
-    
+
 
     void UpdateGetInput()
     {
@@ -531,6 +556,7 @@ public class MyPlayerController : PlayerController
 
                     MoveReset = true;
                     _moveKeyPressed = false;
+                    Debug.Log("!!!!@1 _moveKeyPressed = " + _moveKeyPressed);
 
                 }
 
@@ -542,7 +568,6 @@ public class MyPlayerController : PlayerController
                     {
                         //Managers.Chat.ChatRPC("<color=#99CCFF>텔레포트는 방향키를 누른 상태에서 발동 됩니다.</color>");
                         SkillCool();
-
                         return;
 
 
@@ -578,7 +603,16 @@ public class MyPlayerController : PlayerController
 
             // 물약을 먹고 있으면 이동 안되는것 해결
             if (ConsumeKey == -1)
-                ShortKeyCool();
+            {
+                if(key.Action == 3101000) // 텔레포트도 별도로
+                {
+                    ShortKeyCool_Teleport();
+                }
+                else
+                {
+                    ShortKeyCool();
+                }
+            }               
             else
                 ShortKeyCool_Potion();
 
@@ -604,8 +638,19 @@ public class MyPlayerController : PlayerController
 
         Key key = Managers.KeySetting.Get_KeyValue(KeyCode);
 
-        if (key != null && key.Action == 90000)
-            return KeyCode;
+     
+
+        if (key != null)
+        {
+            // 아이템 값의 코드를 가져온다.
+            Data.ItemData itemData = null;
+            Managers.Data.ItemDict.TryGetValue(key.Action, out itemData);
+
+            if (itemData != null && itemData.itemType == ItemType.Consumable)
+            {
+                return KeyCode;
+            }           
+        }
         
         // 이미 앞에서 ConsumeKey 갱신이 된 상태라면 -1를 반환하지 않는다. (덮음 방지)
         if (ConsumeKey != -1)
@@ -635,7 +680,11 @@ public class MyPlayerController : PlayerController
     public void ShortKeyCool()
     {
         //_coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
-        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.35f);
+
+        // 서버에서 반응 안와서 null 하는거 안될까봐 5초 뒤에 null 되게 한다.
+        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 5.0f);
+
+
     }
 
     // 이건 자체적으로 실행 => 어차피 서버에서는 700임
@@ -644,11 +693,15 @@ public class MyPlayerController : PlayerController
         _coShortKeyCooltime_Potion = StartCoroutine("CoInputCooltime_ShortKey_Potion", 0.35f);
     }
 
+    // 텔레포트도 따로 쿨타임
+    public void ShortKeyCool_Teleport()
+    {
+        _coShortKeyCooltime_Teleport = StartCoroutine("CoInputCooltime_ShortKey_Teleport", 0.35f);
+    }
 
     // 키보드 입력
     void GetDirInput()
     {
-
 
 
         // 채팅창 켜져있으면 방향도 비활성화
@@ -659,7 +712,16 @@ public class MyPlayerController : PlayerController
         // 단축키 누른 직후 방향키 전환하면 안되게
 
         if (_coShortKeyCooltime != null)
+        {
             return;
+        }
+        else
+        {
+            // 그 서버에서 스킬 쓰라고 왔어도
+            // 스킬 쓰는동안에도 못가게 하기
+            if (State == CreatureState.Skill)
+                return;
+        }
 
 
         //_moveKeyPressed = true;
@@ -711,6 +773,7 @@ public class MyPlayerController : PlayerController
         else
         {
             _moveKeyPressed = false;
+
             //Dir = MoveDir.None;
             count = 0.22f; // 같은 방향이면 좀 빠르게 가게 0으로 안 만든다.
 
@@ -725,6 +788,7 @@ public class MyPlayerController : PlayerController
         if (count >= 0.27f)
         {
             _moveKeyPressed = true;
+
             count = 0;
         }
         else

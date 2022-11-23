@@ -555,11 +555,11 @@ public class BaseController : MonoBehaviour
 
             }
 
-            if (this.GetType() == typeof(MyPlayerController))
-            {
-                if (this.GetComponent<PlayerController>()._skillId != -1)
-                    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
-            }
+            //if (this.GetType() == typeof(MyPlayerController))
+            //{
+            //    if (this.GetComponent<PlayerController>()._skillId != -1)
+            //        this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+            //}
 
 
             MoveToNextPos();
@@ -712,11 +712,11 @@ public class BaseController : MonoBehaviour
 
 
 
-            if (this.GetType() == typeof(MyPlayerController))
-            {
-                if (this.GetComponent<PlayerController>()._skillId != -1)
-                    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
-            }
+            //if (this.GetType() == typeof(MyPlayerController))
+            //{
+            //    if (this.GetComponent<PlayerController>()._skillId != -1)
+            //        this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+            //}
 
 
             MoveToNextPos();

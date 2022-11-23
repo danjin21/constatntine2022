@@ -275,7 +275,7 @@ public class MyPlayerController : PlayerController
         }
 
 
-        // 거리가 2칸이상일 경우에만 서버 대로 움직이게 해준다.
+        // 거리가 1칸이상일 경우에만 서버 대로 움직이게 해준다.
 
         if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
         {
@@ -290,12 +290,17 @@ public class MyPlayerController : PlayerController
             count_checkDistance += Time.smoothDeltaTime;
 
 
-            if (difX <= 1 && difY <= 1)
+            if (difX <= 0 && difY <= 0)
                 return;
 
             // 3초 동안 다른 상태면 이동시켜준다. ( 서버가 조금 느리게 답변을 주기 때문 )
-            if (count_checkDistance < 3.00f)
+            if (count_checkDistance < 2.50f)
                 return;
+
+
+            // 뭔가 막혀서 키 씹히면 해주기
+            if (_coShortKeyCooltime != null)
+                _coShortKeyCooltime = null;
         }
         else
         {
@@ -382,13 +387,13 @@ public class MyPlayerController : PlayerController
         // 서버에서 응답 안받을 경우를 대비
         yield return new WaitForSeconds(time);
 
-        if (_coShortKeyCooltime != null)
-            _coShortKeyCooltime = null;
+        //if (_coShortKeyCooltime != null)
+        //    _coShortKeyCooltime = null;
     }
 
     public override void UseSkill(int skillId)
     {
-        _coShortKeyCooltime = null;
+        //_coShortKeyCooltime = null;
 
         base.UseSkill(skillId);
 
@@ -682,7 +687,7 @@ public class MyPlayerController : PlayerController
         //_coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
 
         // 서버에서 반응 안와서 null 하는거 안될까봐 5초 뒤에 null 되게 한다.
-        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 5.0f);
+        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 2.0f);
 
 
     }
@@ -717,10 +722,6 @@ public class MyPlayerController : PlayerController
         }
         else
         {
-            // 그 서버에서 스킬 쓰라고 왔어도
-            // 스킬 쓰는동안에도 못가게 하기
-            if (State == CreatureState.Skill)
-                return;
         }
 
 
@@ -821,7 +822,10 @@ public class MyPlayerController : PlayerController
         //// 이동하기전에 서버랑 동기화
         //PosInfo = TempPosInfo;
 
-
+        if (_coShortKeyCooltime != null)
+        {
+            return;
+        }
 
 
         //if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Z))
@@ -961,8 +965,10 @@ public class MyPlayerController : PlayerController
         }
     }
 
-
-
+    protected override void UpdateSkill()
+    {
+        
+    }
 
     public void RefreshAdditionalStat()
     {

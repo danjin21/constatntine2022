@@ -476,7 +476,7 @@ public class PlayerController : CreatureController
         State = CreatureState.Skill;
 
         //yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
-        yield return new WaitForSeconds(0.4f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
+        yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
 
 
         Debug.Log("OK! GO !");

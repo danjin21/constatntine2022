@@ -313,6 +313,11 @@ class PacketHandler
         if (cc != null)
         {
             cc.UseSkill(skillPacket.Info.SkillId);
+
+            MyPlayerController mc = go.GetComponent<MyPlayerController>();
+
+            if(mc!=null)
+                mc._coShortKeyCooltime = null;
         }
 
         // 스킬쿨은 UseSkill 맨 아래부분에 있다.

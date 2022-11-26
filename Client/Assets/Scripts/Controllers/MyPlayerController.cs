@@ -62,6 +62,8 @@ public class MyPlayerController : PlayerController
     public bool MoveReset;
     public float MoveResetCount;
 
+    public bool IsSkillSend;
+
     protected override void Init()
     {
         base.Init();
@@ -609,6 +611,7 @@ public class MyPlayerController : PlayerController
                 else
                 {
                     ShortKeyCool();
+                    IsSkillSend = true;
                 }
             }               
             else
@@ -680,7 +683,7 @@ public class MyPlayerController : PlayerController
         //_coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
 
         // 서버에서 반응 안와서 null 하는거 안될까봐 5초 뒤에 null 되게 한다.
-        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 5.0f);
+        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.35f);
 
 
     }
@@ -706,6 +709,9 @@ public class MyPlayerController : PlayerController
         if (Managers.Chat.ChatInput.isFocused)
             return;
 
+
+        if (IsSkillSend == true)
+            return;
 
         // 단축키 누른 직후 방향키 전환하면 안되게
 
@@ -820,7 +826,8 @@ public class MyPlayerController : PlayerController
         //PosInfo = TempPosInfo;
 
 
-
+        if (IsSkillSend == true)
+            return;
 
         //if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Z))
         //{

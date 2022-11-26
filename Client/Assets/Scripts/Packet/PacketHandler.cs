@@ -304,8 +304,6 @@ class PacketHandler
         // 아이템 줍기라면 지워주고 리턴한다.
   
 
- 
-
         CreatureController cc = go.GetComponent<CreatureController>();
         cc.Target = null;
 
@@ -315,8 +313,16 @@ class PacketHandler
             cc.UseSkill(skillPacket.Info.SkillId);
         }
 
-        // 스킬쿨은 UseSkill 맨 아래부분에 있다.
 
+        // 스킬쿨은 UseSkill 맨 아래부분에 있다.
+            MyPlayerController mc = go.GetComponent<MyPlayerController>();
+
+        if(mc != null)
+        {
+            mc.IsSkillSend = false;
+        }
+            
+        
 
         // 줍기라면 그냥 삭제해준다.
         if (skillPacket.Info.SkillId == 9101001)

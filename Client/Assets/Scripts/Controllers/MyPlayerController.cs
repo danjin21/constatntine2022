@@ -382,13 +382,11 @@ public class MyPlayerController : PlayerController
         // 서버에서 응답 안받을 경우를 대비
         yield return new WaitForSeconds(time);
 
-        if (_coShortKeyCooltime != null)
-            _coShortKeyCooltime = null;
+        _coShortKeyCooltime = null;
     }
 
     public override void UseSkill(int skillId)
     {
-        _coShortKeyCooltime = null;
 
         base.UseSkill(skillId);
 
@@ -711,17 +709,17 @@ public class MyPlayerController : PlayerController
 
         // 단축키 누른 직후 방향키 전환하면 안되게
 
-        if (_coShortKeyCooltime != null)
-        {
-            return;
-        }
-        else
-        {
-            // 그 서버에서 스킬 쓰라고 왔어도
-            // 스킬 쓰는동안에도 못가게 하기
-            if (State == CreatureState.Skill)
-                return;
-        }
+        //if (_coShortKeyCooltime != null)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    // 그 서버에서 스킬 쓰라고 왔어도
+        //    // 스킬 쓰는동안에도 못가게 하기
+        //    if (State == CreatureState.Skill)
+        //        return;
+        //}
 
 
         //_moveKeyPressed = true;

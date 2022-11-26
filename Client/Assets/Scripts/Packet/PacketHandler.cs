@@ -313,6 +313,15 @@ class PacketHandler
         CreatureController cc = go.GetComponent<CreatureController>();
         cc.Target = null;
 
+        //  서버에서 그냥 더미로 왓을때
+        if(skillPacket.Info.SkillId == -1)
+        {
+            MyPlayerController mc = go.GetComponent<MyPlayerController>();
+
+            mc.StopCoroutine("CoInputCooltime_ShortKey");
+            mc._coShortKeyCooltime = null;
+        }
+
 
         if (cc != null)
         {

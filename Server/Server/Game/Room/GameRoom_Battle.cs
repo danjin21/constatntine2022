@@ -138,7 +138,14 @@ namespace Server.Game
 
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
             if (player.SkillCool == true /*&& skillPacket.Info.SkillId != 3101000*/)
+            {
+                S_Skill dummyskill = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
+                dummyskill.ObjectId = player.Info.ObjectId;
+                dummyskill.Info.SkillId = -1;
+                Broadcast(player.CellPos, dummyskill);
+
                 return;
+            }
 
             Console.WriteLine("스킬 들어옴222");
             // 텔레포트의 쿨 확인
@@ -177,7 +184,14 @@ namespace Server.Game
 
 
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
+            {
+                S_Skill dummyskill = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
+                dummyskill.ObjectId = info.ObjectId;
+                dummyskill.Info.SkillId = -1;
+                Broadcast(player.CellPos, dummyskill);
+
                 return;
+            }
 
 
             Console.WriteLine("스킬 들어옴4");

@@ -595,13 +595,7 @@ public class MyPlayerController : PlayerController
 
 
  
-            // 타입이 맞는지 확인
 
-            C_ShortKey shortKey = new C_ShortKey()
-            {
-                Action = key.Action
-            };
-            Managers.Network.Send(shortKey);
 
             // 물약을 먹고 있으면 이동 안되는것 해결
             if (ConsumeKey == -1)
@@ -612,12 +606,26 @@ public class MyPlayerController : PlayerController
                 }
                 else
                 {
+                    // 서버랑 위치가 같아야 쓸 수 있다.
+                    if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
+                    {
+                        return;
+                    }
+
                     ShortKeyCool();
                     IsSkillSend = true;
                 }
             }               
             else
                 ShortKeyCool_Potion();
+
+            // 타입이 맞는지 확인
+
+            C_ShortKey shortKey = new C_ShortKey()
+            {
+                Action = key.Action
+            };
+            Managers.Network.Send(shortKey);
 
 
             Debug.Log("누르고 있슴다.");

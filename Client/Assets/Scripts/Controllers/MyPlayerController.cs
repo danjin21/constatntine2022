@@ -187,17 +187,21 @@ public class MyPlayerController : PlayerController
 
         UpdateGetInput();
 
-            switch (State)
-            {
-                case CreatureState.Idle:
+        switch (State)
+        {
+            case CreatureState.Idle:
                 if (MoveReset == false)
-                        GetDirInput();
-                    break;
-                case CreatureState.Moving:
+                    GetDirInput();
+                break;
+            case CreatureState.Moving:
+                {
 
-                if (MoveReset == false)
+                    if (MoveReset == false)
                         GetDirInput();
-                    break;
+
+                    
+                }
+                break;
 
         }
 
@@ -208,6 +212,7 @@ public class MyPlayerController : PlayerController
     
 
     }
+
 
 
     //void LateUpdate()
@@ -825,11 +830,28 @@ public class MyPlayerController : PlayerController
     }
 
 
+    public void movingUpdate()
+    {
+        if (TempPosInfo.PosX != CellPos.x || TempPosInfo.PosY != CellPos.y)
+        {
 
+            if (State == CreatureState.Moving)
+            {
+
+                Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+                PosInfo.PosX = TempPosInfo.PosX;
+                PosInfo.PosY = TempPosInfo.PosY;
+
+            }
+
+        }
+
+
+    }
 
     protected override void MoveToNextPos()
     {
-
+        movingUpdate();
 
         // 이동 취약점
         //// 이동하기전에 서버랑 동기화
@@ -869,6 +891,7 @@ public class MyPlayerController : PlayerController
             //SyncPos(); //부드럽게 이동하는것 방지
             return;
         }
+
 
         //// 서버에서 받은 위치와 내 현재 위치가 다르면 리턴한다.
         //if (TempPosInfo.PosX != CellPos.x || TempPosInfo.PosY != CellPos.y)

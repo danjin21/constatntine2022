@@ -279,12 +279,12 @@ public class MyPlayerController : PlayerController
 
         if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
         {
-            Debug.Log($"CellPos X = {CellPos.x}/{CellPos.y} / Temp = {TempPosInfo.PosX}/{TempPosInfo.PosY}");
+            //Debug.Log($"CellPos X = {CellPos.x}/{CellPos.y} / Temp = {TempPosInfo.PosX}/{TempPosInfo.PosY}");
 
             int difX = Math.Abs(CellPos.x - TempPosInfo.PosX);
             int difY = Math.Abs(CellPos.y - TempPosInfo.PosY);
 
-            Debug.Log($"{difX}/{difY}");
+            //Debug.Log($"{difX}/{difY}");
 
             // 시간 체크를 한다.
             count_checkDistance += Time.smoothDeltaTime;
@@ -294,13 +294,16 @@ public class MyPlayerController : PlayerController
                 return;
 
             // 3초 동안 다른 상태면 이동시켜준다. ( 서버가 조금 느리게 답변을 주기 때문 )
-            if (count_checkDistance < 2.50f)
+            if (count_checkDistance < 1.50f)
                 return;
 
 
-            // 뭔가 막혀서 키 씹히면 해주기
+            //뭔가 막혀서 키 씹히면 해주기
             if (_coShortKeyCooltime != null)
+            {
+                StopCoroutine("CoInputCooltime_ShortKey");
                 _coShortKeyCooltime = null;
+            }
         }
         else
         {
@@ -349,19 +352,19 @@ public class MyPlayerController : PlayerController
         // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
         PosInfo.PosX = TempPosInfo.PosX;
         PosInfo.PosY = TempPosInfo.PosY;
-
+        SyncPos();
 
     }
 
-    [SerializeField]
+    //[SerializeField]
     public Coroutine _coSkillCooltime = null;
-    [SerializeField]
+    //[SerializeField]
     public Coroutine _coConsumeCooltime = null;
-    [SerializeField]
+    //[SerializeField]
     public Coroutine _coShortKeyCooltime = null;
-    [SerializeField]
+    //[SerializeField]
     public Coroutine _coShortKeyCooltime_Potion = null;
-    [SerializeField]
+    //[SerializeField]
     public Coroutine _coShortKeyCooltime_Teleport = null;
 
 
@@ -387,8 +390,8 @@ public class MyPlayerController : PlayerController
         // 서버에서 응답 안받을 경우를 대비
         yield return new WaitForSeconds(time);
 
-        //if (_coShortKeyCooltime != null)
-        //    _coShortKeyCooltime = null;
+        if (_coShortKeyCooltime != null)
+            _coShortKeyCooltime = null;
     }
 
     public override void UseSkill(int skillId)
@@ -518,8 +521,14 @@ public class MyPlayerController : PlayerController
                 _actionKeyPressed = false;
 
 
+            // 20221124_0728 -> 계속 방향키랑 같이 누르고 있으면 이동이 되서 삭제함
             if (_coSkillCooltime != null)
-                _actionKeyPressed = false;
+            {
+                //_actionKeyPressed = false;
+                return;
+            }
+
+            
 
             // 스킬이랑 포션은 구분짓는다.- 1
             if (_coSkillCooltime != null)
@@ -561,7 +570,7 @@ public class MyPlayerController : PlayerController
 
                     MoveReset = true;
                     _moveKeyPressed = false;
-                    Debug.Log("!!!!@1 _moveKeyPressed = " + _moveKeyPressed);
+                    // Debug.Log("!!!!@1 _moveKeyPressed = " + _moveKeyPressed);
 
                 }
 
@@ -593,9 +602,14 @@ public class MyPlayerController : PlayerController
                     }
                 }
 
+                State = CreatureState.Idle;
+
             }
 
 
+            // 혹시 몰라 걷는 도중에 공격 모션 가게 하는거 방지
+            //if (State == CreatureState.Moving)
+            //    return;
 
  
             // 타입이 맞는지 확인
@@ -687,7 +701,7 @@ public class MyPlayerController : PlayerController
         //_coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
 
         // 서버에서 반응 안와서 null 하는거 안될까봐 5초 뒤에 null 되게 한다.
-        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 2.0f);
+        _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 10.0f);
 
 
     }

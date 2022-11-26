@@ -60,6 +60,7 @@ class PacketHandler
 		if (room == null)
 			return;
 
+        Console.WriteLine("스킬 들어옴");
 		//room.HandleSkill(player, skillPacket);
 		room.Push(room.HandleSkill, player, skillPacket); // => JobQueue화
 	}

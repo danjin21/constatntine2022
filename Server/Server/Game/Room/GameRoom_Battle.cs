@@ -125,7 +125,7 @@ namespace Server.Game
                 return;
 
 
-
+            Console.WriteLine("스킬 들어옴2");
 
             // 스킬을 가지고 있는지 확인
 
@@ -133,18 +133,27 @@ namespace Server.Game
             if (PlayerSkill == null)
                 return;
 
+
+            Console.WriteLine("스킬 들어옴22");
+
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
             if (player.SkillCool == true /*&& skillPacket.Info.SkillId != 3101000*/)
                 return;
 
+            Console.WriteLine("스킬 들어옴222");
             // 텔레포트의 쿨 확인
 
             if (player.TeleportCool == true && skillPacket.Info.SkillId == 3101000)
                 return;
 
+            Console.WriteLine("스킬 들어옴2222");
+
             // 마나 없으면 리턴하기
             if (player.Stat.Mp < PlayerSkill.Mp)
                 return;
+
+
+            Console.WriteLine("스킬 들어옴3");
 
 
             ObjectInfo info = player.Info;
@@ -169,6 +178,9 @@ namespace Server.Game
 
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
                 return;
+
+
+            Console.WriteLine("스킬 들어옴4");
 
 
 
@@ -676,6 +688,9 @@ namespace Server.Game
             }
 
 
+            Console.WriteLine("스킬 들어옴5");
+
+
 
             // 스킬 패킷보내주기
             S_Skill skill = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
@@ -749,6 +764,9 @@ namespace Server.Game
             IdleMovePacket.PosInfo = player.PosInfo;
             Broadcast(player.CellPos, IdleMovePacket);
 
+
+
+            Console.WriteLine("스킬 들어옴6");
 
 
             //Console.WriteLine("스킬 사용");

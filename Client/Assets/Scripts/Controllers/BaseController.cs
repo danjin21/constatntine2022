@@ -561,7 +561,8 @@ public class BaseController : MonoBehaviour
             //        this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
             //}
 
-
+            // 이거 왜 멈추는데 가지는거지?? 
+            // 플레이어여서 그냥 하는게 맞다.
             MoveToNextPos();
 
 

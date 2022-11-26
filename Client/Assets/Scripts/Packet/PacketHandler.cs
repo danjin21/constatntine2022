@@ -145,21 +145,25 @@ class PacketHandler
                 ////멈춰있을떄 서버와의 위치 동기화
 
                 // 걷고있을땐 동기화 안되게...
+                // 뭔가 겹쳤을때를 대비하고 만든거 같은데 지우는게 맞는듯..?
+
+
                 if (myPC.State == CreatureState.Moving)
+
                 {
 
                     Managers.Map.ApplyMove(myPC.gameObject, myPC.PosInfo.PosX, myPC.PosInfo.PosY, myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
                     myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
                     myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
 
-                   
+
                     return;
                 }
 
-                
 
 
-                
+
+
 
 
                 ////PosInfo = TempPosInfo;
@@ -316,8 +320,6 @@ class PacketHandler
 
             MyPlayerController mc = go.GetComponent<MyPlayerController>();
 
-            if(mc!=null)
-                mc._coShortKeyCooltime = null;
         }
 
         // 스킬쿨은 UseSkill 맨 아래부분에 있다.

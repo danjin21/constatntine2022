@@ -389,7 +389,6 @@ public class PlayerController : CreatureController
 
 
 
-  
     }
 
 
@@ -528,7 +527,7 @@ public class PlayerController : CreatureController
     public override void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
     {
         base.OnDamaged(damage,skillId, DamageList, attackerId);
-        Debug.Log("Player Hit !");
+        //Debug.Log("Player Hit !");
     }
 
 

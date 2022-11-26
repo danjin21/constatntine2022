@@ -125,6 +125,25 @@ public class CharacterAnimation : MonoBehaviour
     }
 
 
+    // ============================================== co_shortkey 없애는 타이밍 =================================================//
+
+    public void EndAnimation()
+    {
+
+        MyPlayerController mc = GetComponent<MyPlayerController>();
+
+        if (mc != null)
+        {
+            mc.StopCoroutine("CoInputCooltime_ShortKey");
+            mc._coShortKeyCooltime = null;
+        }
+        
+        
+
+    }
+
+
+
     // Start is called before the first frame update
     void Start()
     {

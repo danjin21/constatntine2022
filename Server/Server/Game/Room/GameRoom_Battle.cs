@@ -125,6 +125,11 @@ namespace Server.Game
                 return;
 
 
+            // 더미스킬 패킷보내주기
+            S_Skill skill_dummy = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
+            skill_dummy.ObjectId = player.Info.ObjectId;
+            skill_dummy.Info.SkillId = -1;
+            player.Session.Send(skill_dummy);
 
 
             // 스킬을 가지고 있는지 확인
@@ -136,10 +141,6 @@ namespace Server.Game
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
             if (player.SkillCool == true /*&& skillPacket.Info.SkillId != 3101000*/)
             {
-                // 스킬 패킷보내주기
-                S_Skill skill_dummy = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
-                skill_dummy.ObjectId = player.Info.ObjectId;
-                skill_dummy.Info.SkillId = -1;
                 return;
             }
 
@@ -175,10 +176,6 @@ namespace Server.Game
 
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
             {
-                // 스킬 패킷보내주기
-                S_Skill skill_dummy = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
-                skill_dummy.ObjectId = player.Info.ObjectId;
-                skill_dummy.Info.SkillId = -1;
                 return;
             }
 

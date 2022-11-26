@@ -199,12 +199,13 @@ public class MyPlayerController : PlayerController
                         GetDirInput();
                     break;
 
-            }
+        }
 
             base.UpdateController();
         //}
 
-      
+
+    
 
     }
 
@@ -292,7 +293,7 @@ public class MyPlayerController : PlayerController
             count_checkDistance += Time.smoothDeltaTime;
 
 
-            if (difX <= 1 && difY <= 1)
+            if (difX <= 0 && difY <= 0)
                 return;
 
             // 3초 동안 다른 상태면 이동시켜준다. ( 서버가 조금 느리게 답변을 주기 때문 )
@@ -347,6 +348,7 @@ public class MyPlayerController : PlayerController
         PosInfo.PosX = TempPosInfo.PosX;
         PosInfo.PosY = TempPosInfo.PosY;
 
+        SyncPos();
 
     }
 
@@ -1030,6 +1032,14 @@ public class MyPlayerController : PlayerController
         base.OnDead(damage);
 
         // 화면이 확 어두워졌다가 점차 밝아지는 것으로 
+    }
+
+
+    protected override void UpdateSkill()
+    {
+        base.UpdateSkill();
+
+
     }
 
 }

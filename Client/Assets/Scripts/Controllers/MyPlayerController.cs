@@ -194,7 +194,6 @@ public class MyPlayerController : PlayerController
                         GetDirInput();
                     break;
                 case CreatureState.Moving:
-
                 if (MoveReset == false)
                         GetDirInput();
                     break;
@@ -1049,5 +1048,7 @@ public class MyPlayerController : PlayerController
 
 
     }
+
+    
 
 }

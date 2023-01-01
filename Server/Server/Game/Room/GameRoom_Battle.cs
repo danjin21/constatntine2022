@@ -40,10 +40,11 @@ namespace Server.Game
 
 
 
-            // 클라단에서 왔다리 갔다리 하는거 해결
+            //클라단에서 왔다리 갔다리 하는거 해결
             if (player.State == CreatureState.Skill && movePacket.PosInfo.State == CreatureState.Idle)
             {
                 info.PosInfo.State = movePosInfo.State;
+                Console.WriteLine("테스트1");
                 return;
             }
 

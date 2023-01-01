@@ -142,44 +142,33 @@ class PacketHandler
             if (myPC.TempPosInfo.PosX != myPC.CellPos.x || myPC.TempPosInfo.PosY != myPC.CellPos.y)
             {
 
+
                 ////멈춰있을떄 서버와의 위치 동기화
+
+
+                // when : 몬스터랑 절묘하게 맞아 떨어져서 통과할때.
 
                 // 걷고있을땐 동기화 안되게...
                 if (myPC.State == CreatureState.Moving)
                 {
+                    // 난 이동 중인데 서버에서 Idle로 올때가 있다. 스킬 쓰고 왓을 때.
+                    // 그래서 그 때는 생략해준다.
+                    if (movePacket.PosInfo.State == CreatureState.Idle)
+                        return;
+                    // 예외 : 스킬 쓰자마자 바로 이동할때(방향이 다른 이동)는 작동 안되게 해야한다.
+                    //if (movePacket.PosInfo.MoveDir != myPC.PosInfo.MoveDir)
+                    //    return;
+
+                    // 그래서 두칸부터 이동되게 만듬
 
                     Managers.Map.ApplyMove(myPC.gameObject, myPC.PosInfo.PosX, myPC.PosInfo.PosY, myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
                     myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
                     myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
 
-                   
                     return;
                 }
 
-                
 
-
-                
-
-
-                ////PosInfo = TempPosInfo;
-
-                //PosInfo.PosX = TempPosInfo.PosX;
-                //PosInfo.PosY = TempPosInfo.PosY;
-
-                // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
-                //myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
-                //myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
-
-                //myPC.SyncPos();
-
-
-                //CellPos = destPosInt;
-
-                //SyncPos(); //부드럽게 이동하는것 방지
-
-
-                //return;
             }
 
 

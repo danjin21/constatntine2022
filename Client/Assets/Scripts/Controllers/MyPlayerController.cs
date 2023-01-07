@@ -277,6 +277,32 @@ public class MyPlayerController : PlayerController
         }
 
 
+
+
+        // 현재 위치에 다른 크리쳐가 있으면 서버 위치랑 동기화 시킨다.
+        GameObject Creature = Managers.Map.Find(CellPos);
+
+        // 크리쳐가 있다느 뜻임
+        if (Creature != null && Creature != this.gameObject)
+        {
+            // 서버랑 위치 동기화
+
+            // -----------------------------------------------------------------//
+            Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+
+            // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
+            PosInfo.PosX = TempPosInfo.PosX;
+            PosInfo.PosY = TempPosInfo.PosY;
+
+            SyncPos();
+
+        
+            State = CreatureState.Idle;
+            _updated = true;
+            CheckUpdatedFlag();
+        }
+
+
         // 거리가 2칸이상일 경우에만 서버 대로 움직이게 해준다.
 
         if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
@@ -349,6 +375,12 @@ public class MyPlayerController : PlayerController
 
         SyncPos();
 
+        State = CreatureState.Idle;
+        CheckUpdatedFlag();
+
+        // Idle로 
+
+        //State = CreatureState.Idle;
     }
 
     [SerializeField]
@@ -882,6 +914,9 @@ public class MyPlayerController : PlayerController
             PosInfo.PosX = TempPosInfo.PosX;
             PosInfo.PosY = TempPosInfo.PosY;
             SyncPos();
+
+            State = CreatureState.Idle;
+            CheckUpdatedFlag();
 
             return;
         }

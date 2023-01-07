@@ -869,6 +869,23 @@ public class MyPlayerController : PlayerController
             return;
         }
 
+
+        // 서버랑 5칸 이상 벌어지는데 간다고 하면, 중지
+        // 서버에서도 5칸 이상이면 return 한다.
+
+        int difX = Math.Abs(CellPos.x - TempPosInfo.PosX);
+        int difY = Math.Abs(CellPos.y - TempPosInfo.PosY);
+
+        if (difX > 4 || difY > 4)
+        {
+            Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+            PosInfo.PosX = TempPosInfo.PosX;
+            PosInfo.PosY = TempPosInfo.PosY;
+            SyncPos();
+
+            return;
+        }
+
         //// 서버에서 받은 위치와 내 현재 위치가 다르면 리턴한다.
         //if (TempPosInfo.PosX != CellPos.x || TempPosInfo.PosY != CellPos.y)
         //{
@@ -931,8 +948,33 @@ public class MyPlayerController : PlayerController
             if(Managers.Map.Find(destPos) == null)
             {
 
-                CellPos = destPos;
-                Blocked = false;
+                // 현재 위치에 다른 크리쳐가 있으면 서버 위치랑 동기화 시킨다.
+                GameObject Creature = Managers.Map.Find(CellPos);
+
+                // 크리쳐가 있다느 뜻임
+                if (Creature != null && Creature != this.gameObject)
+                {
+                    // 서버랑 위치 동기화
+
+                    // -----------------------------------------------------------------//
+                    Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+
+
+                    // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
+                    PosInfo.PosX = TempPosInfo.PosX;
+                    PosInfo.PosY = TempPosInfo.PosY;
+
+                    SyncPos();
+                    Blocked = true;
+
+
+                }
+                else
+                {
+                    CellPos = destPos;
+                    Blocked = false;
+                }
+
             }
             else
             {
@@ -1049,6 +1091,38 @@ public class MyPlayerController : PlayerController
 
     }
 
-    
+
+
+    //protected override void UpdateMoving()
+    //{
+
+
+    //    int difX = Math.Abs(CellPos.x - TempPosInfo.PosX);
+    //    int difY = Math.Abs(CellPos.y - TempPosInfo.PosY);
+
+    //    ////멈춰있을떄 서버와의 위치 동기화
+
+    //    if (difX >= 8 || difY >= 8)
+    //    {
+    //        // 걷고있을땐 동기화 안되게...
+    //        if (State == CreatureState.Moving)
+    //        {
+
+
+
+
+    //            // 그래서 두칸부터 이동되게 만듬
+    //            Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+    //            PosInfo.PosX = TempPosInfo.PosX;
+    //            PosInfo.PosY = TempPosInfo.PosY;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        base.UpdateMoving();
+    //    }
+
+    //}
+
 
 }

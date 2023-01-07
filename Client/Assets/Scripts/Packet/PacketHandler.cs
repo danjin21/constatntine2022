@@ -139,6 +139,8 @@ class PacketHandler
 
 
             // 서버에서 받은 위치와 내 현재 위치가 다르면 리턴한다.
+
+            // ☆★☆★☆★☆★☆★☆★ 일정시간동안 다른지를 확인해야할듯
             if (myPC.TempPosInfo.PosX != myPC.CellPos.x || myPC.TempPosInfo.PosY != myPC.CellPos.y)
             {
 
@@ -153,17 +155,43 @@ class PacketHandler
                 {
                     // 난 이동 중인데 서버에서 Idle로 올때가 있다. 스킬 쓰고 왓을 때.
                     // 그래서 그 때는 생략해준다.
-                    if (movePacket.PosInfo.State == CreatureState.Idle)
-                        return;
+
+
+                    //if (movePacket.PosInfo.State == CreatureState.Idle)
+                    //    return;
+
+
+
                     // 예외 : 스킬 쓰자마자 바로 이동할때(방향이 다른 이동)는 작동 안되게 해야한다.
                     //if (movePacket.PosInfo.MoveDir != myPC.PosInfo.MoveDir)
                     //    return;
 
-                    // 그래서 두칸부터 이동되게 만듬
+                    // 서버랑 2칸 이상 벌어지는데 간다고 하면, 중지
+                    // 서버에서도 2칸 이상이면 return 하고, 신호를 준다.
+                    
+                    // 아니면.. 공격하자마자 이동하는거 자체를 막아야 할지도..
 
-                    Managers.Map.ApplyMove(myPC.gameObject, myPC.PosInfo.PosX, myPC.PosInfo.PosY, myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
-                    myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
-                    myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
+                    //int difX = Math.Abs(myPC.CellPos.x - myPC.TempPosInfo.PosX);
+                    //int difY = Math.Abs(myPC.CellPos.y - myPC.TempPosInfo.PosY);
+
+                    //if (difX > 2 || difY > 2)
+                    //{
+                    //    Managers.Map.ApplyMove(myPC.gameObject, myPC.PosInfo.PosX, myPC.PosInfo.PosY, myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
+                    //    myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
+                    //    myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
+                    //    myPC.SyncPos();
+
+                    //    return;
+                    //}
+
+                    // 뭔가 한번만 실행되기 때문에..... 계속 되게하는걸 생각해야할듯
+
+                    // 그래서 두칸부터 이동되게 만듬
+                    // 여긴 무조건 한칸임
+
+                    //Managers.Map.ApplyMove(myPC.gameObject, myPC.PosInfo.PosX, myPC.PosInfo.PosY, myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
+                    //myPC.PosInfo.PosX = myPC.TempPosInfo.PosX;
+                    //myPC.PosInfo.PosY = myPC.TempPosInfo.PosY;
 
                     return;
                 }

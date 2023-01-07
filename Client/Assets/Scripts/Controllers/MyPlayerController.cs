@@ -294,7 +294,7 @@ public class MyPlayerController : PlayerController
             PosInfo.PosX = TempPosInfo.PosX;
             PosInfo.PosY = TempPosInfo.PosY;
 
-            SyncPos();
+            // SyncPos();
 
         
             State = CreatureState.Idle;

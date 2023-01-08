@@ -313,6 +313,23 @@ public class PlayerController : CreatureController
             //}
 
 
+
+            // 화살 날리기
+
+            //GameObject go = Managers.Resource.Instantiate("Creature/Arrow_test");
+            //go.name = "Arrow_test";
+            ////_objects.Add(info.ObjectId, go);
+
+            //ArrowController ac = go.GetComponent<ArrowController>();
+            //ac.PosInfo = PosInfo;
+            //ac.Stat = _stat;
+            //ac.Stat.Speed = 1500;
+            ////ac.Id = ObjectId; // 화살 ID 추가 20221104
+            ////ac.Dir = info.PosInfo.MoveDir;
+            ////ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
+            //ac.SyncPos();
+
+
         }
         else if(skillId == 2001000)
         {
@@ -331,6 +348,24 @@ public class PlayerController : CreatureController
 
             // 게임 이펙트를 몇초 후에 삭제
             GameObject.Destroy(effect, 4.0f);
+
+            //// 화살 날리기
+
+            //GameObject go = Managers.Resource.Instantiate("Creature/Arrow_test");
+            //go.name = "Arrow_test";
+            ////_objects.Add(info.ObjectId, go);
+
+            //ArrowController ac = go.GetComponent<ArrowController>();
+            //ac.PosInfo = PosInfo;
+            //ac.Stat = _stat;
+            //ac.Stat.Speed = 1500;
+            ////ac.Id = ObjectId; // 화살 ID 추가 20221104
+            ////ac.Dir = info.PosInfo.MoveDir;
+            ////ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
+            //ac.SyncPos();
+
+
+
 
 
         }
@@ -528,7 +563,7 @@ public class PlayerController : CreatureController
     public override void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
     {
         base.OnDamaged(damage,skillId, DamageList, attackerId);
-        Debug.Log("Player Hit !");
+        //Debug.Log("Player Hit !");
     }
 
 

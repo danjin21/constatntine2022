@@ -11,6 +11,9 @@ namespace Server.Game
 
         //long _nextMoveTick = 0;
 
+        // 처음에는 느리게 움직이게 해야함
+        public int FirstPing = 200;
+
         public override void Update()
         {
             // TODO
@@ -25,8 +28,12 @@ namespace Server.Game
             int tick = (int)((1000 * 32) / Data.projectile.speed);
             //_nextMoveTick = Environment.TickCount64 + tick;//원하는 시간 만큼
 
+            // 처음에는 tick으 르닐게
+
+
             // 1초뒤에 실행
-            Room.PushAfter(tick, Update);
+            Room.PushAfter(tick+FirstPing, Update);
+            FirstPing = 0;
 
 
             // 먼저 내 화살 위치에 뭔가가 들어왔는지 확인하고 나서 앞에 뭐가 있는지 체크한다.
@@ -35,7 +42,7 @@ namespace Server.Game
 
             //Console.WriteLine("FIND(CELLPOS) = " + Room.Map.Find(CellPos));
 
-
+ 
             if (( Room.Map.Find(CellPos) == Owner || Room.Map.Find(CellPos) == null ) && Room.Map.ApplyMove(this, destPos, collision: false /*충돌영향안준다.*/))
             {
 

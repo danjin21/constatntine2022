@@ -8,6 +8,7 @@ public class ArrowController : BaseController
 {
     float run;
 
+    public float count_checkDistance;
 
     protected override void Init()
     {
@@ -33,11 +34,14 @@ public class ArrowController : BaseController
 
         base.Init();
 
-        Debug.Log("화살의 ID = " + Id);
+        // Debug.Log("화살의 ID = " + Id);
         //_speed = 500.0f;
 
         run = 1.0f;
 
+        count_checkDistance = 0;
+
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
     }
 
     protected override void UpdateIdle()
@@ -138,14 +142,22 @@ public class ArrowController : BaseController
     protected override void UpdateMoving()
     {
 
- 
+
+
+        count_checkDistance += Time.smoothDeltaTime;
+
+        // 서버에서 500 지연을 준다.
+        if (count_checkDistance < 0.10f)
+            return;
+
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
         Vector3 destPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3Int destPosInt = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
 
 
         Vector3Int CellPosInt = Managers.Map.CurrentGrid.WorldToCell(destPosInt) - new Vector3Int ( 0, 1,0);
-        Debug.Log("망치망치" + CellPos + "/" + CellPosInt +$"{destPos} / {destPosInt}");
+        //Debug.Log("망치망치" + CellPos + "/" + CellPosInt +$"{destPos} / {destPosInt}");
 
 
         if (Managers.Map.CanGo(CellPosInt))
@@ -161,7 +173,7 @@ public class ArrowController : BaseController
 
         if (Managers.Map.Find(CellPosInt) != null)
         {
-            Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
+            //Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
             Managers.Object.Remove(Id);
         }
 

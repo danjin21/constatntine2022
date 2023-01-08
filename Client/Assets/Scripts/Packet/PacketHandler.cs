@@ -62,18 +62,34 @@ class PacketHandler
 
     public static void S_SpawnHandler(PacketSession session, IMessage packet)
     {
+
+        // 서버에서 패킷이 두번와서 동시에...
+        // 원인은 진짜 못찾고 있음...
+        // 그래서.. 우선 화살 예외처리 여기서 부터 땡김
+        
+
         S_Spawn spawnPacket = packet as S_Spawn;
         //ServerSession serverSession = session as ServerSession;
 
+        ObjectInfo A = null;
 
-        foreach(ObjectInfo obj in spawnPacket.Objects)
+        foreach (ObjectInfo obj in spawnPacket.Objects)
         {
+            if (Managers.Object._objects.ContainsKey(obj.ObjectId))
+                continue;
+
             Managers.Object.Add(obj, myPlayer: false);
+            A = obj;
+            Debug.Log("finish" + A.ObjectId + "/" + Time.deltaTime);
+
         }
+
+
+
 
         //Debug.Log(spawnPacket.Players);
 
-        Debug.Log("finish");
+
 
     }
 

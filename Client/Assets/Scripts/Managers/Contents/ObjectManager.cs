@@ -98,7 +98,6 @@ public class ObjectManager
         else if(objectType == GameObjectType.Projectile)
         {
 
-
             GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
             go.name = "Arrow";
             _objects.Add(info.ObjectId, go);
@@ -111,6 +110,7 @@ public class ObjectManager
             //ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
             ac.SyncPos();
 
+            Debug.Log("Arrow 발생 ID : " + info.ObjectId);
 
             resultObject = go;
 

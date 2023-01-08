@@ -147,7 +147,7 @@ namespace Server
 				// 0.1초가 지났거나, 너무 패킷이 많이 모일 때 ( 1만 바이트)
 				long delta = (System.Environment.TickCount64 - _lastSendTick);
                 
-				if (delta < 500 && _reservedSendBytes < 10000)
+				if (delta < 200 && _reservedSendBytes < 10000)
                     return;
 
                 // 패킷 모아 보내기

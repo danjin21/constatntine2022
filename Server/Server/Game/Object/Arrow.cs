@@ -12,7 +12,7 @@ namespace Server.Game
         //long _nextMoveTick = 0;
 
         // 처음에는 느리게 움직이게 해야함
-        public int FirstPing = 200;
+        public int FirstPing = 300;
 
         public override void Update()
         {

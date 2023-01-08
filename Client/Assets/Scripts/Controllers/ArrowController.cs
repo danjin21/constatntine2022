@@ -147,7 +147,10 @@ public class ArrowController : BaseController
         count_checkDistance += Time.smoothDeltaTime;
 
         // 서버에서 500 지연을 준다.
-        if (count_checkDistance < 0.10f)
+        // 0.31f
+        // 0.2f
+
+        if (count_checkDistance < 0.2f)
             return;
 
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);

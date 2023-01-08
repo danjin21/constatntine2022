@@ -112,6 +112,9 @@ public class ObjectManager
 
             Debug.Log("Arrow 발생 ID : " + info.ObjectId);
 
+            ac.shot = info.StatInfo.Hp;
+            ac.IsParent = true;
+
             resultObject = go;
 
 

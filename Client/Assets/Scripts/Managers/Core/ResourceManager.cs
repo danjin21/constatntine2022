@@ -67,16 +67,20 @@ public class ResourceManager
     {
         yield return new WaitForSeconds(time);
 
+        if (go != null)
+        {
+            Poolable poolable = go.GetComponent<Poolable>();
+            if (poolable != null)
+            {
+                Managers.Pool.Push(poolable);
 
-        Poolable poolable = go.GetComponent<Poolable>();
-        if (poolable != null)
-        {
-            Managers.Pool.Push(poolable);
-     
-        }
-        else
-        {
-            Object.Destroy(go, time);
+            }
+            else
+            {
+                //Object.Destroy(go, time);
+                Object.Destroy(go);
+                Debug.Log("###go " + go.name);
+            }
         }
 
     }

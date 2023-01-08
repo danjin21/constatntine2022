@@ -10,10 +10,34 @@ public class ArrowController : BaseController
 
     public float count_checkDistance;
 
+    public int shot;
+    public List<ArrowController> childArrowList = new List<ArrowController>();
+    public bool IsParent;
+
     protected override void Init()
     {
 
-        switch(Dir)
+        if (IsParent)
+        {
+            for (int i = 0; i < shot - 1; i++)
+            {
+                GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
+                go.name = "Arrow" + i;
+                ArrowController ac = go.GetComponent<ArrowController>();
+                ac.PosInfo = this.PosInfo;
+                ac.Stat = this.Stat;
+                ac.SyncPos();
+                ac.IsParent = false;
+                childArrowList.Add(ac);
+                Debug.Log("child 수 " + childArrowList.Count);
+                ac.gameObject.SetActive(false);
+
+            }
+
+            StartCoroutine(coMultiShot(0.1f));
+        }
+
+        switch (Dir)
         {
             case MoveDir.Up:
                 transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -41,7 +65,16 @@ public class ArrowController : BaseController
 
         count_checkDistance = 0;
 
-      this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+    }
+
+    IEnumerator coMultiShot(float time)
+    {
+        foreach (ArrowController child in childArrowList)
+        {
+            yield return new WaitForSeconds(time);
+            child.gameObject.SetActive(true);
+        }
     }
 
     protected override void UpdateIdle()
@@ -181,6 +214,7 @@ public class ArrowController : BaseController
         else
         {
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
 
@@ -189,6 +223,7 @@ public class ArrowController : BaseController
         {
             //Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
         //// 이동이 아니면 리턴한다
@@ -372,6 +407,7 @@ public class ArrowController : BaseController
         {
             Debug.Log("화살막힘4" + Managers.Map.Find(destPos).name);
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
 
@@ -383,8 +419,41 @@ public class ArrowController : BaseController
         {
             Debug.Log("화살막힘2");
             Managers.Object.Remove(Id);
+            removeChild();
         }
 
+
+    }
+
+
+    public void removeChild()
+    {
+        if (IsParent == false)
+            return;
+
+        // 서버에서 먼저 지워질경우가 있어서.. 그 경우에는..
+        // 그.. S_DespawnHandler 부분에서 이 함수 실행하게 만든다.
+
+
+        int i = 1;
+
+        Debug.Log($"childArrowList Count = " + childArrowList.Count);
+
+        List<ArrowController> childArrowList_Temp = new List<ArrowController>();
+        childArrowList_Temp = childArrowList;
+
+        
+        foreach (ArrowController child in childArrowList_Temp) // 임시 리스트
+        {
+
+            // 실제로도 지워준다
+            Managers.Resource.Destroy(child.gameObject, 0.1f * i);
+
+            i++;
+
+            Debug.Log($"@@@@{i}");
+
+        }
 
     }
 

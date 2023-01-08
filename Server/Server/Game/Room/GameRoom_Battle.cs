@@ -630,27 +630,27 @@ namespace Server.Game
                         Push(EnterGame, arrow, false); // => JobQueue 화  
 
 
-                        Arrow arrow_2 = ObjectManager.Instance.Add<Arrow>();
-                        if (arrow_2 == null)
-                            return;
+                        //Arrow arrow_2 = ObjectManager.Instance.Add<Arrow>();
+                        //if (arrow_2 == null)
+                        //    return;
 
-                        arrow_2.Owner = player;
+                        //arrow_2.Owner = player;
 
-                        // 투사체 에게 스킬 데이터를 넣어준다.
-                        arrow_2.Data = skillData;
+                        //// 투사체 에게 스킬 데이터를 넣어준다.
+                        //arrow_2.Data = skillData;
 
-                        arrow_2.PosInfo.State = CreatureState.Moving;
-                        arrow_2.PosInfo.MoveDir = player.PosInfo.MoveDir;
-                        arrow_2.PosInfo.PosX = player.PosInfo.PosX;
-                        arrow_2.PosInfo.PosY = player.PosInfo.PosY;
+                        //arrow_2.PosInfo.State = CreatureState.Moving;
+                        //arrow_2.PosInfo.MoveDir = player.PosInfo.MoveDir;
+                        //arrow_2.PosInfo.PosX = player.PosInfo.PosX;
+                        //arrow_2.PosInfo.PosY = player.PosInfo.PosY;
 
 
-                        // 투사체의 스피드를 데이터에서 불러온다.
-                        arrow_2.Speed = skillData.projectile.speed;
+                        //// 투사체의 스피드를 데이터에서 불러온다.
+                        //arrow_2.Speed = skillData.projectile.speed;
 
-                        arrow_2.IsFinal = false;
+                        //arrow_2.IsFinal = false;
 
-                        PushAfter(100, EnterGame, arrow_2, false);
+                        //PushAfter(100, EnterGame, arrow_2, false);
                         
 
 

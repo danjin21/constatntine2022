@@ -32,8 +32,16 @@ namespace Server.Game
 
 
             // 1초뒤에 실행
-            Room.PushAfter(tick+FirstPing, Update);
-            FirstPing = 0;
+
+            if( FirstPing == 300)
+            {
+                Room.PushAfter(FirstPing, Update);
+                FirstPing = 0;
+            }
+            else
+                Room.PushAfter(tick, Update);
+
+            
 
 
             // 먼저 내 화살 위치에 뭔가가 들어왔는지 확인하고 나서 앞에 뭐가 있는지 체크한다.

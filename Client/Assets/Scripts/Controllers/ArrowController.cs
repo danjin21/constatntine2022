@@ -41,7 +41,7 @@ public class ArrowController : BaseController
 
         count_checkDistance = 0;
 
-        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+      this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
     }
 
     protected override void UpdateIdle()
@@ -146,14 +146,25 @@ public class ArrowController : BaseController
 
         count_checkDistance += Time.smoothDeltaTime;
 
-        // 서버에서 500 지연을 준다.
-        // 0.31f
-        // 0.2f
 
-        if (count_checkDistance < 0.2f)
+
+        if (count_checkDistance < 0.06f) // 0.05f 0.24f 0.14f
             return;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.1f);
 
+        if (count_checkDistance < 0.12f) // 0.05f 0.24f 0.14f
+            return;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.22f);
+
+        if (count_checkDistance < 0.18f) // 0.05f 0.24f 0.14f
+            return;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.45f);
+
+        if (count_checkDistance < 0.24f) // 0.05f 0.24f 0.14f
+            return;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+
+
 
         Vector3 destPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3Int destPosInt = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);

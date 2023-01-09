@@ -425,6 +425,10 @@ public class MyPlayerController : PlayerController
 
         base.UseSkill(skillId);
 
+        if (skillId != 3101000)
+            Managers.Object.MyPlayer.SkillCool();
+
+
         // StopCoroutine(_coShortKeyCooltime);
     }
 
@@ -700,6 +704,7 @@ public class MyPlayerController : PlayerController
 
         return -1;
     }
+
 
 
     // 어차피 서버에서는 800임

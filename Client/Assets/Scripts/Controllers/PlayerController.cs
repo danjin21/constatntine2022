@@ -419,10 +419,6 @@ public class PlayerController : CreatureController
 
         UpdateAnimation();
 
-        if (skillId != 3101000)
-            Managers.Object.MyPlayer.SkillCool();
-
-
 
   
     }

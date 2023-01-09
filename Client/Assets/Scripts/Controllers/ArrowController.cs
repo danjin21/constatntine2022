@@ -171,29 +171,30 @@ public class ArrowController : BaseController
     }
 
 
+    float a;
 
     protected override void UpdateMoving()
     {
-
+        a = 0.06f;
 
 
         count_checkDistance += Time.smoothDeltaTime;
 
 
 
-        if (count_checkDistance < 0.06f) // 0.05f 0.24f 0.14f
+        if (count_checkDistance < a) // 0.05f 0.24f 0.14f
             return;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.1f);
 
-        if (count_checkDistance < 0.12f) // 0.05f 0.24f 0.14f
+        if (count_checkDistance < a*2) // 0.05f 0.24f 0.14f
             return;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.22f);
 
-        if (count_checkDistance < 0.18f) // 0.05f 0.24f 0.14f
+        if (count_checkDistance < a*3) // 0.05f 0.24f 0.14f
             return;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.45f);
 
-        if (count_checkDistance < 0.24f) // 0.05f 0.24f 0.14f
+        if (count_checkDistance < a*4) // 0.24f
             return;
         this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 

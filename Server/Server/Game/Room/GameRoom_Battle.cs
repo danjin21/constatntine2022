@@ -117,6 +117,7 @@ namespace Server.Game
         public void HandleSkill(Player player, C_Skill skillPacket)
         {
 
+            Console.WriteLine("(1)스킬분기 : " + player.Id);
             if (player == null)
                 return;
 
@@ -622,8 +623,8 @@ namespace Server.Game
                         Console.WriteLine($"arrow speed : { arrow.Speed}");
                         //EnterGame(arrow);
                         arrow.IsFinal = true;
-                        arrow.shot = 4;
-                        arrow.Stat.Hp = 4; // 이건 4개 소환하기 위해 쓴거임.
+                        arrow.shot = 2;
+                        arrow.Stat.Hp = 2; // 이건 4개 소환하기 위해 쓴거임.
 
                         // shot 과 hp 4 로 하면 4발이나간다.
 

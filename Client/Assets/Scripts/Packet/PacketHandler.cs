@@ -107,6 +107,9 @@ class PacketHandler
             }
 
             // 화살은 안지워준다. 클라이언트에서 처리
+            //if (Managers.Object.FindById(id) != null && Managers.Object.FindById(id).GetComponent<ArrowController>() != null)
+            //    return;
+
             // 혹시 몰라서 늦게라도 안지워졌을 경우, 서버에 따라 지워지게만든다.
             // 무조건 서버보단 클라가 먼저 도착해서 Remove 하긴한다.
 

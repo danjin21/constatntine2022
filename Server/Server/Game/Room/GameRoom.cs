@@ -14,7 +14,7 @@ namespace Server.Game
     {
 
         // 비젼 셀의 크기
-        public const int VisionCells = 12; // 반지름임 1280 에서는 여유있게 20으로 함
+        public const int VisionCells = 14; // 반지름임 1280 에서는 여유있게 20으로 함
 
         public int RoomId { get; set; }
 

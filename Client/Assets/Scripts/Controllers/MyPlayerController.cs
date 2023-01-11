@@ -420,6 +420,7 @@ public class MyPlayerController : PlayerController
         _coShortKeyCooltime = null;
     }
 
+
     public override void UseSkill(int skillId)
     {
 
@@ -427,6 +428,7 @@ public class MyPlayerController : PlayerController
 
         if (skillId != 3101000)
             Managers.Object.MyPlayer.SkillCool();
+
 
 
         // StopCoroutine(_coShortKeyCooltime);
@@ -448,6 +450,9 @@ public class MyPlayerController : PlayerController
     }
 
 
+    public string A;
+    public float B;
+    public float C;
 
     void UpdateGetInput()
     {
@@ -550,13 +555,13 @@ public class MyPlayerController : PlayerController
                 _actionKeyPressed = false;
 
 
-            if (_coSkillCooltime != null)
-                _actionKeyPressed = false;
+            //if (_coSkillCooltime != null)
+            //    _actionKeyPressed = false;
 
-            // 스킬이랑 포션은 구분짓는다.- 1
-            if (_coSkillCooltime != null)
-                return;
- 
+            //// 스킬이랑 포션은 구분짓는다.- 1
+            //if (_coSkillCooltime != null)
+            //    return;
+
             // 스킬이랑 포션은 구분짓는다.- 2
             if (_coConsumeCooltime != null)
                 return;
@@ -648,7 +653,22 @@ public class MyPlayerController : PlayerController
                     }
 
                     ShortKeyCool();
-                    IsSkillSend = true;
+                    if (IsSkillSend == false)
+                    {
+                        IsSkillSend = true;
+                        Debug.Log("+++++++++++++++++++++++++++스킬 전송 완료");
+
+                        A = DateTime.Now.ToString("ss.fffffff");
+                        float NowTime = float.Parse(A);
+                        B = NowTime;
+
+
+                        //Managers.Chat.ChatRPC($"<color=#000000>쿨타임 시간 : {TempC}</color>");
+                        //Managers.Chat.ChatRPC($"<color=#000000>지연율 : {TempC - C}</color>");
+
+
+                    }
+               
                 }
             }               
             else
@@ -710,7 +730,7 @@ public class MyPlayerController : PlayerController
     // 어차피 서버에서는 800임
     public void SkillCool()
     {
-
+        // 핑 지연율만큼 더해주거나, 빼준다.
         _coSkillCooltime = StartCoroutine("CoInputCooltime", 0.6f); // 서버에서는 0.8초로 쿨을 준다.
         // 원래 0.8초로 하는게 좋은데, 비교를 하기 위해  0.1f 로 일단 해놓음
     }

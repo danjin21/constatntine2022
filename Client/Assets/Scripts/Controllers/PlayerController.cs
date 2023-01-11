@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 using UnityEngine.UI;
+using System;
 
 public class PlayerController : CreatureController
 {
@@ -431,10 +432,10 @@ public class PlayerController : CreatureController
     }
 
 
-    // 언젠가는 시간 확인하는걸 서버에서 하는걸로 바꿔줘야한다.
 
     IEnumerator CoStartPunch()
     {
+
 
         // 피격 판정 (서버에서 한다)
         //GameObject go = Managers.Object.Find(GetFrontCellPos());
@@ -447,13 +448,16 @@ public class PlayerController : CreatureController
         //    }
         //}
 
+      
+
+
         // 대기 시간
 
         State = CreatureState.Skill;
 
         yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
 
-        Debug.Log("OK! GO !");
+
         State = CreatureState.Idle;
         _coSkill = null;
 

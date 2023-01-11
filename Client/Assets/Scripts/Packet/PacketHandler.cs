@@ -360,13 +360,23 @@ class PacketHandler
 
         // 스킬쿨은 UseSkill 맨 아래부분에 있다.
             MyPlayerController mc = go.GetComponent<MyPlayerController>();
-
         if(mc != null)
-        {
             mc.IsSkillSend = false;
-        }
+
+        if (mc != null && skillPacket.Info.SkillId != -1)
+        {
             
-        
+
+            string AA = DateTime.Now.ToString("ss.fffffff");
+            float NowTime = float.Parse(AA);
+            float BB = NowTime;
+
+            Managers.Chat.ChatRPC($"<color=#000000>(1) : {mc.B*1000} / (2) : {BB * 1000} / 지연율 : {(BB-mc.B)*1000}</color>");
+
+        }
+
+        if(skillPacket.Info.SkillId != -1)
+            Debug.Log("--------------------- 스킬 획득 완료");
 
         // 줍기라면 그냥 삭제해준다.
         if (skillPacket.Info.SkillId == 9101001)

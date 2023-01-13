@@ -175,7 +175,7 @@ public class ArrowController : BaseController
 
     protected override void UpdateMoving()
     {
-        a = 0.06f;
+        a = 0.105f;
 
 
         count_checkDistance += Time.smoothDeltaTime;

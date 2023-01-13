@@ -183,6 +183,9 @@ public class ChatManager
 
         CaptureText();
 
+
+        if(Input.GetKey(KeyCode.None) == false)
+            Managers.Object.MyPlayer.IsEntered = true;
     }
 
 

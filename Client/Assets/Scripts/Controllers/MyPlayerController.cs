@@ -454,6 +454,8 @@ public class MyPlayerController : PlayerController
     public float B;
     public float C;
 
+    public bool IsEntered = false;
+
     void UpdateGetInput()
     {
 
@@ -461,11 +463,54 @@ public class MyPlayerController : PlayerController
             return;
 
 
+
+
+        // 채팅 엔터 끝나자마자 누르고 있는거 바로 스킬 쳐지지 않게
+        {
+            bool OneClick = false;
+
+            // Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
+            if ((Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.RightShift)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.LeftControl)) || (Input.GetKeyDown(KeyCode.RightControl)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.LeftAlt)) || (Input.GetKeyDown(KeyCode.RightAlt)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.Q)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.W)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.E)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.A)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.S)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.D)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.Space)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.Z)))
+                OneClick = true;
+
+            if (OneClick == true)
+                IsEntered = false;
+
+        }
+
+
+        if (IsEntered)
+            return;
+
+     
+
         Key = -1;
         ConsumeKey = -1;
 
         if (key_window_active == true)
         {
+
+            // anykey none
             // Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
             if ((WinInput.GetKey(KeyCode.LeftShift)) || (WinInput.GetKey(KeyCode.RightShift)))
             { Key = 1; ConsumeKey = IsConsumeFromKey(Key); }
@@ -490,6 +535,8 @@ public class MyPlayerController : PlayerController
             if ((WinInput.GetKey(KeyCode.Z)))
             { Key = 11; ConsumeKey = IsConsumeFromKey(Key); }
         }
+
+
 
         //// Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
         //if ((Input.GetKey(KeyCode.LeftShift)) || (Input.GetKey(KeyCode.RightShift)))

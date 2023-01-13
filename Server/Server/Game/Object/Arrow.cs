@@ -12,7 +12,7 @@ namespace Server.Game
         //long _nextMoveTick = 0;
 
         // 처음에는 느리게 움직이게 해야함
-        public int FirstPing = 300;
+        public int FirstPing = 500;
 
         public override void Update()
         {
@@ -33,7 +33,7 @@ namespace Server.Game
 
             // 1초뒤에 실행
 
-            if( FirstPing == 300)
+            if( FirstPing == 500)
             {
                 Room.PushAfter(FirstPing, Update);
                 FirstPing = 0;

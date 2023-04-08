@@ -696,6 +696,7 @@ namespace Server.Game
             skill.Info.SkillId = skillPacket.Info.SkillId;
             //skill.Damage = player.TotalAttack;
             skill.Damage = realDamage ;
+            skill.Info.MoveDir = player.Info.PosInfo.MoveDir; // 스킬쓴 방향 저장 
 
             if (target != null)
                  skill.TargetId = target.Id;

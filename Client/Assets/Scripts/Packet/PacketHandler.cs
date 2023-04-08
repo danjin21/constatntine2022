@@ -378,6 +378,15 @@ class PacketHandler
         if (cc != null)
         {
             cc.UseSkill(skillPacket.Info.SkillId);
+
+            // 스킬 쓸때만큼은 즉각적으로 방향 전환하게 ( 이동하는 도중에 방향전환 스킬 쓴거는 바로 되게. )
+            // 멈춘상태에서 방향전환후 바로 쏘는건, move 쪽에서 처리함
+
+            //if (cc.GetType() == typeof(PlayerController) || cc.GetType() == typeof(MonsterController))
+            //{
+            //    if(cc.PosHistory.Count >0)
+            //        cc.Dir = cc.PosHistory[cc.PosHistory.Count-1].MoveDir;
+            //}
         }
 
 
@@ -398,6 +407,7 @@ class PacketHandler
             Managers.Chat.ChatRPC($"<color=#000000>(1) : {mc.B*1000} / (2) : {BB * 1000} / 지연율 : {(BB-mc.B)*1000}</color>");
 
         }
+
 
         if(skillPacket.Info.SkillId != -1)
             Debug.Log("--------------------- 스킬 획득 완료");

@@ -589,6 +589,7 @@ message SkillInfo{
     int32 slot = 3;
     int32 ownerDbId = 4;
     int32 skillDbId =5;
+    MoveDir moveDir =6; // 스킬 방향
 }
 
 

@@ -280,16 +280,20 @@ public class PlayerController : CreatureController
 
     public override void UseSkill(int skillId)
     {
-        // 스킬아이디 갱신
-        _skillId = skillId;
+
 
         if (State == CreatureState.Moving)
         {
             // MyPlayer도 해버리면 스킬 모션 씹어버림
-            if (this.GetType() == typeof(PlayerController))
-                return;
+            //if (this.GetType() == typeof(PlayerController))
+            //{
+
+            //    return;
+            //}
         }
 
+        // 스킬아이디 갱신
+        _skillId = skillId;
 
         Data.Skill skillData = null;
         Managers.Data.SkillDict.TryGetValue(skillId, out skillData);

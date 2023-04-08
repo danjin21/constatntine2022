@@ -120,23 +120,30 @@ class PacketHandler
             A = Managers.Object.FindById(id);
 
 
-            Managers.Object.Remove(id);
+ 
+ 
 
             // 화살일경우에는 자식 화살들도 지워지게 해야한다.
 
             if (A != null && A.GetComponent<ArrowController>() != null)
             {
                 A.GetComponent<ArrowController>().removeChild();
+
+                // 화살일 경우, 클라에서 맞아야 사라지게 몇초 뒤에 사라지게 한다.
+
+                  // Managers.Object.Remove(id, 2.0f);
+                return;
             }
 
+            Managers.Object.Remove(id);
 
         }
-
-
         //ServerSession serverSession = session as ServerSession;
-
-
     }
+
+
+
+
 
     public static void S_MoveHandler(PacketSession session, IMessage packet)
     {
@@ -246,23 +253,29 @@ class PacketHandler
             //movePacket.PosInfo.State = bc.State;
             //movePacket.PosInfo.MoveDir = bc.Dir;
 
-            if(bc.GetType() == typeof(PlayerController))
+            Managers.Chat.ChatRPC($"유저 이동 1");
+
+
+            if (bc.GetType() == typeof(PlayerController))
             {
                 // 플레이어인 경우 스킬 씹힐 수도 있어서 그다음부터는 이동이 안되므로, 그냥 그대로 둔다
-                if(movePacket.PosInfo.State == CreatureState.Skill)
+                if (movePacket.PosInfo.State == CreatureState.Skill)
+                {
                     movePacket.PosInfo.State = bc.State;
+                    Managers.Chat.ChatRPC($"유저 이동 2");
+                }
             }
 
             bc.PosHistory.Add(movePacket.PosInfo);
-
+            Managers.Chat.ChatRPC($"유저 이동 3");
 
             if (bc.PosHistory.Count > 0)
             {
                 bc.PosInfo = bc.PosHistory[0];
-
+                Managers.Chat.ChatRPC($"유저 이동 4");
             }
 
-
+            Managers.Chat.ChatRPC($"=====");
             return;
         }
 
@@ -270,7 +283,7 @@ class PacketHandler
 
 
         bc.PosInfo = movePacket.PosInfo;
-
+        Managers.Chat.ChatRPC($"유저 이동 5");
         //Debug.Log("S_MoveHandler");
     }
 

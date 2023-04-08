@@ -261,19 +261,29 @@ class PacketHandler
                 // 플레이어인 경우 스킬 씹힐 수도 있어서 그다음부터는 이동이 안되므로, 그냥 그대로 둔다
                 if (movePacket.PosInfo.State == CreatureState.Skill)
                 {
-                    movePacket.PosInfo.State = bc.State;
+                    //movePacket.PosInfo.State = bc.State;
                     Managers.Chat.ChatRPC($"유저 이동 2");
                 }
+
             }
 
             bc.PosHistory.Add(movePacket.PosInfo);
             Managers.Chat.ChatRPC($"유저 이동 3");
 
-            if (bc.PosHistory.Count > 0)
+
+            // 위치가 같은데 방향만 다른건 바로 실행해라.
+
+            if( bc.PosInfo.PosX == movePacket.PosInfo.PosX && bc.PosInfo.PosY == movePacket.PosInfo.PosY)
             {
                 bc.PosInfo = bc.PosHistory[0];
-                Managers.Chat.ChatRPC($"유저 이동 4");
+                bc.PosHistory.RemoveAt(0);
             }
+
+            //if (bc.PosHistory.Count > 0)
+            //{
+            //    bc.PosInfo = bc.PosHistory[0];
+            //    Managers.Chat.ChatRPC($"유저 이동 4");
+            //}
 
             Managers.Chat.ChatRPC($"=====");
             return;
@@ -375,6 +385,7 @@ class PacketHandler
             MyPlayerController mc = go.GetComponent<MyPlayerController>();
         if(mc != null)
             mc.IsSkillSend = false;
+
 
         if (mc != null && skillPacket.Info.SkillId != -1)
         {

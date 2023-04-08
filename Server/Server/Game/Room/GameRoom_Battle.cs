@@ -37,7 +37,7 @@ namespace Server.Game
             ObjectInfo info = player.Info;
 
 
-
+  
 
 
             //클라단에서 왔다리 갔다리 하는거 해결
@@ -185,7 +185,10 @@ namespace Server.Game
 
             Console.WriteLine("텔레포트 쓸때 유저의 상태 :" + player.State + " -> Skill");
             // TODO : 스킬 사용 가능 여부 체크
-            info.PosInfo.State = CreatureState.Skill;
+
+            // 텔레포트 아닌 경우에만 스킬 State
+            if(skillPacket.Info.SkillId !=3101000)
+                info.PosInfo.State = CreatureState.Skill;
 
 
 
@@ -513,7 +516,6 @@ namespace Server.Game
                             S_Teleport resMovePacket = new S_Teleport();
                             resMovePacket.ObjectId = player.Info.ObjectId;
                             resMovePacket.PosInfo = player.PosInfo;
-
                             Broadcast(player.CellPos, resMovePacket);
 
                             //// 포탈일 경우 순간이동
@@ -758,7 +760,7 @@ namespace Server.Game
             S_Move IdleMovePacket = new S_Move();
             IdleMovePacket.ObjectId = player.Info.ObjectId;
             IdleMovePacket.PosInfo = player.PosInfo;
-            Broadcast(player.CellPos, IdleMovePacket);
+            //Broadcast(player.CellPos, IdleMovePacket);
 
 
 

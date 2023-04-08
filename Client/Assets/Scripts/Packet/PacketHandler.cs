@@ -378,7 +378,7 @@ class PacketHandler
         if (cc != null)
         {
 
-            if (cc.GetType() == typeof(PlayerController) || cc.GetType() == typeof(MonsterController))
+            if (cc.GetType() == typeof(PlayerController) /*|| cc.GetType() == typeof(MonsterController)*/)
             {
           
 

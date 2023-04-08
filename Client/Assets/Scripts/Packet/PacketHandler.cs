@@ -377,16 +377,36 @@ class PacketHandler
 
         if (cc != null)
         {
+
+            if (cc.GetType() == typeof(PlayerController) || cc.GetType() == typeof(MonsterController))
+            {
+          
+
+                cc.Dir = skillPacket.Info.MoveDir;
+
+                cc.State = CreatureState.Skill;
+
+                // 스킬 쓴 순간부터는 끝까지
+                //cc.PosHistory.Clear();
+
+                if (cc.PosHistory.Count > 0)
+                {
+
+                    // 모든 애들의 방향을 다 최종으로 바꾼다.
+                    for (int i = 0; i < cc.PosHistory.Count; i++)
+                    {
+                        cc.PosHistory[i].MoveDir = skillPacket.Info.MoveDir;
+                    }
+                }
+
+            }
+
             cc.UseSkill(skillPacket.Info.SkillId);
 
             // 스킬 쓸때만큼은 즉각적으로 방향 전환하게 ( 이동하는 도중에 방향전환 스킬 쓴거는 바로 되게. )
             // 멈춘상태에서 방향전환후 바로 쏘는건, move 쪽에서 처리함
 
-            //if (cc.GetType() == typeof(PlayerController) || cc.GetType() == typeof(MonsterController))
-            //{
-            //    if(cc.PosHistory.Count >0)
-            //        cc.Dir = cc.PosHistory[cc.PosHistory.Count-1].MoveDir;
-            //}
+         
         }
 
 

@@ -253,7 +253,6 @@ class PacketHandler
             //movePacket.PosInfo.State = bc.State;
             //movePacket.PosInfo.MoveDir = bc.Dir;
 
-            Managers.Chat.ChatRPC($"유저 이동 1");
 
 
             if (bc.GetType() == typeof(PlayerController))
@@ -262,13 +261,13 @@ class PacketHandler
                 if (movePacket.PosInfo.State == CreatureState.Skill)
                 {
                     //movePacket.PosInfo.State = bc.State;
-                    Managers.Chat.ChatRPC($"유저 이동 2");
+         
                 }
 
             }
 
             bc.PosHistory.Add(movePacket.PosInfo);
-            Managers.Chat.ChatRPC($"유저 이동 3");
+     
 
 
             // 위치가 같은데 방향만 다른건 바로 실행해라.
@@ -285,7 +284,7 @@ class PacketHandler
             //    Managers.Chat.ChatRPC($"유저 이동 4");
             //}
 
-            Managers.Chat.ChatRPC($"=====");
+      
             return;
         }
 
@@ -293,7 +292,7 @@ class PacketHandler
 
 
         bc.PosInfo = movePacket.PosInfo;
-        Managers.Chat.ChatRPC($"유저 이동 5");
+
         //Debug.Log("S_MoveHandler");
     }
 
@@ -330,7 +329,7 @@ class PacketHandler
 
             // 텔레포트도 사용한거니까
             // myPC.UseSkill(3101000);
-            Debug.Log("dfaf");
+  
             return;
         }
 
@@ -380,7 +379,7 @@ class PacketHandler
 
             if (cc.GetType() == typeof(PlayerController) /*|| cc.GetType() == typeof(MonsterController)*/)
             {
-          
+
 
                 cc.Dir = skillPacket.Info.MoveDir;
 

@@ -136,8 +136,19 @@ public class CreatureController : BaseController
         //if (Target == null)
         //    return;
 
+        
+        Data.Skill skillData = null;
+        Managers.Data.SkillDict.TryGetValue(skillId, out skillData);
 
-        _coSkill = StartCoroutine(CoStartDamageDelay(damage, skillId, DamageList, attackerId));
+        float projectileSpeed = 0;
+
+        //if (skillData.projectile != null)
+        //    projectileSpeed = skillData.projectile.speed;
+
+
+
+
+        _coSkill = StartCoroutine(CoStartDamageDelay(damage, skillId, DamageList, attackerId, projectileSpeed));
 
         //if (Hp != 0)
         //     effect = Managers.Resource.Instantiate("Effect/Hit_Effect_Sword",transform);
@@ -148,11 +159,12 @@ public class CreatureController : BaseController
 
     }
 
+    bool getShot = false;
 
-    IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId)
+    IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId, float projectileSpeed)
     {
-
-    
+        if (projectileSpeed > 0)
+            yield return new WaitUntil(() => getShot = true);
 
         if (damage >0)
             HitEffect(skillId);
@@ -173,6 +185,8 @@ public class CreatureController : BaseController
         }
 
         _coSkill = null;
+
+        getShot = false;
 
     }
 

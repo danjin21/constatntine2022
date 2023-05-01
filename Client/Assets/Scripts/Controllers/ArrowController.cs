@@ -214,7 +214,8 @@ public class ArrowController : BaseController
         }
         else
         {
-            Managers.Object.Remove(Id);
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
             removeChild();
         }
 
@@ -223,7 +224,8 @@ public class ArrowController : BaseController
         if (Managers.Map.Find(CellPosInt) != null)
         {
             //Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
-            Managers.Object.Remove(Id);
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
             removeChild();
         }
 
@@ -407,7 +409,8 @@ public class ArrowController : BaseController
         if (Managers.Map.Find(destPos) != null)
         {
             Debug.Log("화살막힘4" + Managers.Map.Find(destPos).name);
-            Managers.Object.Remove(Id);
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
             removeChild();
         }
 
@@ -419,7 +422,8 @@ public class ArrowController : BaseController
         else
         {
             Debug.Log("화살막힘2");
-            Managers.Object.Remove(Id);
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
             removeChild();
         }
 
@@ -455,6 +459,8 @@ public class ArrowController : BaseController
             Debug.Log($"@@@@{i}");
 
         }
+
+        Managers.Object.Remove(Id);
 
     }
 

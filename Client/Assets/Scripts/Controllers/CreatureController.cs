@@ -15,6 +15,7 @@ public class CreatureController : BaseController
     public GameObject DamagePocket;
 
     protected Coroutine _coSkill;
+    protected Coroutine _coDead;
 
     // BaseController를 따르되, UpdateHpBar()를 추가로 실행한다.
     public override StatInfo Stat
@@ -159,12 +160,16 @@ public class CreatureController : BaseController
 
     }
 
-    bool getShot = false;
+    public bool getShot = false;
 
     IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId, float projectileSpeed)
     {
-        if (projectileSpeed > 0)
-            yield return new WaitUntil(() => getShot = true);
+
+        Debug.Log("MY ID : " + Id);
+        //if (projectileSpeed > 0)
+        yield return new WaitUntil(() => getShot == true);
+
+    
 
         if (damage >0)
             HitEffect(skillId);
@@ -345,7 +350,21 @@ public class CreatureController : BaseController
 
     public virtual void OnDead(int damage)
     {
+
+
         State = CreatureState.Dead;
+
+        _coDead = StartCoroutine(CoStartDeadDelay(damage));
+
+   
+    }
+    IEnumerator CoStartDeadDelay(int damage)
+    {
+
+        //if (projectileSpeed > 0)
+        yield return new WaitUntil(() => getShot == true);
+
+
 
         Vector3 CurrentPosition = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 36.0f, 0);
 
@@ -363,8 +382,12 @@ public class CreatureController : BaseController
         // Hp바 비활성화
 
         _hpBar.transform.gameObject.SetActive(false);
-    }
 
+        _coDead = null;
+
+        getShot = false;
+
+    }
 
     public virtual void UseSkill(int skillId)
     {

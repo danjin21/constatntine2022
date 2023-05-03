@@ -250,7 +250,7 @@ message S_Skill{
     SkillInfo info = 2;
     int32 targetId = 3;
     int32 damage = 4;
-    ObjectInfo projectileInfo = 5;
+    ProjectileInfo projectileInfo = 5;
 }
 
 message S_ChangeHp {
@@ -656,5 +656,14 @@ message QuestInfo{
     int32 questTemplateId = 3;
     int32 playerId = 4;
     int32 status = 5;
+
+}
+
+message ProjectileInfo{
+
+    int32 ownerId = 1;
+    PositionInfo posInfo = 2;
+    int32 distance = 3;
+    int32 targetId = 4;
 
 }

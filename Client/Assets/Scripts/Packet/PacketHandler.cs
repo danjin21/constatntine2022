@@ -408,9 +408,27 @@ class PacketHandler
          
         }
 
+        // 투척기라면
+        if (skillPacket.ProjectileInfo != null)
+        {
+
+            GameObject projectile = Managers.Resource.Instantiate("Creature/Projectile");
+            projectile.name = "Projectile";
+
+            ProjectileController pc = projectile.GetComponent<ProjectileController>();
+            pc.projectileInfo = skillPacket.ProjectileInfo;
+            pc.distance = skillPacket.ProjectileInfo.Distance;
+
+            // 타겟이 있다면
+            if (target != null)
+                pc.target = target;
+
+        }
+
+
 
         // 스킬쿨은 UseSkill 맨 아래부분에 있다.
-            MyPlayerController mc = go.GetComponent<MyPlayerController>();
+        MyPlayerController mc = go.GetComponent<MyPlayerController>();
         if(mc != null)
             mc.IsSkillSend = false;
 
@@ -508,7 +526,7 @@ class PacketHandler
 
         if (cc != null)
         {
-            cc.Hp = 0;
+            // cc.Hp = 0;
             cc.OnDead(diePacket.Damage);
 
         }

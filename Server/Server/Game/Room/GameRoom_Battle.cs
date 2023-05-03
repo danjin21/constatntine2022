@@ -203,10 +203,9 @@ namespace Server.Game
             GameObject target = null;
             int realDamage = 0;
 
-            // 투사체 정보
-            Arrow ProjectileInfo = new Arrow();
-            ProjectileInfo.shot = 0;
-            
+            Google.Protobuf.Protocol.ProjectileInfo tempProjectileInfo = new Google.Protobuf.Protocol.ProjectileInfo();
+            tempProjectileInfo.PosInfo = new PositionInfo();
+
 
             switch (skillData.skillType)
             {
@@ -260,17 +259,30 @@ namespace Server.Game
                                 serverArrow.Stat.Hp = 4; // 이건 4개 소환하기 위해 쓴거임.
 
 
-                          
-                                bool shot = false;
 
+                                int distance;
+                                distance = 10;
+
+                                // 패킷에 넣을 정보 생성
+                                tempProjectileInfo.OwnerId = player.Id;
+                                tempProjectileInfo.PosInfo.PosX = serverArrow.PosInfo.PosX;
+                                tempProjectileInfo.PosInfo.PosY = serverArrow.PosInfo.PosY;
+                                tempProjectileInfo.PosInfo.MoveDir = serverArrow.PosInfo.MoveDir;
+                                tempProjectileInfo.PosInfo.State = serverArrow.PosInfo.State;
+                                tempProjectileInfo.TargetId = -1;
+                                tempProjectileInfo.Distance = distance;
+
+                                bool shot = false;
                                 int i = 0;
 
                                 // 자기 앞 칸에 오브젝트가 있으면 공격을 준다.
                                 // 10칸
-                                while(shot ==false && i <10)
+                                while (shot ==false && i < distance)
                                 {
                                     // 자기 방향을 구하고,
                                     Vector2Int destPos = serverArrow.GetFrontCellPos(); // 내 앞 방향
+
+
 
                                     if (room.Map.Find(destPos) == null)
                                     {
@@ -293,15 +305,13 @@ namespace Server.Game
 
                                         shot = true;
 
+                                        tempProjectileInfo.TargetId = target.Id;
 
-                                   
 
                                     }
                                 }
 
-                                //serverArrow.PosInfo.PosX = player.PosInfo.PosX;
-                                //serverArrow.PosInfo.PosY = player.PosInfo.PosY;
-       
+                 
 
                                 //Push(EnterGame, serverArrow, false); // => JobQueue 화  
 
@@ -775,13 +785,14 @@ namespace Server.Game
 
 
             // 스킬 패킷보내주기
+            // 스킬 패킷 생성
             S_Skill skill = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
             skill.ObjectId = info.ObjectId;
             skill.Info.SkillId = skillPacket.Info.SkillId;
             //skill.Damage = player.TotalAttack;
             skill.Damage = realDamage ;
             skill.Info.MoveDir = player.Info.PosInfo.MoveDir; // 스킬쓴 방향 저장 
-
+            skill.ProjectileInfo = tempProjectileInfo;
 
             if (target != null)
                  skill.TargetId = target.Id;

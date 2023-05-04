@@ -105,6 +105,15 @@ class PacketHandler
             {
                 return;
             }
+            else
+            {
+                if (Managers.Object.FindById(id) != null)
+                {
+                    CreatureController cc = Managers.Object.FindById(id).GetComponent<CreatureController>();
+                    if (cc != null && cc._coDead != null)
+                        return;
+                }
+            }
 
             // 화살은 안지워준다. 클라이언트에서 처리
             //if (Managers.Object.FindById(id) != null && Managers.Object.FindById(id).GetComponent<ArrowController>() != null)
@@ -412,6 +421,13 @@ class PacketHandler
         if (skillPacket.ProjectileInfo != null)
         {
 
+
+
+            // 스킬이 두번 들어오기 때문에, 더미값이 들어오므로 차단해야함
+            if (skillPacket.ProjectileInfo.PosInfo.State != CreatureState.Moving)
+                return;
+
+
             GameObject projectile = Managers.Resource.Instantiate("Creature/Projectile");
             projectile.name = "Projectile";
 
@@ -500,6 +516,15 @@ class PacketHandler
             }
 
             cc.OnDamaged(changePacket.Damage,changePacket.SkillId, DamageList ,changePacket.AttackerId);
+
+            // 스킬 사전에서 projectile 없으면 그냥 바로 getshot 해주기
+
+            Data.Skill skillData = null;
+            Managers.Data.SkillDict.TryGetValue(changePacket.SkillId, out skillData);
+
+            if (skillData.projectile == null)
+                cc.getShot = true;
+
 
             //// TODO : UI
             //Debug.Log($"ChangeHp : {changePacket.Hp}");

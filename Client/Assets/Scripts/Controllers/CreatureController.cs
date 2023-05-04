@@ -15,7 +15,7 @@ public class CreatureController : BaseController
     public GameObject DamagePocket;
 
     protected Coroutine _coSkill;
-    protected Coroutine _coDead;
+    public Coroutine _coDead;
 
     // BaseController를 따르되, UpdateHpBar()를 추가로 실행한다.
     public override StatInfo Stat
@@ -352,7 +352,7 @@ public class CreatureController : BaseController
     {
 
 
-        State = CreatureState.Dead;
+  
 
         _coDead = StartCoroutine(CoStartDeadDelay(damage));
 
@@ -365,7 +365,7 @@ public class CreatureController : BaseController
         yield return new WaitUntil(() => getShot == true);
 
 
-
+        State = CreatureState.Dead;
         Vector3 CurrentPosition = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 36.0f, 0);
 
 

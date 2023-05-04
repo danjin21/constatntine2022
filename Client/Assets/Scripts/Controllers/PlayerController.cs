@@ -459,6 +459,7 @@ public class PlayerController : CreatureController
 
         State = CreatureState.Skill;
 
+
         yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
 
 
@@ -466,8 +467,7 @@ public class PlayerController : CreatureController
         _coSkill = null;
 
         CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
-
-
+        
     }
 
     IEnumerator CoStartShootArrow()

@@ -522,8 +522,12 @@ class PacketHandler
             Data.Skill skillData = null;
             Managers.Data.SkillDict.TryGetValue(changePacket.SkillId, out skillData);
 
-            if (skillData.projectile == null)
-                cc.getShot = true;
+            if (skillData != null)
+            {
+
+                if (skillData.projectile == null)
+                    cc.getShot = true;
+            }
 
 
             //// TODO : UI

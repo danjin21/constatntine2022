@@ -183,7 +183,7 @@ public class MonsterController : CreatureController
 
         base.OnDamaged(damage,skillId, DamageList, attackerId);
 
-        Managers.Sound.Play(HitSoundPath, Define.Sound.Effect);
+        // Managers.Sound.Play(HitSoundPath, Define.Sound.Effect);
     }
 
 

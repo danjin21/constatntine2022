@@ -161,15 +161,18 @@ public class CreatureController : BaseController
     }
 
     public bool getShot = false;
+    public bool getDie = false;
 
     IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId, float projectileSpeed)
     {
 
-        Debug.Log("MY ID : " + Id);
+        Debug.Log("MY ID 1 : " + Id);
         //if (projectileSpeed > 0)
         yield return new WaitUntil(() => getShot == true);
 
-    
+        getDie = true;
+
+        Debug.Log("MY ID 2: " + Id);
 
         if (damage >0)
             HitEffect(skillId);
@@ -189,10 +192,12 @@ public class CreatureController : BaseController
             yield return new WaitForSeconds(0.10f);
         }
 
+   
+
         _coSkill = null;
 
         getShot = false;
-
+ 
     }
 
 
@@ -362,7 +367,7 @@ public class CreatureController : BaseController
     {
 
         //if (projectileSpeed > 0)
-        yield return new WaitUntil(() => getShot == true);
+        yield return new WaitUntil(() => getDie == true);
 
 
         State = CreatureState.Dead;
@@ -385,7 +390,7 @@ public class CreatureController : BaseController
 
         _coDead = null;
 
-        getShot = false;
+        getDie = false;
 
     }
 

@@ -255,13 +255,13 @@ namespace Server.Game
                                 //Push(EnterGame, arrow, false); // => JobQueue 화  
 
                                 serverArrow.Speed = skillData.projectile.speed;
-                                serverArrow.shot = 4;
-                                serverArrow.Stat.Hp = 4; // 이건 4개 소환하기 위해 쓴거임.
+                                serverArrow.shot = 1;
+                                serverArrow.Stat.Hp = 1; // 이건 4개 소환하기 위해 쓴거임.
 
 
 
                                 int distance;
-                                distance = 10;
+                                distance = 15;
 
                                 // 패킷에 넣을 정보 생성
                                 tempProjectileInfo.OwnerId = player.Id;
@@ -686,68 +686,146 @@ namespace Server.Game
                         {
                         }
 
-                        // 플레이어가 착용한 무기가 활이 아니면 리턴
 
-                        Item bowItem = null;
-                        bowItem = player.Inven.Find(i => i.Equipped && i.ItemType == ItemType.Weapon);
-
-                        if (((Weapon)bowItem).WeaponType != WeaponType.Bow)
-                        {
-                            // 중단해야 하므로
-                            return;
-                            // TODO : 스킬 사용 가능 여부 체크
-                            // break; // 아래까지 내려가야 하므로
-                        }
-
-                        // TODO : Arrow ( 일단 에로우만 넣음 )
-                        Arrow arrow = ObjectManager.Instance.Add<Arrow>();
-                        if (arrow == null)
+                        Arrow serverArrow = ObjectManager.Instance.Add<Arrow>();
+                        if (serverArrow == null)
                             break; // 아래까지 내려가야 하므로
 
-                        arrow.Owner = player;
+                        DataManager.SkillDict.TryGetValue(2001001, out skillData);
+
+                        serverArrow.Owner = player;
 
                         // 투사체 에게 스킬 데이터를 넣어준다.
-                        arrow.Data = skillData;
+                        serverArrow.Data = skillData;
 
-                        arrow.PosInfo.State = CreatureState.Moving;
-                        arrow.PosInfo.MoveDir = player.PosInfo.MoveDir;
-                        arrow.PosInfo.PosX = player.PosInfo.PosX;
-                        arrow.PosInfo.PosY = player.PosInfo.PosY;
+                        serverArrow.PosInfo.State = CreatureState.Moving;
+                        serverArrow.PosInfo.MoveDir = player.PosInfo.MoveDir;
+                        serverArrow.PosInfo.PosX = player.PosInfo.PosX;
+                        serverArrow.PosInfo.PosY = player.PosInfo.PosY;
+                        serverArrow.IsFinal = true;
+                        //Push(EnterGame, arrow, false); // => JobQueue 화  
 
-                        // 투사체의 스피드를 데이터에서 불러온다.
-                        arrow.Speed = skillData.projectile.speed;
-                        Console.WriteLine($"arrow speed : { arrow.Speed}");
-                        //EnterGame(arrow);
-                        arrow.IsFinal = true;
-                        arrow.shot = 4;
-                        arrow.Stat.Hp = 4; // 이건 4개 소환하기 위해 쓴거임.
-
-                        // shot 과 hp 4 로 하면 4발이나간다.
-
-                        Push(EnterGame, arrow, false); // => JobQueue 화  
+                        serverArrow.Speed = skillData.projectile.speed;
+                        serverArrow.shot = 2;
+                        serverArrow.Stat.Hp = 2; // 이건 4개 소환하기 위해 쓴거임.
 
 
-                        //Arrow arrow_2 = ObjectManager.Instance.Add<Arrow>();
-                        //if (arrow_2 == null)
+
+                        int distance;
+                        distance = 15;
+
+                        // 패킷에 넣을 정보 생성
+                        tempProjectileInfo.OwnerId = player.Id;
+                        tempProjectileInfo.PosInfo.PosX = serverArrow.PosInfo.PosX;
+                        tempProjectileInfo.PosInfo.PosY = serverArrow.PosInfo.PosY;
+                        tempProjectileInfo.PosInfo.MoveDir = serverArrow.PosInfo.MoveDir;
+                        tempProjectileInfo.PosInfo.State = serverArrow.PosInfo.State;
+                        tempProjectileInfo.TargetId = -1;
+                        tempProjectileInfo.Distance = distance;
+
+                        bool shot = false;
+                        int i = 0;
+
+                        // 자기 앞 칸에 오브젝트가 있으면 공격을 준다.
+                        // 10칸
+                        while (shot == false && i < distance)
+                        {
+                            // 자기 방향을 구하고,
+                            Vector2Int destPos = serverArrow.GetFrontCellPos(); // 내 앞 방향
+
+
+
+                            if (room.Map.Find(destPos) == null)
+                            {
+                                //room.Map.ApplyMove(serverArrow, destPos, collision: false /*충돌영향안준다.*/);
+
+                                serverArrow.PosInfo.PosX = destPos.x;
+                                serverArrow.PosInfo.PosY = destPos.y;
+
+                                i += 1;
+                            }
+                            else
+                            {
+
+                                target = room.Map.Find(destPos);
+
+                                int OwnerAttack = new Random().Next(serverArrow.Owner.MinAttack, serverArrow.Owner.MaxAttack);  // 포함 , 포함되지 않는 숫자
+
+                                GameObject serverTarget = room.Map.Find(destPos);
+                                serverTarget.OnDamaged(serverArrow, serverArrow.Data.damage + OwnerAttack, serverArrow.Data.id, serverArrow.shot, player);
+
+                                shot = true;
+
+                                tempProjectileInfo.TargetId = target.Id;
+
+
+                            }
+                        }
+
+
+
+                        //// 플레이어가 착용한 무기가 활이 아니면 리턴
+
+                        //Item bowItem = null;
+                        //bowItem = player.Inven.Find(i => i.Equipped && i.ItemType == ItemType.Weapon);
+
+                        //if (((Weapon)bowItem).WeaponType != WeaponType.Bow)
+                        //{
+                        //    // 중단해야 하므로
                         //    return;
+                        //    // TODO : 스킬 사용 가능 여부 체크
+                        //    // break; // 아래까지 내려가야 하므로
+                        //}
 
-                        //arrow_2.Owner = player;
+                        //// TODO : Arrow ( 일단 에로우만 넣음 )
+                        //Arrow arrow = ObjectManager.Instance.Add<Arrow>();
+                        //if (arrow == null)
+                        //    break; // 아래까지 내려가야 하므로
+
+                        //arrow.Owner = player;
 
                         //// 투사체 에게 스킬 데이터를 넣어준다.
-                        //arrow_2.Data = skillData;
+                        //arrow.Data = skillData;
 
-                        //arrow_2.PosInfo.State = CreatureState.Moving;
-                        //arrow_2.PosInfo.MoveDir = player.PosInfo.MoveDir;
-                        //arrow_2.PosInfo.PosX = player.PosInfo.PosX;
-                        //arrow_2.PosInfo.PosY = player.PosInfo.PosY;
-
+                        //arrow.PosInfo.State = CreatureState.Moving;
+                        //arrow.PosInfo.MoveDir = player.PosInfo.MoveDir;
+                        //arrow.PosInfo.PosX = player.PosInfo.PosX;
+                        //arrow.PosInfo.PosY = player.PosInfo.PosY;
 
                         //// 투사체의 스피드를 데이터에서 불러온다.
-                        //arrow_2.Speed = skillData.projectile.speed;
+                        //arrow.Speed = skillData.projectile.speed;
+                        //Console.WriteLine($"arrow speed : { arrow.Speed}");
+                        ////EnterGame(arrow);
+                        //arrow.IsFinal = true;
+                        //arrow.shot = 4;
+                        //arrow.Stat.Hp = 4; // 이건 4개 소환하기 위해 쓴거임.
 
-                        //arrow_2.IsFinal = false;
+                        //// shot 과 hp 4 로 하면 4발이나간다.
 
-                        //PushAfter(100, EnterGame, arrow_2, false);
+                        //Push(EnterGame, arrow, false); // => JobQueue 화  
+
+
+                        ////Arrow arrow_2 = ObjectManager.Instance.Add<Arrow>();
+                        ////if (arrow_2 == null)
+                        ////    return;
+
+                        ////arrow_2.Owner = player;
+
+                        ////// 투사체 에게 스킬 데이터를 넣어준다.
+                        ////arrow_2.Data = skillData;
+
+                        ////arrow_2.PosInfo.State = CreatureState.Moving;
+                        ////arrow_2.PosInfo.MoveDir = player.PosInfo.MoveDir;
+                        ////arrow_2.PosInfo.PosX = player.PosInfo.PosX;
+                        ////arrow_2.PosInfo.PosY = player.PosInfo.PosY;
+
+
+                        ////// 투사체의 스피드를 데이터에서 불러온다.
+                        ////arrow_2.Speed = skillData.projectile.speed;
+
+                        ////arrow_2.IsFinal = false;
+
+                        ////PushAfter(100, EnterGame, arrow_2, false);
 
 
 

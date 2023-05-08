@@ -69,6 +69,9 @@ public class MyPlayerController : PlayerController
         base.Init();
         Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
 
+
+        _hpBar.transform.gameObject.SetActive(true);
+
         // 카메라 높이 및 너비 구하기
         //height =  Camera.main.orthographicSize;
         //width = height * Screen.width / Screen.height;

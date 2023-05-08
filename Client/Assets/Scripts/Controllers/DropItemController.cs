@@ -8,7 +8,7 @@ using Google.Protobuf.Protocol;
 public class DropItemController : BaseController
 {
 
-    Coroutine _coSkill;
+    Coroutine _coDrop;
 
     public int DropItemLayerBack = 0;
 
@@ -29,7 +29,7 @@ public class DropItemController : BaseController
         // 초기에 레이어 설정
         _sprite.sortingOrder = -(int)PosInfo.PosY-10000;
 
-        
+        // _coDrop = StartCoroutine(MoveTheBall());
 
     }
 
@@ -39,24 +39,30 @@ public class DropItemController : BaseController
 
         float y = 0;
 
+        float b = 20;
+
+        float spin = 6000.0f;
+
         while(transform.position.y < DestPos.y-5)
         {
-            y += 4000.0f * Time.smoothDeltaTime;
+            y += spin * Time.smoothDeltaTime;
 
             //transform.position += new Vector3(0, 150 * Time.smoothDeltaTime, 0);
 
-            transform.position = Vector3.Lerp(transform.position, DestPos, 20*Time.smoothDeltaTime);
+            transform.position = Vector3.Lerp(transform.position, DestPos, b * Time.smoothDeltaTime);
+
+            b += 5;
 
             transform.rotation = Quaternion.Euler(0, 0, y);
             yield return new WaitForSeconds(0.02f);
         }
 
-        float a = 3;
+        float a = 10;
  
         while (transform.position.y > CurrentPos.y)
         {
 
-            y += 4000.0f * Time.smoothDeltaTime;
+            y += spin * Time.smoothDeltaTime;
 
             //transform.position -= new Vector3(0, 150 * Time.smoothDeltaTime, 0);
             transform.position = Vector3.MoveTowards(transform.position, CurrentPos, a * Time.smoothDeltaTime);
@@ -67,6 +73,7 @@ public class DropItemController : BaseController
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
+        _coDrop = null;
     }
 
 

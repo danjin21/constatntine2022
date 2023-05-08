@@ -8,7 +8,7 @@ using static Define;
 public class CreatureController : BaseController
 {
 
-    HpBar _hpBar;
+    public HpBar _hpBar;
     MpBar _mpBar;
 
     public GameObject Target { get; set;  }
@@ -94,6 +94,9 @@ public class CreatureController : BaseController
         go.name = "HpBar";
         _hpBar = go.GetComponent<HpBar>();
         UpdateHpBar();
+        
+        // 닫아놓자
+        _hpBar.transform.gameObject.SetActive(false);
     }
 
     // HpBar 업데이트

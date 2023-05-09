@@ -21,29 +21,32 @@ public class DropItemController : BaseController
         _sprite = GetComponent<SpriteRenderer>();
 
 
-        DestPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f + 80.0f, -(DropItemLayerBack % 10000000) / 100000.000000f);
+        DestPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f + 80.0f, - (DropItemLayerBack % 1000000) / 100000.000000f);
 
-        CurrentPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f,  - (DropItemLayerBack%10000000)/100000.000000f);
+        CurrentPos = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 16.0f,  - (DropItemLayerBack%1000000)/100000.000000f);
         transform.position = CurrentPos;
 
         // 초기에 레이어 설정
-        _sprite.sortingOrder = -(int)PosInfo.PosY-10000;
+        //_sprite.sortingOrder = -(int)PosInfo.PosY-10000;
+        _sprite.sortingOrder = -(int)PosInfo.PosY-2;
 
-        // _coDrop = StartCoroutine(MoveTheBall());
+        _coDrop = StartCoroutine(MoveTheBall());
 
     }
 
 
     IEnumerator MoveTheBall()
     {
+        int jumpLayer = 2;
+        _sprite.sortingOrder += jumpLayer;
 
         float y = 0;
 
         float b = 20;
 
-        float spin = 6000.0f;
+        float spin = 12000.0f;
 
-        while(transform.position.y < DestPos.y-5)
+        while(transform.position.y < DestPos.y-1)
         {
             y += spin * Time.smoothDeltaTime;
 
@@ -57,7 +60,7 @@ public class DropItemController : BaseController
             yield return new WaitForSeconds(0.02f);
         }
 
-        float a = 10;
+        float a = 100;
  
         while (transform.position.y > CurrentPos.y)
         {
@@ -67,11 +70,13 @@ public class DropItemController : BaseController
             //transform.position -= new Vector3(0, 150 * Time.smoothDeltaTime, 0);
             transform.position = Vector3.MoveTowards(transform.position, CurrentPos, a * Time.smoothDeltaTime);
             transform.rotation = Quaternion.Euler(0, 0, y);
-            a += 50;
+            a += 100;
             yield return new WaitForSeconds(0.02f);
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        _sprite.sortingOrder -= jumpLayer;
 
         _coDrop = null;
     }

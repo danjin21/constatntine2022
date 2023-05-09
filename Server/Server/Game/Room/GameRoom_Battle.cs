@@ -271,6 +271,7 @@ namespace Server.Game
                                 tempProjectileInfo.PosInfo.State = serverArrow.PosInfo.State;
                                 tempProjectileInfo.TargetId = -1;
                                 tempProjectileInfo.Distance = distance;
+                                tempProjectileInfo.Shots = serverArrow.shot;
 
                                 bool shot = false;
                                 int i = 0;
@@ -287,6 +288,15 @@ namespace Server.Game
                                     if (room.Map.Find(destPos) == null)
                                     {
                                         //room.Map.ApplyMove(serverArrow, destPos, collision: false /*충돌영향안준다.*/);
+
+                                        // 충돌체
+
+                                        if(room.Map.CanGo(destPos,false) == false)
+                                        {
+                                            tempProjectileInfo.Distance = i+1;
+                                            break;
+                                        }
+
 
                                         serverArrow.PosInfo.PosX = destPos.x;
                                         serverArrow.PosInfo.PosY = destPos.y;
@@ -722,6 +732,7 @@ namespace Server.Game
                         tempProjectileInfo.PosInfo.State = serverArrow.PosInfo.State;
                         tempProjectileInfo.TargetId = -1;
                         tempProjectileInfo.Distance = distance;
+                        tempProjectileInfo.Shots = serverArrow.shot;
 
                         bool shot = false;
                         int i = 0;
@@ -738,6 +749,15 @@ namespace Server.Game
                             if (room.Map.Find(destPos) == null)
                             {
                                 //room.Map.ApplyMove(serverArrow, destPos, collision: false /*충돌영향안준다.*/);
+
+
+                                // 충돌체
+
+                                if (room.Map.CanGo(destPos, false) == false)
+                                {
+                                    tempProjectileInfo.Distance = i + 1;
+                                    break;
+                                }
 
                                 serverArrow.PosInfo.PosX = destPos.x;
                                 serverArrow.PosInfo.PosY = destPos.y;

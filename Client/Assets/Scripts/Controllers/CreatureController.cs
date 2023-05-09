@@ -192,7 +192,7 @@ public class CreatureController : BaseController
             }
 
             // 시간딜레이
-            yield return new WaitForSeconds(0.10f);
+            yield return new WaitForSeconds(0.1f);
         }
 
    

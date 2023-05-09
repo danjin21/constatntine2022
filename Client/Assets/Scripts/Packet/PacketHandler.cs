@@ -434,6 +434,7 @@ class PacketHandler
             ProjectileController pc = projectile.GetComponent<ProjectileController>();
             pc.projectileInfo = skillPacket.ProjectileInfo;
             pc.distance = skillPacket.ProjectileInfo.Distance;
+            pc.shots = skillPacket.ProjectileInfo.Shots;
 
             // 타겟이 있다면
             if (target != null)

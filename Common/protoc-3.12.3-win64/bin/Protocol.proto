@@ -665,5 +665,6 @@ message ProjectileInfo{
     PositionInfo posInfo = 2;
     int32 distance = 3;
     int32 targetId = 4;
+    int32 shots = 5;
 
 }

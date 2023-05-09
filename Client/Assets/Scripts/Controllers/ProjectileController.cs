@@ -11,6 +11,9 @@ public class ProjectileController : BaseController
     public int distance;
     Vector3Int destCellPos;
     Vector3 destPos;
+    public int shots;
+
+    protected Coroutine _coChildShot;
 
     protected override void Init()
     {
@@ -51,6 +54,8 @@ public class ProjectileController : BaseController
 
         //this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
 
+        if(shots >1)
+            _coChildShot = StartCoroutine("CoStartChildShot", shots);
 
     }
 
@@ -92,6 +97,47 @@ public class ProjectileController : BaseController
         }
 
         Debug.Log($"dist : {dist}");
+
+    }
+
+
+    IEnumerator CoStartChildShot(int shot)
+    {
+        List<GameObject> childArrows = new List<GameObject>();
+
+        for(int i=0;i<shot-1;i++)
+        {
+
+            GameObject projectile = Managers.Resource.Instantiate("Creature/Projectile");
+            projectile.name = "Projectile";
+
+            ProjectileController pc = projectile.GetComponent<ProjectileController>();
+            pc.projectileInfo = projectileInfo;
+            pc.distance = distance;
+            pc.shots = -1;
+
+            // 타겟이 있다면
+            if (target != null)
+                pc.target = target;
+
+            childArrows.Add(projectile);
+            projectile.SetActive(false);
+
+        }
+
+
+        foreach (GameObject child in childArrows)
+        {
+            yield return new WaitForSeconds(0.1f);
+            child.gameObject.SetActive(true);
+        }
+
+
+        //yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
+
+        _coChildShot = null;
+
+
 
     }
 

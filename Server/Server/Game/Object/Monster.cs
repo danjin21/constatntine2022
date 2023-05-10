@@ -535,7 +535,7 @@ namespace Server.Game
 
                     DropItem dropItems = ObjectManager.Instance.Add<DropItem>();
 
-                    dropItems.Init(player, rewardData, Room, 0);
+                    dropItems.Init(player, rewardData, Room, 0, throwing:true);
 
 
                     // 이동중

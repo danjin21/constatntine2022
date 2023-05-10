@@ -78,7 +78,8 @@ class PacketHandler
             if (Managers.Object._objects.ContainsKey(obj.ObjectId))
                 continue;
 
-            Managers.Object.Add(obj, myPlayer: false);
+            // throwing : 아이템 회전할지말지 결정
+            Managers.Object.Add(obj, myPlayer: false, throwing: spawnPacket.Throwing);
             A = obj;
             Debug.Log("finish" + A.ObjectId + "/" + Time.deltaTime);
 

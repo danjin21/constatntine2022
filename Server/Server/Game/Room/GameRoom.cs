@@ -185,6 +185,9 @@ namespace Server.Game
             //lock (_lock)
             //{
 
+            bool throwing = false;
+
+
             if (type == GameObjectType.Player)
             {
                 Player player = gameObject as Player;
@@ -351,7 +354,11 @@ namespace Server.Game
                 // 위에 올라갈 수 있게 해주고, 그곳에 뭐가 있어도 그냥 올려준다.
                 Map.ApplyMove(dropItem, new Vector2Int(dropItem.CellPos.x + countX, dropItem.CellPos.y + countY), false, false);
 
+                // 아이템 스윙 효과
 
+                throwing = dropItem.Throwing;
+                Console.WriteLine("아이템 스로잉 : " + throwing);
+                dropItem.Throwing = false; // 초기에 아이템 떨궈지는 모션 되었으면 그다음부터는 안굴려지게
 
             }
             else if (type == GameObjectType.Npc)
@@ -399,12 +406,19 @@ namespace Server.Game
             }
 
 
+
+
             // 타인한테 정보 전송
             {
                 S_Spawn spawnPacket = new S_Spawn();
                 spawnPacket.Objects.Add(gameObject.Info);
+                spawnPacket.Throwing = throwing; // 소환할때 돌아가는 효과 줄지 안줄지
                 Broadcast(gameObject.CellPos, spawnPacket);
             }
+
+
+
+
 
 
             //// 타인한테 정보 전송

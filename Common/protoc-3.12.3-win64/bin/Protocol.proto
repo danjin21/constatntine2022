@@ -222,6 +222,7 @@ message S_LeaveGame{
 
 message S_Spawn{
   repeated ObjectInfo objects = 1;
+  bool throwing = 2;
 }
 
 message S_Despawn {

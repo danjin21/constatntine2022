@@ -15,6 +15,8 @@ public class DropItemController : BaseController
     public Vector3 DestPos;
     public Vector3 CurrentPos;
 
+    public bool Throwing = false;
+
     protected override void Init()
     {
 
@@ -30,10 +32,17 @@ public class DropItemController : BaseController
         //_sprite.sortingOrder = -(int)PosInfo.PosY-10000;
         _sprite.sortingOrder = -(int)PosInfo.PosY-2;
 
-        _coDrop = StartCoroutine(MoveTheBall());
-
+        if (Throwing)
+        {
+            _coDrop = StartCoroutine(MoveTheBall());
+            Throwing = false;
+        }
     }
 
+    public void ThrowingItem()
+    {
+    
+    }
 
     IEnumerator MoveTheBall()
     {

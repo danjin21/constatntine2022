@@ -664,7 +664,7 @@ namespace Server.DB
                             rewardData.itemInfo = newItem.Info;
 
 
-                            dropItems.Init(player, rewardData, A, 0);
+                            dropItems.Init(player, rewardData, A, 0, throwing: false) ;
                             dropItems.CellPos = new Vector2Int(player.CellPos.x, player.CellPos.y);
 
                             A.Push(A.EnterGame, dropItems, false); // true 는 랜덤값

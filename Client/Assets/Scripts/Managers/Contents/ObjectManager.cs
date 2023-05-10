@@ -21,8 +21,9 @@ public class ObjectManager
     }
 
 
-
-    public void Add(ObjectInfo info, bool myPlayer = false)
+    // throwing : 20230511 진형 추가
+    // 처음 나올때 회전하면서 나오게 할지
+    public void Add(ObjectInfo info, bool myPlayer = false, bool throwing = false)
     {
         if (MyPlayer != null && MyPlayer.Id == info.ObjectId)
             return ;
@@ -147,7 +148,12 @@ public class ObjectManager
             Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);
             dc.SetSprite(icon);
 
-     
+
+            // 처음 나오는거라면 회전 시킨다
+            if(throwing == true)
+            {
+                dc.Throwing = true;
+            }
 
 
 

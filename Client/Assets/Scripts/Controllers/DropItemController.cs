@@ -34,7 +34,7 @@ public class DropItemController : BaseController
 
         if (Throwing)
         {
-            _coDrop = StartCoroutine(MoveTheBall());
+            _coDrop = StartCoroutine(DropEffect());
             Throwing = false;
         }
     }
@@ -43,6 +43,32 @@ public class DropItemController : BaseController
     {
     
     }
+
+
+
+
+
+
+    IEnumerator DropEffect()
+    {
+        gameObject.GetComponent<SpriteRenderer>().color -= new Color(0, 0, 0, 1);
+
+        // yield return new WaitForSeconds(0.1f);
+
+        for (int i = 0; i < 10; i++)
+        {
+    
+            gameObject.GetComponent<SpriteRenderer>().color += new Color(0, 0, 0, 0.1f);
+
+
+            yield return new WaitForSeconds(0.01f);
+        }
+
+        _coDrop = null;
+    }
+
+
+
 
     IEnumerator MoveTheBall()
     {

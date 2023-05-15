@@ -891,9 +891,8 @@ public class BaseController : MonoBehaviour
             }
         }
 
-
         // 다사라지면 클라쪽에서 초기화해준다. (서버는 상관없음) 
-        if(this.transform.GetComponent<SpriteRenderer>().color.a <= 0.0f)
+        if (this.transform.GetComponent<SpriteRenderer>().color.a <= 0.0f)
         {
             State = CreatureState.Idle;
             IsDead = false;

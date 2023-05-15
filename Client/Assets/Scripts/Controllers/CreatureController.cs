@@ -17,6 +17,33 @@ public class CreatureController : BaseController
     protected Coroutine _coSkill;
     public Coroutine _coDead;
 
+
+    public bool _getShot = false;
+    public bool _getDie = false;
+
+    public bool getShot
+    {
+        get { return _getShot; }
+        set
+        {
+            _getShot = value;
+
+            if(_getShot == true)
+                _hpBar.transform.gameObject.SetActive(true);
+        }
+    }
+
+    public bool getDie
+    {
+        get { return _getDie; }
+        set
+        {
+            _getDie = value;
+
+        }
+    }
+
+
     // BaseController를 따르되, UpdateHpBar()를 추가로 실행한다.
     public override StatInfo Stat
     {
@@ -163,8 +190,7 @@ public class CreatureController : BaseController
 
     }
 
-    public bool getShot = false;
-    public bool getDie = false;
+
 
     IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId, float projectileSpeed)
     {
@@ -369,6 +395,8 @@ public class CreatureController : BaseController
     IEnumerator CoStartDeadDelay(int damage)
     {
 
+        float deleteEffectTime = 0.5f;
+
         //if (projectileSpeed > 0)
         yield return new WaitUntil(() => getDie == true);
 
@@ -385,15 +413,20 @@ public class CreatureController : BaseController
         effect.transform.parent = this.transform;
 
         // 게임 이펙트를 몇초 후에 삭제
-        GameObject.Destroy(effect, 0.5f);
+        GameObject.Destroy(effect, deleteEffectTime);
+
+
+
+        getDie = false;
+
+        yield return new WaitForSeconds(deleteEffectTime);
+
 
         // Hp바 비활성화
 
         _hpBar.transform.gameObject.SetActive(false);
 
         _coDead = null;
-
-        getDie = false;
 
     }
 

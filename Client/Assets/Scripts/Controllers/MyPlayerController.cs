@@ -285,6 +285,8 @@ public class MyPlayerController : PlayerController
         // 현재 위치에 다른 크리쳐가 있으면 서버 위치랑 동기화 시킨다.
         GameObject Creature = Managers.Map.Find(CellPos);
 
+        // 그냥 클라이언트에서는 막 움직이게
+
         // 크리쳐가 있다느 뜻임
         if (Creature != null && Creature != this.gameObject)
         {

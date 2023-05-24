@@ -50,6 +50,9 @@ public class ProjectileController : BaseController
             destPos = target.transform.position;
         }
 
+
+
+
         Speed = 1000;
 
         //this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
@@ -85,7 +88,6 @@ public class ProjectileController : BaseController
 
         if (dist < Speed * Time.smoothDeltaTime)
         {
-            Managers.Resource.Destroy(this.gameObject);
 
             if (target != null)
             {
@@ -94,6 +96,9 @@ public class ProjectileController : BaseController
                 Debug.Log(target.GetComponent<CreatureController>().getShot);
                 Debug.Log("targetID : " + target.GetComponent<CreatureController>().Id);
             }
+
+            Managers.Resource.Destroy(this.gameObject);
+
         }
 
         Debug.Log($"dist : {dist}");

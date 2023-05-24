@@ -716,8 +716,8 @@ namespace Server.Game
                         //Push(EnterGame, arrow, false); // => JobQueue 화  
 
                         serverArrow.Speed = skillData.projectile.speed;
-                        serverArrow.shot = 2;
-                        serverArrow.Stat.Hp = 2; // 이건 4개 소환하기 위해 쓴거임.
+                        serverArrow.shot = 4;
+                        serverArrow.Stat.Hp = 4; // 이건 4개 소환하기 위해 쓴거임.
 
 
 

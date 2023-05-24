@@ -19,7 +19,7 @@
       "skillType": "SkillProjectile",
       "projectile": {
         "name": "화살",
-        "speed": "1500.0",
+        "speed": "1500.0", // 1500
         //"speed": "1200.0",
         "range": "10",
         "prefab": "Creature/Arrow",
@@ -39,7 +39,7 @@
       "skillType": "SkillProjectile",
       "projectile": {
         "name": "화살",
-        "speed": "1500.0",
+        "speed": "1500.0", //1500
         "range": "10",
         "prefab": "Creature/Arrow",
         "count": "1"

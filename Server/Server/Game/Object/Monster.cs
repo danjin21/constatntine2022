@@ -559,7 +559,8 @@ namespace Server.Game
                             }
                             else // 만약에 투사체로 공격한 거라면, 사실적으로 해주기 위해 그 뒤에 떨구게 한다.
                             {
-                                Vector2Int A = GetBackCellPos();
+                                // 이렇게 해주지 않으면 초기화된상태에서 CellPos가 계산됨
+                                Vector2Int A = GetBackCellPos(PosInfo.MoveDir);
                                 dropItems.CellPos = A;
                             }
 

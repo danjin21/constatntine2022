@@ -12,7 +12,7 @@ public class WebManager
 
 
 
-    public string BaseUrl { get; set; } = "https://1.222.183.124:5001/api";
+    public string BaseUrl { get; set; } = "https://120.50.85.170:5001/api";
 
 
 

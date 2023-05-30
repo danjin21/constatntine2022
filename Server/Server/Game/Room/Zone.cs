@@ -76,20 +76,48 @@ namespace Server.Game
 
         public DropItem FindOneItem(Func<DropItem, bool> condition)
         {
-            List<DropItem> itemList = new List<DropItem>();
+            List<DropItem> itemList = new List<DropItem>(DropItems);
 
+            List<DropItem> newItemList = itemList.OrderByDescending(i => i.Id).ToList();
 
-            foreach (DropItem item in DropItems.Reverse())
+            foreach (DropItem item in newItemList)
             {
                 if (condition.Invoke(item))
-                    Console.WriteLine("같은 포지션에 있는 아이템 리스트들" + item.Stat.TemplateId);
-            }
-
-            foreach (DropItem item in DropItems.Reverse())
-            {
-                if (condition.Invoke(item))
+                {
+                    Console.WriteLine("같은 포지션에 있는 아이템 리스트들" + item.Stat.TemplateId + "/" + item.Id);
                     return item;
+                }
             }
+
+
+            // DropItems를 ID에 맞게 소팅해준다.
+            //itemList.OrderByDescending(p => p.Id);
+            
+
+            //foreach(DropItem item in itemList)
+            //{
+            //    if (condition.Invoke(item))
+            //        Console.WriteLine("같은 포지션에 있는 아이템 리스트들" + item.Stat.TemplateId + "/" + item.Id);
+            //}
+
+            //foreach (DropItem item in itemList)
+            //{
+            //    if (condition.Invoke(item))
+            //        return item;
+            //}
+
+
+            //foreach (DropItem item in DropItems.Reverse())
+            //{
+            //    if (condition.Invoke(item))
+            //        Console.WriteLine("같은 포지션에 있는 아이템 리스트들" + item.Stat.TemplateId + "/" + item.Id);
+            //}
+
+            //foreach (DropItem item in DropItems.Reverse())
+            //{
+            //    if (condition.Invoke(item))
+            //        return item;
+            //}
 
             return null;
         }

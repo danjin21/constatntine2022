@@ -415,7 +415,8 @@ public class CreatureController : BaseController
         // 게임 이펙트를 몇초 후에 삭제
         GameObject.Destroy(effect, deleteEffectTime);
 
-
+        // 혹시모르니 한번은 실행되도록
+        UpdateDead();
 
         getDie = false;
 

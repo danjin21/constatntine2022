@@ -22,7 +22,7 @@
         //{"probability" : "0","itemId" : "90000","count" : "5"},
         //{"probability" : "50","itemId" : "92000","count" : "5"},
         {
-          "probability": "30",
+          "probability": "50",
           "itemId": "99999",
           "count": "30"
         },

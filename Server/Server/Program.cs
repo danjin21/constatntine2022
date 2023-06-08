@@ -101,12 +101,11 @@ namespace Server
 					session.FlushSend();
                 }
 
-				Thread.Sleep(0);
+				Thread.Sleep(100);
             }
         }
 
-
-		// 로그인 정보 초기화
+// 로그인 정보 초기화
 		static void ClearLoginInfo()
         {
 

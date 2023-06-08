@@ -17,7 +17,7 @@ namespace Server.Game
 
         public Player Owner { get; private set; }
 
-
+        public bool Throwing; // 아이템 떨궈지는 모션
 
         // 생성자
         public DropItem()
@@ -28,13 +28,14 @@ namespace Server.Game
         }
 
 
-        public void Init(Player player, RewardData rewardData, GameRoom room, int order)
+        public void Init(Player player, RewardData rewardData, GameRoom room, int order, bool throwing )
         {
 
             RewardData = rewardData;
             Order = order;
             Owner = player;
 
+            Throwing = throwing;
 
             // TemplateId에서 해당 몬스터의 데이터를 가지고 온다.
 

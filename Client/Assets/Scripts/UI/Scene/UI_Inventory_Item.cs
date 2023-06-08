@@ -43,10 +43,14 @@ public class UI_Inventory_Item : UI_Base
 
     public void OnDisable()
     {
+        CloseInfoPopup();
+    }
+
+    public void CloseInfoPopup()
+    {
         GameObject.Destroy(ItemInfoPopup);
         ItemInfoPopup = null;
     }
-
 
 
     //  한박자 느리게 해야 아이템 먹어지는게 초기화된다.
@@ -376,6 +380,10 @@ public class UI_Inventory_Item : UI_Base
             _icon.gameObject.SetActive(false);
             _frame.gameObject.SetActive(false);
             _count.gameObject.SetActive(false);
+
+            // _icon 이 닫히면 InfoPopup도 닫히게
+
+            CloseInfoPopup();
         }
         else
         {

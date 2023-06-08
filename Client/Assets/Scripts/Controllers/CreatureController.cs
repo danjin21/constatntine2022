@@ -8,13 +8,41 @@ using static Define;
 public class CreatureController : BaseController
 {
 
-    HpBar _hpBar;
+    public HpBar _hpBar;
     MpBar _mpBar;
 
     public GameObject Target { get; set;  }
     public GameObject DamagePocket;
 
     protected Coroutine _coSkill;
+    public Coroutine _coDead;
+
+
+    public bool _getShot = false;
+    public bool _getDie = false;
+
+    public bool getShot
+    {
+        get { return _getShot; }
+        set
+        {
+            _getShot = value;
+
+            if(_getShot == true)
+                _hpBar.transform.gameObject.SetActive(true);
+        }
+    }
+
+    public bool getDie
+    {
+        get { return _getDie; }
+        set
+        {
+            _getDie = value;
+
+        }
+    }
+
 
 
     // BaseController를 따르되, UpdateHpBar()를 추가로 실행한다.
@@ -94,6 +122,9 @@ public class CreatureController : BaseController
         go.name = "HpBar";
         _hpBar = go.GetComponent<HpBar>();
         UpdateHpBar();
+        
+        // 닫아놓자
+        _hpBar.transform.gameObject.SetActive(false);
     }
 
     // HpBar 업데이트
@@ -136,8 +167,19 @@ public class CreatureController : BaseController
         //if (Target == null)
         //    return;
 
+        
+        Data.Skill skillData = null;
+        Managers.Data.SkillDict.TryGetValue(skillId, out skillData);
 
-        _coSkill = StartCoroutine(CoStartDamageDelay(damage, skillId, DamageList, attackerId));
+        float projectileSpeed = 0;
+
+        //if (skillData.projectile != null)
+        //    projectileSpeed = skillData.projectile.speed;
+
+
+
+
+        _coSkill = StartCoroutine(CoStartDamageDelay(damage, skillId, DamageList, attackerId, projectileSpeed));
 
         //if (Hp != 0)
         //     effect = Managers.Resource.Instantiate("Effect/Hit_Effect_Sword",transform);
@@ -149,10 +191,17 @@ public class CreatureController : BaseController
     }
 
 
-    IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId)
+
+    IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId, float projectileSpeed)
     {
 
-    
+        Debug.Log("MY ID 1 : " + Id);
+        //if (projectileSpeed > 0)
+        yield return new WaitUntil(() => getShot == true);
+
+        getDie = true;
+
+        Debug.Log("MY ID 2: " + Id);
 
         if (damage >0)
             HitEffect(skillId);
@@ -169,11 +218,15 @@ public class CreatureController : BaseController
             }
 
             // 시간딜레이
-            yield return new WaitForSeconds(0.10f);
+            yield return new WaitForSeconds(0.1f);
         }
+
+   
 
         _coSkill = null;
 
+        getShot = false;
+ 
     }
 
 
@@ -331,8 +384,24 @@ public class CreatureController : BaseController
 
     public virtual void OnDead(int damage)
     {
-        State = CreatureState.Dead;
 
+
+  
+
+        _coDead = StartCoroutine(CoStartDeadDelay(damage));
+
+   
+    }
+    IEnumerator CoStartDeadDelay(int damage)
+    {
+
+        float deleteEffectTime = 0.5f;
+
+        //if (projectileSpeed > 0)
+        yield return new WaitUntil(() => getDie == true);
+
+
+        State = CreatureState.Dead;
         Vector3 CurrentPosition = Managers.Map.CurrentGrid.CellToWorld(CellPos) + new Vector3(16.0f, 36.0f, 0);
 
 
@@ -344,13 +413,27 @@ public class CreatureController : BaseController
         effect.transform.parent = this.transform;
 
         // 게임 이펙트를 몇초 후에 삭제
+<<<<<<< HEAD
         Managers.Resource.Destroy(effect, 0.5f);
+=======
+        GameObject.Destroy(effect, deleteEffectTime);
+
+        // 혹시모르니 한번은 실행되도록
+        UpdateDead();
+
+        getDie = false;
+
+        yield return new WaitForSeconds(deleteEffectTime);
+
+>>>>>>> 이동_분기_5차
 
         // Hp바 비활성화
 
         _hpBar.transform.gameObject.SetActive(false);
-    }
 
+        _coDead = null;
+
+    }
 
     public virtual void UseSkill(int skillId)
     {

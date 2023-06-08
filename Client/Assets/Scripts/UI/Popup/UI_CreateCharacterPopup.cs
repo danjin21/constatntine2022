@@ -59,7 +59,7 @@ public class UI_CreateCharacterPopup : UI_Popup
         HairColor = 0;
         Face = 0;
         Skin = 0;
-        Gender = 0;
+        Gender = 1;
 
         Hair_End = 3;
         Hair_Color_End =1 ;

@@ -222,6 +222,7 @@ message S_LeaveGame{
 
 message S_Spawn{
   repeated ObjectInfo objects = 1;
+  bool throwing = 2;
 }
 
 message S_Despawn {
@@ -250,6 +251,7 @@ message S_Skill{
     SkillInfo info = 2;
     int32 targetId = 3;
     int32 damage = 4;
+    ProjectileInfo projectileInfo = 5;
 }
 
 message S_ChangeHp {
@@ -589,6 +591,7 @@ message SkillInfo{
     int32 slot = 3;
     int32 ownerDbId = 4;
     int32 skillDbId =5;
+    MoveDir moveDir =6; // 스킬 방향
 }
 
 
@@ -654,5 +657,15 @@ message QuestInfo{
     int32 questTemplateId = 3;
     int32 playerId = 4;
     int32 status = 5;
+
+}
+
+message ProjectileInfo{
+
+    int32 ownerId = 1;
+    PositionInfo posInfo = 2;
+    int32 distance = 3;
+    int32 targetId = 4;
+    int32 shots = 5;
 
 }

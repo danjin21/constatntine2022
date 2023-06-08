@@ -13,6 +13,7 @@ public class MyPlayerController : PlayerController
     bool _actionKeyPressed = false;
     public bool _moveKeyPressed = false;
     public float count = 0;
+    public float count_checkDistance = 0; 
 
     public int WeaponDamage { get; private set; }
     public int ArmorDefence { get;  private set; }
@@ -61,10 +62,19 @@ public class MyPlayerController : PlayerController
     public bool MoveReset;
     public float MoveResetCount;
 
+<<<<<<< HEAD
     public override void Init()
+=======
+    public bool IsSkillSend;
+
+    protected override void Init()
+>>>>>>> 이동_분기_5차
     {
         base.Init();
         Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+
+
+        _hpBar.transform.gameObject.SetActive(true);
 
         // 카메라 높이 및 너비 구하기
         //height =  Camera.main.orthographicSize;
@@ -187,20 +197,21 @@ public class MyPlayerController : PlayerController
             switch (State)
             {
                 case CreatureState.Idle:
-                    if(MoveReset == false)
+                if (MoveReset == false)
                         GetDirInput();
                     break;
                 case CreatureState.Moving:
-                    if (MoveReset == false)
+                if (MoveReset == false)
                         GetDirInput();
                     break;
 
-            }
+        }
 
             base.UpdateController();
         //}
 
 
+    
 
     }
 
@@ -210,6 +221,18 @@ public class MyPlayerController : PlayerController
     //    Camera.main.transform.position = new Vector3(transform.position.x + 128, transform.position.y - 96, -10);
     //    //Camera.main.transform.position = new Vector3(transform.position.x , transform.position.y , -10);
 
+    //}
+
+
+    //[SerializeField]
+    //public Coroutine _coCheckDistance;
+
+
+
+    //IEnumerator CoCheckDistance(float time)
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    _coSkillCooltime = null;
     //}
 
 
@@ -261,6 +284,34 @@ public class MyPlayerController : PlayerController
         }
 
 
+
+
+        // 현재 위치에 다른 크리쳐가 있으면 서버 위치랑 동기화 시킨다.
+        GameObject Creature = Managers.Map.Find(CellPos);
+
+        // 그냥 클라이언트에서는 막 움직이게
+
+        // 크리쳐가 있다느 뜻임
+        if (Creature != null && Creature != this.gameObject)
+        {
+            // 서버랑 위치 동기화
+
+            // -----------------------------------------------------------------//
+            Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+
+            // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
+            PosInfo.PosX = TempPosInfo.PosX;
+            PosInfo.PosY = TempPosInfo.PosY;
+
+            // SyncPos();
+
+        
+            State = CreatureState.Idle;
+            _updated = true;
+            CheckUpdatedFlag();
+        }
+
+
         // 거리가 2칸이상일 경우에만 서버 대로 움직이게 해준다.
 
         if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
@@ -272,8 +323,20 @@ public class MyPlayerController : PlayerController
 
             Debug.Log($"{difX}/{difY}");
 
-            if (difX <= 1 && difY <= 1)
+            // 시간 체크를 한다.
+            count_checkDistance += Time.smoothDeltaTime;
+
+
+            if (difX <= 0 && difY <= 0)
                 return;
+
+            // 3초 동안 다른 상태면 이동시켜준다. ( 서버가 조금 느리게 답변을 주기 때문 )
+            if (count_checkDistance < 3.00f)
+                return;
+        }
+        else
+        {
+            count_checkDistance = 0;
         }
 
         // 일정 시간 지난후에... 핑 검사후 그다음에 돌아가게.. 혹은 2칸 이상일 경우에만..
@@ -302,10 +365,7 @@ public class MyPlayerController : PlayerController
         }
         else
         {
-
             transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
-
-
         }
 
         // -----------------------------------------------------------------//
@@ -322,14 +382,28 @@ public class MyPlayerController : PlayerController
         PosInfo.PosX = TempPosInfo.PosX;
         PosInfo.PosY = TempPosInfo.PosY;
 
+        SyncPos();
 
+        State = CreatureState.Idle;
+        CheckUpdatedFlag();
+
+        // Idle로 
+
+        //State = CreatureState.Idle;
     }
+
     [SerializeField]
-    public Coroutine _coSkillCooltime;
+    public Coroutine _coSkillCooltime = null;
     [SerializeField]
-    public Coroutine _coConsumeCooltime;
+    public Coroutine _coConsumeCooltime = null;
     [SerializeField]
-    public Coroutine _coShortKeyCooltime;
+    public Coroutine _coShortKeyCooltime = null;
+    [SerializeField]
+    public Coroutine _coShortKeyCooltime_Potion = null;
+    [SerializeField]
+    public Coroutine _coShortKeyCooltime_Teleport = null;
+
+
 
     IEnumerator CoInputCooltime(float time)
     {
@@ -346,11 +420,50 @@ public class MyPlayerController : PlayerController
 
     IEnumerator CoInputCooltime_ShortKey(float time)
     {
+        // 서버에서 받아야지만 되게
+        // yield return null;
+
+        // 서버에서 응답 안받을 경우를 대비
         yield return new WaitForSeconds(time);
+
         _coShortKeyCooltime = null;
     }
 
 
+    public override void UseSkill(int skillId)
+    {
+
+        base.UseSkill(skillId);
+
+        if (skillId != 3101000)
+            Managers.Object.MyPlayer.SkillCool();
+
+
+
+        // StopCoroutine(_coShortKeyCooltime);
+    }
+
+
+    // 물약은 따로 
+    IEnumerator CoInputCooltime_ShortKey_Potion(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _coShortKeyCooltime_Potion = null;
+    }
+
+    // 텔레포트 따로
+    IEnumerator CoInputCooltime_ShortKey_Teleport(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _coShortKeyCooltime_Teleport = null;
+    }
+
+
+    public string A;
+    public float B;
+    public float C;
+
+    public bool IsEntered = false;
 
     void UpdateGetInput()
     {
@@ -359,11 +472,54 @@ public class MyPlayerController : PlayerController
             return;
 
 
+
+
+        // 채팅 엔터 끝나자마자 누르고 있는거 바로 스킬 쳐지지 않게
+        {
+            bool OneClick = false;
+
+            // Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
+            if ((Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.RightShift)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.LeftControl)) || (Input.GetKeyDown(KeyCode.RightControl)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.LeftAlt)) || (Input.GetKeyDown(KeyCode.RightAlt)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.Q)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.W)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.E)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.A)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.S)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.D)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.Space)))
+                OneClick = true;
+            if ((Input.GetKeyDown(KeyCode.Z)))
+                OneClick = true;
+
+            if (OneClick == true)
+                IsEntered = false;
+
+        }
+
+
+        if (IsEntered)
+            return;
+
+     
+
         Key = -1;
         ConsumeKey = -1;
 
         if (key_window_active == true)
         {
+
+            // anykey none
             // Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
             if ((WinInput.GetKey(KeyCode.LeftShift)) || (WinInput.GetKey(KeyCode.RightShift)))
             { Key = 1; ConsumeKey = IsConsumeFromKey(Key); }
@@ -388,6 +544,8 @@ public class MyPlayerController : PlayerController
             if ((WinInput.GetKey(KeyCode.Z)))
             { Key = 11; ConsumeKey = IsConsumeFromKey(Key); }
         }
+
+
 
         //// Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
         //if ((Input.GetKey(KeyCode.LeftShift)) || (Input.GetKey(KeyCode.RightShift)))
@@ -453,13 +611,13 @@ public class MyPlayerController : PlayerController
                 _actionKeyPressed = false;
 
 
-            if (_coSkillCooltime != null)
-                _actionKeyPressed = false;
+            //if (_coSkillCooltime != null)
+            //    _actionKeyPressed = false;
 
-            // 스킬이랑 포션은 구분짓는다.- 1
-            if (_coSkillCooltime != null)
-                return;
- 
+            //// 스킬이랑 포션은 구분짓는다.- 1
+            //if (_coSkillCooltime != null)
+            //    return;
+
             // 스킬이랑 포션은 구분짓는다.- 2
             if (_coConsumeCooltime != null)
                 return;
@@ -468,6 +626,13 @@ public class MyPlayerController : PlayerController
             if (_coShortKeyCooltime != null)
                 return;
 
+            // Shrot_Potion 키 쿨타임
+            if (_coShortKeyCooltime_Potion != null)
+                return;
+
+            // 텔레포트 키 쿨타임
+            if (_coShortKeyCooltime_Teleport != null)
+                return;
 
             // 액션이 스킬인지 확인
             Skills PlayerSkill = Managers.Skill.Find(i => i.SkillId == key.Action);
@@ -492,6 +657,7 @@ public class MyPlayerController : PlayerController
 
                     MoveReset = true;
                     _moveKeyPressed = false;
+                    Debug.Log("!!!!@1 _moveKeyPressed = " + _moveKeyPressed);
 
                 }
 
@@ -503,7 +669,6 @@ public class MyPlayerController : PlayerController
                     {
                         //Managers.Chat.ChatRPC("<color=#99CCFF>텔레포트는 방향키를 누른 상태에서 발동 됩니다.</color>");
                         SkillCool();
-
                         return;
 
 
@@ -529,6 +694,45 @@ public class MyPlayerController : PlayerController
 
 
  
+
+
+            // 물약을 먹고 있으면 이동 안되는것 해결
+            if (ConsumeKey == -1)
+            {
+                if(key.Action == 3101000) // 텔레포트도 별도로
+                {
+                    ShortKeyCool_Teleport();
+                }
+                else
+                {
+                    // 서버랑 위치가 같아야 쓸 수 있다.
+                    if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
+                    {
+                        return;
+                    }
+
+                    ShortKeyCool();
+                    if (IsSkillSend == false)
+                    {
+                        IsSkillSend = true;
+                        Debug.Log("+++++++++++++++++++++++++++스킬 전송 완료");
+
+                        A = DateTime.Now.ToString("ss.fffffff");
+                        float NowTime = float.Parse(A);
+                        B = NowTime;
+
+
+                        //Managers.Chat.ChatRPC($"<color=#000000>쿨타임 시간 : {TempC}</color>");
+                        //Managers.Chat.ChatRPC($"<color=#000000>지연율 : {TempC - C}</color>");
+
+
+                    }
+               
+                }
+            }               
+            else
+                ShortKeyCool_Potion();
+
             // 타입이 맞는지 확인
 
             C_ShortKey shortKey = new C_ShortKey()
@@ -536,7 +740,8 @@ public class MyPlayerController : PlayerController
                 Action = key.Action
             };
             Managers.Network.Send(shortKey);
-            ShortKeyCool();
+
+
             Debug.Log("누르고 있슴다.");
 
             //UseSkill(key.Action);
@@ -558,8 +763,19 @@ public class MyPlayerController : PlayerController
 
         Key key = Managers.KeySetting.Get_KeyValue(KeyCode);
 
-        if (key != null && key.Action == 90000)
-            return KeyCode;
+     
+
+        if (key != null)
+        {
+            // 아이템 값의 코드를 가져온다.
+            Data.ItemData itemData = null;
+            Managers.Data.ItemDict.TryGetValue(key.Action, out itemData);
+
+            if (itemData != null && itemData.itemType == ItemType.Consumable)
+            {
+                return KeyCode;
+            }           
+        }
         
         // 이미 앞에서 ConsumeKey 갱신이 된 상태라면 -1를 반환하지 않는다. (덮음 방지)
         if (ConsumeKey != -1)
@@ -569,10 +785,11 @@ public class MyPlayerController : PlayerController
     }
 
 
+
     // 어차피 서버에서는 800임
     public void SkillCool()
     {
-
+        // 핑 지연율만큼 더해주거나, 빼준다.
         _coSkillCooltime = StartCoroutine("CoInputCooltime", 0.6f); // 서버에서는 0.8초로 쿨을 준다.
         // 원래 0.8초로 하는게 좋은데, 비교를 하기 위해  0.1f 로 일단 해놓음
     }
@@ -588,21 +805,29 @@ public class MyPlayerController : PlayerController
     // 이건 자체적으로 실행 => 어차피 서버에서는 700임
     public void ShortKeyCool()
     {
-
-
         //_coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.05f);
 
+        // 서버에서 반응 안와서 null 하는거 안될까봐 5초 뒤에 null 되게 한다.
         _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.35f);
+
 
     }
 
+    // 이건 자체적으로 실행 => 어차피 서버에서는 700임
+    public void ShortKeyCool_Potion()
+    {
+        _coShortKeyCooltime_Potion = StartCoroutine("CoInputCooltime_ShortKey_Potion", 0.35f);
+    }
 
-
+    // 텔레포트도 따로 쿨타임
+    public void ShortKeyCool_Teleport()
+    {
+        _coShortKeyCooltime_Teleport = StartCoroutine("CoInputCooltime_ShortKey_Teleport", 0.35f);
+    }
 
     // 키보드 입력
     void GetDirInput()
     {
-
 
 
         // 채팅창 켜져있으면 방향도 비활성화
@@ -610,8 +835,12 @@ public class MyPlayerController : PlayerController
             return;
 
 
+        if (IsSkillSend == true)
+            return;
+
         // 단축키 누른 직후 방향키 전환하면 안되게
 
+<<<<<<< HEAD
 
         //if (_actionKeyPressed == true)
         //{
@@ -630,6 +859,19 @@ public class MyPlayerController : PlayerController
         // 스킬 쓸때는 못나가게?
         //if (_coSkillCooltime != null)
         //    return;
+=======
+        //if (_coShortKeyCooltime != null)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    // 그 서버에서 스킬 쓰라고 왔어도
+        //    // 스킬 쓰는동안에도 못가게 하기
+        //    if (State == CreatureState.Skill)
+        //        return;
+        //}
+>>>>>>> 이동_분기_5차
 
 
         //_moveKeyPressed = true;
@@ -681,6 +923,7 @@ public class MyPlayerController : PlayerController
         else
         {
             _moveKeyPressed = false;
+
             //Dir = MoveDir.None;
             count = 0.22f; // 같은 방향이면 좀 빠르게 가게 0으로 안 만든다.
 
@@ -695,6 +938,7 @@ public class MyPlayerController : PlayerController
         if (count >= 0.27f)
         {
             _moveKeyPressed = true;
+
             count = 0;
         }
         else
@@ -728,7 +972,8 @@ public class MyPlayerController : PlayerController
         //PosInfo = TempPosInfo;
 
 
-
+        if (IsSkillSend == true)
+            return;
 
         //if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.Z))
         //{
@@ -761,6 +1006,26 @@ public class MyPlayerController : PlayerController
             return;
         }
 
+
+        // 서버랑 5칸 이상 벌어지는데 간다고 하면, 중지
+        // 서버에서도 5칸 이상이면 return 한다.
+
+        int difX = Math.Abs(CellPos.x - TempPosInfo.PosX);
+        int difY = Math.Abs(CellPos.y - TempPosInfo.PosY);
+
+        if (difX > 4 || difY > 4)
+        {
+            Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+            PosInfo.PosX = TempPosInfo.PosX;
+            PosInfo.PosY = TempPosInfo.PosY;
+            SyncPos();
+
+            State = CreatureState.Idle;
+            CheckUpdatedFlag();
+
+            return;
+        }
+
         //// 서버에서 받은 위치와 내 현재 위치가 다르면 리턴한다.
         //if (TempPosInfo.PosX != CellPos.x || TempPosInfo.PosY != CellPos.y)
         //{
@@ -785,6 +1050,7 @@ public class MyPlayerController : PlayerController
 
 
         Vector3Int destPos = CellPos;
+        // Vector3Int destPos = new Vector3Int(TempPosInfo.PosX, TempPosInfo.PosY, CellPos.z);
         // destPos 를 TempPos 로 바꾸면, 서버에 따라 움직이는게 된다.
 
 
@@ -822,8 +1088,42 @@ public class MyPlayerController : PlayerController
             if(Managers.Map.Find(destPos) == null)
             {
 
-                CellPos = destPos;
-                Blocked = false;
+                // 현재 위치에 다른 크리쳐가 있으면 서버 위치랑 동기화 시킨다.
+                GameObject Creature = Managers.Map.Find(CellPos);
+
+                // 크리쳐가 있다느 뜻임
+                if (Creature != null && Creature != this.gameObject)
+                {
+                    // 서버랑 위치 동기화
+
+                    // -----------------------------------------------------------------//
+                    Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+
+
+                    // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
+                    PosInfo.PosX = TempPosInfo.PosX;
+                    PosInfo.PosY = TempPosInfo.PosY;
+
+                    SyncPos();
+                    Blocked = true;
+
+
+                }
+                else
+                {
+                    CellPos = destPos;
+                    Blocked = false;
+
+
+
+                    // 미니맵 교체해주기
+
+                    UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+                    UI_MiniMap miniMapUI = gameSceneUI.MiniMapUI;
+                    miniMapUI.DrawCollision_center(Managers.Map.MaxY - PosInfo.PosY - 1, PosInfo.PosX - Managers.Map.MinX);
+                }
+
             }
             else
             {
@@ -931,5 +1231,47 @@ public class MyPlayerController : PlayerController
 
         // 화면이 확 어두워졌다가 점차 밝아지는 것으로 
     }
+
+
+    protected override void UpdateSkill()
+    {
+        base.UpdateSkill();
+
+
+    }
+
+
+
+    //protected override void UpdateMoving()
+    //{
+
+
+    //    int difX = Math.Abs(CellPos.x - TempPosInfo.PosX);
+    //    int difY = Math.Abs(CellPos.y - TempPosInfo.PosY);
+
+    //    ////멈춰있을떄 서버와의 위치 동기화
+
+    //    if (difX >= 8 || difY >= 8)
+    //    {
+    //        // 걷고있을땐 동기화 안되게...
+    //        if (State == CreatureState.Moving)
+    //        {
+
+
+
+
+    //            // 그래서 두칸부터 이동되게 만듬
+    //            Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+    //            PosInfo.PosX = TempPosInfo.PosX;
+    //            PosInfo.PosY = TempPosInfo.PosY;
+    //        }
+    //    }
+    //    else
+    //    {
+    //        base.UpdateMoving();
+    //    }
+
+    //}
+
 
 }

@@ -59,6 +59,7 @@ public class ResourceManager
         if (go == null)
             return;
 
+<<<<<<< HEAD
         Managers.Instance.StartCoroutine(CoDestroyObject(go,time));
 
     }
@@ -66,6 +67,14 @@ public class ResourceManager
     IEnumerator CoDestroyObject(GameObject go, float time)
     {
 
+=======
+        Managers.Instance.StartCoroutine(coDestory(go, time));
+    }
+
+    // 시간지나면 지워지게 (풀링때문에 넣음)
+    IEnumerator coDestory(GameObject go, float time)
+    {
+>>>>>>> 이동_분기_5차
         yield return new WaitForSeconds(time);
 
         if (go != null)
@@ -74,6 +83,7 @@ public class ResourceManager
             if (poolable != null)
             {
                 Managers.Pool.Push(poolable);
+<<<<<<< HEAD
             }
             else
             {
@@ -83,6 +93,18 @@ public class ResourceManager
         }
 
 
+=======
+
+            }
+            else
+            {
+                //Object.Destroy(go, time);
+                Object.Destroy(go);
+                Debug.Log("###go " + go.name);
+            }
+        }
+
+>>>>>>> 이동_분기_5차
     }
 
 

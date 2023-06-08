@@ -21,8 +21,9 @@ public class ObjectManager
     }
 
 
-
-    public void Add(ObjectInfo info, bool myPlayer = false)
+    // throwing : 20230511 진형 추가
+    // 처음 나올때 회전하면서 나오게 할지
+    public void Add(ObjectInfo info, bool myPlayer = false, bool throwing = false)
     {
         if (MyPlayer != null && MyPlayer.Id == info.ObjectId)
             return ;
@@ -98,7 +99,6 @@ public class ObjectManager
         else if(objectType == GameObjectType.Projectile)
         {
 
-
             GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
             go.name = "Arrow";
             _objects.Add(info.ObjectId, go);
@@ -110,8 +110,17 @@ public class ObjectManager
             //ac.Dir = info.PosInfo.MoveDir;
             //ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
             ac.SyncPos();
+<<<<<<< HEAD
             ac.shot = info.StatInfo.Hp;
             ac.IsParent = true;
+=======
+
+            Debug.Log("Arrow 발생 ID : " + info.ObjectId);
+
+            ac.shot = info.StatInfo.Hp;
+            ac.IsParent = true;
+
+>>>>>>> 이동_분기_5차
             resultObject = go;
 
 
@@ -147,7 +156,12 @@ public class ObjectManager
             Sprite icon = Managers.Resource.Load<Sprite>(itemData.iconPath);
             dc.SetSprite(icon);
 
-     
+
+            // 처음 나오는거라면 회전 시킨다
+            if(throwing == true)
+            {
+                dc.Throwing = true;
+            }
 
 
 

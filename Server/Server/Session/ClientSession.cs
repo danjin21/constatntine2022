@@ -146,14 +146,19 @@ namespace Server
 				// 한텀 기다리고 모아보내기 20221031 추가
 				// 0.1초가 지났거나, 너무 패킷이 많이 모일 때 ( 1만 바이트)
 				long delta = (System.Environment.TickCount64 - _lastSendTick);
-                if (delta < 100 && _reservedSendBytes < 10000)
-                    return;
+
+                //if (delta < 500 && _reservedSendBytes < 10000)
+                //                return;
+
+                //if (_reservedSendBytes < 10000)
+                //    return;
 
                 // 패킷 모아 보내기
 
                 _reservedSendBytes = 0;
 				_lastSendTick = System.Environment.TickCount64;
 
+          
 				// 값이 없으면 리턴
 				//if (_reserveQueue.Count == 0)
 				//	return;
@@ -162,7 +167,8 @@ namespace Server
 				_reserveQueue = new List<ArraySegment<byte>>();
             }
 			Send(sendList);
-        }
+			//Console.WriteLine("FlushSend" + sendList.ToString());
+		}
 
 		public override void OnConnected(EndPoint endPoint)
 		{

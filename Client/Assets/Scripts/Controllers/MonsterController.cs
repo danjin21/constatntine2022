@@ -183,7 +183,7 @@ public class MonsterController : CreatureController
 
         base.OnDamaged(damage,skillId, DamageList, attackerId);
 
-        Managers.Sound.Play(HitSoundPath, Define.Sound.Effect);
+        // Managers.Sound.Play(HitSoundPath, Define.Sound.Effect);
     }
 
 
@@ -290,17 +290,19 @@ public class MonsterController : CreatureController
     public override void UseSkill(int skillId)
     {
 
-        // 먼저 몬스터 방향 갱신
-        UpdateAnimation();
 
-        // 스킬아이디 갱신
-        _skillId = skillId;
 
         if (State == CreatureState.Moving)
         {
             //if(this.GetType() == typeof(PlayerController))
             return;
         }
+
+        // 먼저 몬스터 방향 갱신
+        UpdateAnimation();
+
+        // 스킬아이디 갱신
+        _skillId = skillId;
 
 
         if (skillId == 9001000)

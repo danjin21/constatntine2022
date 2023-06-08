@@ -18,6 +18,11 @@ public class ArrowController : BaseController
         // Init();
     }
 
+    public float count_checkDistance;
+
+    public int shot;
+    public List<ArrowController> childArrowList = new List<ArrowController>();
+    public bool IsParent;
 
     public override void Init()
     {
@@ -27,6 +32,10 @@ public class ArrowController : BaseController
             for (int i = 0; i < shot - 1; i++)
             {
                 GameObject go = Managers.Resource.Instantiate("Creature/Arrow");
+<<<<<<< HEAD
+=======
+                go.name = "Arrow" + i;
+>>>>>>> 이동_분기_5차
                 ArrowController ac = go.GetComponent<ArrowController>();
                 ac.PosInfo = this.PosInfo;
                 ac.Stat = this.Stat;
@@ -41,8 +50,11 @@ public class ArrowController : BaseController
             StartCoroutine(coMultiShot(0.1f));
         }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 이동_분기_5차
         switch (Dir)
         {
             case MoveDir.Up:
@@ -64,18 +76,28 @@ public class ArrowController : BaseController
 
         base.Init();
 
-        Debug.Log("화살의 ID = " + Id);
+        // Debug.Log("화살의 ID = " + Id);
         //_speed = 500.0f;
 
         run = 1.0f;
 
+<<<<<<< HEAD
     
         State = CreatureState.Moving;
+=======
+        count_checkDistance = 0;
+
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 0);
+>>>>>>> 이동_분기_5차
     }
 
     IEnumerator coMultiShot(float time)
     {
+<<<<<<< HEAD
         foreach(ArrowController child in childArrowList)
+=======
+        foreach (ArrowController child in childArrowList)
+>>>>>>> 이동_분기_5차
         {
             yield return new WaitForSeconds(time);
             child.gameObject.SetActive(true);
@@ -176,11 +198,34 @@ public class ArrowController : BaseController
     }
 
 
+    float a;
 
     protected override void UpdateMoving()
     {
+        a = 0.105f;
 
- 
+
+        count_checkDistance += Time.smoothDeltaTime;
+
+
+
+        if (count_checkDistance < a) // 0.05f 0.24f 0.14f
+            return;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.1f);
+
+        if (count_checkDistance < a*2) // 0.05f 0.24f 0.14f
+            return;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.22f);
+
+        if (count_checkDistance < a*3) // 0.05f 0.24f 0.14f
+            return;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0.45f);
+
+        if (count_checkDistance < a*4) // 0.24f
+            return;
+        this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+
+
 
         Vector3 destPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         Vector3Int destPosInt = new Vector3Int((int)transform.position.x, (int)transform.position.y, (int)transform.position.z);
@@ -196,7 +241,12 @@ public class ArrowController : BaseController
         }
         else
         {
+<<<<<<< HEAD
             Managers.Object.Remove(Id);
+=======
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
+>>>>>>> 이동_분기_5차
             removeChild();
         }
 
@@ -204,8 +254,14 @@ public class ArrowController : BaseController
 
         if (Managers.Map.Find(CellPosInt) != null)
         {
+<<<<<<< HEAD
             Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
             Managers.Object.Remove(Id);
+=======
+            //Debug.Log("화살막힘4" + Managers.Map.Find(CellPosInt).name);
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
+>>>>>>> 이동_분기_5차
             removeChild();
         }
 
@@ -389,7 +445,12 @@ public class ArrowController : BaseController
         if (Managers.Map.Find(destPos) != null)
         {
             Debug.Log("화살막힘4" + Managers.Map.Find(destPos).name);
+<<<<<<< HEAD
             Managers.Object.Remove(Id);
+=======
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
+>>>>>>> 이동_분기_5차
             removeChild();
         }
 
@@ -401,7 +462,12 @@ public class ArrowController : BaseController
         else
         {
             Debug.Log("화살막힘2");
+<<<<<<< HEAD
             Managers.Object.Remove(Id);
+=======
+            //Managers.Object.Remove(Id);
+            this.gameObject.SetActive(false);
+>>>>>>> 이동_분기_5차
             removeChild();
         }
 
@@ -422,14 +488,35 @@ public class ArrowController : BaseController
 
         Debug.Log($"childArrowList Count = " + childArrowList.Count);
 
+<<<<<<< HEAD
         foreach (ArrowController child in childArrowList)
         {
+=======
+        List<ArrowController> childArrowList_Temp = new List<ArrowController>();
+        childArrowList_Temp = childArrowList;
+
+        
+        foreach (ArrowController child in childArrowList_Temp) // 임시 리스트
+        {
+
+            // 실제로도 지워준다
+>>>>>>> 이동_분기_5차
             Managers.Resource.Destroy(child.gameObject, 0.1f * i);
 
             i++;
 
             Debug.Log($"@@@@{i}");
+<<<<<<< HEAD
         }
 
     }
+=======
+
+        }
+
+        Managers.Object.Remove(Id);
+
+    }
+
+>>>>>>> 이동_분기_5차
 }

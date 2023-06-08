@@ -221,7 +221,24 @@ public class UI_Stat : UI_Base
 
         MapInfoData mapData = null;
         Managers.Data.MapDict.TryGetValue(player.Stat.Map, out mapData);
+
+        string AsIsMapName = Get<Text>((int)Texts.MapNameText).text;
+        string ToBeMapName = mapData.name;
+
+        if(AsIsMapName != ToBeMapName)
+        {
+            // 코루틴 초기화
+            if(_coMapAlert != null)
+                StopCoroutine(_coMapAlert);
+            _coMapAlert = null;
+            _coMapAlert = StartCoroutine(MapAlert(mapData.name));
+        }
+
+
         Get<Text>((int)Texts.MapNameText).text = $"{mapData.name}";
+
+
+      
 
         if (player.Stat.StatPoint > 0)
             StatButtonOnOff(true);
@@ -295,6 +312,46 @@ public class UI_Stat : UI_Base
     }
 
 
+    public Coroutine _coMapAlert;
 
+    IEnumerator MapAlert(string mapName)
+    {
+        //GameObject go = Managers.Resource.Instantiate("UI/SubItem/MapAlert");
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+        GameObject go = gameSceneUI.MapAlert;
+
+        go.SetActive(true);
+   
+        
+        go.transform.GetChild(0).GetComponent<Text>().text = mapName;
+        //go.transform.localPosition = new Vector3(-128, 96, 0);
+        //go.transform.localPosition = new Vector3(0, 0, 0);
+
+        go.transform.GetChild(0).GetComponent<Text>().color = new Color(1, 1, 1, 1);
+        go.transform.GetChild(0).GetComponent<Outline>().effectColor = new Color(0.3f, 0.3f, 0.3f, 0.6f);
+        go.transform.GetChild(0).GetComponent<Shadow>().effectColor = new Color(0.3f, 0.3f, 0.3f, 0.6f);
+
+
+
+        yield return new WaitForSeconds(0.5f);
+
+        float fadeCount = 0.02f;
+        for (int i = 0; i < 50; i++)
+        {
+            yield return new WaitForSeconds(0.02f);
+            go.transform.GetChild(0).GetComponent<Text>().color -= new Color(0, 0, 0, fadeCount);
+            go.transform.GetChild(0).GetComponent<Outline>().effectColor -= new Color(0, 0, 0, fadeCount*0.3f);
+            go.transform.GetChild(0).GetComponent<Shadow>().effectColor -= new Color(0, 0, 0, fadeCount * 0.3f);
+        }
+
+        go.SetActive(false);
+
+
+        _coMapAlert = null;
+        //Managers.Resource.Destroy(go);
+
+    }
 
 }

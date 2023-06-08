@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static Define;
 using UnityEngine.UI;
+using System;
 
 public class PlayerController : CreatureController
 {
@@ -279,16 +280,20 @@ public class PlayerController : CreatureController
 
     public override void UseSkill(int skillId)
     {
-        // 스킬아이디 갱신
-        _skillId = skillId;
+
 
         if (State == CreatureState.Moving)
         {
             // MyPlayer도 해버리면 스킬 모션 씹어버림
-            if (this.GetType() == typeof(PlayerController))
-                return;
+            //if (this.GetType() == typeof(PlayerController))
+            //{
+
+            //    return;
+            //}
         }
 
+        // 스킬아이디 갱신
+        _skillId = skillId;
 
         Data.Skill skillData = null;
         Managers.Data.SkillDict.TryGetValue(skillId, out skillData);
@@ -313,6 +318,23 @@ public class PlayerController : CreatureController
             //}
 
 
+
+            // 화살 날리기
+
+            //GameObject go = Managers.Resource.Instantiate("Creature/Arrow_test");
+            //go.name = "Arrow_test";
+            ////_objects.Add(info.ObjectId, go);
+
+            //ArrowController ac = go.GetComponent<ArrowController>();
+            //ac.PosInfo = PosInfo;
+            //ac.Stat = _stat;
+            //ac.Stat.Speed = 1500;
+            ////ac.Id = ObjectId; // 화살 ID 추가 20221104
+            ////ac.Dir = info.PosInfo.MoveDir;
+            ////ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
+            //ac.SyncPos();
+
+
         }
         else if(skillId == 2001000)
         {
@@ -331,6 +353,24 @@ public class PlayerController : CreatureController
 
             // 게임 이펙트를 몇초 후에 삭제
             Managers.Resource.Destroy(effect, 4.0f);
+
+            //// 화살 날리기
+
+            //GameObject go = Managers.Resource.Instantiate("Creature/Arrow_test");
+            //go.name = "Arrow_test";
+            ////_objects.Add(info.ObjectId, go);
+
+            //ArrowController ac = go.GetComponent<ArrowController>();
+            //ac.PosInfo = PosInfo;
+            //ac.Stat = _stat;
+            //ac.Stat.Speed = 1500;
+            ////ac.Id = ObjectId; // 화살 ID 추가 20221104
+            ////ac.Dir = info.PosInfo.MoveDir;
+            ////ac.CellPos = new Vector3Int(info.PosInfo.PosX, info.PosInfo.PosY, 0);
+            //ac.SyncPos();
+
+
+
 
 
         }
@@ -384,8 +424,8 @@ public class PlayerController : CreatureController
 
         UpdateAnimation();
 
-        if (skillId != 3101000)
-            Managers.Object.MyPlayer.SkillCool();
+
+  
     }
 
 
@@ -396,10 +436,10 @@ public class PlayerController : CreatureController
     }
 
 
-    // 언젠가는 시간 확인하는걸 서버에서 하는걸로 바꿔줘야한다.
 
     IEnumerator CoStartPunch()
     {
+
 
         // 피격 판정 (서버에서 한다)
         //GameObject go = Managers.Object.Find(GetFrontCellPos());
@@ -412,17 +452,22 @@ public class PlayerController : CreatureController
         //    }
         //}
 
+      
+
+
         // 대기 시간
 
         State = CreatureState.Skill;
 
+
         yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
 
-        Debug.Log("OK! GO !");
+
         State = CreatureState.Idle;
         _coSkill = null;
 
         CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
+        
     }
 
     IEnumerator CoStartShootArrow()
@@ -470,7 +515,7 @@ public class PlayerController : CreatureController
         State = CreatureState.Skill;
 
         //yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
-        yield return new WaitForSeconds(0.4f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
+        yield return new WaitForSeconds(0.2f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
 
 
         Debug.Log("OK! GO !");
@@ -522,7 +567,7 @@ public class PlayerController : CreatureController
     public override void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
     {
         base.OnDamaged(damage,skillId, DamageList, attackerId);
-        Debug.Log("Player Hit !");
+        //Debug.Log("Player Hit !");
     }
 
 

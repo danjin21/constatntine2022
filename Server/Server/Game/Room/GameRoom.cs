@@ -14,7 +14,7 @@ namespace Server.Game
     {
 
         // 비젼 셀의 크기
-        public const int VisionCells = 20; // 반지름임 1280 에서는 여유있게 20으로 함
+        public const int VisionCells = 14; // 반지름임 1280 에서는 여유있게 20으로 함
 
         public int RoomId { get; set; }
 
@@ -185,238 +185,254 @@ namespace Server.Game
             //lock (_lock)
             //{
 
-                if(type == GameObjectType.Player)
+            bool throwing = false;
+
+
+            if (type == GameObjectType.Player)
+            {
+                Player player = gameObject as Player;
+
+                _players.Add(gameObject.Id, player);
+                player.Room = this;
+
+
+                // 플레이어의 스탯 갱신
+                player.RefreshAdditionalStat();
+
+
+                //// ★☆ 충돌체의 정보를 주는 곳  ★☆
+                //Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
+
+
+                // 진형쓰룰
+                int countX = 0;
+                int countY = 0;
+                // ★☆ 충돌체의 정보를 주는 곳  ★☆
+                while (Map.ApplyMove(player, new Vector2Int(player.CellPos.x + countX, player.CellPos.y + countY)) == false)
                 {
-                    Player player = gameObject as Player;
 
-                    _players.Add(gameObject.Id, player);
-                    player.Room = this;
-                    
-
-                    // 플레이어의 스탯 갱신
-                    player.RefreshAdditionalStat();
-                   
-
-                    //// ★☆ 충돌체의 정보를 주는 곳  ★☆
-                    //Map.ApplyMove(player, new Vector2Int(player.CellPos.x, player.CellPos.y));
-
+                    countX++;
 
                     // 진형쓰룰
-                    int countX = 0;
-                    int countY = 0;
-                    // ★☆ 충돌체의 정보를 주는 곳  ★☆
-                    while ( Map.ApplyMove(player, new Vector2Int(player.CellPos.x + countX, player.CellPos.y + countY)) == false)
+                    if (player.CellPos.x + countX < Map.MinX || player.CellPos.x + countX >= Map.MaxX)
                     {
-
-                        countX++;
-
-                        // 진형쓰룰
-                        if (player.CellPos.x + countX < Map.MinX || player.CellPos.x + countX >= Map.MaxX)
-                        {
-                            countX = 0;
-                            countY++;
-                        }
-
-
-                        if (player.CellPos.y + countY < Map.MinY || player.CellPos.y + countY >= Map.MaxY)
-                            break;
+                        countX = 0;
+                        countY++;
                     }
 
-                    // 존에다가 플레이어 삽입.
-                    GetZone(player.CellPos).Players.Add(player);
+
+                    if (player.CellPos.y + countY < Map.MinY || player.CellPos.y + countY >= Map.MaxY)
+                        break;
+                }
+
+                // 존에다가 플레이어 삽입.
+                GetZone(player.CellPos).Players.Add(player);
 
 
-                    // 본인한테 정보 전송
-                    {
-                        S_EnterGame enterPacket = new S_EnterGame();
-                        enterPacket.Player = player.Info;
-                        player.Session.Send(enterPacket);
-                    
-
-                        // 아래 코드를 대체함. (Update)
-                        player.Vision.Update();
-
-                        //S_Spawn spawnPacket = new S_Spawn();
-                        //foreach (Player p in _players.Values)
-                        //{
-                        //    if (player != p)
-                        //        spawnPacket.Objects.Add(p.Info);
-                        //}
-
-                        //// 죽고나서 다시 태어날때 몬스터 정보 갱신
-                        //foreach(Monster m in _monsters.Values)
-                        //{
-                        //    spawnPacket.Objects.Add(m.Info);
-                        //}
-
-                        //// 죽고나서 다시 태어날때 투사체 정보 갱신
-                        //foreach (Projectile p in _projectiles.Values)
-                        //{
-                        //    spawnPacket.Objects.Add(p.Info);
-                        //}
-
-                        //player.Session.Send(spawnPacket);
-
-                    }
-
-                    // 플레이어의 Update를 실행
-                    player.Update();
+                // 본인한테 정보 전송
+                {
+                    S_EnterGame enterPacket = new S_EnterGame();
+                    enterPacket.Player = player.Info;
+                    player.Session.Send(enterPacket);
 
 
+                    // 아래 코드를 대체함. (Update)
+                    player.Vision.Update();
+
+                    //S_Spawn spawnPacket = new S_Spawn();
+                    //foreach (Player p in _players.Values)
+                    //{
+                    //    if (player != p)
+                    //        spawnPacket.Objects.Add(p.Info);
+                    //}
+
+                    //// 죽고나서 다시 태어날때 몬스터 정보 갱신
+                    //foreach(Monster m in _monsters.Values)
+                    //{
+                    //    spawnPacket.Objects.Add(m.Info);
+                    //}
+
+                    //// 죽고나서 다시 태어날때 투사체 정보 갱신
+                    //foreach (Projectile p in _projectiles.Values)
+                    //{
+                    //    spawnPacket.Objects.Add(p.Info);
+                    //}
+
+                    //player.Session.Send(spawnPacket);
 
                 }
-                else if(type == GameObjectType.Monster)
+
+                // 플레이어의 Update를 실행
+                player.Update();
+
+
+
+            }
+            else if (type == GameObjectType.Monster)
+            {
+                Monster monster = gameObject as Monster;
+                _monsters.Add(gameObject.Id, monster);
+                monster.Room = this;
+
+                // 이미지를 넣기위해 templateId는 넣어주자.
+                gameObject.Stat.TemplateId = monster.TemplateId;
+
+
+                // 존에다가 몬스터 삽입.
+                GetZone(monster.CellPos).Monsters.Add(monster);
+
+
+                //// ★☆ 충돌체의 정보를 주는 곳  ★☆
+                //Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
+
+
+                // 진형쓰룰
+                int countX = 0;
+                int countY = 0;
+
+                // ★☆ 충돌체의 정보를 주는 곳  ★☆
+                while (Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x + countX, monster.CellPos.y + countY)) == false)
                 {
-                    Monster monster = gameObject as Monster;
-                    _monsters.Add(gameObject.Id, monster);
-                    monster.Room = this;
 
-                    // 이미지를 넣기위해 templateId는 넣어주자.
-                    gameObject.Stat.TemplateId = monster.TemplateId;
-                 
-
-                    // 존에다가 몬스터 삽입.
-                    GetZone(monster.CellPos).Monsters.Add(monster);
-
-                    
-                    //// ★☆ 충돌체의 정보를 주는 곳  ★☆
-                    //Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
-
+                    countX++;
 
                     // 진형쓰룰
-                    int countX = 0;
-                    int countY = 0;
-
-                    // ★☆ 충돌체의 정보를 주는 곳  ★☆
-                    while ( Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x + countX, monster.CellPos.y + countY)) == false)
+                    if (monster.CellPos.x + countX < Map.MinX || monster.CellPos.x + countX >= Map.MaxX)
                     {
-
-                        countX++;
-
-                        // 진형쓰룰
-                        if (monster.CellPos.x + countX < Map.MinX || monster.CellPos.x + countX >= Map.MaxX)
-                        {
-                            countX = 0;
-                            countY++;
-                        }
-
-
-                        if (monster.CellPos.y + countY < Map.MinY || monster.CellPos.y + countY >= Map.MaxY)
-                            break;
+                        countX = 0;
+                        countY++;
                     }
 
-                    // 몬스터의 Update를 실행
-                    monster.Update();
+
+                    if (monster.CellPos.y + countY < Map.MinY || monster.CellPos.y + countY >= Map.MaxY)
+                        break;
                 }
-                else if (type == GameObjectType.Projectile)
-                {
-                    Projectile projectile = gameObject as Projectile;
-                    _projectiles.Add(gameObject.Id, projectile);
-                    projectile.Room = this;
 
-                     // 존에다가 투사체 삽입.
-                    GetZone(projectile.CellPos).Projectiles.Add(projectile);
+                // 몬스터의 Update를 실행
+                monster.Update();
+            }
+            else if (type == GameObjectType.Projectile)
+            {
+                Projectile projectile = gameObject as Projectile;
+                _projectiles.Add(gameObject.Id, projectile);
+                projectile.Room = this;
 
-                    
-                    //최초 Arromw Update실행
-                    //Push(projectile.Update);
-                    // GameRoom의 잡큐에서 실행되기때문에 그냥 함수 실행해도 된다..
-                    projectile.Update();
-                }
-                else if (type == GameObjectType.DropItem)
-                {
-                    DropItem dropItem = gameObject as DropItem;
-                    _dropitems.Add(gameObject.Id, dropItem);
-                    dropItem.Room = this;
-
-                    // 이미지를 넣기위해 templateId는 넣어주자.
-                    gameObject.Stat.TemplateId = dropItem.RewardData.itemId;
+                // 존에다가 투사체 삽입.
+                GetZone(projectile.CellPos).Projectiles.Add(projectile);
 
 
-                    // 존에다가 드롭아이템 삽입.
-                    GetZone(dropItem.CellPos).DropItems.Add(dropItem);
+                //최초 Arromw Update실행
+                //Push(projectile.Update);
+                // GameRoom의 잡큐에서 실행되기때문에 그냥 함수 실행해도 된다..
 
 
-                    //// ★☆ 충돌체의 정보를 주는 곳  ★☆
-                    //Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
+                projectile.Update();
+            }
+            else if (type == GameObjectType.DropItem)
+            {
+                DropItem dropItem = gameObject as DropItem;
+                _dropitems.Add(gameObject.Id, dropItem);
+                dropItem.Room = this;
+
+                // 이미지를 넣기위해 templateId는 넣어주자.
+                gameObject.Stat.TemplateId = dropItem.RewardData.itemId;
 
 
-                    // 진형쓰룰
-                    int countX = 0;
-                    int countY = 0;
+                // 존에다가 드롭아이템 삽입.
+                GetZone(dropItem.CellPos).DropItems.Add(dropItem);
+
+
+                //// ★☆ 충돌체의 정보를 주는 곳  ★☆
+                //Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
+
+
+                // 진형쓰룰
+                int countX = 0;
+                int countY = 0;
 
                 // ★☆ 충돌체의 정보를 주는 곳  ★☆
                 // 위에 올라갈 수 있게 해주고, 그곳에 뭐가 있어도 그냥 올려준다.
-                Map.ApplyMove(dropItem, new Vector2Int(dropItem.CellPos.x + countX, dropItem.CellPos.y + countY),false,false);
+                Map.ApplyMove(dropItem, new Vector2Int(dropItem.CellPos.x + countX, dropItem.CellPos.y + countY), false, false);
+
+                // 아이템 스윙 효과
+
+                throwing = dropItem.Throwing;
+                Console.WriteLine("아이템 스로잉 : " + throwing);
+                dropItem.Throwing = false; // 초기에 아이템 떨궈지는 모션 되었으면 그다음부터는 안굴려지게
+
+            }
+            else if (type == GameObjectType.Npc)
+            {
+                Npc npc = gameObject as Npc;
+                _npcs.Add(gameObject.Id, npc);
+                npc.Room = this;
+
+                // 이미지를 넣기위해 templateId는 넣어주자.
+                gameObject.Stat.TemplateId = npc.TemplateId;
+
+                npc.CellPos = new Vector2Int(npc.Stat.PosX, npc.Stat.PosY);
+
+                // 존에다가 Npc 삽입.
+                GetZone(npc.CellPos).Npcs.Add(npc);
 
 
+                //// ★☆ 충돌체의 정보를 주는 곳  ★☆
+                //Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
 
-                }
-                else if (type == GameObjectType.Npc)
+
+                // 진형쓰룰
+                int countX = 0;
+                int countY = 0;
+
+                // ★☆ 충돌체의 정보를 주는 곳  ★☆
+                while (Map.ApplyMove(npc, new Vector2Int(npc.CellPos.x + countX, npc.CellPos.y + countY)) == false)
                 {
-                    Npc npc = gameObject as Npc;
-                    _npcs.Add(gameObject.Id, npc);
-                    npc.Room = this;
 
-                    // 이미지를 넣기위해 templateId는 넣어주자.
-                    gameObject.Stat.TemplateId = npc.TemplateId;
-
-                    npc.CellPos = new Vector2Int(npc.Stat.PosX, npc.Stat.PosY);
-
-                    // 존에다가 Npc 삽입.
-                    GetZone(npc.CellPos).Npcs.Add(npc);
-
-
-                    //// ★☆ 충돌체의 정보를 주는 곳  ★☆
-                    //Map.ApplyMove(monster, new Vector2Int(monster.CellPos.x, monster.CellPos.y));
-
+                    countX++;
 
                     // 진형쓰룰
-                    int countX = 0;
-                    int countY = 0;
-
-                    // ★☆ 충돌체의 정보를 주는 곳  ★☆
-                    while (Map.ApplyMove(npc, new Vector2Int(npc.CellPos.x + countX, npc.CellPos.y + countY)) == false)
+                    if (npc.CellPos.x + countX < Map.MinX || npc.CellPos.x + countX >= Map.MaxX)
                     {
-
-                        countX++;
-
-                        // 진형쓰룰
-                        if (npc.CellPos.x + countX < Map.MinX || npc.CellPos.x + countX >= Map.MaxX)
-                        {
-                            countX = 0;
-                            countY++;
-                        }
-
-
-                        if (npc.CellPos.y + countY < Map.MinY || npc.CellPos.y + countY >= Map.MaxY)
-                            break;
+                        countX = 0;
+                        countY++;
                     }
 
 
+                    if (npc.CellPos.y + countY < Map.MinY || npc.CellPos.y + countY >= Map.MaxY)
+                        break;
                 }
+
+
+            }
+
+
 
 
             // 타인한테 정보 전송
             {
-                    S_Spawn spawnPacket = new S_Spawn();
-                    spawnPacket.Objects.Add(gameObject.Info);
-                    Broadcast(gameObject.CellPos, spawnPacket);
+                S_Spawn spawnPacket = new S_Spawn();
+                spawnPacket.Objects.Add(gameObject.Info);
+                spawnPacket.Throwing = throwing; // 소환할때 돌아가는 효과 줄지 안줄지
+                Broadcast(gameObject.CellPos, spawnPacket);
             }
 
 
-                //// 타인한테 정보 전송
-                //{
-                //    S_Spawn spawnPacket = new S_Spawn();
-                //    spawnPacket.Objects.Add(gameObject.Info);
 
-                //    //플레이어의 경우 자신 정보는본인한테 정보 전송으로 보내기 때문에 예외를 시킴.
-                //    foreach(Player p in _players.Values)
-                //    {
-                //        if (p.Id != gameObject.Id)
-                //            p.Session.Send(spawnPacket);
-                //    }
-                //}
+
+
+
+            //// 타인한테 정보 전송
+            //{
+            //    S_Spawn spawnPacket = new S_Spawn();
+            //    spawnPacket.Objects.Add(gameObject.Info);
+
+            //    //플레이어의 경우 자신 정보는본인한테 정보 전송으로 보내기 때문에 예외를 시킴.
+            //    foreach(Player p in _players.Values)
+            //    {
+            //        if (p.Id != gameObject.Id)
+            //            p.Session.Send(spawnPacket);
+            //    }
+            //}
 
             //}
         }
@@ -615,6 +631,8 @@ namespace Server.Game
                     continue;
 
                  p.Session.Send(packet);
+
+               // Console.WriteLine("보냈다잉" + packet.ToString() + "@@@@@@@@@@" + packet.GetType());
             }
 
             // 예약만하고, 바로 나온다.

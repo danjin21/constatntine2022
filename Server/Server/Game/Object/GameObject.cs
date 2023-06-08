@@ -334,6 +334,7 @@ namespace Server.Game
                 if (attacker.ObjectType == GameObjectType.Projectile)
                 {
 
+<<<<<<< HEAD
                     if(shot ==1)
                         OnDead(attacker, damage);
                     else if(shot > 1)
@@ -351,6 +352,24 @@ namespace Server.Game
                     //        OnDead(attacker, damage);
                     //    }
 
+=======
+
+                    // 화살 하나로 여러발 떄릴떄
+                    OnDead(attacker, damage);
+
+                    // 화살 여러발 소환할때는 밑에를 활성화
+
+                    //if (A.IsFinal == false)
+                    //    OnDead(attacker, damage);
+                    //else
+                    //{
+                    //    // 화살이 하나라면 그냥 바로 죽게 만든다.
+                    //    if(shot== 1)
+                    //    {
+                    //        OnDead(attacker, damage);
+                    //    }
+
+>>>>>>> 이동_분기_5차
                     //}
 
 

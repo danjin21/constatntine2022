@@ -517,18 +517,27 @@ public class BaseController : MonoBehaviour
             {
                 State = CreatureState.Idle;
 
-                if (this.GetComponent<PlayerController>()._skillId != -1)
-                    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+                //if (this.GetComponent<PlayerController>()._skillId != -1)
+                //    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+
+
+                if (PosHistory.Count > 0)
+                {
+                    PosInfo = PosHistory[0];
+                }
 
                 if (PosHistory.Count > 0)
                 {
                     PosHistory.RemoveAt(0);
                 }
 
-                if (PosHistory.Count > 0)
-                {
-                    PosInfo = PosHistory[0];
-                }
+
+
+                //if (PosHistory.Count > 0)
+                //{
+                //    PosInfo = PosHistory[0];
+                //    PosHistory.RemoveAt(0);
+                //}
 
 
 
@@ -542,23 +551,24 @@ public class BaseController : MonoBehaviour
 
                 if (PosHistory.Count > 0)
                 {
-                    PosHistory.RemoveAt(0);
+                    PosInfo = PosHistory[0];
                 }
 
                 if (PosHistory.Count > 0)
                 {
-                    PosInfo = PosHistory[0];
+                    PosHistory.RemoveAt(0);
                 }
 
-                if (this.GetComponent<MonsterController>()._skillId != -1)
-                    this.GetComponent<MonsterController>().UseSkill(this.GetComponent<MonsterController>()._skillId);
+
+                //if (this.GetComponent<MonsterController>()._skillId != -1)
+                //    this.GetComponent<MonsterController>().UseSkill(this.GetComponent<MonsterController>()._skillId);
 
             }
 
             if (this.GetType() == typeof(MyPlayerController))
             {
-                if (this.GetComponent<PlayerController>()._skillId != -1)
-                    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+                //if (this.GetComponent<PlayerController>()._skillId != -1)
+                //    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
             }
 
 
@@ -671,18 +681,19 @@ public class BaseController : MonoBehaviour
             {
                 State = CreatureState.Idle;
 
-                if (this.GetComponent<PlayerController>()._skillId != -1)
-                    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+                //if (this.GetComponent<PlayerController>()._skillId != -1)
+                //    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+
+                if (PosHistory.Count > 0)
+                {
+                    PosInfo = PosHistory[0];
+                }
 
                 if (PosHistory.Count > 0)
                 {
                     PosHistory.RemoveAt(0);
                 }
 
-                if(PosHistory.Count >0)
-                {
-                    PosInfo = PosHistory[0];
-                }
 
             }
 
@@ -696,16 +707,17 @@ public class BaseController : MonoBehaviour
 
                 if (PosHistory.Count > 0)
                 {
-                    PosHistory.RemoveAt(0);
+                    PosInfo = PosHistory[0];
                 }
 
                 if (PosHistory.Count > 0)
                 {
-                    PosInfo = PosHistory[0];
+                    PosHistory.RemoveAt(0);
                 }
 
-                if (this.GetComponent<MonsterController>()._skillId != -1)
-                    this.GetComponent<MonsterController>().UseSkill(this.GetComponent<MonsterController>()._skillId);
+
+                //if (this.GetComponent<MonsterController>()._skillId != -1)
+                //    this.GetComponent<MonsterController>().UseSkill(this.GetComponent<MonsterController>()._skillId);
 
             }
 
@@ -714,8 +726,8 @@ public class BaseController : MonoBehaviour
 
             if (this.GetType() == typeof(MyPlayerController))
             {
-                if (this.GetComponent<PlayerController>()._skillId != -1)
-                    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+                //if (this.GetComponent<PlayerController>()._skillId != -1)
+                //    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
             }
 
 
@@ -810,6 +822,38 @@ public class BaseController : MonoBehaviour
 
                 transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
 
+
+            if (this.GetType() == typeof(PlayerController))
+            {
+                // State = CreatureState.Idle;
+
+                //if (this.GetComponent<PlayerController>()._skillId != -1)
+                //{
+                //    //this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
+                //}
+                //else
+                //{
+                //    if (PosHistory.Count > 0)
+                //    {
+                //        PosInfo = PosHistory[0];
+                //        PosHistory.RemoveAt(0);
+                //    }
+                //}
+
+
+                if (PosHistory.Count > 0)
+                {
+                    // 위치만 이동시킨다.
+                    PosInfo.PosX = PosHistory[0].PosX;
+                    PosInfo.PosY = PosHistory[0].PosY;
+                }
+
+                if (PosHistory.Count > 0)
+                {
+                    PosHistory.RemoveAt(0);
+                }
+            }
+
         }
         else
         {
@@ -852,9 +896,8 @@ public class BaseController : MonoBehaviour
             }
         }
 
-
         // 다사라지면 클라쪽에서 초기화해준다. (서버는 상관없음) 
-        if(this.transform.GetComponent<SpriteRenderer>().color.a <= 0.0f)
+        if (this.transform.GetComponent<SpriteRenderer>().color.a <= 0.0f)
         {
             State = CreatureState.Idle;
             IsDead = false;

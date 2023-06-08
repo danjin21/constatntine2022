@@ -1088,6 +1088,15 @@ public class MyPlayerController : PlayerController
                 {
                     CellPos = destPos;
                     Blocked = false;
+
+
+
+                    // 미니맵 교체해주기
+
+                    UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+                    UI_MiniMap miniMapUI = gameSceneUI.MiniMapUI;
+                    miniMapUI.DrawCollision_center(Managers.Map.MaxY - PosInfo.PosY - 1, PosInfo.PosX - Managers.Map.MinX);
                 }
 
             }

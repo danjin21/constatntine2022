@@ -11,6 +11,7 @@ public class UI_GameScene : UI_Scene
     public UI_Inventory InvenUI { get; private set; }
     public UI_KeySetting KeySettingUI { get; private set; }
     public UI_Skill SkillUI { get; private set; }
+    public UI_MiniMap MiniMapUI { get; private set; }
 
     public Text Hp;
     public Text Mp;
@@ -32,6 +33,7 @@ public class UI_GameScene : UI_Scene
         InvenUI = GetComponentInChildren<UI_Inventory>();
         KeySettingUI = GetComponentInChildren<UI_KeySetting>();
         SkillUI = GetComponentInChildren<UI_Skill>();
+        MiniMapUI = GetComponentInChildren<UI_MiniMap>();
 
         Hp = GameObject.Find("Hp/HpText").GetComponent<Text>();
         Mp = GameObject.Find("Mp/MpText").GetComponent<Text>();

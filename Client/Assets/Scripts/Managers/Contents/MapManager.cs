@@ -41,6 +41,13 @@ public class MapManager
     bool[,] _collision;
     GameObject[,] _objects;
 
+
+    public bool[,] GetCollision()
+    {
+        return _collision;
+    }
+
+
     public bool CanGo(Vector3Int cellPos)
     {
 

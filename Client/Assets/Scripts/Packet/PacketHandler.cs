@@ -45,6 +45,10 @@ class PacketHandler
         UI_KeySetting KeySettingUI = gameSceneUI.KeySettingUI;
         KeySettingUI.RefreshUI();
 
+        // 미니맵 표시
+
+        UI_MiniMap miniMapUI = gameSceneUI.MiniMapUI;
+        miniMapUI.DrawCollision_center(Managers.Map.MaxY - enterGamePacket.Player.PosInfo.PosY - 1, enterGamePacket.Player.PosInfo.PosX - Managers.Map.MinX);
 
 
     }

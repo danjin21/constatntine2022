@@ -42,7 +42,7 @@ public class TileMapLayer_Dan : MonoBehaviour
         tileMap = GetComponent<Tilemap>();
         tileMapRenderer = GetComponent<TilemapRenderer>();
 
-        Debug.Log("wow");
+        // Debug.Log("wow");
 
         Vector3Int worldToCellPos = tileMap.WorldToCell(worldPos);
         Vector3Int localToCellPos = tileMap.LocalToCell(localPos);
@@ -56,7 +56,7 @@ public class TileMapLayer_Dan : MonoBehaviour
 
             var go = tileMap.GetInstantiatedObject(pos);
 
-            Debug.Log($"{tile} / {go}");
+            // Debug.Log($"{tile} / {go}");
 
             // 정보 초기화
             dataOnTiles[pos] = new CustomData()

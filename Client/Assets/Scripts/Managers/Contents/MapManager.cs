@@ -39,14 +39,19 @@ public class MapManager
     public int SizeY { get { return MaxY - MinY + 1; } }
 
     bool[,] _collision;
+    bool[,] _portal;
     GameObject[,] _objects;
-
+    
 
     public bool[,] GetCollision()
     {
         return _collision;
     }
 
+    public bool[,] GetPortal()
+    {
+        return _portal;
+    }
 
     public bool CanGo(Vector3Int cellPos)
     {
@@ -176,6 +181,7 @@ public class MapManager
         int yCount = MaxY - MinY ;
         _collision = new bool[yCount, xCount];
         _objects = new GameObject[yCount, xCount];
+        _portal = new bool[yCount, xCount];
 
 
         for (int y = 0; y < yCount; y++)
@@ -184,6 +190,7 @@ public class MapManager
             for (int x = 0; x < xCount; x++)
             {
                 _collision[y, x] = (line[x] == '1' ? true : false);
+                _portal[y, x] = (line[x] == '2' ? true : false);
             }
         }
 

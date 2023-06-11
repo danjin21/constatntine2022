@@ -77,8 +77,9 @@ public class UI_MiniMap : UI_Base
 
 
         bool[,] col = Managers.Map.GetCollision();
+        bool[,] portals = Managers.Map.GetPortal();
 
-        string arrayText_center = GetPartialArrayText(col, x, y, 20, 20);
+        string arrayText_center = GetPartialArrayText(col, portals,x, y, 20, 22);
 
         // Debug.Log(arrayText_center);
 
@@ -86,7 +87,7 @@ public class UI_MiniMap : UI_Base
 
     }
 
-    private string GetPartialArrayText(bool[,] array, int centerX, int centerY, int rangeX, int rangeY)
+    private string GetPartialArrayText(bool[,] array, bool[,] portals ,int centerX, int centerY, int rangeX, int rangeY)
     {
         string text = "";
 
@@ -96,18 +97,34 @@ public class UI_MiniMap : UI_Base
         int endX = Mathf.Min(centerX + rangeX, array.GetLength(0) - 1);
         int endY = Mathf.Min(centerY + rangeY, array.GetLength(1) - 1);
 
-        // X 값 
-        if (startY == 0 && startY + endY != array.GetLength(1) - 1)
-            endY = array.GetLength(1) - 1 - startY;
-        if (endY == array.GetLength(1) - 1 && startY + endY > array.GetLength(1) - 1)
-            startY += (array.GetLength(1) - 1) - (startY + endY);
-        // Y 값 
-        if (startX == 0 && startX + endX != array.GetLength(0) - 1)
-            endX = array.GetLength(0) - 1 - startX;
-        if (endX == array.GetLength(0) - 1 && startX + endX > array.GetLength(0) - 1)
-            startX += (array.GetLength(0) - 1) - (startX + endX);
+        // 맵이 화면보다 작을 경우에만 고정을 시켜준다.
+        //if (array.GetLength(0) - 1 < rangeX*2 || array.GetLength(1) - 1 < rangeY*2)
+        {
+            // X 값 
+            if (startY == 0 && startY + endY != array.GetLength(1) - 1)
+                endY = Mathf.Min(array.GetLength(1) - 1 - startY, rangeY * 2);
+            if (endY == array.GetLength(1) - 1 && startY + endY > array.GetLength(1) - 1)
+            {
+                startY += (endY - startY) - (rangeY*2);
 
-        //Debug.Log($"startX:{startX} / endX:{endX} / startY:{startY} / endY:{endY} / X Length : {array.GetLength(0) } / Y Length : {array.GetLength(1) }");
+                startY = Mathf.Max(startY, 0);
+
+                //startY += (array.GetLength(1) - 1) - (startY + endY);
+            }
+
+            // Y 값 
+            if (startX == 0 && startX + endX != array.GetLength(0) - 1)
+                endX = Mathf.Min( array.GetLength(0) - 1 - startX, rangeX * 2);
+            if (endX == array.GetLength(0) - 1 && startX + endX > array.GetLength(0) - 1)
+            {
+                startX += (endX - startX) - (rangeX * 2);
+                startX = Mathf.Max(startX, 0);
+
+                //startX += (array.GetLength(0) - 1) - (startX + endX);
+            }
+        }
+
+        Debug.Log($"startX:{startX} / endX:{endX} / startY:{startY} / endY:{endY} / X Length : {array.GetLength(0) } / Y Length : {array.GetLength(1) }");
 
 
         for (int i = startX; i <= endX; i++)
@@ -120,7 +137,21 @@ public class UI_MiniMap : UI_Base
                 }
                 else
                 {
-                    text += array[i, j] ? "■" : "□";
+                    //text += array[i, j] ? "■" : "□";
+
+                    if (array[i, j] == true)
+                        text += "■";
+                    else
+                    {
+                        if (portals[i, j] == true)
+                            text += "<color=#44d2ba>■</color>";
+                        else
+                            text += "□";                                
+                    }
+
+
+
+
                 }
             }
 

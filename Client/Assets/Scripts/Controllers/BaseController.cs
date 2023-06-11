@@ -105,6 +105,21 @@ public class BaseController : MonoBehaviour
             State = value.State;
             Dir = value.MoveDir;
 
+            // My Player 일 경우 미니맵 갱신
+
+            // 움직일때도 하고, 
+
+            if (this.GetType() == typeof(MyPlayerController))
+            {
+                // 미니맵 교체해주기
+
+                UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+                UI_MiniMap miniMapUI = gameSceneUI.MiniMapUI;
+                miniMapUI.DrawCollision_center(Managers.Map.MaxY - PosInfo.PosY - 1, PosInfo.PosX - Managers.Map.MinX);
+            }
+
+
 
         }
     }

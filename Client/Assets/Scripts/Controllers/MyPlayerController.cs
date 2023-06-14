@@ -332,63 +332,76 @@ public class MyPlayerController : PlayerController
             // 3초 동안 다른 상태면 이동시켜준다. ( 서버가 조금 느리게 답변을 주기 때문 )
             if (count_checkDistance < 3.00f)
                 return;
+
+
+
+            // 2023.06.14 진형 밖에 있는걸 IF문 안으로 집어넣음.
+            // 위 예외처리(return)를 받으려면 안에다 넣어야함
+            //====================================================================================================================================================//
+
+            // 일정 시간 지난후에... 핑 검사후 그다음에 돌아가게.. 혹은 2칸 이상일 경우에만..
+
+
+            Vector3Int A;
+            A = new Vector3Int(TempPosInfo.PosX, TempPosInfo.PosY, 0);
+            Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(A) + new Vector3(16.0f, 36.0f, 0);
+
+            Vector3Int destPosInt = new Vector3Int((int)destPos.x, (int)destPos.y, (int)destPos.z);
+
+
+
+            // -----------------------------------------------------------------//
+            Vector3 moveDir = destPos - transform.position;
+            // 도착 여부 체크
+            float dist = moveDir.magnitude;
+
+            if (dist < Speed * Time.smoothDeltaTime)
+            {
+
+                if (Managers.Map.CanGo(destPosInt))
+                    transform.position = destPosInt;
+                //transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
+
+            }
+            else
+            {
+                transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
+            }
+
+            // -----------------------------------------------------------------//
+
+
+            //transform.position = destPos;
+
+
+            // -----------------------------------------------------------------//
+            Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
+
+
+            // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
+            PosInfo.PosX = TempPosInfo.PosX;
+            PosInfo.PosY = TempPosInfo.PosY;
+
+            SyncPos();
+
+            State = CreatureState.Idle;
+            CheckUpdatedFlag();
+
+            // Idle로 
+
+            //State = CreatureState.Idle;
+
+            //====================================================================================================================================================//
+
+
+
+
         }
         else
         {
             count_checkDistance = 0;
         }
 
-        // 일정 시간 지난후에... 핑 검사후 그다음에 돌아가게.. 혹은 2칸 이상일 경우에만..
-
-
-        Vector3Int A;
-        A = new Vector3Int(TempPosInfo.PosX, TempPosInfo.PosY, 0);
-        Vector3 destPos = Managers.Map.CurrentGrid.CellToWorld(A) + new Vector3(16.0f, 36.0f, 0);
-
-        Vector3Int destPosInt = new Vector3Int((int)destPos.x, (int)destPos.y, (int)destPos.z);
-
-
-
-        // -----------------------------------------------------------------//
-        Vector3 moveDir = destPos - transform.position;
-        // 도착 여부 체크
-        float dist = moveDir.magnitude;
-
-        if (dist < Speed * Time.smoothDeltaTime)
-        {
-
-            if (Managers.Map.CanGo(destPosInt))
-                transform.position = destPosInt;
-            //transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
-
-        }
-        else
-        {
-            transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
-        }
-
-        // -----------------------------------------------------------------//
-
-
-        //transform.position = destPos;
-
-
-        // -----------------------------------------------------------------//
-        Managers.Map.ApplyMove(gameObject, PosInfo.PosX, PosInfo.PosY, TempPosInfo.PosX, TempPosInfo.PosY);
-
-
-        // 자기 위치로 안바꿔줬따보니 계속 같은 좌표여서 이동,방향등이 매치가 안되었던 것이다.
-        PosInfo.PosX = TempPosInfo.PosX;
-        PosInfo.PosY = TempPosInfo.PosY;
-
-        SyncPos();
-
-        State = CreatureState.Idle;
-        CheckUpdatedFlag();
-
-        // Idle로 
-
-        //State = CreatureState.Idle;
     }
 
     [SerializeField]

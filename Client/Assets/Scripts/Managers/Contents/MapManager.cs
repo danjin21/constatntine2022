@@ -53,6 +53,12 @@ public class MapManager
         return _portal;
     }
 
+    public GameObject[,] GetObject()
+    {
+        return _objects;
+    }
+
+
     public bool CanGo(Vector3Int cellPos)
     {
 
@@ -97,6 +103,11 @@ public class MapManager
 
             //Debug.Log($"#####{gameObject.name}가 ##{x}/{y}에서 사라졌다.");
         }
+
+        // 미니맵 리프레시
+
+        RefreshMiniMap();
+
         return true;
     }
 
@@ -124,10 +135,28 @@ public class MapManager
             //Debug.Log($"##{gameObject.name}의 현재 위치 ##{x}/{y}");
         }
 
-    
+
+        // 미니맵 리프레시
+
+        RefreshMiniMap();
 
         return true;
     }
+
+    public void RefreshMiniMap()
+    {
+        int X = Managers.Object.MyPlayer.PosInfo.PosX;
+        int Y = Managers.Object.MyPlayer.PosInfo.PosY;
+
+        // 미니맵 교체해주기
+
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+        UI_MiniMap miniMapUI = gameSceneUI.MiniMapUI;
+        miniMapUI.DrawCollision_center(Managers.Map.MaxY - Y - 1, X - Managers.Map.MinX);
+
+    }
+
 
 
 

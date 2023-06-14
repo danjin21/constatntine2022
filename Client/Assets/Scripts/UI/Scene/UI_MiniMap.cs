@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Data;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,12 +11,18 @@ public class UI_MiniMap : UI_Base
     enum Texts
     {
         mapText,
+        miniMapNameText,
     }
 
     // Start is called before the first frame update
-    void Start()
+    public void RefreshUI()
     {
+        MyPlayerController player = Managers.Object.MyPlayer;
 
+        MapInfoData mapData = null;
+        Managers.Data.MapDict.TryGetValue(player.Stat.Map, out mapData);
+
+        Get<Text>((int)Texts.miniMapNameText).text = $"{mapData.name}";
     }
 
     // Update is called once per frame
@@ -76,10 +83,13 @@ public class UI_MiniMap : UI_Base
         // 이동할때마다 반복한다.
 
 
+
+
         bool[,] col = Managers.Map.GetCollision();
         bool[,] portals = Managers.Map.GetPortal();
+        GameObject[,] objects = Managers.Map.GetObject();
 
-        string arrayText_center = GetPartialArrayText(col, portals,x, y, 20, 22);
+        string arrayText_center = GetPartialArrayText(col, portals, objects, x, y, 20, 22);
 
         // Debug.Log(arrayText_center);
 
@@ -87,7 +97,7 @@ public class UI_MiniMap : UI_Base
 
     }
 
-    private string GetPartialArrayText(bool[,] array, bool[,] portals ,int centerX, int centerY, int rangeX, int rangeY)
+    private string GetPartialArrayText(bool[,] array, bool[,] portals , GameObject[,] objects, int centerX, int centerY, int rangeX, int rangeY)
     {
         string text = "";
 
@@ -146,7 +156,14 @@ public class UI_MiniMap : UI_Base
                         if (portals[i, j] == true)
                             text += "<color=#44d2ba>■</color>";
                         else
-                            text += "□";                                
+                        {
+                            if(objects[i,j] !=null)
+                            {
+                                text += "<color=white>■</color>";
+                            }
+                            else
+                                text += "□";
+                        }
                     }
 
 

@@ -236,9 +236,9 @@ public class UI_Stat : UI_Base
 
 
         Get<Text>((int)Texts.MapNameText).text = $"{mapData.name}";
+  
 
-
-      
+        
 
         if (player.Stat.StatPoint > 0)
             StatButtonOnOff(true);
@@ -316,9 +316,16 @@ public class UI_Stat : UI_Base
 
     IEnumerator MapAlert(string mapName)
     {
+    
+
         //GameObject go = Managers.Resource.Instantiate("UI/SubItem/MapAlert");
 
         UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+
+        // 미니맵 제목 바꾸기
+        UI_MiniMap miniMapUI = gameSceneUI.MiniMapUI;
+        miniMapUI.RefreshUI();
 
         GameObject go = gameSceneUI.MapAlert;
 

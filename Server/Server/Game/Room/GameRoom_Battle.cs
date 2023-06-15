@@ -17,6 +17,12 @@ namespace Server.Game
             if (player == null)
                 return;
 
+            GameRoom room = player.Room;
+
+            if (room == null)
+                return;
+
+
             //// 스킬쓴 바로 직후에는 걷지못하게함
             //if (player.SkillWalkCool == true)
             //    return;
@@ -40,13 +46,13 @@ namespace Server.Game
   
 
 
-            //클라단에서 왔다리 갔다리 하는거 해결
-            if (player.State == CreatureState.Skill && movePacket.PosInfo.State == CreatureState.Idle)
-            {
-                info.PosInfo.State = movePosInfo.State;
-                Console.WriteLine("테스트1");
-                return;
-            }
+            ////클라단에서 왔다리 갔다리 하는거 해결
+            //if (player.State == CreatureState.Skill && movePacket.PosInfo.State == CreatureState.Idle)
+            //{
+            //    info.PosInfo.State = movePosInfo.State;
+            //    Console.WriteLine("테스트1");
+            //    return;
+            //}
 
 
 
@@ -61,8 +67,8 @@ namespace Server.Game
 
                     // 남들에게 알려준다.
                     S_Move IdleMovePacket = new S_Move();
-                    IdleMovePacket.ObjectId = player.Info.ObjectId;
-                    IdleMovePacket.PosInfo = player.PosInfo;
+                    IdleMovePacket.ObjectId = info.ObjectId;
+                    IdleMovePacket.PosInfo = info.PosInfo;
                     Broadcast(player.CellPos, IdleMovePacket);
 
                     return;
@@ -74,11 +80,25 @@ namespace Server.Game
                 // 대각선 이동 하면 return;
                 if (Math.Abs(movePosInfo.PosX - info.PosInfo.PosX) >= 1 && Math.Abs(movePosInfo.PosY - info.PosInfo.PosY) >= 1)
                     return;
+
+
+                // 캐릭터의 state, move dir 을 갱신시켜준다. ( 서버내에서만? )
+                info.PosInfo.State = movePosInfo.State;
+                info.PosInfo.MoveDir = movePosInfo.MoveDir;
+
+            }
+            else if (movePosInfo.PosX == info.PosInfo.PosX && movePosInfo.PosY == info.PosInfo.PosY)
+            {
+                // 같은곳에서 이동한다고 하면 방향만 해주자.
+                info.PosInfo.MoveDir = movePosInfo.MoveDir;
+
+                // 스킬이 아닌 멈춰있을 경우에만 걷기로 해준다. // 막혀있는 때가있어서
+                if(info.PosInfo.State == CreatureState.Idle)
+                    info.PosInfo.State = movePacket.PosInfo.State;
+
+                return;
             }
 
-            // 캐릭터의 state, move dir 을 갱신시켜준다. ( 서버내에서만? )
-            info.PosInfo.State = movePosInfo.State;
-            info.PosInfo.MoveDir = movePosInfo.MoveDir;
 
             // ★☆ 충돌체의 정보를 주는 곳  ★☆
             Map.ApplyMove(player, new Vector2Int(movePosInfo.PosX, movePosInfo.PosY));
@@ -87,10 +107,16 @@ namespace Server.Game
             // 다른 플레이어한테도 알려준다.
 
             S_Move resMovePacket = new S_Move();
-            resMovePacket.ObjectId = player.Info.ObjectId;
-            resMovePacket.PosInfo = movePacket.PosInfo;
+            resMovePacket.ObjectId = info.ObjectId;
+            resMovePacket.PosInfo = info.PosInfo;
 
-            Broadcast(player.CellPos,resMovePacket);
+            Broadcast(player.CellPos, resMovePacket);
+
+            // 다시 State는 멈추기로(서버단에서만)... 그러나.. 텔레포트때문에 조금 뒤에 해줘야할듯?
+            // 이동속도 만큼 뒤에 Idle되게해볼까?
+            int tick = (int)((1000 * 32) / player.Stat.Speed);
+            room.PushAfter(tick, player.StateToIdle);
+
 
             //Console.WriteLine($"S_Move : {resMovePacket.PosInfo.PosX},{resMovePacket.PosInfo.PosY}");
 
@@ -924,12 +950,20 @@ namespace Server.Game
 
 
                 player.SkillCool = true;
-                room.PushAfter(800, player.SkillCooltime);
+                room.PushAfter(1800, player.SkillCooltime);
+
+                if (skillPacket.Info.SkillId == 9001001) // 줍기
+                {
+
+                    // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
+                    player.SkillWalkCool = true;
+                    room.PushAfter(1500, player.SkillWalkCooltime); // 절대 스킬쿨타임보단 적어야한다.
+                }
 
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
-                room.PushAfter(200, player.SkillWalkCooltime);
+                room.PushAfter(1500, player.SkillWalkCooltime); // 절대 스킬쿨타임보단 적어야한다.
 
             }
 
@@ -949,7 +983,8 @@ namespace Server.Game
             changePacket.Damage = MpConsume;
             Broadcast(player.CellPos, changePacket);
 
-
+            // 스킬 쓴거니까 상태를 스킬로 만들어주자
+            player.State = CreatureState.Skill;
 
             // 스킬쓰자마자 남들에게 알려준다.
             S_Move IdleMovePacket = new S_Move();

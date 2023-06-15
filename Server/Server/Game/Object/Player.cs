@@ -132,6 +132,21 @@ namespace Server.Game
         public void SkillWalkCooltime()
         {
             SkillWalkCool = false;
+
+            State = CreatureState.Idle;
+
+            // 스킬쓰자마자 남들에게 알려준다.
+            S_Move IdleMovePacket = new S_Move();
+            IdleMovePacket.ObjectId = Info.ObjectId;
+            IdleMovePacket.PosInfo = PosInfo;
+            Room.Broadcast(CellPos, IdleMovePacket);
+        }
+
+        public void StateToIdle()
+        {
+            State = CreatureState.Idle;
+
+
         }
 
         protected virtual void UpdateMoving()

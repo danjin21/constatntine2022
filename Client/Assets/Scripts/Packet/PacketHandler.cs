@@ -178,6 +178,8 @@ class PacketHandler
             if (myPC == null)
                 return;
 
+            // 상태는 서버에 동기화 해주자.
+            myPC.State = movePacket.PosInfo.State;
 
             myPC.TempPosInfo = movePacket.PosInfo;
 

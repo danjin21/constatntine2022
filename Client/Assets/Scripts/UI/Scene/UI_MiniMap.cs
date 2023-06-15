@@ -159,7 +159,29 @@ public class UI_MiniMap : UI_Base
                         {
                             if(objects[i,j] !=null)
                             {
-                                text += "<color=white>■</color>";
+
+                                BaseController A = null;
+                                A = objects[i, j].GetComponent<BaseController>();
+
+                                string colorString = "";
+                                if (A.GetType() == typeof(NpcController))
+                                {
+                                    colorString = "yellow";
+                                }
+                                else if (A.GetType() == typeof(PlayerController))
+                                {
+                                    colorString = "orange";
+                                }
+                                else if (A.GetType() == typeof(MonsterController))
+                                {
+                                    colorString = "white";
+                                }
+                                else
+                                {
+                                    colorString = "white";
+                                }
+
+                                text += $"<color={colorString}>■</color>";
                             }
                             else
                                 text += "□";

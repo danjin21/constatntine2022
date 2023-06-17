@@ -956,7 +956,7 @@ public class MyPlayerController : PlayerController
 
     protected override void MoveToNextPos()
     {
-
+        Blocked = false;
 
         // 이동 취약점
         //// 이동하기전에 서버랑 동기화
@@ -1137,12 +1137,12 @@ public class MyPlayerController : PlayerController
         else
         {
             Blocked = true;
+
         }
-
-
 
         CheckUpdatedFlag();
     }
+
 
     protected override void CheckUpdatedFlag()
     {
@@ -1155,6 +1155,9 @@ public class MyPlayerController : PlayerController
             Managers.Network.Send(movePacket);
             _updated = false;
         }
+
+
+
     }
 
 

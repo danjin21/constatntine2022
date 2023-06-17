@@ -140,6 +140,9 @@ namespace Server.Game
             IdleMovePacket.ObjectId = Info.ObjectId;
             IdleMovePacket.PosInfo = PosInfo;
             Room.Broadcast(CellPos, IdleMovePacket);
+
+            Console.WriteLine("상태 : " + State);
+
         }
 
         public void StateToIdle()

@@ -91,10 +91,10 @@ namespace Server.Game
             {
                 // 같은곳에서 이동한다고 하면 방향만 해주자.
                 info.PosInfo.MoveDir = movePosInfo.MoveDir;
-
-                // 스킬이 아닌 멈춰있을 경우에만 걷기로 해준다. // 막혀있는 때가있어서
-                if(info.PosInfo.State == CreatureState.Idle)
-                    info.PosInfo.State = movePacket.PosInfo.State;
+                Console.WriteLine("(끝)걷는 중의 플레이어 상테 : " + player.State);
+                // 스킬이 아닌 경우에만 걷기로 해준다. // 막혀있는 때가있어서
+                //if(info.PosInfo.State != CreatureState.Skill)
+                //    info.PosInfo.State = movePacket.PosInfo.State;
 
                 return;
             }
@@ -115,7 +115,7 @@ namespace Server.Game
             // 다시 State는 멈추기로(서버단에서만)... 그러나.. 텔레포트때문에 조금 뒤에 해줘야할듯?
             // 이동속도 만큼 뒤에 Idle되게해볼까?
             int tick = (int)((1000 * 32) / player.Stat.Speed);
-            room.PushAfter(tick, player.StateToIdle);
+            room.PushAfter(tick-100, player.StateToIdle); // -100 하는 이유, 너무 겹치면  계속 걸으면 Moving 이 Idle이 막 됨
 
 
             //Console.WriteLine($"S_Move : {resMovePacket.PosInfo.PosX},{resMovePacket.PosInfo.PosY}");
@@ -135,6 +135,7 @@ namespace Server.Game
                 player.MoveMap( A.destMap,  A.destPosX,  A.destPosY);
             }
 
+            Console.WriteLine("(끝)걷는 중의 플레이어 상테 : " + player.State );
 
             //}
         }
@@ -166,8 +167,8 @@ namespace Server.Game
             if (PlayerSkill == null)
                 return;
 
-            // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
-            if (player.SkillCool == true /*&& skillPacket.Info.SkillId != 3101000*/)
+            // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자 - 20230616 원복
+            if (player.SkillCool == true && skillPacket.Info.SkillId != 3101000 )
             {
                 return;
             }
@@ -213,14 +214,14 @@ namespace Server.Game
             // TODO : 스킬 사용 가능 여부 체크
 
             // 텔레포트 아닌 경우에만 스킬 State
-            if(skillPacket.Info.SkillId !=3101000)
+            if (skillPacket.Info.SkillId != 3101000)
                 info.PosInfo.State = CreatureState.Skill;
 
 
 
 
             Data.Skill skillData = null;
-             
+
             // 스킬 데이터가 없으면 return 
             if (DataManager.SkillDict.TryGetValue(skillPacket.Info.SkillId, out skillData) == false)
                 return;
@@ -304,7 +305,7 @@ namespace Server.Game
 
                                 // 자기 앞 칸에 오브젝트가 있으면 공격을 준다.
                                 // 10칸
-                                while (shot ==false && i < distance)
+                                while (shot == false && i < distance)
                                 {
                                     // 자기 방향을 구하고,
                                     Vector2Int destPos = serverArrow.GetFrontCellPos(); // 내 앞 방향
@@ -313,11 +314,11 @@ namespace Server.Game
 
                                     if (room.Map.Find(destPos) == null)
                                     {
-                                        //room.Map.ApplyMove(serverArrow, destPos, collision: false /*충돌영향안준다.*/);
+                                        //room.Map.ApplyMove(serverArrow, destPos, collision: false /*충돌영향안준다.);
 
                                         // 충돌체
 
-                                        if(room.Map.CanGo(destPos,false) == false)
+                                        if (room.Map.CanGo(destPos,false) == false)
                                         {
                                             tempProjectileInfo.Distance = i+1;
                                             break;
@@ -943,29 +944,47 @@ namespace Server.Game
 
 
             }
+            else if (skillPacket.Info.SkillId == 9001001) // 줍기
+            {
+                // ＃＃스킬 쿨타임 주기. Idle 로 인해 return 되는데 먼저 실행되면 안되지!
+                player.SkillCool = true;
+                room.PushAfter(800, player.SkillCooltime);
+
+
+            }
             else // 그외 스킬 쿨타임 주기
             {
 
-                // ＃＃스킬 쿨타임 주기. Idle 로 인해 return 되는데 먼저 실행되면 안되지!
-
-
+                // 스킬쿨
                 player.SkillCool = true;
-                room.PushAfter(1800, player.SkillCooltime);
-
-                if (skillPacket.Info.SkillId == 9001001) // 줍기
-                {
-
-                    // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
-                    player.SkillWalkCool = true;
-                    room.PushAfter(1500, player.SkillWalkCooltime); // 절대 스킬쿨타임보단 적어야한다.
-                }
-
-
-                // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
-                player.SkillWalkCool = true;
-                room.PushAfter(1500, player.SkillWalkCooltime); // 절대 스킬쿨타임보단 적어야한다.
+                room.PushAfter(1000, player.SkillCooltime);
 
             }
+
+
+
+
+            // Idle로 돌아가게
+            if (skillPacket.Info.SkillId == 9001001) // 줍기
+            {
+
+                // 스킬쓰자마자 걷지 못하게 1.5초 뒤에 Idle이 되게해준다
+                player.SkillWalkCool = true;
+                room.PushAfter(400, player.SkillWalkCooltime); // 절대 스킬쿨타임보단 적어야한다.
+            }
+            else if(skillPacket.Info.SkillId == 3101000)
+            {
+                // 텔레포트라 스킬쓰자마자 Idle이 되게해준다.
+                player.SkillWalkCool = true;
+                player.SkillWalkCooltime();
+            }
+            else
+            {
+                // 스킬쓰자마자 걷지 못하게 1.5초 뒤에 Idle이 되게해준다
+                player.SkillWalkCool = true;
+                room.PushAfter(500, player.SkillWalkCooltime); // 절대 스킬쿨타임보단 적어야한다.
+            }
+
 
             // 마나를 소비하자.
 

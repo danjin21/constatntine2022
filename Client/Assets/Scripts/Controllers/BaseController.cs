@@ -245,6 +245,8 @@ public class BaseController : MonoBehaviour
             //UpdateAnimation();
             _updated = true;
 
+            Debug.Log("방향은 : " + PosInfo.MoveDir);
+
         }
 
     }

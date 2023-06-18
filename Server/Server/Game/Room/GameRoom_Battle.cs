@@ -101,20 +101,20 @@ namespace Server.Game
                     info.PosInfo.State = movePacket.PosInfo.State;
 
                 }
-                else
+                else if (info.PosInfo.State == CreatureState.Idle && movePacket.PosInfo.State == CreatureState.Idle) 
                 {
                     // 다른 플레이어한테도 알려준다.
 
-                    //S_Move resMovePacket_2 = new S_Move();
-                    //resMovePacket_2.ObjectId = info.ObjectId;
-                    //resMovePacket_2.PosInfo = info.PosInfo;
+                    S_Move resMovePacket_2 = new S_Move();
+                    resMovePacket_2.ObjectId = info.ObjectId;
+                    resMovePacket_2.PosInfo = info.PosInfo;
 
-                    //Broadcast(player.CellPos, resMovePacket_2);
+                    Broadcast(player.CellPos, resMovePacket_2);
                 }
 
    
 
-                //return;
+                return;
             }
 
 

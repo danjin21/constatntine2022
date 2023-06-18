@@ -1143,6 +1143,7 @@ public class MyPlayerController : PlayerController
         CheckUpdatedFlag();
     }
 
+    public bool IsSendBlocked = false;
 
     protected override void CheckUpdatedFlag()
     {
@@ -1154,9 +1155,17 @@ public class MyPlayerController : PlayerController
             movePacket.PosInfo = PosInfo;
             Managers.Network.Send(movePacket);
             _updated = false;
+            IsSendBlocked = false;
         }
 
+        else if(!_updated && Blocked && IsSendBlocked == false)
+        {
+            C_Move movePacket = new C_Move();
+            movePacket.PosInfo = PosInfo;
+            Managers.Network.Send(movePacket);
 
+            IsSendBlocked = true;
+        }
 
     }
 

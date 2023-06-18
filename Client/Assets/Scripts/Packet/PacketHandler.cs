@@ -187,7 +187,6 @@ class PacketHandler
             myPC.UpdatePositionUI(myPC.TempPosInfo.PosX, myPC.TempPosInfo.PosY);
 
 
-
             // 서버에서 받은 위치와 내 현재 위치가 다르면 리턴한다.
 
             // ☆★☆★☆★☆★☆★☆★ 일정시간동안 다른지를 확인해야할듯

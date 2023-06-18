@@ -91,12 +91,30 @@ namespace Server.Game
             {
                 // 같은곳에서 이동한다고 하면 방향만 해주자.
                 info.PosInfo.MoveDir = movePosInfo.MoveDir;
-                Console.WriteLine("(끝)걷는 중의 플레이어 상테 : " + player.State);
+                Console.WriteLine("1(끝)걷는 중의 플레이어 상테 : " + player.State);
                 // 스킬이 아닌 경우에만 걷기로 해준다. // 막혀있는 때가있어서
-                //if(info.PosInfo.State != CreatureState.Skill)
+                //if (info.PosInfo.State != CreatureState.Skill)
                 //    info.PosInfo.State = movePacket.PosInfo.State;
 
-                return;
+                if (info.PosInfo.State == CreatureState.Idle && movePacket.PosInfo.State == CreatureState.Moving)
+                {
+                    info.PosInfo.State = movePacket.PosInfo.State;
+
+                }
+                else
+                {
+                    // 다른 플레이어한테도 알려준다.
+
+                    //S_Move resMovePacket_2 = new S_Move();
+                    //resMovePacket_2.ObjectId = info.ObjectId;
+                    //resMovePacket_2.PosInfo = info.PosInfo;
+
+                    //Broadcast(player.CellPos, resMovePacket_2);
+                }
+
+   
+
+                //return;
             }
 
 
@@ -135,7 +153,7 @@ namespace Server.Game
                 player.MoveMap( A.destMap,  A.destPosX,  A.destPosY);
             }
 
-            Console.WriteLine("(끝)걷는 중의 플레이어 상테 : " + player.State );
+            Console.WriteLine("2(끝)걷는 중의 플레이어 상테 : " + player.State );
 
             //}
         }

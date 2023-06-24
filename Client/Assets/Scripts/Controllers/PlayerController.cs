@@ -561,6 +561,9 @@ public class PlayerController : CreatureController
 
         _coSkill = null;
 
+        // 업데이트 X
+        _updated = false;
+
         CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
     }
 

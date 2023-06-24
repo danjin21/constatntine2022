@@ -956,7 +956,7 @@ namespace Server.Game
             S_Move IdleMovePacket = new S_Move();
             IdleMovePacket.ObjectId = player.Info.ObjectId;
             IdleMovePacket.PosInfo = player.PosInfo;
-            //Broadcast(player.CellPos, IdleMovePacket);
+            Broadcast(player.CellPos, IdleMovePacket);
 
 
 

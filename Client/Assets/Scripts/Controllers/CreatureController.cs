@@ -226,7 +226,7 @@ public class CreatureController : BaseController
         _coSkill = null;
 
         getShot = false;
- 
+        getDie = false;
     }
 
 

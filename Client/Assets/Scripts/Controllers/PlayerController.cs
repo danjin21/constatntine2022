@@ -435,7 +435,8 @@ public class PlayerController : CreatureController
         // 실제로는 MyPlayerController의  CheckUpdateFlag만 작동한다.
     }
 
-
+    DateTime StartTime;
+    DateTime EndTime;
 
     IEnumerator CoStartPunch()
     {
@@ -458,6 +459,20 @@ public class PlayerController : CreatureController
         // 대기 시간
 
         State = CreatureState.Skill;
+
+        DateTime TemporTime = StartTime;
+        StartTime = DateTime.Now;
+
+        TimeSpan timeCal = StartTime - TemporTime;
+
+        string sNow;
+        sNow = StartTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+        string fNow;
+        fNow = TemporTime.ToString("yyyy-MM-dd HH:mm:ss.fff");
+
+        Managers.Chat.ChatRPC($" 전 시간 : {fNow} / 지금 시간 : {sNow} / 시간차 : " + timeCal.TotalMilliseconds);
+
 
 
         yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.

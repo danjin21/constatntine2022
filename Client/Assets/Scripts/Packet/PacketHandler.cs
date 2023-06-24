@@ -458,13 +458,6 @@ class PacketHandler
         if (mc != null && skillPacket.Info.SkillId != -1)
         {
             
-
-            string AA = DateTime.Now.ToString("ss.fffffff");
-            float NowTime = float.Parse(AA);
-            float BB = NowTime;
-
-            Managers.Chat.ChatRPC($"<color=#000000>(1) : {mc.B*1000} / (2) : {BB * 1000} / 지연율 : {(BB-mc.B)*1000}</color>");
-
         }
 
 

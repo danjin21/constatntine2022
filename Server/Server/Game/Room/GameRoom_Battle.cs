@@ -141,7 +141,7 @@ namespace Server.Game
                 return;
 
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
-            if (player.SkillCool == true /*&& skillPacket.Info.SkillId != 3101000*/)
+            if (player.SkillCool == true && skillPacket.Info.SkillId != 3101000)
             {
                 player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
                 return;
@@ -914,7 +914,7 @@ namespace Server.Game
             {
                 // ＃＃스킬 쿨타임 주기. Idle 로 인해 return 되는데 먼저 실행되면 안되지!
                 player.SkillCool = true;
-                room.PushAfter(800, player.SkillCooltime);
+                room.PushAfter(1200, player.SkillCooltime);
 
 
             }
@@ -925,7 +925,7 @@ namespace Server.Game
 
 
                 player.SkillCool = true;
-                room.PushAfter(800, player.SkillCooltime);
+                room.PushAfter(1200, player.SkillCooltime);
 
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )

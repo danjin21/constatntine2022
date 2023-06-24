@@ -530,7 +530,7 @@ public class BaseController : MonoBehaviour
 
             if (this.GetType() == typeof(PlayerController))
             {
-                State = CreatureState.Idle;
+                //State = CreatureState.Idle;
 
                 //if (this.GetComponent<PlayerController>()._skillId != -1)
                 //    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);
@@ -694,7 +694,7 @@ public class BaseController : MonoBehaviour
 
             if (this.GetType() == typeof(PlayerController))
             {
-                State = CreatureState.Idle;
+                //State = CreatureState.Idle;
 
                 //if (this.GetComponent<PlayerController>()._skillId != -1)
                 //    this.GetComponent<PlayerController>().UseSkill(this.GetComponent<PlayerController>()._skillId);

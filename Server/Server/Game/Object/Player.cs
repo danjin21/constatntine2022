@@ -107,6 +107,10 @@ namespace Server.Game
 
         public bool SkillWalkCool = false;
 
+        // 스킬 쿨타임에 예약 걸어두기
+
+        public C_Skill C_Skill_Book = null;
+
 
         public float yes;
 
@@ -115,6 +119,12 @@ namespace Server.Game
             SkillCool = false;
             //Console.WriteLine("끝 쿨 시간 : " + Environment.TickCount64);
             //Console.WriteLine("시간차이 : " + (Environment.TickCount64- yes));
+
+            if (C_Skill_Book != null)
+            {
+                Room.HandleSkill(this, C_Skill_Book);
+                C_Skill_Book = null;
+            }
         }
         public void ConsumeCooltime()
         {

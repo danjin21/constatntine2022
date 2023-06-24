@@ -41,12 +41,12 @@ namespace Server.Game
 
 
             //클라단에서 왔다리 갔다리 하는거 해결
-            if (player.State == CreatureState.Skill && movePacket.PosInfo.State == CreatureState.Idle)
-            {
-                info.PosInfo.State = movePosInfo.State;
-                Console.WriteLine("테스트1");
-                return;
-            }
+            //if (player.State == CreatureState.Skill && movePacket.PosInfo.State == CreatureState.Idle)
+            //{
+            //    info.PosInfo.State = movePosInfo.State;
+            //    Console.WriteLine("테스트1");
+            //    return;
+            //}
 
 
 
@@ -143,6 +143,7 @@ namespace Server.Game
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
             if (player.SkillCool == true /*&& skillPacket.Info.SkillId != 3101000*/)
             {
+                player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
                 return;
             }
 

@@ -401,7 +401,8 @@ public class PlayerController : CreatureController
         }
         else if (skillId == 3101000)
         {
-            _coSkill = StartCoroutine("CoStartSkill");
+            if(this.GetType() == typeof(MyPlayerController))
+                _coSkill = StartCoroutine("CoStartSkill");
 
             Managers.Sound.Play(skillData.soundPath, Define.Sound.Effect);
 
@@ -546,7 +547,7 @@ public class PlayerController : CreatureController
 
         // 대기 시간
 
-        State = CreatureState.Skill;
+        // State = CreatureState.Skill;
 
         //yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
         yield return new WaitForSeconds(0.0f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
@@ -571,13 +572,13 @@ public class PlayerController : CreatureController
         //{
         //    State = CreatureState.Moving;
         //}
-
+        if(State != CreatureState.Moving)
         State = CreatureState.Idle;
 
         _coSkill = null;
 
-        // 업데이트 X
-        _updated = false;
+        //// 업데이트 X
+        //_updated = false;
 
         CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
     }

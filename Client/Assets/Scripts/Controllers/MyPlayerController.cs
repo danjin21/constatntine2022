@@ -172,11 +172,13 @@ public class MyPlayerController : PlayerController
 
     protected override void UpdateController()
     {
+        base.UpdateController();
+
         //if (!Managers.Chat.ChatInput.isFocused)
         //{
         //GetUIKeyInput();
 
-        if(MoveReset==true)
+        if (MoveReset==true)
         {
             if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
             {
@@ -191,7 +193,7 @@ public class MyPlayerController : PlayerController
         }
 
 
-        UpdateGetInput();
+
 
             switch (State)
             {
@@ -201,16 +203,18 @@ public class MyPlayerController : PlayerController
                     break;
                 case CreatureState.Moving:
                 if (MoveReset == false)
-                        GetDirInput();
+                {
+                    GetDirInput_Moving();
+                }
                     break;
 
         }
 
-            base.UpdateController();
+  
         //}
+        UpdateGetInput();
 
 
-    
 
     }
 
@@ -834,8 +838,89 @@ public class MyPlayerController : PlayerController
     // 텔레포트도 따로 쿨타임
     public void ShortKeyCool_Teleport()
     {
-        _coShortKeyCooltime_Teleport = StartCoroutine("CoInputCooltime_ShortKey_Teleport", 0.35f);
+        _coShortKeyCooltime_Teleport = StartCoroutine("CoInputCooltime_ShortKey_Teleport", 0.1f);
     }
+
+    void GetDirInput_Moving()
+    {
+        if(!Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow))
+        {
+            _moveKeyPressed = false;
+
+            //Dir = MoveDir.None;
+            count = 0.22f; // 같은 방향이면 좀 빠르게 가게 0으로 안 만든다.
+
+            // 텔레포트 딱 뗼때 키 안먹혀서 (moving)으로 되어있어서. 그래서 떌때 Idle로 바꾸게함
+
+        }
+    }
+
+    void GetDirInput_NextPos()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            // 이전에 이어 받은거면 count 를 0으로 만들고 이어나간다.
+            if (Dir != MoveDir.Up)
+                count = 0;
+
+            Dir = MoveDir.Up;
+            count += Time.smoothDeltaTime;
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            // 이전에 이어 받은거면 count 를 0으로 만들고 이어나간다.
+            if (Dir != MoveDir.Down)
+                count = 0;
+
+            Dir = MoveDir.Down;
+            count += Time.smoothDeltaTime;
+
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            // 이전에 이어 받은거면 count 를 0으로 만들고 이어나간다.
+            if (Dir != MoveDir.Left)
+                count = 0;
+
+            Dir = MoveDir.Left;
+            count += Time.smoothDeltaTime;
+
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            // 이전에 이어 받은거면 count 를 0으로 만들고 이어나간다.
+            if (Dir != MoveDir.Right)
+                count = 0;
+
+            Dir = MoveDir.Right;
+            count += Time.smoothDeltaTime;
+        }
+
+
+
+        //else
+        //{
+        //    _moveKeyPressed = false;
+
+        //    //Dir = MoveDir.None;
+        //    count = 0.22f; // 같은 방향이면 좀 빠르게 가게 0으로 안 만든다.
+
+        //    // 텔레포트 딱 뗼때 키 안먹혀서 (moving)으로 되어있어서. 그래서 떌때 Idle로 바꾸게함
+
+        //}
+
+        //// 딜레이
+        //if (count >= 0.27f)
+        //{
+        //    _moveKeyPressed = true;
+
+        //    count = 0;
+        //}
+    }
+
+
+
+
 
     // 키보드 입력
     void GetDirInput()
@@ -849,6 +934,13 @@ public class MyPlayerController : PlayerController
 
         if (IsSkillSend == true)
             return;
+
+
+        // 텔레포트 패킷 보내자마자 방향키 바뀌지 않게 방지 ( 키 누르고 0.35초 간 방향전환 X )
+        if (_coShortKeyCooltime_Teleport != null)
+            return;
+
+
 
         // 단축키 누른 직후 방향키 전환하면 안되게
 
@@ -998,6 +1090,7 @@ public class MyPlayerController : PlayerController
         }
 
 
+
         // 서버랑 5칸 이상 벌어지는데 간다고 하면, 중지
         // 서버에서도 5칸 이상이면 return 한다.
 
@@ -1039,6 +1132,7 @@ public class MyPlayerController : PlayerController
         //}
 
 
+        GetDirInput_NextPos();
 
         Vector3Int destPos = CellPos;
         // Vector3Int destPos = new Vector3Int(TempPosInfo.PosX, TempPosInfo.PosY, CellPos.z);

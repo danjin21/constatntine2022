@@ -335,6 +335,9 @@ class PacketHandler
 
             myPC.TempPosInfo = movePacket.PosInfo;
 
+            // ***** 텔레포트에서 전에 썼던 방향으로 덮어지는거 방지
+            movePacket.PosInfo.MoveDir = myPC.PosInfo.MoveDir;
+
             myPC.PosInfo = movePacket.PosInfo;
             myPC.SyncPos(); //부드럽게 이동하는것 방지
 

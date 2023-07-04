@@ -242,7 +242,8 @@ public class MyPlayerController : PlayerController
 
     protected override void UpdateIdle()
     {
-
+        if (IsSkillSend == true)
+            return;
 
         //base.UpdateIdle();
 
@@ -857,6 +858,10 @@ public class MyPlayerController : PlayerController
 
     void GetDirInput_NextPos()
     {
+
+        if (IsSkillSend == true)
+            return;
+
         if (Input.GetKey(KeyCode.UpArrow))
         {
             // 이전에 이어 받은거면 count 를 0으로 만들고 이어나간다.
@@ -1320,12 +1325,27 @@ public class MyPlayerController : PlayerController
 
     protected override void UpdateSkill()
     {
+        if (IsSkillSend == true)
+            return;
+
         base.UpdateSkill();
 
 
     }
 
+    // UpdateIdle 은 위에 있따.
 
+
+
+    protected override void UpdateMoving()
+    {
+        if (IsSkillSend == true)
+            return;
+
+        base.UpdateMoving();
+
+
+    }
 
     //protected override void UpdateMoving()
     //{

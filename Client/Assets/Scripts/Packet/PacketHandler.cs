@@ -425,8 +425,14 @@ class PacketHandler
          
         }
 
+        // 사전에서 Skill ID 찾아서 Projectile 있는지 확인
+        // 서버에서는 Project 정보 계속줌
+
+        Data.Skill skillData = null;
+        Managers.Data.SkillDict.TryGetValue(skillPacket.Info.SkillId, out skillData);
+
         // 투척기라면
-        if (skillPacket.ProjectileInfo != null)
+        if (skillPacket.ProjectileInfo != null && skillData.projectile != null)
         {
 
 
@@ -454,17 +460,18 @@ class PacketHandler
 
         // 스킬쿨은 UseSkill 맨 아래부분에 있다.
         MyPlayerController mc = go.GetComponent<MyPlayerController>();
-        if(mc != null)
-            mc.IsSkillSend = false;
+        //if (mc != null)
+        //    mc.IsSkillSend = false;
 
-
+        // 스킬 ID가 -1가 아니여야 한다..?
+        // 그러면.. 이동 계속 안될듯 
         if (mc != null && skillPacket.Info.SkillId != -1)
         {
-            
+            mc.IsSkillSend = false;
         }
 
 
-        if(skillPacket.Info.SkillId != -1)
+        if (skillPacket.Info.SkillId != -1)
             Debug.Log("--------------------- 스킬 획득 완료");
 
         // 줍기라면 그냥 삭제해준다.

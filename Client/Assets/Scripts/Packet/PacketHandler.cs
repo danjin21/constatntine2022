@@ -431,8 +431,10 @@ class PacketHandler
         Data.Skill skillData = null;
         Managers.Data.SkillDict.TryGetValue(skillPacket.Info.SkillId, out skillData);
 
+        //&& skillData.projectile != null &&
+
         // 투척기라면
-        if (skillPacket.ProjectileInfo != null && skillData.projectile != null)
+        if (skillPacket.ProjectileInfo != null && skillPacket.ProjectileInfo.Shots >= 1)
         {
 
 

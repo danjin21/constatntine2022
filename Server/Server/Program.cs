@@ -101,7 +101,7 @@ namespace Server
 					session.FlushSend();
                 }
 
-				Thread.Sleep(100);
+				//Thread.Sleep(100);
             }
         }
 

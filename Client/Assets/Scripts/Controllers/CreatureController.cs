@@ -268,15 +268,16 @@ public class CreatureController : BaseController
             {
                 //ColorUtility.TryParseHtmlString("#FF00B4", out color);
                 
-                ColorUtility.TryParseHtmlString("#FF00B4", out color);
+                ColorUtility.TryParseHtmlString("#f6a8ff", out color);
                 hudText.transform.GetChild(0).GetComponent<Text>().fontSize = 12;
-                hudText.GetComponent<DmgText>().damage = "*" + damageInfo.Damage.ToString();
+                hudText.GetComponent<DmgText>().damage = "★" + damageInfo.Damage.ToString() + "　";
+         
             }
 
 
             hudText.transform.GetChild(0).GetComponent<Text>().color = color;
 
-
+            // hudText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 
 
 

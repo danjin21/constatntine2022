@@ -286,8 +286,23 @@ namespace Server.Game
 
                 if (Owner.ObjectType == GameObjectType.Player)
                 {
-                    damageInfo.Damage = OwnerAttack*2;
-                    damageInfo.Kind = 2;
+                    Player player = (Player)Owner;
+
+                    // 크리티컬 : 2002000, 스킬을 가지고 있는지 확인
+                    Skills PlayerSkill = player.SkillInven.Find(i => i.SkillId == 2002000);
+                    if (PlayerSkill != null)
+                    {
+
+                        int per = new Random().Next(0, 101);
+
+                        if (per <= 40)
+                        {
+                            damageInfo.Damage = OwnerAttack * 2;
+                            damageInfo.Kind = 2;
+                        }
+                    }
+
+
                 }
 
 

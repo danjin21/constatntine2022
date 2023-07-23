@@ -112,6 +112,13 @@
       "mp": "3",
       "soundPath": "Sounds/Skill/3111002",
       "desc": "마나를 소비해 주위 4 겹에 강력한 번개를 내려찍는다."
+    },
+    {
+      "id": "2002000",
+      "name": "크리티컬샷",
+      "skillType": "SkillAuto",
+      "iconPath": "Textures/Skill/Icon/2002000/1",
+      "desc": "일정 확률로 2배의 데미지를 낸다."
     }
 
   ]

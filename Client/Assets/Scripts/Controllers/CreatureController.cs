@@ -206,9 +206,15 @@ public class CreatureController : BaseController
         if (damage >0)
             HitEffect(skillId);
 
+        // 포켓 만들기
+        GameObject DamagePocketPrefab = Managers.Resource.Instantiate("Effect/DamagePocket", this.transform);
+        // DamagePocketPrefab.transform.SetParent(this.transform);
+        DamagePocketPrefab.transform.position = DamagePocket.transform.position;
+
+
         for (int i = 0; i < DamageList.Count; i++)
         {
-            DamageText(DamageList[i], skillId, attackerId);
+            DamageText(DamageList[i], skillId, attackerId, DamagePocketPrefab);
 
             if (this.GetType() == typeof(MonsterController))
             {
@@ -231,7 +237,7 @@ public class CreatureController : BaseController
 
 
 
-    public void DamageText( int damage, int skillId, int attackerId)
+    public void DamageText( int damage, int skillId, int attackerId, GameObject DamagePocketPrefab)
     {
         GameObject Attacker = Managers.Object.FindById(attackerId);
 
@@ -245,16 +251,38 @@ public class CreatureController : BaseController
             if (Attacker.GetComponent<CreatureController>().GetType() == typeof(MonsterController))
                 ColorUtility.TryParseHtmlString("#ffb9b9", out color);
             else
-               ColorUtility.TryParseHtmlString("#FFF820", out color);
+            {
+                ColorUtility.TryParseHtmlString("#FFF820", out color);
+                //ColorUtility.TryParseHtmlString("#6620FF", out color);     
+
+
+            }
+
+
+            hudText.GetComponent<DmgText>().damage = damage.ToString();
+
+            int randomNum = Random.Range(0, 2);
+
+            if (randomNum == 1)
+            {
+                //ColorUtility.TryParseHtmlString("#FF00B4", out color);
+                
+                ColorUtility.TryParseHtmlString("#ff006f", out color);
+                hudText.transform.GetChild(0).GetComponent<Text>().fontSize = 12;
+                hudText.GetComponent<DmgText>().damage = "*" + damage.ToString();
+            }
 
 
             hudText.transform.GetChild(0).GetComponent<Text>().color = color;
 
-            hudText.GetComponent<DmgText>().damage = damage.ToString();
+
+
+
 
 
             //hudText.transform.parent = DamagePocket.transform;
-            hudText.transform.SetParent(DamagePocket.transform);
+            hudText.transform.SetParent(DamagePocketPrefab.transform);
+            hudText.transform.SetAsFirstSibling();
 
             //HitEffect(skillId);
 
@@ -270,7 +298,8 @@ public class CreatureController : BaseController
             hudText.GetComponent<DmgText>().damage = "Miss";
 
             //hudText.transform.parent = DamagePocket.transform;
-            hudText.transform.SetParent(DamagePocket.transform);
+            hudText.transform.SetParent(DamagePocketPrefab.transform);
+            hudText.transform.SetAsFirstSibling();
 
             //HitEffect(skillId);
 
@@ -286,7 +315,8 @@ public class CreatureController : BaseController
             hudText.GetComponent<DmgText>().damage = "+ " + a.ToString();
 
             //hudText.transform.parent = this.transform;
-            hudText.transform.SetParent(DamagePocket.transform);
+            hudText.transform.SetParent(DamagePocketPrefab.transform);
+            hudText.transform.SetAsFirstSibling();
 
         }
 

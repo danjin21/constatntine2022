@@ -301,7 +301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Blocked: 0
   IsDead: 0
+  _hpBar: {fileID: 0}
   DamagePocket: {fileID: 0}
+  _getShot: 0
+  _getDie: 0
   _skillId: -1
 --- !u!95 &3203848888725675927
 Animator:

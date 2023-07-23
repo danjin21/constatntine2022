@@ -41,7 +41,7 @@ public class DmgText : MonoBehaviour
         Invoke("FadeIn", 0.0f);
         Invoke("DestroyObject", destroyTime);
 
-        Invoke("GetFree", 0.5f);
+        // Invoke("GetFree", 0.5f);
     }
 
     // Update is called once per frame
@@ -78,7 +78,21 @@ public class DmgText : MonoBehaviour
 
     public void GetFree()
     {
-        //this.transform.parent = this.transform.parent.transform.parent;
-        this.transform.SetParent(this.transform.parent.transform.parent);
+
+
+        //// 포켓 만들기
+        //GameObject DamagePocketPrefab = Managers.Resource.Instantiate("Effect/DamagePocket");
+        //DamagePocketPrefab.transform.SetParent(this.transform.parent.transform.parent);
+        //this.transform.SetParent(DamagePocketPrefab.transform);
+
+        this.transform.parent = this.transform.parent.transform.parent;
+
+        // this.transform.SetAsFirstSibling();
+
+
+
+
+
+
     }
 }

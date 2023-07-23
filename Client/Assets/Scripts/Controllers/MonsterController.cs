@@ -176,7 +176,7 @@ public class MonsterController : CreatureController
     //}
 
 
-    public override void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
+    public override void OnDamaged(int damage, int skillId, List<DamageInfo> DamageList, int attackerId)
     {
         // Managers.Object.Remove(Id); // 몬스터와의 충돌을 이제 없애기 위해.
         // Managers.Resource.Destroy(gameObject); // 몬스터 그 자체를 없애기 위해.

@@ -160,7 +160,7 @@ public class CreatureController : BaseController
         base.UpdateAnimation();
     }
 
-    public virtual void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
+    public virtual void OnDamaged(int damage, int skillId, List<DamageInfo> DamageList, int attackerId)
     {
 
         // 내가 당하는거니까 이건 없어도 됨
@@ -192,7 +192,7 @@ public class CreatureController : BaseController
 
 
 
-    IEnumerator CoStartDamageDelay(int damage, int skillId, List<int> DamageList, int attackerId, float projectileSpeed)
+    IEnumerator CoStartDamageDelay(int damage, int skillId, List<DamageInfo> DamageList, int attackerId, float projectileSpeed)
     {
 
         Debug.Log("MY ID 1 : " + Id);
@@ -210,6 +210,9 @@ public class CreatureController : BaseController
         GameObject DamagePocketPrefab = Managers.Resource.Instantiate("Effect/DamagePocket", this.transform);
         // DamagePocketPrefab.transform.SetParent(this.transform);
         DamagePocketPrefab.transform.position = DamagePocket.transform.position;
+
+        // 혹시 몰라서 3 초 뒤에는 사라지게
+        Managers.Resource.Destroy(DamagePocketPrefab, 3.0f);
 
 
         for (int i = 0; i < DamageList.Count; i++)
@@ -237,14 +240,14 @@ public class CreatureController : BaseController
 
 
 
-    public void DamageText( int damage, int skillId, int attackerId, GameObject DamagePocketPrefab)
+    public void DamageText( DamageInfo damageInfo, int skillId, int attackerId, GameObject DamagePocketPrefab)
     {
         GameObject Attacker = Managers.Object.FindById(attackerId);
 
 
         GameObject hudText = Managers.Resource.Instantiate("Effect/DamageText");
 
-        if (damage > 0)
+        if (damageInfo.Damage > 0)
         {
             Color color;
 
@@ -259,17 +262,15 @@ public class CreatureController : BaseController
             }
 
 
-            hudText.GetComponent<DmgText>().damage = damage.ToString();
+            hudText.GetComponent<DmgText>().damage = damageInfo.Damage.ToString();
 
-            int randomNum = Random.Range(0, 2);
-
-            if (randomNum == 1)
+            if (damageInfo.Kind == 2)
             {
                 //ColorUtility.TryParseHtmlString("#FF00B4", out color);
                 
-                ColorUtility.TryParseHtmlString("#ff006f", out color);
+                ColorUtility.TryParseHtmlString("#FF00B4", out color);
                 hudText.transform.GetChild(0).GetComponent<Text>().fontSize = 12;
-                hudText.GetComponent<DmgText>().damage = "*" + damage.ToString();
+                hudText.GetComponent<DmgText>().damage = "*" + damageInfo.Damage.ToString();
             }
 
 
@@ -289,7 +290,7 @@ public class CreatureController : BaseController
 
 
         }
-        else if (damage == 0)
+        else if (damageInfo.Damage == 0)
         {
             Color color;
             ColorUtility.TryParseHtmlString("#36F59C", out color);
@@ -304,14 +305,14 @@ public class CreatureController : BaseController
             //HitEffect(skillId);
 
         }
-        else if (damage < 0)
+        else if (damageInfo.Damage < 0)
         {
 
             Color color;
             ColorUtility.TryParseHtmlString("#20FFAB", out color);
             hudText.transform.GetChild(0).GetComponent<Text>().color = color;
 
-            int a = Mathf.Abs(damage);
+            int a = Mathf.Abs(damageInfo.Damage);
             hudText.GetComponent<DmgText>().damage = "+ " + a.ToString();
 
             //hudText.transform.parent = this.transform;

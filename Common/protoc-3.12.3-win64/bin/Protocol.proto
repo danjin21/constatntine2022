@@ -259,7 +259,7 @@ message S_ChangeHp {
     int32 hp = 2;
     int32 damage = 3;
     int32 skillId = 4;
-    repeated int32 multiDamage = 5;
+    repeated DamageInfo multiDamage = 5;
     int32 attackerId = 6;
 
     //int32 hpDiff = 3;
@@ -668,4 +668,10 @@ message ProjectileInfo{
     int32 targetId = 4;
     int32 shots = 5;
 
+}
+
+
+message DamageInfo{
+    int32 damage = 1;
+    int32 kind = 2; // 1: normal, 2:critical, 3:miss, 4:heal
 }

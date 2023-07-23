@@ -129,7 +129,7 @@ public class NpcController : CreatureController
         Name.text = transform.name;
     }
 
-    public override void OnDamaged(int damage, int skillId, List<int> DamageList, int attackerId)
+    public override void OnDamaged(int damage, int skillId, List<DamageInfo> DamageList, int attackerId)
     {
         base.OnDamaged(damage,skillId, DamageList, attackerId);
         Debug.Log("Player Hit !");

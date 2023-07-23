@@ -519,7 +519,7 @@ class PacketHandler
             //cc.Stat.Hp = changePacket.Hp;
             cc.Hp = changePacket.Hp;
 
-            List<int> DamageList = new List<int>();
+            List<DamageInfo> DamageList = new List<DamageInfo>();
 
             for (int i = 0; i < changePacket.MultiDamage.Count; i ++)
             {

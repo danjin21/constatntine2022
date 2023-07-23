@@ -18,6 +18,9 @@ public class ProjectileController : BaseController
     protected override void Init()
     {
 
+        // 혹시 몰라서 10 초 뒤에는 사라지게
+        Managers.Resource.Destroy(this.gameObject, 10.0f);
+
         PosInfo = projectileInfo.PosInfo;
         SyncPos();
 

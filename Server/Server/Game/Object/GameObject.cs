@@ -257,7 +257,7 @@ namespace Server.Game
             //if (Room == null)
             //    return;
 
-            List<int> DamageList = new List<int>();
+            List<DamageInfo> DamageList = new List<DamageInfo>();
 
             int OwnerAttack;
 
@@ -275,8 +275,23 @@ namespace Server.Game
                 // 0 보다 작아지면 0으로
                 Stat.Hp = Math.Max(Stat.Hp - OwnerAttack, 0);
 
+       
 
-                DamageList.Add(OwnerAttack);
+
+
+                DamageInfo damageInfo = new DamageInfo();
+
+                damageInfo.Damage = OwnerAttack;
+                damageInfo.Kind = 1;
+
+                if (Owner.ObjectType == GameObjectType.Player)
+                {
+                    damageInfo.Damage = OwnerAttack*2;
+                    damageInfo.Kind = 2;
+                }
+
+
+                DamageList.Add(damageInfo);
 
                 TotalDamage += OwnerAttack;
             }

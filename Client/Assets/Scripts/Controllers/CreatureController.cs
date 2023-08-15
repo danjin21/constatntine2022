@@ -268,8 +268,8 @@ public class CreatureController : BaseController
             {
                 //ColorUtility.TryParseHtmlString("#FF00B4", out color);
                 // f6a8ff
-                ColorUtility.TryParseHtmlString("#ffa177", out color);
-                hudText.transform.GetChild(0).GetComponent<Text>().fontSize = 12;
+                ColorUtility.TryParseHtmlString("#ffc820", out color);
+                hudText.transform.GetChild(0).GetComponent<Text>().fontSize = 13;
                 //hudText.GetComponent<DmgText>().damage = "★" + damageInfo.Damage.ToString() + "　";
                 hudText.GetComponent<DmgText>().damage = damageInfo.Damage.ToString();
 
@@ -280,12 +280,14 @@ public class CreatureController : BaseController
 
             // hudText.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 
+            Canvas HudCanvas = hudText.GetComponent<Canvas>();
 
 
 
             //hudText.transform.parent = DamagePocket.transform;
             hudText.transform.SetParent(DamagePocketPrefab.transform);
             hudText.transform.SetAsFirstSibling();
+            HudCanvas.sortingOrder = DamagePocketPrefab.transform.childCount;
 
             //HitEffect(skillId);
 

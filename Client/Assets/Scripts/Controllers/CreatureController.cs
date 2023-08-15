@@ -267,11 +267,12 @@ public class CreatureController : BaseController
             if (damageInfo.Kind == 2)
             {
                 //ColorUtility.TryParseHtmlString("#FF00B4", out color);
-                
-                ColorUtility.TryParseHtmlString("#f6a8ff", out color);
+                // f6a8ff
+                ColorUtility.TryParseHtmlString("#ffa177", out color);
                 hudText.transform.GetChild(0).GetComponent<Text>().fontSize = 12;
-                hudText.GetComponent<DmgText>().damage = "★" + damageInfo.Damage.ToString() + "　";
-         
+                //hudText.GetComponent<DmgText>().damage = "★" + damageInfo.Damage.ToString() + "　";
+                hudText.GetComponent<DmgText>().damage = damageInfo.Damage.ToString();
+
             }
 
 

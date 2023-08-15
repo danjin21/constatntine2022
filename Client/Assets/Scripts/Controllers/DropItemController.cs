@@ -34,7 +34,7 @@ public class DropItemController : BaseController
 
         if (Throwing)
         {
-            _coDrop = StartCoroutine(DropEffect());
+            //_coDrop = StartCoroutine(DropEffect());
             Throwing = false;
         }
     }

@@ -93,8 +93,9 @@ public class SoundManager
 			AudioSource audioSource = _audioSources[(int)Define.Sound.Effect];
 
             //audioSource.pitch = pitch;
-			//audioSource.PlayOneShot(audioClip);
+            //audioSource.PlayOneShot(audioClip);
 
+            //SoundSupport.PlayOneShotSound(audioSource, audioClip, 0.5f);
             SoundSupport.PlayOneShotSound(audioSource, audioClip, 0.5f);
 
         }

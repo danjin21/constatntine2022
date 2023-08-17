@@ -7,7 +7,7 @@ public class SoundSupport : MonoBehaviour
 
     // 겹치는 음원 체크
     private Dictionary<AudioClip, List<float>> soundOneShot = new Dictionary<AudioClip, List<float>>();
-    private int MaxDuplicateOneShotAudioClips = 20; // oneshot이 최대 겹처서 재생될수 잇는 수
+    private int MaxDuplicateOneShotAudioClips = 1; // oneshot이 최대 겹처서 재생될수 잇는 수
 
     public void PlayOneShotSound(AudioSource source, AudioClip clip, float volumeScale)
     {
@@ -21,7 +21,7 @@ public class SoundSupport : MonoBehaviour
         else
         {
             int count = soundOneShot[clip].Count;
-            //한클립당 현재 재생수가 30개 넘으면 리턴한다
+            //한클립당 현재 재생수가 20개 넘으면 리턴한다
             if (count == MaxDuplicateOneShotAudioClips) return;
             soundOneShot[clip].Add(volumeScale);
         }

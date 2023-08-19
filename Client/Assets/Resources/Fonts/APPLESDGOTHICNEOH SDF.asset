@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hashCode: 1930382012
   material: {fileID: 7019199377904015247}
-  materialHashCode: 1173685175
+  materialHashCode: -1603234276
   m_Version: 1.1.0
   m_SourceFontFileGUID: 0187e2212257d0649b94b5e5dafdfc51
   m_SourceFontFile_EditorRef: {fileID: 0}
@@ -1809,6 +1809,8 @@ MonoBehaviour:
   m_AtlasTextures:
   - {fileID: 8905205623604289389}
   m_AtlasTextureIndex: 0
+  m_IsMultiAtlasTexturesEnabled: 0
+  m_ClearDynamicDataOnBuild: 0
   m_UsedGlyphRects:
   - m_X: 0
     m_Y: 0
@@ -2563,7 +2565,7 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: APPLESDGOTHICNEOH SDF Material
   m_Shader: {fileID: 4800000, guid: 68e6db2ebdc24f95958faec2be5558d6, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

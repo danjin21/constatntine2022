@@ -16,7 +16,7 @@
       "reqLev": "0",
       "reqPop": "0",
       "str": "1",
-      "upgradeSlot" :  "7",
+      "upgradeSlot": "7"
     },
     {
       "id": "2",
@@ -34,6 +34,24 @@
       "reqLev": "0",
       "reqPop": "0",
       "dex": "1",
+      "upgradeSlot": "7"
+    },
+    {
+      "id": "3",
+      "name": "양손검",
+      "weaponType": "Sword2",
+      "wAtk": "40",
+      "price": "1000",
+      "sellPrice": "200",
+      "attackSpeed": "4",
+      "iconPath": "Textures/Item/sword_1",
+      "reqStr": "0",
+      "reqDex": "0",
+      "reqInt": "0",
+      "reqLuk": "0",
+      "reqLev": "0",
+      "reqPop": "0",
+      "str": "1",
       "upgradeSlot": "7"
     }
   ],

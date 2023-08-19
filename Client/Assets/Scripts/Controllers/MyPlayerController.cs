@@ -64,6 +64,8 @@ public class MyPlayerController : PlayerController
 
     public bool IsSkillSend;
 
+
+
     protected override void Init()
     {
         base.Init();
@@ -419,7 +421,8 @@ public class MyPlayerController : PlayerController
     public Coroutine _coShortKeyCooltime_Potion = null;
     [SerializeField]
     public Coroutine _coShortKeyCooltime_Teleport = null;
-
+    [SerializeField]
+    public Coroutine _coMessageCooltime = null;
 
 
     IEnumerator CoInputCooltime(float time)
@@ -444,6 +447,14 @@ public class MyPlayerController : PlayerController
         yield return new WaitForSeconds(time);
 
         _coShortKeyCooltime = null;
+    }
+
+    IEnumerator CoMessageCooltime(float time)
+    {
+        // 서버에서 응답 안받을 경우를 대비
+        yield return new WaitForSeconds(time);
+
+        _coMessageCooltime = null;
     }
 
 
@@ -656,10 +667,16 @@ public class MyPlayerController : PlayerController
             if (PlayerSkill != null)
             {
                 // 클라 자체에서도 마나 없는지 확인 (서버는 이미 되어있음)
-                if (Stat.Mp < PlayerSkill.Mp)
+                if (Stat.Mp < PlayerSkill.Mp )
                 {
-                    Managers.Chat.ChatRPC("<color=#F78181>스킬에 필요한 마나가 부족합니다.</color>");
-                    SkillCool();
+                    if (_coMessageCooltime == null)
+                    {
+                        Managers.Chat.ChatRPC("<color=#F78181>스킬에 필요한 마나가 부족합니다.</color>");
+                        MessageCooltime();
+                    }
+
+                    //SkillCool();
+
                     return;
                 }
 
@@ -698,10 +715,15 @@ public class MyPlayerController : PlayerController
                     Item bowItem = null;
                     bowItem = Managers.Inven.Find(i => i.Equipped && i.ItemType == ItemType.Weapon);
 
-                    if (((Weapon)bowItem).WeaponType != WeaponType.Bow)
+                    if (((Weapon)bowItem).WeaponType != WeaponType.Bow )
                     {
-                        Managers.Chat.ChatRPC("<color=#F78181>활을 착용해야 사용할 수 있습니다.</color>");
-                        SkillCool();
+                        if (_coMessageCooltime == null)
+                        {
+                            Managers.Chat.ChatRPC("<color=#F78181>활을 착용해야 사용할 수 있습니다.</color>");
+
+                            MessageCooltime();
+                        }
+                        // SkillCool();
                         return;
                     }
                 }
@@ -828,6 +850,14 @@ public class MyPlayerController : PlayerController
         _coShortKeyCooltime = StartCoroutine("CoInputCooltime_ShortKey", 0.35f);
 
 
+    }
+
+    // 어차피 서버에서는 800임
+    public void MessageCooltime()
+    {
+        // 핑 지연율만큼 더해주거나, 빼준다.
+        _coMessageCooltime = StartCoroutine("CoMessageCooltime", 2.0f); // 서버에서는 0.8초로 쿨을 준다.
+        // 원래 0.8초로 하는게 좋은데, 비교를 하기 위해  0.1f 로 일단 해놓음
     }
 
     // 이건 자체적으로 실행 => 어차피 서버에서는 700임

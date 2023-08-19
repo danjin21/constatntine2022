@@ -160,16 +160,17 @@ namespace Google.Protobuf.Protocol {
             "TE9CQlkQARIVChFTRVJWRVJfU1RBVEVfR0FNRRACKnYKCEl0ZW1UeXBlEhIK",
             "DklURU1fVFlQRV9OT05FEAASFAoQSVRFTV9UWVBFX1dFQVBPThABEhMKD0lU",
             "RU1fVFlQRV9BUk1PUhACEhgKFElURU1fVFlQRV9DT05TVU1BQkxFEAMSEQoN",
-            "SVRFTV9UWVBFX0VUQxAEKk4KCldlYXBvblR5cGUSFAoQV0VBUE9OX1RZUEVf",
+            "SVRFTV9UWVBFX0VUQxAEKmYKCldlYXBvblR5cGUSFAoQV0VBUE9OX1RZUEVf",
             "Tk9ORRAAEhUKEVdFQVBPTl9UWVBFX1NXT1JEEAESEwoPV0VBUE9OX1RZUEVf",
-            "Qk9XEAIqkAEKCUFybW9yVHlwZRITCg9BUk1PUl9UWVBFX05PTkUQABIVChFB",
-            "Uk1PUl9UWVBFX0hFTE1FVBABEhQKEEFSTU9SX1RZUEVfQVJNT1IQAhIUChBB",
-            "Uk1PUl9UWVBFX0JPT1RTEAMSFAoQQVJNT1JfVFlQRV9QQU5UUxAEEhUKEUFS",
-            "TU9SX1RZUEVfU0hJRUxEEAUqYQoOQ29uc3VtYWJsZVR5cGUSGAoUQ09OU1VN",
-            "QUJMRV9UWVBFX05PTkUQABIaChZDT05TVU1BQkxFX1RZUEVfUE9USU9OEAES",
-            "GQoVQ09OU1VNQUJMRV9UWVBFX1NLSUxMEAIqMAoHRXRjVHlwZRIRCg1FVENf",
-            "VFlQRV9OT05FEAASEgoORVRDX1RZUEVfTU9ORVkQAUIbqgIYR29vZ2xlLlBy",
-            "b3RvYnVmLlByb3RvY29sYgZwcm90bzM="));
+            "Qk9XEAISFgoSV0VBUE9OX1RZUEVfU1dPUkQyEAMqkAEKCUFybW9yVHlwZRIT",
+            "Cg9BUk1PUl9UWVBFX05PTkUQABIVChFBUk1PUl9UWVBFX0hFTE1FVBABEhQK",
+            "EEFSTU9SX1RZUEVfQVJNT1IQAhIUChBBUk1PUl9UWVBFX0JPT1RTEAMSFAoQ",
+            "QVJNT1JfVFlQRV9QQU5UUxAEEhUKEUFSTU9SX1RZUEVfU0hJRUxEEAUqYQoO",
+            "Q29uc3VtYWJsZVR5cGUSGAoUQ09OU1VNQUJMRV9UWVBFX05PTkUQABIaChZD",
+            "T05TVU1BQkxFX1RZUEVfUE9USU9OEAESGQoVQ09OU1VNQUJMRV9UWVBFX1NL",
+            "SUxMEAIqMAoHRXRjVHlwZRIRCg1FVENfVFlQRV9OT05FEAASEgoORVRDX1RZ",
+            "UEVfTU9ORVkQAUIbqgIYR29vZ2xlLlByb3RvYnVmLlByb3RvY29sYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.MoveDir), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.QuestAction), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.PlayerServerState), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ArmorType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.EtcType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -419,6 +420,7 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("WEAPON_TYPE_NONE")] None = 0,
     [pbr::OriginalName("WEAPON_TYPE_SWORD")] Sword = 1,
     [pbr::OriginalName("WEAPON_TYPE_BOW")] Bow = 2,
+    [pbr::OriginalName("WEAPON_TYPE_SWORD2")] Sword2 = 3,
   }
 
   public enum ArmorType {

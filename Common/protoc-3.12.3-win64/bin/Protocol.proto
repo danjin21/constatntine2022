@@ -185,6 +185,7 @@ enum WeaponType{
     WEAPON_TYPE_NONE = 0;
     WEAPON_TYPE_SWORD = 1;
     WEAPON_TYPE_BOW = 2;
+    WEAPON_TYPE_SWORD2 = 3;
 }
 
 

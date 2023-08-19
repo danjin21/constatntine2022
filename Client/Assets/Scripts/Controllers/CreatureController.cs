@@ -221,9 +221,20 @@ public class CreatureController : BaseController
 
             if (this.GetType() == typeof(MonsterController))
             {
+                string SoundPath; 
+
                 // 몬스터는 효과음을 준다.
                 MonsterController A = this as MonsterController;
-                Managers.Sound.Play(A.HitSoundPath, Define.Sound.Effect);
+                SoundPath = A.HitSoundPath;
+
+
+                if (skillId == 1001001) // 삼격이라면 
+                {
+                    SoundPath = "Sounds/Hit/3";
+                }
+
+                Managers.Sound.Play(SoundPath, Define.Sound.Effect);
+
             }
 
             // 시간딜레이
@@ -367,13 +378,16 @@ public class CreatureController : BaseController
                 {
                     GameObject effect;
 
-                    effect = Managers.Resource.Instantiate("Effect/Hit_Effect_Sword_4");
-                    effect.transform.position = transform.position + new Vector3(6f, 2f, -20);
+                    //effect = Managers.Resource.Instantiate("Effect/Hit_Effect_Sword_4");
+                    effect = Managers.Resource.Instantiate("Effect/TigerGlaw");
+                    //effect.transform.position = transform.position + new Vector3(6f, 2f, -20);
+                    effect.transform.position = transform.position + new Vector3(-6f, 6f, -20);
                     effect.GetComponent<SpriteRenderer>().sortingOrder = GetComponent<SpriteRenderer>().sortingOrder;
                     effect.GetComponent<Animator>().Play("PowerStrike");
                     effect.transform.parent = this.transform;
                     // 게임 이펙트를 몇초 후에 삭제
-                    GameObject.Destroy(effect, 0.3f);
+                    //GameObject.Destroy(effect, 0.3f);
+                    GameObject.Destroy(effect, 1.0f);
 
                     //GameObject effect = Managers.Resource.Instantiate("Effect/Skill/310/3101000", this.transform);
                     //effect.transform.position = transform.position + new Vector3(0, 0, -9);

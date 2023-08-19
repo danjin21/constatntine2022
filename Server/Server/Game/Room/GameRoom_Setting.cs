@@ -68,11 +68,22 @@ namespace Server.Game
 
             }
 
-            // # # 단축키 쿨타임 주기. 단축키 쿨타임은 스킬 쿨타임보다 항상 적게 해줘야 한다.
-            player.ShortKeyCool = true;
+            
+            if (shortKeyPacket.Action == 4001000) // 순보일 경우 숏키 따로 관리한다. 
+                // 순보 쓰고 바로 스킬 쓸 수 있도록
+            {
+                player.ShortKeyCool_Soonbo = true;
+                room.PushAfter(100, player.ShortKeyCooltime_Soonbo);
+            }
+            else
+            {
+                // # # 단축키 쿨타임 주기. 단축키 쿨타임은 스킬 쿨타임보다 항상 적게 해줘야 한다.
+                player.ShortKeyCool = true;
+                room.PushAfter(100, player.ShortKeyCooltime);
+            }
 
 
-            room.PushAfter(100, player.ShortKeyCooltime);
+ 
 
         }
         }

@@ -18,8 +18,8 @@ namespace Server.Game
                 return;
 
             //// 스킬쓴 바로 직후에는 걷지못하게함
-            //if (player.SkillWalkCool == true)
-            //    return;
+            if (player.SkillWalkCool == true)
+                return;
 
             Console.WriteLine("걷는 중의 플레이어 상테 : " + player.State + "->" + movePacket.PosInfo.State);
 
@@ -163,6 +163,12 @@ namespace Server.Game
             if (player.TeleportCool == true && skillPacket.Info.SkillId == 3101000)
                 return;
 
+            // 순보 쿨 타임
+
+            if (player.SoonboCool == true && skillPacket.Info.SkillId == 4001000)
+                return;
+
+
             // 마나 없으면 리턴하기
             if (player.Stat.Mp < PlayerSkill.Mp)
                 return;
@@ -187,10 +193,22 @@ namespace Server.Game
                 return;
             }
 
-
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
             {
-                return;
+
+                if(info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
+                {
+                    
+                    if (player.SkillWalkCool == false)
+                        return;
+                }
+                else
+                {
+                    return;
+                }
+
+         
+
             }
 
 
@@ -227,6 +245,96 @@ namespace Server.Game
                         // 위치를 받는다.
                         Vector2Int skillPos = player.GetFrontCellPos(info.PosInfo.MoveDir);
                         target = Map.Find(skillPos);
+
+
+                        // 승보일 경우
+                       if (skillPacket.Info.SkillId == 4001000)
+                        {
+                            target = Map.Find(skillPos);
+
+                            if (target != null)
+                            {
+
+
+                                // 그 적의 뒤로 갈 수 있는지 확인
+                                // 방향은 플레이어여야 한다.
+
+                                Vector2Int nextPos = target.GetFrontCellPos(player.PosInfo.MoveDir);
+
+
+                                if (Map.ApplyMove(player, nextPos) == false)
+                                {
+                                    nextPos = target.GetLeftCellPos(player.PosInfo.MoveDir);
+
+                                    if (Map.ApplyMove(player, nextPos) == false)
+                                    {
+                                        nextPos = target.GetRightCellPos(player.PosInfo.MoveDir);
+
+                                        if (Map.ApplyMove(player, nextPos) == false)
+                                        {
+
+                                        }
+                                    }
+                                }
+
+                                // 몬스터 바라보게
+
+                                Vector2Int dir =  target.CellPos - nextPos;
+
+                                if (dir.x > 0)
+                                    player.PosInfo.MoveDir = MoveDir.Right;
+                                else if (dir.x < 0)
+                                    player.PosInfo.MoveDir = MoveDir.Left;
+                                else if (dir.y > 0)
+                                    player.PosInfo.MoveDir = MoveDir.Up;
+                                else /*if (dir.y < 0)*/
+                                    player.PosInfo.MoveDir = MoveDir.Down;
+
+
+
+                                //// 멈춰있는 상태 ( movetick은 가만히 있고, 환경시간만 증가하므로 계속 음수가 될수밖에 없다.)
+                                //if ((target._nextMoveTick - Environment.TickCount64) < (int)((32 * 1000 / target.Speed) / 2.0f))
+                                //{
+                                //    int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
+                                //    realDamage = target.OnDamaged(player, TryAttack, skillPacket.Info.SkillId, 1, player);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
+                                //}
+                                //else
+                                //{
+                                //    // 반을 못넘어왔지만, 걷는게 아니고 멈춰있었던 거라면 데미지를 준다.
+                                //    if (target.State != CreatureState.Moving)
+                                //    {
+                                //        int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
+                                //        realDamage = target.OnDamaged(player, TryAttack, skillPacket.Info.SkillId, 1, player);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
+                                //    }
+                                //}
+
+
+
+                                // YES : 뒤로 가게
+
+                                // NO : 그 적의 좌로 갈 수 있는지 확인
+
+                                // YES : 좌로 가게
+
+                                // NO : 그 적의 우로 갈 수 있는지 확인
+
+                                // YES : 우로 가게
+
+                                // NO : 제자리
+
+                                // 다른 플레이어한테도 알려준다.
+
+                                //S_Teleport resMovePacket = new S_Teleport();
+                                //resMovePacket.ObjectId = player.Info.ObjectId;
+                                //resMovePacket.PosInfo = player.PosInfo;
+                                //resMovePacket.SkillType = 1; // 0 : 텔레포트 , 1 : 순보
+                                //Broadcast(player.CellPos, resMovePacket);
+
+                                //Console.WriteLine($"순보!! {resMovePacket.PosInfo } / {player.PosInfo} ");
+
+                            }
+
+                        }
 
 
 
@@ -903,6 +1011,8 @@ namespace Server.Game
             skill.Damage = realDamage ;
             skill.Info.MoveDir = player.Info.PosInfo.MoveDir; // 스킬쓴 방향 저장 
             skill.ProjectileInfo = tempProjectileInfo;
+            skill.PosInfo = player.Info.PosInfo; // 스킬쓴 위치 저장
+            Console.WriteLine($"후보 : {player.PosInfo} / {player.Info.PosInfo}");
 
             if (target != null)
                  skill.TargetId = target.Id;
@@ -927,6 +1037,16 @@ namespace Server.Game
                 player.SkillCool = true;
                 room.PushAfter(800, player.SkillCooltime);
 
+
+            }
+            else if (skillPacket.Info.SkillId == 4001000)
+            {
+                player.SoonboCool = true;
+                room.PushAfter(800, player.SoonboCooltime);
+
+                // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
+                player.SkillWalkCool = true;
+                room.PushAfter(400, player.SkillWalkCooltime);
 
             }
             else // 그외 스킬 쿨타임 주기

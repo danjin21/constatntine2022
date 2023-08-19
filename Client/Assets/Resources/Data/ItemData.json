@@ -205,6 +205,16 @@
       "desc": "스킬 텔레포트를 배울 수 있는 마법책이다."
     },
     {
+      "id": "94000", // 3101000
+      "name": "마법책 - 승보",
+      "consumableType": "Skill",
+      "enhance": "4001000",
+      "price": "120", // 12000
+      "sellPrice": "0",
+      "iconPath": "Textures/Item/93000",
+      "desc": "스킬 승보를 배울 수 있는 마법책이다."
+    },
+    {
       "id": "90100",
       "name": "마을 귀환 주문서",
       "consumableType": "Potion",

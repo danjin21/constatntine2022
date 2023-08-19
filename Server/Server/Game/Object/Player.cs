@@ -30,8 +30,8 @@ namespace Server.Game
         //public override int TotalDefence { get { return ArmorDefence; } }
         public override int TotalDefence { get { return itemWDef; } }
 
-        public override int MaxAttack { get { return (int)((((TotalStr * 4.0) + TotalDex) /100)*itemWAtk); } }
-        public override int MinAttack { get { return (int)((((TotalStr * 4*0.9*0.4) + TotalDex) / 100) * itemWAtk); } }
+        public override int MaxAttack { get { return (int)((((TotalStr * 4.0) + TotalDex) /100)*itemWAtk + 5); } }
+        public override int MinAttack { get { return (int)((((TotalStr * 4*0.9*0.4) + TotalDex) / 100) * itemWAtk + 5); } }
 
         public int itemStr { get; private set; }
         public int itemDex { get; private set; }
@@ -101,8 +101,9 @@ namespace Server.Game
         public bool SkillCool = false;
         public bool ConsumeCool = false;
         public bool ShortKeyCool = false;
+        public bool ShortKeyCool_Soonbo = false;
         public bool TeleportCool = false;
-
+        public bool SoonboCool = false;
         // 스킬 쓴 직후 바로 이동 안되게 하는 쿨탕미
 
         public bool SkillWalkCool = false;
@@ -134,6 +135,10 @@ namespace Server.Game
         {
             ShortKeyCool = false;
         }
+        public void ShortKeyCooltime_Soonbo()
+        {
+            ShortKeyCool_Soonbo = false;
+        }
         public void TeleportCooltime()
         {
             TeleportCool = false;
@@ -142,6 +147,11 @@ namespace Server.Game
         public void SkillWalkCooltime()
         {
             SkillWalkCool = false;
+        }
+
+        public void SoonboCooltime()
+        {
+            SoonboCool = false;
         }
 
         protected virtual void UpdateMoving()

@@ -379,6 +379,10 @@ class PacketHandler
 		if (room == null)
 			return;
 
+		// 순보 숏키 쿨타임은 따로 관리한다.
+		if (player.ShortKeyCool_Soonbo == true && shortKeyPacket.Action == 4001000)
+			return;
+
 		if (player.ShortKeyCool == true)
 			return;
 

@@ -339,6 +339,7 @@ class PacketHandler
             movePacket.PosInfo.MoveDir = myPC.PosInfo.MoveDir;
 
             myPC.PosInfo = movePacket.PosInfo;
+            myPC.Dir = movePacket.PosInfo.MoveDir;
             myPC.SyncPos(); //부드럽게 이동하는것 방지
 
             // 서버에서 받은 실제 플레이어의 위치를 저장해준다.
@@ -415,9 +416,21 @@ class PacketHandler
                     }
                 }
 
+                cc.UseSkill(skillPacket.Info.SkillId);
+
             }
 
-            cc.UseSkill(skillPacket.Info.SkillId);
+            //// 순보일 경우
+            //if(skillPacket.Info.SkillId == 4001000)
+            //{
+            //    if(cc.GetType() == typeof(MyPlayerController))
+            //    {
+            //        cc.Dir = skillPacket.Info.MoveDir;
+            //    }
+            //}
+
+
+
 
             // 스킬 쓸때만큼은 즉각적으로 방향 전환하게 ( 이동하는 도중에 방향전환 스킬 쓴거는 바로 되게. )
             // 멈춘상태에서 방향전환후 바로 쏘는건, move 쪽에서 처리함
@@ -469,8 +482,20 @@ class PacketHandler
         // 그러면.. 이동 계속 안될듯 
         if (mc != null && skillPacket.Info.SkillId != -1)
         {
-            mc.IsSkillSend = false;
+
+
+            if (skillPacket.Info.SkillId == 4001000)
+            {
+                mc.PosInfo = skillPacket.PosInfo;
+                mc.SyncPos();
+            }
+            mc.UseSkill(skillPacket.Info.SkillId);
+
         }
+
+        mc.IsSkillSend = false;
+
+
 
 
         if (skillPacket.Info.SkillId != -1)
@@ -481,7 +506,6 @@ class PacketHandler
         {
             return;
         }
-
 
         //// 단거리 공격이고 타겟이 있을때
         //if (target != null)

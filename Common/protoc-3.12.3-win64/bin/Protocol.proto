@@ -253,6 +253,7 @@ message S_Skill{
     int32 targetId = 3;
     int32 damage = 4;
     ProjectileInfo projectileInfo = 5;
+    PositionInfo posInfo = 6;
 }
 
 message S_ChangeHp {

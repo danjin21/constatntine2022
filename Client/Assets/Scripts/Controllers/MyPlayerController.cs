@@ -423,6 +423,8 @@ public class MyPlayerController : PlayerController
     public Coroutine _coShortKeyCooltime_Teleport = null;
     [SerializeField]
     public Coroutine _coMessageCooltime = null;
+    [SerializeField]
+    public Coroutine _coShortKeyCooltime_Soonbo = null;
 
 
     IEnumerator CoInputCooltime(float time)
@@ -463,7 +465,7 @@ public class MyPlayerController : PlayerController
 
         base.UseSkill(skillId);
 
-        if (skillId != 3101000)
+        if (skillId != 3101000 && skillId != 4001000)
             Managers.Object.MyPlayer.SkillCool();
 
 
@@ -484,6 +486,13 @@ public class MyPlayerController : PlayerController
     {
         yield return new WaitForSeconds(time);
         _coShortKeyCooltime_Teleport = null;
+    }
+
+    // 순보 따로
+    IEnumerator CoInputCooltime_ShortKey_Soonbo(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _coShortKeyCooltime_Soonbo = null;
     }
 
 
@@ -646,6 +655,8 @@ public class MyPlayerController : PlayerController
             //if (_coSkillCooltime != null)
             //    return;
 
+
+
             // 스킬이랑 포션은 구분짓는다.- 2
             if (_coConsumeCooltime != null)
                 return;
@@ -662,6 +673,12 @@ public class MyPlayerController : PlayerController
             if (_coShortKeyCooltime_Teleport != null)
                 return;
 
+            // 순보 키 쿨타임 
+            if (_coShortKeyCooltime_Soonbo != null && key.Action == 4001000)
+                return;
+
+
+   
             // 액션이 스킬인지 확인
             Skills PlayerSkill = Managers.Skill.Find(i => i.SkillId == key.Action);
             if (PlayerSkill != null)
@@ -675,10 +692,11 @@ public class MyPlayerController : PlayerController
                         MessageCooltime();
                     }
 
-                    //SkillCool();
+                    SkillCool();
 
                     return;
                 }
+
 
                 // 텔레포트나 물약 아니면 멈추게 만든다 -> 이건 서버쪽에서도 관리해야할듯?
                 if (key.Action != 3101000)
@@ -686,15 +704,17 @@ public class MyPlayerController : PlayerController
 
                     //Idle 일때 액션이 되게
 
-                    if (State != CreatureState.Idle)
+                    //if (State != CreatureState.Idle )
+                    if (State == CreatureState.Moving)
                         return;
 
                     MoveReset = true;
                     _moveKeyPressed = false;
                     Debug.Log("!!!!@1 _moveKeyPressed = " + _moveKeyPressed);
 
-                }
 
+
+                }
                 // 텔레포트인데, 방향키를 누르고 있지 않으면 return 한다.
                 if (key.Action == 3101000)
                 {
@@ -723,7 +743,7 @@ public class MyPlayerController : PlayerController
 
                             MessageCooltime();
                         }
-                        // SkillCool();
+                        SkillCool();
                         return;
                     }
                 }
@@ -732,23 +752,32 @@ public class MyPlayerController : PlayerController
 
 
 
- 
+
 
 
             // 물약을 먹고 있으면 이동 안되는것 해결
             if (ConsumeKey == -1)
             {
-                if(key.Action == 3101000) // 텔레포트도 별도로
+                if(key.Action == 3101000) // 텔레포트
                 {
                     ShortKeyCool_Teleport();
                 }
+                else if (key.Action == 4001000) // 순보
+                {
+                    ShortKeyCool_Soonbo();
+                }
                 else
                 {
+
+
+  
                     // 서버랑 위치가 같아야 쓸 수 있다.
                     if (CellPos.x != TempPosInfo.PosX || CellPos.y != TempPosInfo.PosY)
                     {
                         return;
                     }
+
+
 
                     ShortKeyCool();
                     if (IsSkillSend == false)
@@ -871,6 +900,13 @@ public class MyPlayerController : PlayerController
     {
         _coShortKeyCooltime_Teleport = StartCoroutine("CoInputCooltime_ShortKey_Teleport", 0.1f);
     }
+
+    // 순보도 따로 쿨타임
+    public void ShortKeyCool_Soonbo()
+    {
+        _coShortKeyCooltime_Soonbo = StartCoroutine("CoInputCooltime_ShortKey_Soonbo", 0.5f);
+    }
+
 
     void GetDirInput_Moving()
     {

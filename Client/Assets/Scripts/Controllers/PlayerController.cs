@@ -13,6 +13,8 @@ public class PlayerController : CreatureController
 
 
     protected Coroutine _coSkill;
+    protected Coroutine _coSoonbo;
+
     public int _skillId = -1;
 
     protected override void Init()
@@ -217,6 +219,7 @@ public class PlayerController : CreatureController
             case 9001000: // 기본공격
             case 1001000: // 이격
             case 1001001: // 삼격
+            case 4001000: // 순보
                 _animator.Play("Attack_" + $"{A}");
                 break;
             case 2001000: // 더블샷
@@ -298,11 +301,14 @@ public class PlayerController : CreatureController
         Data.Skill skillData = null;
         Managers.Data.SkillDict.TryGetValue(skillId, out skillData);
 
+
+
         if (skillId == 9001000 || skillId == 1001001 || skillId == 1001000 )
         {
 
             Managers.Sound.Play("Sounds/Skill/9001000", Define.Sound.Effect);
             _coSkill = StartCoroutine("CoStartPunch");
+
 
             //if( skillId == 1001001 || skillId == 1001000)
             //{
@@ -399,7 +405,7 @@ public class PlayerController : CreatureController
             GameObject.Destroy(effect, 4.0f);
 
         }
-        else if (skillId == 3101000)
+        else if (skillId == 3101000 )
         {
             if(this.GetType() == typeof(MyPlayerController))
                 _coSkill = StartCoroutine("CoStartSkill");
@@ -420,6 +426,13 @@ public class PlayerController : CreatureController
             _coSkill = StartCoroutine("CoStartDrop");
 
             Managers.Sound.Play(skillData.soundPath, Define.Sound.Effect);
+        }
+        else if (skillId == 4001000)
+        {
+
+            Managers.Sound.Play("Sounds/Skill/9001000", Define.Sound.Effect);
+            //if (this.GetType() == typeof(MyPlayerController))
+                _coSoonbo = StartCoroutine("CoStartSoonbo");
         }
 
 
@@ -582,6 +595,36 @@ public class PlayerController : CreatureController
 
         CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
     }
+
+
+
+    IEnumerator CoStartSoonbo()
+    {
+
+        // 대기 시간
+
+        // State = CreatureState.Skill;
+
+        //yield return new WaitForSeconds(0.5f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
+
+
+        State = CreatureState.Skill;
+
+        yield return new WaitForSeconds(0.4f); // State에 대한 딜레이 | 클라이언트 측에서도 남발하지못하게 해줘야한다.
+
+
+        Debug.Log("OK! GO !");
+        State = CreatureState.Idle;
+
+        _coSoonbo = null;
+
+
+        //// 업데이트 X
+        //_updated = false;
+
+        CheckUpdatedFlag(); // 나의 캐릭터 State 상태를 여기서 서버에 보내준다.
+    }
+
 
     public override void OnDamaged(int damage, int skillId, List<DamageInfo> DamageList, int attackerId)
     {

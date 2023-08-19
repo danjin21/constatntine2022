@@ -119,6 +119,20 @@
       "skillType": "SkillAuto",
       "iconPath": "Textures/Skill/Icon/2002000/1",
       "desc": "일정 확률로 2배의 데미지를 낸다."
+    },
+    {
+      "id": "4001000",
+      "name": "승보",
+      "cooldown": "0.5",
+      "damage": "10",
+      "skillType": "SkillAuto",
+      "iconPath": "Textures/Skill/Icon/1001000/1",
+      "mp": "0",
+      "soundPath": "Sounds/Skill/3101000",
+      "desc": "적의 뒤로 넘어가 공격한다."
+
+
+
     }
 
   ]

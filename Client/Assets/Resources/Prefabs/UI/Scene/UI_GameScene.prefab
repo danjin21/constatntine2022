@@ -2827,7 +2827,28 @@ PrefabInstance:
     - target: {fileID: 2434941738381696785, guid: 70c8dbd477696904faa79fc640397c48,
         type: 3}
       propertyPath: m_Text
-      value: Constantine
+      value: Pungje
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434941738381696785, guid: 70c8dbd477696904faa79fc640397c48,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: d1e5dfeff79984e40b313e7905806810,
+        type: 3}
+    - target: {fileID: 2434941738381696785, guid: 70c8dbd477696904faa79fc640397c48,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434941738381696785, guid: 70c8dbd477696904faa79fc640397c48,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2434941738381696785, guid: 70c8dbd477696904faa79fc640397c48,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2434941739206026542, guid: 70c8dbd477696904faa79fc640397c48,
         type: 3}

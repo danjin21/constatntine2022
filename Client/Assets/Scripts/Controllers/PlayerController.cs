@@ -430,9 +430,9 @@ public class PlayerController : CreatureController
         else if (skillId == 4001000)
         {
 
-            Managers.Sound.Play("Sounds/Skill/9001000", Define.Sound.Effect);
+            Managers.Sound.Play(skillData.soundPath, Define.Sound.Effect);
             //if (this.GetType() == typeof(MyPlayerController))
-                _coSoonbo = StartCoroutine("CoStartSoonbo");
+            _coSoonbo = StartCoroutine("CoStartSoonbo");
         }
 
 

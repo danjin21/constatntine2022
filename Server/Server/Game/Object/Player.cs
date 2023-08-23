@@ -104,9 +104,13 @@ namespace Server.Game
         public bool ShortKeyCool_Soonbo = false;
         public bool TeleportCool = false;
         public bool SoonboCool = false;
+        public bool SoonboComboCool = false; //  순보 쓴 직후 바로 공격 할 수 있는시간
         // 스킬 쓴 직후 바로 이동 안되게 하는 쿨탕미
 
         public bool SkillWalkCool = false;
+        
+        public bool SkillKeyContinue = false;
+        public bool SkillKeyContinue_Soonbo = false;
 
         // 스킬 쿨타임에 예약 걸어두기
 
@@ -150,6 +154,21 @@ namespace Server.Game
             SkillWalkCool = false;
         }
 
+        public void SkillKeyContinueCooltime()
+        {
+            // 어 너 충분히 길게 눌렀어.
+            SkillKeyContinue = true;
+        }
+
+        public void SkillKeyContinue_Soonbo_Cooltime()
+        {
+            // 어 너 충분히 길게 눌렀어.
+            SkillKeyContinue_Soonbo = true;
+        }
+
+        
+
+
         public void SoonboCooltime()
         {
             SoonboCool = false;
@@ -159,6 +178,12 @@ namespace Server.Game
                 Room.HandleSkill(this, C_Skill_Soonbo_Book);
                 C_Skill_Soonbo_Book = null;
             }
+        }
+
+        public void Soonbo_Combo_Cooltime()
+        {
+            SoonboComboCool = false;
+
         }
 
         protected virtual void UpdateMoving()

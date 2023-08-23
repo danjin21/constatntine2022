@@ -147,15 +147,10 @@ namespace Server.Game
                 // 전과의 시간을 비교
 
                 // 1
-                player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
+                // 충분히 길게 눌렀다면 예약을 해준다.
+                if (player.SkillKeyContinue == true)
+                    player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
 
-
-                // 2
-                //// 더미스킬 패킷보내주기
-                //S_Skill skill_dummy_cooltime = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
-                //skill_dummy_cooltime.ObjectId = player.Info.ObjectId;
-                //skill_dummy_cooltime.Info.SkillId = 9999;
-                //player.Session.Send(skill_dummy_cooltime);
 
                 return;
             }
@@ -173,8 +168,19 @@ namespace Server.Game
 
             if (player.SoonboCool == true && skillPacket.Info.SkillId == 4001000)
             {
-                player.C_Skill_Soonbo_Book = skillPacket;
+                // 충분히 길게 눌렀다면 예약을 해준다.
+                // 공격할때 같이 먹혀야 해서 그래
+                if (player.SkillKeyContinue_Soonbo == true)
+                    player.C_Skill_Soonbo_Book = skillPacket; 
                 return;
+            }
+
+            // 순보 스킬 직후 스킬 못쓰게
+            if (player.SoonboCool == true )
+            {
+
+                if (player.SoonboComboCool == false)
+                    return;
             }
 
 
@@ -210,23 +216,18 @@ namespace Server.Game
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
             {
 
-                if(info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
-                {
-                    Console.WriteLine($"★★★★★★★  / {player.State}");
-                    if (player.SkillWalkCool == false)
-                        return;
-                }
-                else
-                {
-
-                    Console.WriteLine($"★★★★★★★★  / {player.State}");
-                        return;
-
-
-
-                }
-
-         
+                //if(info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
+                //{
+                //    Console.WriteLine($"★★★★★★★  / {player.State}");
+                //    if (player.SoonboComboCool == false)
+                //        return;
+                //}
+                //else
+                //{
+                //    Console.WriteLine($"★★★★★★★★  / {player.State}");
+                //        return;
+                //}
+                    return;
 
             }
 
@@ -280,6 +281,7 @@ namespace Server.Game
 
                                 Vector2Int nextPos = target.GetFrontCellPos(player.PosInfo.MoveDir);
 
+                                bool FinishSoonbo = true;
 
                                 if (Map.ApplyMove(player, nextPos) == false)
                                 {
@@ -291,66 +293,35 @@ namespace Server.Game
 
                                         if (Map.ApplyMove(player, nextPos) == false)
                                         {
-
+                                            // 순보를 못 마쳤다.
+                                            FinishSoonbo = false;
                                         }
                                     }
                                 }
 
-                                // 몬스터 바라보게
+                                // 순보를 마쳤을 때만
+                                if (FinishSoonbo == true)
+                                {
 
-                                Vector2Int dir =  target.CellPos - nextPos;
+                                    // 몬스터 바라보게
 
-                                if (dir.x > 0)
-                                    player.PosInfo.MoveDir = MoveDir.Right;
-                                else if (dir.x < 0)
-                                    player.PosInfo.MoveDir = MoveDir.Left;
-                                else if (dir.y > 0)
-                                    player.PosInfo.MoveDir = MoveDir.Up;
-                                else /*if (dir.y < 0)*/
-                                    player.PosInfo.MoveDir = MoveDir.Down;
+                                    Vector2Int dir = target.CellPos - nextPos;
 
-
-
-                                //// 멈춰있는 상태 ( movetick은 가만히 있고, 환경시간만 증가하므로 계속 음수가 될수밖에 없다.)
-                                //if ((target._nextMoveTick - Environment.TickCount64) < (int)((32 * 1000 / target.Speed) / 2.0f))
-                                //{
-                                //    int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
-                                //    realDamage = target.OnDamaged(player, TryAttack, skillPacket.Info.SkillId, 1, player);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
-                                //}
-                                //else
-                                //{
-                                //    // 반을 못넘어왔지만, 걷는게 아니고 멈춰있었던 거라면 데미지를 준다.
-                                //    if (target.State != CreatureState.Moving)
-                                //    {
-                                //        int TryAttack = new Random().Next(player.MinAttack, player.MaxAttack);
-                                //        realDamage = target.OnDamaged(player, TryAttack, skillPacket.Info.SkillId, 1, player);   // 공격자와 데미지+화살의 데미지를 넣는다. this 는 나중에 Owner로 바꿀수있다.
-                                //    }
-                                //}
+                                    if (dir.x > 0)
+                                        player.PosInfo.MoveDir = MoveDir.Right;
+                                    else if (dir.x < 0)
+                                        player.PosInfo.MoveDir = MoveDir.Left;
+                                    else if (dir.y > 0)
+                                        player.PosInfo.MoveDir = MoveDir.Up;
+                                    else /*if (dir.y < 0)*/
+                                        player.PosInfo.MoveDir = MoveDir.Down;
+                                }
 
 
-
-                                // YES : 뒤로 가게
-
-                                // NO : 그 적의 좌로 갈 수 있는지 확인
-
-                                // YES : 좌로 가게
-
-                                // NO : 그 적의 우로 갈 수 있는지 확인
-
-                                // YES : 우로 가게
-
-                                // NO : 제자리
-
-                                // 다른 플레이어한테도 알려준다.
-
-                                //S_Teleport resMovePacket = new S_Teleport();
-                                //resMovePacket.ObjectId = player.Info.ObjectId;
-                                //resMovePacket.PosInfo = player.PosInfo;
-                                //resMovePacket.SkillType = 1; // 0 : 텔레포트 , 1 : 순보
-                                //Broadcast(player.CellPos, resMovePacket);
-
-                                //Console.WriteLine($"순보!! {resMovePacket.PosInfo } / {player.PosInfo} ");
-
+                            }
+                            else
+                            {
+                                return;
                             }
 
                         }
@@ -1063,9 +1034,14 @@ namespace Server.Game
                 player.SoonboCool = true;
                 room.PushAfter(700, player.SoonboCooltime);
 
+
+                // 순보쓰자마자 스킬 쓸 수 잇는 시간 0.1초
+                player.SoonboComboCool = true;
+                room.PushAfter(250, player.Soonbo_Combo_Cooltime);
+
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
-                room.PushAfter(400, player.SkillWalkCooltime);
+                room.PushAfter(200, player.SkillWalkCooltime);
 
             }
             else if(skillPacket.Info.SkillId == 1001001)
@@ -1094,6 +1070,24 @@ namespace Server.Game
                 room.PushAfter(200, player.SkillWalkCooltime);
 
             }
+
+            if (skillPacket.Info.SkillId != 4001000)
+            {
+                // continue 키 ( 지속적으로 키를 눌렀는지를 확인하는 )
+                // 처음에는 지속적으로 눌르지 않았을테니 false
+                player.SkillKeyContinue = false;
+                room.PushAfter(300, player.SkillKeyContinueCooltime);
+            }
+            else
+            {
+
+                // continue 키 ( 지속적으로 키를 눌렀는지를 확인하는 )
+                // 처음에는 지속적으로 눌르지 않았을테니 false
+                player.SkillKeyContinue_Soonbo = false;
+                room.PushAfter(300, player.SkillKeyContinue_Soonbo_Cooltime);
+            }
+
+
 
             // 마나를 소비하자.
 

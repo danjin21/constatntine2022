@@ -397,24 +397,37 @@ class PacketHandler
 
             if (cc.GetType() == typeof(PlayerController) /*|| cc.GetType() == typeof(MonsterController)*/)
             {
-
-
-                cc.Dir = skillPacket.Info.MoveDir;
-
-                cc.State = CreatureState.Skill;
-
-                // 스킬 쓴 순간부터는 끝까지
-                //cc.PosHistory.Clear();
-
-                if (cc.PosHistory.Count > 0)
+                if (skillPacket.Info.SkillId == 4001000)
                 {
+                    // 순보일 경우에는 이전 기록 다 날려주고 바로 이동 = 텔레포트
 
-                    // 모든 애들의 방향을 다 최종으로 바꾼다.
-                    for (int i = 0; i < cc.PosHistory.Count; i++)
+                    cc.PosInfo = skillPacket.PosInfo;
+                    cc.SyncPos();
+                    cc.PosHistory.Clear();
+                }
+                else
+                {
+                    cc.Dir = skillPacket.Info.MoveDir;
+
+                    cc.State = CreatureState.Skill;
+
+                    // 스킬 쓴 순간부터는 끝까지
+                    //cc.PosHistory.Clear();
+
+                    if (cc.PosHistory.Count > 0)
                     {
-                        cc.PosHistory[i].MoveDir = skillPacket.Info.MoveDir;
+
+                        // 모든 애들의 방향을 다 최종으로 바꾼다.
+                        for (int i = 0; i < cc.PosHistory.Count; i++)
+                        {
+                            cc.PosHistory[i].MoveDir = skillPacket.Info.MoveDir;
+                        }
                     }
                 }
+
+
+
+
 
                 cc.UseSkill(skillPacket.Info.SkillId);
 
@@ -493,7 +506,11 @@ class PacketHandler
 
         }
 
-        mc.IsSkillSend = false;
+        if(mc!=null)
+        {
+
+            mc.IsSkillSend = false;
+        }
 
 
 

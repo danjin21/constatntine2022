@@ -111,6 +111,7 @@ namespace Server.Game
         // 스킬 쿨타임에 예약 걸어두기
 
         public C_Skill C_Skill_Book = null;
+        public C_Skill C_Skill_Soonbo_Book = null;
 
 
         public float yes;
@@ -152,6 +153,12 @@ namespace Server.Game
         public void SoonboCooltime()
         {
             SoonboCool = false;
+
+            if (C_Skill_Soonbo_Book != null)
+            {
+                Room.HandleSkill(this, C_Skill_Soonbo_Book);
+                C_Skill_Soonbo_Book = null;
+            }
         }
 
         protected virtual void UpdateMoving()

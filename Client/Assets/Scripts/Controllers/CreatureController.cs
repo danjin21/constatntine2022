@@ -255,6 +255,9 @@ public class CreatureController : BaseController
     {
         GameObject Attacker = Managers.Object.FindById(attackerId);
 
+        if(Attacker == null)
+            return;
+
 
         GameObject hudText = Managers.Resource.Instantiate("Effect/DamageText");
 

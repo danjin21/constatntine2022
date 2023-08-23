@@ -380,11 +380,16 @@ class PacketHandler
 			return;
 
 		// 순보 숏키 쿨타임은 따로 관리한다.
-		if (player.ShortKeyCool_Soonbo == true && shortKeyPacket.Action == 4001000)
-			return;
-
-		if (player.ShortKeyCool == true)
-			return;
+		if (shortKeyPacket.Action == 4001000)
+		{
+			if (player.ShortKeyCool_Soonbo == true)
+				return;
+		}
+		else
+		{
+			if (player.ShortKeyCool == true)
+				return;
+		}
 
         //// 쿨타임 주기.
         //player.ShortKeyCool = true;

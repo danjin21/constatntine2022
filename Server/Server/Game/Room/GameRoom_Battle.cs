@@ -133,7 +133,7 @@ namespace Server.Game
             skill_dummy.Info.SkillId = -1;
             player.Session.Send(skill_dummy);
 
-
+            Console.WriteLine($"★ / {player.State}");
             // 스킬을 가지고 있는지 확인
 
             Skills PlayerSkill = player.SkillInven.Find(i =>  i.SkillId == skillPacket.Info.SkillId);
@@ -141,8 +141,10 @@ namespace Server.Game
                 return;
 
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
-            if (player.SkillCool == true && skillPacket.Info.SkillId != 3101000)
+            if (player.SkillCool == true && skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
             {
+
+                // 전과의 시간을 비교
 
                 // 1
                 player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
@@ -158,16 +160,25 @@ namespace Server.Game
                 return;
             }
 
+            Console.WriteLine($"★★  / {player.State}");
+
             // 텔레포트의 쿨 확인
 
             if (player.TeleportCool == true && skillPacket.Info.SkillId == 3101000)
                 return;
 
+            Console.WriteLine($"★★★  / {player.State}");
+
             // 순보 쿨 타임
 
             if (player.SoonboCool == true && skillPacket.Info.SkillId == 4001000)
+            {
+                player.C_Skill_Soonbo_Book = skillPacket;
                 return;
+            }
 
+
+            Console.WriteLine($"★★★★  / {player.State}");
 
             // 마나 없으면 리턴하기
             if (player.Stat.Mp < PlayerSkill.Mp)
@@ -176,6 +187,7 @@ namespace Server.Game
 
             ObjectInfo info = player.Info;
 
+            Console.WriteLine($"★★★★★  / {player.State}");
 
             if (player.Info.PosInfo.State == CreatureState.Idle && skillPacket.Info.SkillId == 3101000)
             {
@@ -193,18 +205,25 @@ namespace Server.Game
                 return;
             }
 
+            Console.WriteLine($"★★★★★★  / {player.State}");
+
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
             {
 
                 if(info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
                 {
-                    
+                    Console.WriteLine($"★★★★★★★  / {player.State}");
                     if (player.SkillWalkCool == false)
                         return;
                 }
                 else
                 {
-                    return;
+
+                    Console.WriteLine($"★★★★★★★★  / {player.State}");
+                        return;
+
+
+
                 }
 
          
@@ -217,7 +236,7 @@ namespace Server.Game
             // TODO : 스킬 사용 가능 여부 체크
 
             // 텔레포트 아닌 경우에만 스킬 State
-            if(skillPacket.Info.SkillId !=3101000)
+            if(skillPacket.Info.SkillId !=3101000 && skillPacket.Info.SkillId != 4001000)
                 info.PosInfo.State = CreatureState.Skill;
 
 
@@ -1042,12 +1061,23 @@ namespace Server.Game
             else if (skillPacket.Info.SkillId == 4001000)
             {
                 player.SoonboCool = true;
-                room.PushAfter(800, player.SoonboCooltime);
+                room.PushAfter(700, player.SoonboCooltime);
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
                 room.PushAfter(400, player.SkillWalkCooltime);
 
+            }
+            else if(skillPacket.Info.SkillId == 1001001)
+            {
+
+                player.SkillCool = true;
+                room.PushAfter(700, player.SkillCooltime);
+
+
+                // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
+                player.SkillWalkCool = true;
+                room.PushAfter(200, player.SkillWalkCooltime);
             }
             else // 그외 스킬 쿨타임 주기
             {

@@ -780,7 +780,7 @@ public class BaseController : MonoBehaviour
             }
             else
             {
-                transform.position += moveDir.normalized * Speed * Time.smoothDeltaTime;
+                transform.position += moveDir.normalized * Speed  * Time.smoothDeltaTime;
 
             }
 

@@ -7,7 +7,7 @@
       "name": "무르",
       "stat": {
         "level": "1",
-        "maxHp": "8",
+        "maxHp": "800",
         "attack": "22",
         "speed": "100.0",
         "exp": "3",
@@ -43,7 +43,7 @@
       "name": "블루무르",
       "stat": {
         "level": "2",
-        "maxHp": "30",
+        "maxHp": "3000",
         "attack": "27",
         "speed": "100.0",
         "exp": "5",
@@ -73,7 +73,7 @@
       "name": "레드무르",
       "stat": {
         "level": "4",
-        "maxHp": "80",
+        "maxHp": "8000",
         "attack": "35",
         "speed": "100.0",
         "exp": "10",

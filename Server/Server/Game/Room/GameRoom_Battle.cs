@@ -213,21 +213,26 @@ namespace Server.Game
 
             Console.WriteLine($"★★★★★★  / {player.State}");
 
-            if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
+            if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000 )
             {
 
-                //if(info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
+                //if (info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
                 //{
                 //    Console.WriteLine($"★★★★★★★  / {player.State}");
                 //    if (player.SoonboComboCool == false)
                 //        return;
                 //}
                 //else
+
+                info.PosInfo.State = CreatureState.Idle;
+
+                    return;
+                //else
                 //{
                 //    Console.WriteLine($"★★★★★★★★  / {player.State}");
                 //        return;
                 //}
-                    return;
+
 
             }
 
@@ -236,9 +241,6 @@ namespace Server.Game
             Console.WriteLine("텔레포트 쓸때 유저의 상태 :" + player.State + " -> Skill");
             // TODO : 스킬 사용 가능 여부 체크
 
-            // 텔레포트 아닌 경우에만 스킬 State
-            if(skillPacket.Info.SkillId !=3101000 && skillPacket.Info.SkillId != 4001000)
-                info.PosInfo.State = CreatureState.Skill;
 
 
 
@@ -990,6 +992,9 @@ namespace Server.Game
                     break;
             }
 
+            // 텔레포트 아닌 경우에만 스킬 State
+            if (skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
+                info.PosInfo.State = CreatureState.Skill;
 
 
             // 스킬 패킷보내주기
@@ -1076,7 +1081,7 @@ namespace Server.Game
                 // continue 키 ( 지속적으로 키를 눌렀는지를 확인하는 )
                 // 처음에는 지속적으로 눌르지 않았을테니 false
                 player.SkillKeyContinue = false;
-                room.PushAfter(300, player.SkillKeyContinueCooltime);
+                room.PushAfter(200, player.SkillKeyContinueCooltime);
             }
             else
             {
@@ -1084,7 +1089,7 @@ namespace Server.Game
                 // continue 키 ( 지속적으로 키를 눌렀는지를 확인하는 )
                 // 처음에는 지속적으로 눌르지 않았을테니 false
                 player.SkillKeyContinue_Soonbo = false;
-                room.PushAfter(300, player.SkillKeyContinue_Soonbo_Cooltime);
+                room.PushAfter(200, player.SkillKeyContinue_Soonbo_Cooltime);
             }
 
 

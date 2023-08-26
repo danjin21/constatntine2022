@@ -295,6 +295,11 @@ public class PlayerController : CreatureController
             //}
         }
 
+
+        // 스킬 쓰고 있는중에 도 스킬이 오면 모션은 추가로 안변하게.
+        if (State == CreatureState.Skill)
+            return;
+
         // 스킬아이디 갱신
         _skillId = skillId;
 

@@ -175,6 +175,9 @@ namespace Server.Game
                 return;
             }
 
+
+            Console.WriteLine($"★★★ @@@@ / {player.State}");
+
             // 순보 스킬 직후 스킬 못쓰게
             if (player.SoonboCool == true )
             {
@@ -213,7 +216,7 @@ namespace Server.Game
 
             Console.WriteLine($"★★★★★★  / {player.State}");
 
-            if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000 )
+            if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
             {
 
                 //if (info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
@@ -1042,7 +1045,7 @@ namespace Server.Game
 
                 // 순보쓰자마자 스킬 쓸 수 잇는 시간 0.1초
                 player.SoonboComboCool = true;
-                room.PushAfter(250, player.Soonbo_Combo_Cooltime);
+                room.PushAfter(500, player.Soonbo_Combo_Cooltime);
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;

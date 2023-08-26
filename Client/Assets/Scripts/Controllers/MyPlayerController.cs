@@ -662,7 +662,7 @@ public class MyPlayerController : PlayerController
                 return;
   
             // Shrot 키 쿨타임
-            if (_coShortKeyCooltime != null)
+            if (_coShortKeyCooltime != null && key.Action != 4001000)
                 return;
 
             // Shrot_Potion 키 쿨타임

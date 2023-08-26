@@ -36,7 +36,7 @@ namespace Server.Game
             //player.ShortKeyCool = true;
             //player.Room.PushAfter(500, player.ShortKeyCooltime);
 
-
+            Console.WriteLine("끄앙");
 
             // 해당 Action이 아이템인지 스킬인지 확인한다.
 

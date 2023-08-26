@@ -291,7 +291,8 @@ namespace Server.Game
 
                                         if (Map.ApplyMove(player, nextPos) == false)
                                         {
-
+                                            // 갈곳이 없으면, NextPos는 현재 위치다
+                                            nextPos = player.CellPos;
                                         }
                                     }
                                 }

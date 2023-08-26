@@ -140,25 +140,36 @@ namespace Server.Game
             if (PlayerSkill == null)
                 return;
 
+            int termValue = 400;
+
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
             if (player.SkillCool == true && skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
             {
 
+
+                TimeSpan term = DateTime.Now - player.skillTime;
+                if(term.Milliseconds >= termValue)
+                    player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
+
                 // 전과의 시간을 비교
-
                 // 1
-                player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
-
-
-                // 2
-                //// 더미스킬 패킷보내주기
-                //S_Skill skill_dummy_cooltime = new S_Skill() { Info = new SkillInfo() }; // Info도 클래스이기 때문에 새로 만들어주어야한다.
-                //skill_dummy_cooltime.ObjectId = player.Info.ObjectId;
-                //skill_dummy_cooltime.Info.SkillId = 9999;
-                //player.Session.Send(skill_dummy_cooltime);
 
                 return;
             }
+
+            // 순보 쿨 타임
+
+            if (player.SoonboCool == true && skillPacket.Info.SkillId == 4001000)
+            {
+
+
+                TimeSpan term = DateTime.Now - player.Soonbo_skillTime;
+                if (term.Milliseconds >= termValue)
+                    player.C_Skill_Soonbo_Book = skillPacket;
+
+                return;
+            }
+
 
             Console.WriteLine($"★★  / {player.State}");
 
@@ -169,13 +180,7 @@ namespace Server.Game
 
             Console.WriteLine($"★★★  / {player.State}");
 
-            // 순보 쿨 타임
 
-            if (player.SoonboCool == true && skillPacket.Info.SkillId == 4001000)
-            {
-                player.C_Skill_Soonbo_Book = skillPacket;
-                return;
-            }
 
 
             Console.WriteLine($"★★★★  / {player.State}");
@@ -1068,6 +1073,8 @@ namespace Server.Game
                 player.SkillWalkCool = true;
                 room.PushAfter(400, player.SkillWalkCooltime);
 
+
+
             }
             else if(skillPacket.Info.SkillId == 1001001)
             {
@@ -1096,9 +1103,15 @@ namespace Server.Game
 
             }
 
+
+            if(skillPacket.Info.SkillId != 4001000)
+                player.skillTime = DateTime.Now;
+            else
+                player.Soonbo_skillTime = DateTime.Now;
+
+
+
             // 마나를 소비하자.
-
-
 
             int MpConsume = PlayerSkill.Mp;
 

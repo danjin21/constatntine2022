@@ -64,7 +64,9 @@ namespace Server.Game
         //public int TotalWPnt { get { return Stat.Str + itemStr; } }
         //public int TotalMPnt { get { return Stat.Str + itemStr; } }
 
- 
+
+        public DateTime skillTime;
+        public DateTime Soonbo_skillTime;
 
         public Player()
         {

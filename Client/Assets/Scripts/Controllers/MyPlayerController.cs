@@ -502,6 +502,8 @@ public class MyPlayerController : PlayerController
 
     public bool IsEntered = false;
 
+    public int lastKey = -1;
+
     void UpdateGetInput()
     {
 
@@ -553,34 +555,44 @@ public class MyPlayerController : PlayerController
         Key = -1;
         ConsumeKey = -1;
 
+        int FinalKey = -1;
+
         if (key_window_active == true)
         {
 
             // anykey none
             // Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
             if ((WinInput.GetKey(KeyCode.LeftShift)) || (WinInput.GetKey(KeyCode.RightShift)))
-            { Key = 1; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 1; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.LeftControl)) || (WinInput.GetKey(KeyCode.RightControl)))
-            { Key = 2; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 2; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.LeftAlt)) || (WinInput.GetKey(KeyCode.RightAlt)))
-            { Key = 3; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 3; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.Q)))
-            { Key = 4; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 4; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.W)))
-            { Key = 5; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 5; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.E)))
-            { Key = 6; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 6; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.A)))
-            { Key = 7; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 7; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.S)))
-            { Key = 8; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 8; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.D)))
-            { Key = 9; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 9; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.Space)))
-            { Key = 10; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 10; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
             if ((WinInput.GetKey(KeyCode.Z)))
-            { Key = 11; ConsumeKey = IsConsumeFromKey(Key); }
+            { Key = 11; ConsumeKey = IsConsumeFromKey(Key); if (Key != lastKey) FinalKey = Key; }
         }
+
+        // 혹시 동시에 눌렀는데 마지막에 누른애가 위에 있다면, 위에 있는애가 키가 되게한다.
+        if(FinalKey != -1)
+        {
+            Key = FinalKey;
+        }
+
+        lastKey = Key;
 
 
 

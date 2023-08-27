@@ -19,7 +19,16 @@ namespace Server.Game
 
             //// 스킬쓴 바로 직후에는 걷지못하게함
             if (player.SkillWalkCool == true)
+            {
+
+                // 바로 못 걷더라도... 스킬에서의 Idle은.. 받게하기
+                player.PosInfo.State = movePacket.PosInfo.State;
+                player.PosInfo.MoveDir = movePacket.PosInfo.MoveDir;
+
+                Console.WriteLine("스킬쓴 바로 직후 C_Move: " + player.State + "->" + movePacket.PosInfo.State);
+
                 return;
+            }
 
             Console.WriteLine("걷는 중의 플레이어 상테 : " + player.State + "->" + movePacket.PosInfo.State);
 

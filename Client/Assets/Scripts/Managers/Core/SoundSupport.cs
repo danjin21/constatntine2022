@@ -40,7 +40,7 @@ public class SoundSupport : MonoBehaviour
         // 재생 시간동안기다리고 그후에 저장된 값을 지운다
         //yield return new WaitForSeconds(clip.length);
         // 솔직히 동시에만 안나면된다.
-        yield return new WaitForSeconds(0.02f);
+        yield return new WaitForSeconds(0.1f);
 
         List<float> volumes;
         if (soundOneShot.TryGetValue(clip, out volumes))

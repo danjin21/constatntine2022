@@ -133,6 +133,16 @@
       "desc": "HP를 300 회복시켜주는 포션이다."
     },
     {
+      "id": "90004",
+      "name": "보라포션",
+      "consumableType": "Potion",
+      "mp": "300",
+      "price": "30", // 300
+      "sellPrice": "30", // 10
+      "iconPath": "Textures/Item/potion/4",
+      "desc": "MP를 300 회복시켜주는 포션이다."
+    },
+    {
       "id": "91000",
       "name": "마법책 - 이격",
       "consumableType": "Skill",

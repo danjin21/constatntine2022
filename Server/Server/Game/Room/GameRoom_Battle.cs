@@ -180,6 +180,17 @@ namespace Server.Game
             }
 
 
+            if (player.SoonboCool == true && skillPacket.Info.SkillId != 4001000)
+            {
+                TimeSpan term = DateTime.Now - player.Soonbo_skillTime;
+                if (term.Milliseconds >= 200)
+                {
+                    return;
+                }
+            }
+
+
+
             Console.WriteLine($"★★  / {player.State}");
 
             // 텔레포트의 쿨 확인
@@ -223,26 +234,10 @@ namespace Server.Game
 
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
             {
-
-                if(info.PosInfo.State == CreatureState.Skill && player.SoonboCool == true)
-                {
-                    Console.WriteLine($"★★★★★★★  / {player.State}");
-                    if (player.SkillWalkCool == false)
-                        return;
-                }
-                else
-                {
-
-                    Console.WriteLine($"★★★★★★★★  / {player.State}");
-                        return;
-
-
-
-                }
-
-         
-
+                return;       
             }
+
+
 
 
 

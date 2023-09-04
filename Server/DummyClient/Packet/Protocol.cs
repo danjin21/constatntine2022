@@ -161,16 +161,17 @@ namespace Google.Protobuf.Protocol {
             "WRABEhUKEVNFUlZFUl9TVEFURV9HQU1FEAIqdgoISXRlbVR5cGUSEgoOSVRF",
             "TV9UWVBFX05PTkUQABIUChBJVEVNX1RZUEVfV0VBUE9OEAESEwoPSVRFTV9U",
             "WVBFX0FSTU9SEAISGAoUSVRFTV9UWVBFX0NPTlNVTUFCTEUQAxIRCg1JVEVN",
-            "X1RZUEVfRVRDEAQqZgoKV2VhcG9uVHlwZRIUChBXRUFQT05fVFlQRV9OT05F",
-            "EAASFQoRV0VBUE9OX1RZUEVfU1dPUkQQARITCg9XRUFQT05fVFlQRV9CT1cQ",
-            "AhIWChJXRUFQT05fVFlQRV9TV09SRDIQAyqQAQoJQXJtb3JUeXBlEhMKD0FS",
-            "TU9SX1RZUEVfTk9ORRAAEhUKEUFSTU9SX1RZUEVfSEVMTUVUEAESFAoQQVJN",
-            "T1JfVFlQRV9BUk1PUhACEhQKEEFSTU9SX1RZUEVfQk9PVFMQAxIUChBBUk1P",
-            "Ul9UWVBFX1BBTlRTEAQSFQoRQVJNT1JfVFlQRV9TSElFTEQQBSphCg5Db25z",
-            "dW1hYmxlVHlwZRIYChRDT05TVU1BQkxFX1RZUEVfTk9ORRAAEhoKFkNPTlNV",
-            "TUFCTEVfVFlQRV9QT1RJT04QARIZChVDT05TVU1BQkxFX1RZUEVfU0tJTEwQ",
-            "AiowCgdFdGNUeXBlEhEKDUVUQ19UWVBFX05PTkUQABISCg5FVENfVFlQRV9N",
-            "T05FWRABQhuqAhhHb29nbGUuUHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
+            "X1RZUEVfRVRDEAQqgAEKCldlYXBvblR5cGUSFAoQV0VBUE9OX1RZUEVfTk9O",
+            "RRAAEhUKEVdFQVBPTl9UWVBFX1NXT1JEEAESEwoPV0VBUE9OX1RZUEVfQk9X",
+            "EAISGQoVV0VBUE9OX1RZUEVfVFdPSEFOREVEEAMSFQoRV0VBUE9OX1RZUEVf",
+            "U1BFQVIQBCqQAQoJQXJtb3JUeXBlEhMKD0FSTU9SX1RZUEVfTk9ORRAAEhUK",
+            "EUFSTU9SX1RZUEVfSEVMTUVUEAESFAoQQVJNT1JfVFlQRV9BUk1PUhACEhQK",
+            "EEFSTU9SX1RZUEVfQk9PVFMQAxIUChBBUk1PUl9UWVBFX1BBTlRTEAQSFQoR",
+            "QVJNT1JfVFlQRV9TSElFTEQQBSphCg5Db25zdW1hYmxlVHlwZRIYChRDT05T",
+            "VU1BQkxFX1RZUEVfTk9ORRAAEhoKFkNPTlNVTUFCTEVfVFlQRV9QT1RJT04Q",
+            "ARIZChVDT05TVU1BQkxFX1RZUEVfU0tJTEwQAiowCgdFdGNUeXBlEhEKDUVU",
+            "Q19UWVBFX05PTkUQABISCg5FVENfVFlQRV9NT05FWRABQhuqAhhHb29nbGUu",
+            "UHJvdG9idWYuUHJvdG9jb2xiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Google.Protobuf.Protocol.MsgId), typeof(global::Google.Protobuf.Protocol.CreatureState), typeof(global::Google.Protobuf.Protocol.MoveDir), typeof(global::Google.Protobuf.Protocol.GameObjectType), typeof(global::Google.Protobuf.Protocol.QuestAction), typeof(global::Google.Protobuf.Protocol.SkillType), typeof(global::Google.Protobuf.Protocol.PlayerServerState), typeof(global::Google.Protobuf.Protocol.ItemType), typeof(global::Google.Protobuf.Protocol.WeaponType), typeof(global::Google.Protobuf.Protocol.ArmorType), typeof(global::Google.Protobuf.Protocol.ConsumableType), typeof(global::Google.Protobuf.Protocol.EtcType), }, null, new pbr::GeneratedClrTypeInfo[] {
@@ -420,7 +421,8 @@ namespace Google.Protobuf.Protocol {
     [pbr::OriginalName("WEAPON_TYPE_NONE")] None = 0,
     [pbr::OriginalName("WEAPON_TYPE_SWORD")] Sword = 1,
     [pbr::OriginalName("WEAPON_TYPE_BOW")] Bow = 2,
-    [pbr::OriginalName("WEAPON_TYPE_SWORD2")] Sword2 = 3,
+    [pbr::OriginalName("WEAPON_TYPE_TWOHANDED")] Twohanded = 3,
+    [pbr::OriginalName("WEAPON_TYPE_SPEAR")] Spear = 4,
   }
 
   public enum ArmorType {

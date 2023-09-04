@@ -33,10 +33,14 @@ public class CharacterAnimation : MonoBehaviour
 
     public List<Sprite> BodyList = new List<Sprite>(); // 몸 걸을때 쌩몸
     public List<Sprite> BodyList_OneHand = new List<Sprite>(); // 무기 들고 걸을 때 쌩몸 (선 없이)
+    public List<Sprite> BodyList_TwoHand = new List<Sprite>(); // 두손검 들고 걸을 때 쌩몸  (선 없이)
 
     public List<Sprite> Body_Attack_List = new List<Sprite>(); // 한손검 공격할 때의 쌩몸
+    public List<Sprite> Body_Attack_List_TwoHand = new List<Sprite>(); // 한손검 공격할 때의 쌩몸
+
     public List<Sprite> Body_Spell_List = new List<Sprite>(); // 스펠 할 때의 쌩몸
     public List<Sprite> Body_Drop_List = new List<Sprite>(); // 줍기 할 때의 쌩몸
+
     public List<Sprite> Body_Bow_Attack_List = new List<Sprite>(); // 활 들고 공격할 때의 쌩몸
 
 
@@ -44,8 +48,11 @@ public class CharacterAnimation : MonoBehaviour
 
     public List<Sprite> ArmorList = new List<Sprite>();
     public List<Sprite> ArmorList_OneHand = new List<Sprite>();
+    public List<Sprite> ArmorList_TwoHand = new List<Sprite>();
 
     public List<Sprite> Armor_Attack_List = new List<Sprite>();
+    public List<Sprite> Armor_Attack_List_TwoHand = new List<Sprite>();
+
     public List<Sprite> Armor_Spell_List = new List<Sprite>();
     public List<Sprite> Armor_Drop_List = new List<Sprite>();
     public List<Sprite> Armor_Bow_Attack_List = new List<Sprite>();
@@ -56,7 +63,8 @@ public class CharacterAnimation : MonoBehaviour
     public List<Sprite> RightHand_Attack_List = new List<Sprite>(); // 무기 들고 공격할 때의 무기
     public List<Sprite> RightHand_Bow_Attack_List = new List<Sprite>(); // 활 들고 공격할 때의 무기
 
-
+    public List<Sprite> RightHandList_TwoHand = new List<Sprite>(); // 두손검 들고 걸을 때의 무기
+    public List<Sprite> RightHand_Attack_List_TwoHand = new List<Sprite>(); // 두손검 들고 공격할 때의 무기
 
     // ============================================== 외형 변경 =================================================//
 
@@ -71,6 +79,8 @@ public class CharacterAnimation : MonoBehaviour
 
         Helmet = transform.GetComponent<BaseController>().Stat.Helmet;
         RightHand =  Math.Max(transform.GetComponent<BaseController>().Stat.RightHand - 1,-1); // -1 보다 작으면 -1 이다.
+        Debug.Log("오른손무기" + RightHand);
+
         LeftHand = transform.GetComponent<BaseController>().Stat.LeftHand;
 
         // 셔츠는 1000부터 시작하므로 0,1,2,3,4 가려면 아래처럼 해야함.
@@ -164,6 +174,22 @@ public class CharacterAnimation : MonoBehaviour
         BodyList_OneHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Up/Body/1") as Sprite); // 9
         BodyList_OneHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Up/Body/2") as Sprite); // 10
         BodyList_OneHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Up/Body/4") as Sprite); // 11
+
+
+        // 걷기 모션_ 두손검 들었을 때 스프라이트 넣기 (쌩몸)
+
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Down/Body/1") as Sprite); //0 
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Down/Body/2") as Sprite); // 1
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Down/Body/4") as Sprite); // 2
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Left/Body/1") as Sprite); // 3 
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Left/Body/2") as Sprite); // 4
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Left/Body/4") as Sprite); // 5
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Right/Body/1") as Sprite); // 6
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Right/Body/2") as Sprite); // 7
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Right/Body/4") as Sprite); // 8
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Up/Body/1") as Sprite); // 9
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Up/Body/2") as Sprite); // 10
+       BodyList_TwoHand.Add(Resources.Load<Sprite>("Textures/Character/OneHand/Base/Up/Body/4") as Sprite); // 11
 
 
         // 얼굴

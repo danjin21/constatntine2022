@@ -220,6 +220,7 @@ public class PlayerController : CreatureController
             case 1001000: // 이격
             case 1001001: // 삼격
             case 4001000: // 순보
+                GetComponent<CharacterAnimation>().ChangeMotion();
                 _animator.Play("Attack_" + $"{A}");
                 break;
             case 2001000: // 더블샷

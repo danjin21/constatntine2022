@@ -179,6 +179,12 @@ public class CharacterAnimation : MonoBehaviour
         int result = UnityEngine.Random.Range(0, 2);
 
         attackForm = result;
+
+        // 창이면 무조건 찌르기
+        if(weaponKind == 3)
+        {
+            attackForm = 1;
+        }
     }
 
 
@@ -700,6 +706,11 @@ public class CharacterAnimation : MonoBehaviour
         RightHandList.Add(Resources.Load<Sprite>("Textures/Character/OneHand/3/Walk/Right/1") as Sprite); // 2
         RightHandList.Add(Resources.Load<Sprite>("Textures/Character/OneHand/3/Walk/Up/1") as Sprite); // 3
 
+        // 4) 창 // 수정 필요함
+        RightHandList.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Walk/Down/1") as Sprite); // 0
+        RightHandList.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Walk/Down/1") as Sprite); // 1
+        RightHandList.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Walk/Down/1") as Sprite); // 2
+        RightHandList.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Walk/Down/1") as Sprite); // 3
 
         // 무기 공격 모션 스프라이트 넣기
 
@@ -741,7 +752,7 @@ public class CharacterAnimation : MonoBehaviour
         RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/2/Attack/Up/2") as Sprite); // 6
         RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/2/Attack/Up/3") as Sprite); // 7
 
-        // 1) 두손검
+        // 3) 두손검
         RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/3/Attack/Down/2") as Sprite); // 0
         RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/3/Attack/Down/3") as Sprite); // 1
         RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/3/Attack/Left/2") as Sprite); // 2
@@ -760,6 +771,24 @@ public class CharacterAnimation : MonoBehaviour
         RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/3/Attack_2/Up/2") as Sprite); // 6
         RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/3/Attack_2/Up/2") as Sprite); // 7
 
+        // 4) 창
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Down/2") as Sprite); // 0
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Down/2") as Sprite); // 1
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Left/2") as Sprite); // 2
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Left/2") as Sprite); // 3
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Right/2") as Sprite); // 4
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Right/2") as Sprite); // 5
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Up/2") as Sprite); // 6
+        RightHand_Attack_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack/Up/2") as Sprite); // 7
+
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Down/2") as Sprite); // 0
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Down/2") as Sprite); // 1
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Left/2") as Sprite); // 2
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Left/2") as Sprite); // 3
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Right/2") as Sprite); // 4
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Right/2") as Sprite); // 5
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Up/2") as Sprite); // 6
+        RightHand_Sting_List.Add(Resources.Load<Sprite>("Textures/Character/OneHand/4/Attack_2/Up/2") as Sprite); // 7
 
     }
 
@@ -797,7 +826,7 @@ public class CharacterAnimation : MonoBehaviour
         }
         else
         {
-            if(weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if(weaponKind == 0 || weaponKind == 1 || weaponKind == 3 ) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[1];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[1 + (Shirts * 12)];
@@ -845,7 +874,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3)  // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[0];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[0 + (Shirts * 12)];
@@ -896,7 +925,7 @@ public class CharacterAnimation : MonoBehaviour
         }
         else
         {
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[2];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[2 + (Shirts * 12)];
@@ -960,7 +989,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[4];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[4 + (Shirts * 12)];
@@ -1022,7 +1051,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[3];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[3 + (Shirts * 12)];
@@ -1078,7 +1107,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3 ) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[5];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[5 + (Shirts * 12)];
@@ -1134,7 +1163,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[7];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[7 + (Shirts * 12)];
@@ -1187,7 +1216,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[6];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[6 + (Shirts * 12)];
@@ -1233,7 +1262,7 @@ public class CharacterAnimation : MonoBehaviour
         }
         else
         {
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[8];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[8 + (Shirts * 12)];
@@ -1286,7 +1315,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[10];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[10 + (Shirts * 12)];
@@ -1338,7 +1367,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[9];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[9 + (Shirts * 12)];
@@ -1386,7 +1415,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1) // 검 혹은 활
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3) // 검 혹은 활 혹은 창
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[11];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[11 + (Shirts * 12)];
@@ -1611,7 +1640,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if(weaponKind ==0 || weaponKind == 1)
+            if(weaponKind ==0 || weaponKind == 1 || weaponKind == 3)
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[0];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[0 + (Shirts * 12)];
@@ -1855,7 +1884,7 @@ public class CharacterAnimation : MonoBehaviour
         }
         else
         {
-            if (weaponKind == 0 || weaponKind == 1)
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3)
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[3];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[3 + (Shirts * 12)];
@@ -2098,7 +2127,7 @@ public class CharacterAnimation : MonoBehaviour
         }
         else
         {
-            if (weaponKind == 0 || weaponKind == 1)
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3)
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[6];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[6 + (Shirts * 12)];
@@ -2336,7 +2365,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            if (weaponKind == 0 || weaponKind == 1)
+            if (weaponKind == 0 || weaponKind == 1 || weaponKind == 3)
             {
                 transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = BodyList_OneHand[9];
                 transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = ArmorList_OneHand[9 + (Shirts * 12)];
@@ -2617,7 +2646,7 @@ public class CharacterAnimation : MonoBehaviour
             transform.GetChild(6).localPosition = new Vector3(-2, -5, -5);
 
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind ==3 )
         {
 
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[1];
@@ -2692,7 +2721,7 @@ public class CharacterAnimation : MonoBehaviour
             // 활인 경우
             transform.GetChild(6).localPosition = new Vector3(-2, -5, -5);
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind == 3)
         {
 
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[2];
@@ -2767,7 +2796,7 @@ public class CharacterAnimation : MonoBehaviour
             // 활인 경우
             transform.GetChild(6).localPosition = new Vector3(-16, 7, 1);
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind == 3)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[4];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List_TwoHand_2[4 + (Shirts * 12)];
@@ -2846,7 +2875,7 @@ public class CharacterAnimation : MonoBehaviour
             // 활인 경우
             transform.GetChild(6).localPosition = new Vector3(-16, 7, 1);
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind == 3)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[5];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List_TwoHand_2[5 + (Shirts * 12)];
@@ -2929,7 +2958,7 @@ public class CharacterAnimation : MonoBehaviour
             // 활인 경우
             transform.GetChild(6).localPosition = new Vector3(15, 7, 1);
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind == 3)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[7];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List_TwoHand_2[7 + (Shirts * 12)];
@@ -3007,7 +3036,7 @@ public class CharacterAnimation : MonoBehaviour
             // 활인 경우
             transform.GetChild(6).localPosition = new Vector3(15, 7, 1);
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind == 3)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[8];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List_TwoHand_2[8 + (Shirts * 12)];
@@ -3084,7 +3113,7 @@ public class CharacterAnimation : MonoBehaviour
             // 활인 경우
             transform.GetChild(6).localPosition = new Vector3(1, 17, 1);
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind == 3)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[10];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List_TwoHand_2[10 + (Shirts * 12)];
@@ -3158,7 +3187,7 @@ public class CharacterAnimation : MonoBehaviour
             // 활인 경우
             transform.GetChild(6).localPosition = new Vector3(1, 17, 1);
         }
-        else if (weaponKind == 2)
+        else if (weaponKind == 2 || weaponKind == 3)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List_TwoHand_2[11];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List_TwoHand_2[11 + (Shirts * 12)];

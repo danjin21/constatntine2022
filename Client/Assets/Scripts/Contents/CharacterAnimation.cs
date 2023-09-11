@@ -591,7 +591,7 @@ public class CharacterAnimation : MonoBehaviour
         Armor_Attack_List_TwoHand_2.Add(Resources.Load<Sprite>("Textures/Character/TwoHand/Attack_2/Up/Armor/2") as Sprite); // 10
         Armor_Attack_List_TwoHand_2.Add(Resources.Load<Sprite>("Textures/Character/TwoHand/Attack_2/Up/Armor/3") as Sprite);  // 11
 
-        Armor_Attack_List_TwoHand_2.Add(Resources.Load<Sprite>("Textures/Item/100/Base_Attack_TwoHand_2/Down/Armor/1") as Sprite); // 0 +12
+        Armor_Attack_List_TwoHand_2.Add(Resources.Load<Sprite>("Textures/Item/100/OneHand_Walk/Down/Armor/1") as Sprite); // 0 +12
         Armor_Attack_List_TwoHand_2.Add(Resources.Load<Sprite>("Textures/Item/100/Base_Attack_TwoHand_2/Down/Armor/2") as Sprite); // 1 +12
         Armor_Attack_List_TwoHand_2.Add(Resources.Load<Sprite>("Textures/Item/100/Base_Attack_TwoHand_2/Down/Armor/3") as Sprite); // 2 +12
         Armor_Attack_List_TwoHand_2.Add(Resources.Load<Sprite>("Textures/Item/100/Base_Attack_TwoHand_2/Left/Armor/1") as Sprite); // 3 +12

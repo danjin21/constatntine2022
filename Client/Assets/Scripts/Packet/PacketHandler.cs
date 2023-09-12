@@ -409,7 +409,7 @@ class PacketHandler
                 {
                     cc.Dir = skillPacket.Info.MoveDir;
 
-                    cc.State = CreatureState.Skill;
+                    // cc.State = CreatureState.Skill;
 
                     // 스킬 쓴 순간부터는 끝까지
                     //cc.PosHistory.Clear();
@@ -869,6 +869,8 @@ class PacketHandler
             cc.Stat.Shoes = changePacket.StatInfo.Shoes;
 
         }
+
+        Debug.Log("정보" + changePacket.StatInfo);
 
         cc.GetComponent<CharacterAnimation>().CharacterApearance_Refresh();
 

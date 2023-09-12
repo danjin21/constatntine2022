@@ -90,14 +90,25 @@ public class CharacterAnimation : MonoBehaviour
         Item weaponItem = null;
         weaponItem = Managers.Inven.Find(i => i.Equipped && i.ItemType == ItemType.Weapon);
 
-        if(weaponItem == null)
+        Data.ItemData itemData = null;
+        Managers.Data.ItemDict.TryGetValue(RightHand + 1, out itemData);
+
+        Data.WeaponData WeaponData = (Data.WeaponData)itemData;
+
+
+        if (WeaponData == null)
         {
             // 아무것도 안낌
             weaponKind = -1;
+
+            Debug.Log("오른손무기 정보 : -1" );
         }
         else
         {
-            switch (((Weapon)weaponItem).WeaponType)
+
+            Debug.Log("오른손무기 정보 : " + ((Weapon)weaponItem).WeaponType);
+
+            switch (WeaponData.weaponType)
             {
                 case WeaponType.Sword:
                     weaponKind = 0;
@@ -184,6 +195,12 @@ public class CharacterAnimation : MonoBehaviour
         if(weaponKind == 3)
         {
             attackForm = 1;
+        }
+
+        // 무기 없으면 무조건 베기
+        if(RightHand == -1 )
+        {
+            attackForm = 0;
         }
     }
 
@@ -1545,7 +1562,7 @@ public class CharacterAnimation : MonoBehaviour
 
 
         // 착용한 무기에 따라 모션다르게
-        if (weaponKind == 0)
+        if (weaponKind == 0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[1];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[1 + (Shirts * 12)];
@@ -1587,7 +1604,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[0 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[0 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[0];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4];
@@ -1629,7 +1647,7 @@ public class CharacterAnimation : MonoBehaviour
         IsOneHand();
 
         // 착용한 무기에 따라 모션다르게 (화살이 아닌경우)
-        if (weaponKind ==0)
+        if (weaponKind ==0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[2];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[2 + (Shirts * 12)];
@@ -1668,7 +1686,9 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[1 + RightHand * 8];
+
+        if(RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[1 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[0];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4];
@@ -1788,7 +1808,7 @@ public class CharacterAnimation : MonoBehaviour
         IsOneHand();
 
         // 착용한 무기에 따라 모션다르게
-        if (weaponKind ==0)
+        if (weaponKind ==0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[4];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[4 + (Shirts * 12)];
@@ -1827,7 +1847,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[2 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[2 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[1];
@@ -1874,7 +1895,7 @@ public class CharacterAnimation : MonoBehaviour
         IsOneHand();
 
         // 착용한 무기에 따라 모션다르게
-        if (weaponKind == 0 )
+        if (weaponKind == 0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[5];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[5 + (Shirts * 12)];
@@ -1914,7 +1935,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[3 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[3 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[1];
@@ -2040,7 +2062,7 @@ public class CharacterAnimation : MonoBehaviour
         transform.GetChild(5).GetComponent<SpriteRenderer>().flipX = false;
 
         // 착용한 무기에 따라 모션다르게
-        if (weaponKind == 0 )
+        if (weaponKind == 0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[7];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[7 + (Shirts * 12)];
@@ -2078,7 +2100,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[4 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[4 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[2];
@@ -2124,7 +2147,7 @@ public class CharacterAnimation : MonoBehaviour
         transform.GetChild(5).GetComponent<SpriteRenderer>().flipX = false;
 
         // 착용한 무기에 따라 모션다르게
-        if (weaponKind ==0)
+        if (weaponKind ==0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[8];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[8 + (Shirts * 12)];
@@ -2163,7 +2186,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기 이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[5 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[5 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[2];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4 + 2];
@@ -2289,7 +2313,7 @@ public class CharacterAnimation : MonoBehaviour
         IsOneHand();
 
         // 착용한 무기에 따라 모션다르게
-        if (weaponKind ==0)
+        if (weaponKind ==0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[10];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[10 + (Shirts * 12)];
@@ -2329,7 +2353,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기 이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[6 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[6 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[3];
@@ -2370,7 +2395,7 @@ public class CharacterAnimation : MonoBehaviour
         IsOneHand();
 
         // 착용한 무기에 따라 모션다르게
-        if (weaponKind ==0)
+        if (weaponKind ==0 || RightHand == -1)
         {
             transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = Body_Attack_List[11];
             transform.GetChild(5).GetComponent<SpriteRenderer>().sprite = Armor_Attack_List[11 + (Shirts * 12)];
@@ -2408,7 +2433,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기 이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[7 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Attack_List[7 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[3];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4 + 3];
@@ -2780,7 +2806,8 @@ public class CharacterAnimation : MonoBehaviour
             transform.GetChild(6).localPosition = new Vector3(-8, 2, 1);
         }
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[0 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[0 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[0];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4];
@@ -2867,7 +2894,8 @@ public class CharacterAnimation : MonoBehaviour
             transform.GetChild(6).localPosition = new Vector3(-6, -10, 1);
         }
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[1 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[1 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[0];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4];
@@ -2954,7 +2982,8 @@ public class CharacterAnimation : MonoBehaviour
 
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[2 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[2 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[1];
@@ -3045,7 +3074,8 @@ public class CharacterAnimation : MonoBehaviour
 
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[3 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[3 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[1];
@@ -3140,7 +3170,8 @@ public class CharacterAnimation : MonoBehaviour
 
 
         // 무기이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[4 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[4 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[2];
@@ -3230,7 +3261,8 @@ public class CharacterAnimation : MonoBehaviour
         }
 
         // 무기 이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[5 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[5 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[2];
         transform.GetChild(3).GetComponent<SpriteRenderer>().sprite = FaceList[Face * 4 + 2];
@@ -3322,7 +3354,8 @@ public class CharacterAnimation : MonoBehaviour
 
 
         // 무기 이미지
-        transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[6 + RightHand * 8];
+        if (RightHand != -1)
+            transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[6 + RightHand * 8];
 
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[3];
@@ -3408,6 +3441,7 @@ public class CharacterAnimation : MonoBehaviour
 
 
         // 무기 이미지
+        if(RightHand != -1)
         transform.GetChild(6).GetComponent<SpriteRenderer>().sprite = RightHand_Sting_List[7 + RightHand * 8];
 
         transform.GetChild(2).GetComponent<SpriteRenderer>().sprite = HeadList[3];

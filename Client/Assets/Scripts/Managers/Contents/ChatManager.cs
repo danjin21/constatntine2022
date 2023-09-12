@@ -153,7 +153,11 @@ public class ChatManager
 
             if (ChatInput.text == "")
             {
-                Input.imeCompositionMode = IMECompositionMode.Auto;
+                //Input.imeCompositionMode = IMECompositionMode.Auto;
+
+                Input.imeCompositionMode = IMECompositionMode.On;
+                Debug.Log("Input.imeCompositionMode 1 : " + Input.imeCompositionMode + "." + Input.imeIsSelected);
+
                 ChatInput.interactable = false;
                 return;
             }
@@ -171,7 +175,9 @@ public class ChatManager
         ChatInput.text = "";
         ChatInput.transform.GetChild(0).transform.GetChild(2).gameObject.GetComponent<TMP_Text>().text = "";
 
-        Input.imeCompositionMode = IMECompositionMode.Auto;
+        //Input.imeCompositionMode = IMECompositionMode.Auto;
+
+        Input.imeCompositionMode = IMECompositionMode.On;
         ChatInput.interactable = false;
         //ChatInput.ActivateInputField();
 

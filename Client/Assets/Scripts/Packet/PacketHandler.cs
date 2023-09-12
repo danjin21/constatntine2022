@@ -288,7 +288,12 @@ class PacketHandler
 
             if( bc.PosInfo.PosX == movePacket.PosInfo.PosX && bc.PosInfo.PosY == movePacket.PosInfo.PosY)
             {
-                bc.PosInfo = bc.PosHistory[0];
+
+
+                // 주석한 이유, 승보 쓸때 Player 가 바로 idle이 되버림
+                if (bc.PosInfo.State != CreatureState.Skill)
+                    bc.PosInfo = bc.PosHistory[0];
+                //bc.PosInfo.MoveDir = bc.PosHistory[0].MoveDir;
                 bc.PosHistory.RemoveAt(0);
             }
 

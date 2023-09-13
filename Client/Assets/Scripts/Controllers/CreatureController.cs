@@ -236,6 +236,18 @@ public class CreatureController : BaseController
                 Managers.Sound.Play(SoundPath, Define.Sound.Effect);
 
             }
+            else
+            {
+                string SoundPath;
+
+                if (skillId == 1001001) // 삼격이라면 
+                {
+                    SoundPath = "Sounds/Hit/3";
+                    Managers.Sound.Play(SoundPath, Define.Sound.Effect);
+                }
+
+         
+            }
 
             // 시간딜레이
             yield return new WaitForSeconds(0.1f);

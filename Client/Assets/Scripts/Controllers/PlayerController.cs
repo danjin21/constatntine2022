@@ -312,7 +312,12 @@ public class PlayerController : CreatureController
         if (skillId == 9001000 || skillId == 1001001 || skillId == 1001000 )
         {
 
+
+
             Managers.Sound.Play("Sounds/Skill/9001000", Define.Sound.Effect);
+
+
+
             _coSkill = StartCoroutine("CoStartPunch");
 
 

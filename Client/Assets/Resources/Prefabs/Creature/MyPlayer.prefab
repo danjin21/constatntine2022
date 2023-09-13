@@ -825,11 +825,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Blocked: 0
   IsDead: 0
+  _hpBar: {fileID: 0}
   DamagePocket: {fileID: 0}
+  _getShot: 0
+  _getDie: 0
+  _skillId: -1
   _moveKeyPressed: 0
   count: 0
+  count_checkDistance: 0
   Key: -1
   ConsumeKey: -1
+  MoveReset: 0
+  MoveResetCount: 0
+  IsSkillSend: 0
+  A: 
+  B: 0
+  C: 0
+  IsEntered: 0
+  lastKey: -1
 --- !u!114 &4752445571805754422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -845,28 +858,40 @@ MonoBehaviour:
   Hair: 0
   Face: 0
   Skin: 0
+  HairColor: 0
   Helmet: -1
   RightHand: -1
   LeftHand: -1
   Shirts: -1
   Pants: -1
   Shoes: -1
+  weaponKind: -1
+  attackForm: -1
   HeadList: []
   FaceList: []
   HairList: []
   HelmetList: []
   BodyList: []
   BodyList_OneHand: []
+  BodyList_TwoHand: []
   Body_Attack_List: []
+  Body_Attack_List_TwoHand_1: []
+  Body_Attack_List_TwoHand_2: []
   Body_Spell_List: []
   Body_Drop_List: []
+  Body_Bow_Attack_List: []
   ArmorList: []
   ArmorList_OneHand: []
+  ArmorList_TwoHand: []
   Armor_Attack_List: []
+  Armor_Attack_List_TwoHand_1: []
+  Armor_Attack_List_TwoHand_2: []
   Armor_Spell_List: []
   Armor_Drop_List: []
+  Armor_Bow_Attack_List: []
   RightHandList: []
   RightHand_Attack_List: []
+  RightHand_Sting_List: []
 --- !u!1 &3993854105133792299
 GameObject:
   m_ObjectHideFlags: 0
@@ -1309,7 +1334,7 @@ PrefabInstance:
     - target: {fileID: 3076772675918172895, guid: 1434297a6adca894b821bc255205c451,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 156.17
+      value: 136
       objectReference: {fileID: 0}
     - target: {fileID: 3076772675918172895, guid: 1434297a6adca894b821bc255205c451,
         type: 3}

@@ -677,6 +677,9 @@ namespace Server.DB
 
                             skill.Info.SkillId = 9001001;
                             skill.ObjectId = player.Info.ObjectId;
+                            skill.Info.MoveDir = player.Info.PosInfo.MoveDir; // 스킬쓴 방향 저장 
+                            skill.PosInfo = player.Info.PosInfo; // 스킬쓴 위치 저장
+
                             A.Broadcast(player.CellPos, skill);
 
                         });

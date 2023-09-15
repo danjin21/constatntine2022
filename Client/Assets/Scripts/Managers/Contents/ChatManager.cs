@@ -9,7 +9,7 @@ using System.Net;
 using Google.Protobuf;
 using TMPro;
 using UnityEngine.EventSystems;
-
+using WindowsInput;
 using System.Text.RegularExpressions;
 
 
@@ -54,7 +54,7 @@ public class ChatManager
                 ChatInput.DeactivateInputField();
                 ChatInput.interactable = false;
 
-                Input.imeCompositionMode = IMECompositionMode.Auto;
+                Input.imeCompositionMode = IMECompositionMode.On;
 
                 Debug.Log("@3");
                 return;
@@ -76,7 +76,7 @@ public class ChatManager
             ChatInput.DeactivateInputField();
             ChatInput.interactable = false;
 
-            Input.imeCompositionMode = IMECompositionMode.Auto;
+            Input.imeCompositionMode = IMECompositionMode.On;
         }
 
 
@@ -98,9 +98,9 @@ public class ChatManager
               
         ChatInput.transform.GetChild(0).transform.GetChild(3).gameObject.GetComponent<Text>().text = A;
     }
-    
 
 
+    Coroutine SkillTerm_Coroutine;
 
        
 
@@ -190,9 +190,28 @@ public class ChatManager
         CaptureText();
 
 
-        if(Input.GetKey(KeyCode.None) == false)
-            Managers.Object.MyPlayer.IsEntered = true;
+        // 엔터를 누르는 시간에 윈도우 키를 계쏙 누르고 있으면... 1초 뒤에 스킬 나가게 
+        Managers.Object.MyPlayer.IsEntered = true;
+
+        SkillTerm_Coroutine = Managers.Instance.StartCoroutine(IsEntered());
+
+        //if (Input.anyKey)
+        //{
+        //    Managers.Object.MyPlayer.IsEntered = true;
+        //}
+
+        //if(Input.GetKey(KeyCode.None) == false)
+        //    Managers.Object.MyPlayer.IsEntered = true;
     }
+
+    IEnumerator IsEntered()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Managers.Object.MyPlayer.IsEntered = false;
+        SkillTerm_Coroutine = null; 
+    }
+
+
 
 
     public void ChatRPC(string msg)

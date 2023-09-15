@@ -513,38 +513,40 @@ public class MyPlayerController : PlayerController
 
 
 
-        // 채팅 엔터 끝나자마자 누르고 있는거 바로 스킬 쳐지지 않게
-        {
-            bool OneClick = false;
+        //// 채팅 엔터 끝나자마자 누르고 있는거 바로 스킬 쳐지지 않게
+        //{
 
-            // Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
-            if ((Input.GetKeyDown(KeyCode.LeftShift)) || (Input.GetKeyDown(KeyCode.RightShift)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.LeftControl)) || (Input.GetKeyDown(KeyCode.RightControl)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.LeftAlt)) || (Input.GetKeyDown(KeyCode.RightAlt)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.Q)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.W)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.E)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.A)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.S)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.D)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.Space)))
-                OneClick = true;
-            if ((Input.GetKeyDown(KeyCode.Z)))
-                OneClick = true;
+        //    bool OneClick = false;
 
-            if (OneClick == true)
-                IsEntered = false;
+        //    // Else 말고 If 로 해야 순서 중복 되는것까지 확인을 한다.
+        //    if ((WinInput.GetKeyDown(KeyCode.LeftShift)) || (WinInput.GetKeyDown(KeyCode.RightShift)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.LeftControl)) || (WinInput.GetKeyDown(KeyCode.RightControl)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.LeftAlt)) || (WinInput.GetKeyDown(KeyCode.RightAlt)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.Q)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.W)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.E)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.A)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.S)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.D)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.Space)))
+        //        OneClick = true;
+        //    if ((WinInput.GetKeyDown(KeyCode.Z)))
+        //        OneClick = true;
 
-        }
+
+        //    if (OneClick == true)
+        //        IsEntered = false;
+
+        //}
 
 
         if (IsEntered)

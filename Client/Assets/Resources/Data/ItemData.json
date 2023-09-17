@@ -107,6 +107,23 @@
       "reqPop": "0",
       "int": "1",
       "upgradeSlot": "7"
+    },
+    {
+      "id": "3000",
+      "name": "초보자의 방패",
+      "armorType": "Shield",
+      "wDef": "5",
+      "price": "2500",
+      "sellPrice": "500",
+      "iconPath": "Textures/Item/shield",
+      "reqStr": "0",
+      "reqDex": "0",
+      "reqInt": "0",
+      "reqLuk": "0",
+      "reqLev": "0",
+      "reqPop": "0",
+      "int": "1",
+      "upgradeSlot": "7"
     }
   ],
   "consumables": [

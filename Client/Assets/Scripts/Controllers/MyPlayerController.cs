@@ -511,8 +511,6 @@ public class MyPlayerController : PlayerController
             return;
 
 
-
-
         //// 채팅 엔터 끝나자마자 누르고 있는거 바로 스킬 쳐지지 않게
         //{
 

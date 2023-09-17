@@ -192,7 +192,6 @@ public class ChatManager
 
         // 엔터를 누르는 시간에 윈도우 키를 계쏙 누르고 있으면... 1초 뒤에 스킬 나가게 
         Managers.Object.MyPlayer.IsEntered = true;
-
         SkillTerm_Coroutine = Managers.Instance.StartCoroutine(IsEntered());
 
         //if (Input.anyKey)

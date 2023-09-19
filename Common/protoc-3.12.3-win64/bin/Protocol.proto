@@ -246,6 +246,7 @@ message S_Move {
 
 message C_Skill{
     SkillInfo info = 1;
+    int32 targetId = 2;
 }
 
 message S_Skill{

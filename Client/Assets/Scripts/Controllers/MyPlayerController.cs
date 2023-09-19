@@ -64,6 +64,7 @@ public class MyPlayerController : PlayerController
 
     public bool IsSkillSend;
 
+    public int IsTargetChoice;
 
 
     protected override void Init()
@@ -87,6 +88,8 @@ public class MyPlayerController : PlayerController
 
         // 초기 포커스는 되니까
         key_window_active = true;
+
+        IsTargetChoice = - 1;
     }
 
     bool key_window_active;
@@ -174,6 +177,16 @@ public class MyPlayerController : PlayerController
 
     protected override void UpdateController()
     {
+        if(IsTargetChoice != -1)
+        {
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                IsTargetChoice = -1;
+            }
+
+            return;
+        }
+
         base.UpdateController();
 
         //if (!Managers.Chat.ChatInput.isFocused)
@@ -758,6 +771,24 @@ public class MyPlayerController : PlayerController
                         SkillCool();
                         return;
                     }
+                }
+
+                if(key.Action == 3101002)
+                {
+
+                    if (IsTargetChoice == -1)
+                    {
+                        Managers.Chat.ChatRPC("<color=#77C2FD>대상을 골라주세요.</color>");
+                        IsTargetChoice = key.Action;
+
+                        if (GetComponent<MyPlayerController_SkillTarget>().target == null)
+                            GetComponent<MyPlayerController_SkillTarget>().target = this;
+
+                    }
+                    
+
+                    return;
+
                 }
 
             }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class UI_MiniMap : UI_Base
 {
+    MyPlayerController player;
+    MyPlayerController_SkillTarget MySkillTarget;
 
     enum Texts
     {
@@ -23,6 +25,9 @@ public class UI_MiniMap : UI_Base
         Managers.Data.MapDict.TryGetValue(player.Stat.Map, out mapData);
 
         Get<Text>((int)Texts.miniMapNameText).text = $"{mapData.name}";
+
+        player = Managers.Object.MyPlayer;
+        MySkillTarget = player.GetComponent<MyPlayerController_SkillTarget>();
     }
 
     // Update is called once per frame
@@ -34,6 +39,8 @@ public class UI_MiniMap : UI_Base
     public override void Init()
     {
         Bind<Text>(typeof(Texts));
+
+
     }
 
 
@@ -136,6 +143,13 @@ public class UI_MiniMap : UI_Base
 
         Debug.Log($"startX:{startX} / endX:{endX} / startY:{startY} / endY:{endY} / X Length : {array.GetLength(0) } / Y Length : {array.GetLength(1) }");
 
+        //// 내 캐릭터 선택창 지워준다
+        //if (MySkillTarget != null && MySkillTarget.objects != null)
+        //{
+        //    MySkillTarget.objects.Clear();
+        //    MySkillTarget.objects.Add((BaseController)Managers.Object.MyPlayer);
+
+        //}
 
         for (int i = startX; i <= endX; i++)
         {
@@ -162,6 +176,10 @@ public class UI_MiniMap : UI_Base
 
                                 BaseController A = null;
                                 A = objects[i, j].GetComponent<BaseController>();
+
+                                //// 내 캐릭터 선택창에 넣어준다.
+                                //if (MySkillTarget != null && MySkillTarget.objects != null)
+                                //    MySkillTarget.objects.Add(A);
 
                                 string colorString = "";
                                 if (A.GetType() == typeof(NpcController))

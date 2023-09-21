@@ -573,6 +573,22 @@ namespace Server.Game
             return null;
         }
 
+
+        Monster FindMonster(Func<GameObject, bool> condition)
+        {
+            foreach (Monster monster in _monsters.Values)
+            {
+                if (condition.Invoke(monster))
+                    return monster;
+            }
+
+            return null;
+        }
+
+
+
+
+
         // 살짝 부담스러운 함수
         // 길이 없으면 또 다른 유저를 찾아나설거임.
         public Player FindClosestPlayer(Vector2Int pos, int range)

@@ -52,7 +52,32 @@ public class MyPlayerController_SkillTarget : MonoBehaviour
                 Dir = new Vector2(0, 1);
                 FindObject(4);
             }
+            else if(Input.GetKeyDown(KeyCode.Return))
+            {
+                // 채팅창 켜져있을때를 봐야할듯..
+
+
+                // 스킬을 보낸다 오브젝트랑 같이해서.
+                //스킬사용
+                C_Skill skillPacket = new C_Skill() { Info = new SkillInfo() };
+                skillPacket.Info.SkillId = MyPlayerController.IsTargetChoice; // 힐
+                skillPacket.TargetId = -1;
+
+                if (target != null)
+                    skillPacket.TargetId = target.Id;
+
+                Managers.Network.Send(skillPacket);
+
+                MyPlayerController.IsTargetChoice = -1;
+
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                MyPlayerController.IsTargetChoice = -1;
+            }
         }
+
+
     }
 
     public void FindObject(int dir)

@@ -66,7 +66,11 @@ public class ChatManager
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Send();
+            if(Managers.Object.MyPlayer.IsTargetChoice == -1)
+            {
+                Send();
+            }
+
         }
 
 

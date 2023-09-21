@@ -674,12 +674,35 @@ namespace Server.Game
                         // 힐일 경우
                         if (skillPacket.Info.SkillId == 3101002)
                         {
-                            // Int만큼 체력을 올려준다.
-                            target = player;
-                            target.OnHealed(player, player.TotalInt);
-                            Console.WriteLine($"Heal!! + {player.TotalInt} ");
 
-                            realDamage = player.Stat.Int;
+                            if (skillPacket.TargetId != -1)
+                            {
+                                // 플레이어 타겟
+                                GameObject targetObject = room.FindPlayer(i => i.Id == skillPacket.TargetId);
+
+                                // 몬스터 타겟
+                                if (targetObject == null)
+                                {
+                                    targetObject = room.FindMonster(i => i.Id == skillPacket.TargetId);
+                                }
+
+                                // 타겟이 있을경우만
+                                if(targetObject != null)
+                                {
+                                    target = targetObject;
+
+                                    // Int만큼 체력을 올려준다.
+
+                                    target.OnHealed(player, player.TotalInt);
+                                    Console.WriteLine($"Heal!! + {player.TotalInt} ");
+
+                                    realDamage = player.Stat.Int;
+                                }
+
+
+                            } 
+
+
                         }
 
                         // 텔레포트인 경우

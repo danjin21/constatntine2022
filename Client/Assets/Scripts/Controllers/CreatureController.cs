@@ -205,6 +205,13 @@ public class CreatureController : BaseController
 
         if (damage >0)
             HitEffect(skillId);
+        else
+        {
+            if(skillId == 3101002) // 힐이라면
+            {
+                HitEffect(skillId);
+            }
+        }
 
         // 포켓 만들기
         GameObject DamagePocketPrefab = Managers.Resource.Instantiate("Effect/DamagePocket", this.transform);
@@ -414,7 +421,21 @@ public class CreatureController : BaseController
 
                     break;
                 }
+            case 3101002:
+                {
+                    GameObject effect = Managers.Resource.Instantiate("Effect/Skill/311/" + skillId, this.transform);
+                    effect.transform.position = transform.position + new Vector3(0, 0, -9);
+                    effect.transform.GetChild(0).position += new Vector3(0, 0, -9);
+                    //effect.transform.position = CurrentPosition + new Vector3(6f, 6f, -20);
+                    effect.transform.GetChild(0).GetComponent<ParticleSystemRenderer>().sortingOrder = _sprite.sortingOrder;
+                    effect.transform.parent = this.transform;
+                    // 게임 이펙트를 몇초 후에 삭제
+                    GameObject.Destroy(effect, 4.0f);
 
+
+
+                    break;
+                }
             default:
                 {
                     GameObject effect;

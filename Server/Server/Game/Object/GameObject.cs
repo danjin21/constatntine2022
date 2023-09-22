@@ -405,7 +405,7 @@ namespace Server.Game
         }
 
 
-        public virtual void OnHealed(GameObject healer, int healdamage)
+        public virtual void OnHealed(GameObject healer, int healdamage , int skillId)
         {
             if (Room == null)
                 return;
@@ -425,6 +425,7 @@ namespace Server.Game
             changePacket.Hp = Stat.Hp;
             changePacket.Damage = -healdamage;
             changePacket.AttackerId = healer.Id;
+            changePacket.SkillId = skillId;
 
             Room.Broadcast(CellPos, changePacket);
 

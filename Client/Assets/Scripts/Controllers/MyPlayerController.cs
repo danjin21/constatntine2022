@@ -179,11 +179,6 @@ public class MyPlayerController : PlayerController
     {
         if(IsTargetChoice != -1)
         {
-            if(Input.GetKeyDown(KeyCode.Escape))
-            {
-                IsTargetChoice = -1;
-            }
-
             return;
         }
 

@@ -682,7 +682,7 @@ namespace Server.Game
 
                     // Int만큼 체력을 올려준다.
                     target = this;
-                    target.OnHealed(this, itemData.Hp);
+                    target.OnHealed(this, itemData.Hp, -1);
                     Console.WriteLine($"HpPotion!! + {item.Hp} ");
                 }
 

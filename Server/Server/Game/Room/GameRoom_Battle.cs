@@ -693,9 +693,9 @@ namespace Server.Game
 
                                     // Int만큼 체력을 올려준다.
 
-                                    target.OnHealed(player, player.TotalInt);
+                                    target.OnHealed(player, player.TotalInt, skillPacket.Info.SkillId);
                                     Console.WriteLine($"Heal!! + {player.TotalInt} ");
-
+                       
                                     realDamage = player.Stat.Int;
                                 }
 

@@ -23,6 +23,8 @@ public class MyPlayerController_SkillTarget : MonoBehaviour
     void Start()
     {
         MyPlayerController = GetComponent<MyPlayerController>();
+
+        MakeTargetBox();        
     }
 
     // Update is called once per frame
@@ -32,6 +34,9 @@ public class MyPlayerController_SkillTarget : MonoBehaviour
 
         if(MyPlayerController.IsTargetChoice != -1)
         {
+
+
+
             if( Input.GetKeyDown(KeyCode.DownArrow))
             {
                 Dir = new Vector2(0, -1);
@@ -70,10 +75,17 @@ public class MyPlayerController_SkillTarget : MonoBehaviour
 
                 MyPlayerController.IsTargetChoice = -1;
 
+                // 자체 쿨타임
+                MyPlayerController.SkillCool();
+
+                effect.SetActive(false);
+
             }
             else if (Input.GetKeyDown(KeyCode.Escape))
             {
                 MyPlayerController.IsTargetChoice = -1;
+
+                effect.SetActive(false);
             }
         }
 
@@ -135,17 +147,9 @@ public class MyPlayerController_SkillTarget : MonoBehaviour
         }
 
         target = shortObject;
+        TargetBox();
 
 
-        GameObject effect;
-
-        effect = Managers.Resource.Instantiate("Effect/TigerGlaw");
-
-        effect.transform.position = target.transform.position + new Vector3(6f, 6f, -20);
-        effect.GetComponent<Animator>().Play("Hit_Sword");
-        effect.transform.parent = target.transform;
-        // 게임 이펙트를 몇초 후에 삭제
-        GameObject.Destroy(effect, 0.3f);
 
         Debug.Log($"오브젝트 위치 : {target.CellPos.x} / {target.CellPos.y} / {target.Id}");
         //foreach (BaseController A in objects)
@@ -155,5 +159,37 @@ public class MyPlayerController_SkillTarget : MonoBehaviour
 
  
         
+    }
+
+
+    public GameObject effect;
+
+    public void MakeTargetBox()
+    {
+        effect = Managers.Resource.Instantiate("Effect/TigerGlaw_select");
+        effect.GetComponent<Animator>().Play("Hit_Sword");
+        effect.GetComponent<SpriteRenderer>().sortingOrder = 32222;
+
+        effect.SetActive(false);
+
+
+        // 게임 이펙트를 몇초 후에 삭제
+        // GameObject.Destroy(effect, 0.3f);
+    }
+
+    public void TargetBox()
+    {
+        if(effect == null)
+        {
+            MakeTargetBox();
+        }
+
+        effect.transform.position = target.transform.position + new Vector3(0, 0, -20);
+        effect.transform.parent = target.transform;
+
+        effect.SetActive(true);
+
+
+
     }
 }

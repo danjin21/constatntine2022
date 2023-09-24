@@ -777,7 +777,13 @@ public class MyPlayerController : PlayerController
                         IsTargetChoice = key.Action;
 
                         if (GetComponent<MyPlayerController_SkillTarget>().target == null)
+                        {
                             GetComponent<MyPlayerController_SkillTarget>().target = this;
+                            GetComponent<MyPlayerController_SkillTarget>().TargetBox();
+
+                        }
+                        else  // 타겟 있으면 박스 켜준다.
+                            GetComponent<MyPlayerController_SkillTarget>().TargetBox();
 
                     }
                     

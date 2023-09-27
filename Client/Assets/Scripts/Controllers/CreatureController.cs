@@ -423,6 +423,7 @@ public class CreatureController : BaseController
                 }
             case 3101002:
                 {
+                    //GameObject effect = Managers.Resource.Instantiate("Effect/Skill/311/" + skillId, this.transform);
                     GameObject effect = Managers.Resource.Instantiate("Effect/Skill/311/" + skillId, this.transform);
                     effect.transform.position = transform.position + new Vector3(0, 0, -9);
                     effect.transform.GetChild(0).position += new Vector3(0, 0, -9);

@@ -12,7 +12,7 @@ public class UI_ShopPopup : UI_Popup
 
     public ItemInfo nowItem;
     public ObjectInfo npcInfo;
-
+    public Image npcImage;
     enum Buttons
     {
         CloseBtn,
@@ -45,6 +45,7 @@ public class UI_ShopPopup : UI_Popup
         Bind<Text>(typeof(Texts));
 
         CountInput = Get<GameObject>((int)GameObjects.Count).GetComponent<InputField>();
+
 
 
         OKAlarm(false);
@@ -110,6 +111,13 @@ public class UI_ShopPopup : UI_Popup
         }
 
         RefreshUI();
+
+        // NPC ID
+        Data.NpcData npcData = null;
+        Managers.Data.NpcDict.TryGetValue(npcInfo.StatInfo.TemplateId, out npcData);
+
+        npcImage = transform.GetChild(8).transform.GetChild(0).GetComponent<Image>();
+        npcImage.sprite = Managers.Resource.Load<Sprite>(npcData.iconPath);
     }
 
     public void RefreshUI()

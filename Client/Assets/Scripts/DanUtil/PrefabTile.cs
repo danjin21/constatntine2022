@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PrefabTile : MonoBehaviour
 {
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +16,9 @@ public class PrefabTile : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = -(int)CellPosInt.y;
 
         transform.position = new Vector3(transform.position.x, transform.position.y, -100);
+
+
+
     }
 
     // Update is called once per frame

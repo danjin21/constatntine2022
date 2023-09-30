@@ -113,3 +113,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 2eec2f13a6767684a9b77fd33af2eea6, type: 3}
   - {fileID: 21300000, guid: cc03b8e3e6166bc4e8e7847e83713783, type: 3}
   - {fileID: 21300000, guid: 2c8d7022f8e1a5c499b7aee43a23eca0, type: 3}
+  map: 20100000
+  posX: -18
+  posY: 5
+  portaId: 0
+  destPortal: 0

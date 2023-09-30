@@ -77,6 +77,7 @@ public class MapEditor : MonoBehaviour
     }
 
 
+
     private static void GenerateByPath(string pathPrefix)
     {
         GameObject[] gameObjects = Resources.LoadAll<GameObject>("Prefabs/Map");
@@ -127,6 +128,74 @@ public class MapEditor : MonoBehaviour
         }
 
     }
+
+
+
+    [MenuItem("Tools/GenerateMap_Portal")]
+    private static void GenerateMap_Portal()
+    {
+        //if (EditorUtility.DisplayDialog("Hello World", "Create?", "Create", "Cancel"))
+        //{
+        //    new GameObject("Hello World");
+        //}
+
+        GenerateByPath_Portal("Assets/Resources/Data");
+
+
+    }
+
+
+
+    private static void GenerateByPath_Portal(string pathPrefix)
+    {
+
+        GameObject[] gameObjects = Resources.LoadAll<GameObject>("Prefabs/Map");
+
+        using (var writer = File.CreateText($"{pathPrefix}/PortalData.json"))
+        {
+            writer.Write("{");
+            writer.WriteLine();
+            writer.Write(" \"portals\":[ ");
+            writer.WriteLine();
+
+
+
+
+            foreach (GameObject go in gameObjects)
+            {
+                Tilemap tmPortalInfo = Util.FindChild<Tilemap>(go, "Tilemap_PortalInfo", true);
+
+                if (tmPortalInfo == null)
+                    continue;
+
+                GameObject portalObj = tmPortalInfo.gameObject;
+
+                foreach(Transform child in portalObj.transform)
+                {
+                    PortalTile pt = child.GetComponent<PortalTile>();
+
+                    writer.Write("{");
+                    writer.WriteLine();
+                    writer.Write($" \"portalId\": \"{pt.portaId}\", \"posX\": \"{pt.posX}\", \"posY\": \"{pt.posY}\", \"map\": \"{pt.map}\", \"destPortal\": \"{pt.destPortal}\",  \"destPosX\": \"{pt.destPosX}\", \"destPosY\": \"{pt.destPosY}\", \"destMap\": \"{pt.destMap}\",");
+                    writer.WriteLine();
+                    writer.Write("},");
+                    writer.WriteLine();
+
+                }
+
+            }
+
+            writer.Write("]");
+            writer.WriteLine();
+            writer.Write("}");
+            writer.WriteLine();
+
+
+        }
+
+    }
+
+
 
 #endif
 }

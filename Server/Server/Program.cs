@@ -233,6 +233,8 @@ namespace Server
 				GameLogic.Instance.Add(20100006);
 				GameLogic.Instance.Add(20100007);
 
+				GameLogic.Instance.Add(30100000);
+
 
 			});
 

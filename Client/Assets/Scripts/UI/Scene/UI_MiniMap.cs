@@ -141,7 +141,7 @@ public class UI_MiniMap : UI_Base
             }
         }
 
-        Debug.Log($"startX:{startX} / endX:{endX} / startY:{startY} / endY:{endY} / X Length : {array.GetLength(0) } / Y Length : {array.GetLength(1) }");
+        // Debug.Log($"startX:{startX} / endX:{endX} / startY:{startY} / endY:{endY} / X Length : {array.GetLength(0) } / Y Length : {array.GetLength(1) }");
 
         //// 내 캐릭터 선택창 지워준다
         //if (MySkillTarget != null && MySkillTarget.objects != null)

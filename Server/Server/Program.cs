@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -201,42 +202,77 @@ namespace Server
 			// 맵을 생성
 			GameLogic.Instance.Push(() =>
 			{
-				GameLogic.Instance.Add(1);
-				GameLogic.Instance.Add(2);
-				GameLogic.Instance.Add(3);
-				GameLogic.Instance.Add(4);
 
-				GameLogic.Instance.Add(10100000);
-				GameLogic.Instance.Add(10100010);
-				GameLogic.Instance.Add(10100020);
-				GameLogic.Instance.Add(10100030);
-				GameLogic.Instance.Add(10100031);
-				GameLogic.Instance.Add(10100032);
-				GameLogic.Instance.Add(10100040);
-				GameLogic.Instance.Add(10100041);
-				GameLogic.Instance.Add(10100042);
-				GameLogic.Instance.Add(10100043);
-				GameLogic.Instance.Add(10100044);
-				GameLogic.Instance.Add(10100050);
-				GameLogic.Instance.Add(10100051);
-				GameLogic.Instance.Add(10100060);
-				GameLogic.Instance.Add(10100061);
-				GameLogic.Instance.Add(10100070);
+				// 실행 파일의 디렉토리를 가져옵니다.
+				string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-				GameLogic.Instance.Add(20100000);
-				GameLogic.Instance.Add(20100001);
-				GameLogic.Instance.Add(20100002);
-				GameLogic.Instance.Add(20100003);
-				GameLogic.Instance.Add(20100004);
+				// 상위 디렉토리로 이동합니다.
+				string targetDirectory = Path.GetFullPath(Path.Combine(exeDirectory, @"..\..\..\..\..\Client\Assets\Resources\Prefabs\Map"));
 
-				GameLogic.Instance.Add(20100005);
-				GameLogic.Instance.Add(20100006);
-				GameLogic.Instance.Add(20100007);
-
-				GameLogic.Instance.Add(30100000);
+				List<string> fileNames = GetFileNamesWithoutExtension(targetDirectory);
 
 
-			});
+				foreach (var fileName in fileNames)
+				{
+
+					// "Map_" 접두어 제거
+					string trimmedName = fileName.StartsWith("Map_") ? fileName.Substring(4) : fileName;
+
+					// 나머지 문자열이 숫자인지 확인
+					bool isNumeric = int.TryParse(trimmedName, out _);
+
+					// 숫자인 경우만 출력
+					if (isNumeric)
+					{
+						Console.WriteLine(trimmedName);
+
+						GameLogic.Instance.Add(Convert.ToInt32(trimmedName));
+					}
+
+				}
+
+                //GameLogic.Instance.Add(1001);
+                //GameLogic.Instance.Add(1002);
+
+                //GameLogic.Instance.Add(1004);
+                //GameLogic.Instance.Add(1005);
+
+                //GameLogic.Instance.Add(1);
+                //GameLogic.Instance.Add(2);
+                //GameLogic.Instance.Add(3);
+                //GameLogic.Instance.Add(4);
+
+                //GameLogic.Instance.Add(10100000);
+                //GameLogic.Instance.Add(10100010);
+                //GameLogic.Instance.Add(10100020);
+                //GameLogic.Instance.Add(10100030);
+                //GameLogic.Instance.Add(10100031);
+                //GameLogic.Instance.Add(10100032);
+                //GameLogic.Instance.Add(10100040);
+                //GameLogic.Instance.Add(10100041);
+                //GameLogic.Instance.Add(10100042);
+                //GameLogic.Instance.Add(10100043);
+                //GameLogic.Instance.Add(10100044);
+                //GameLogic.Instance.Add(10100050);
+                //GameLogic.Instance.Add(10100051);
+                //GameLogic.Instance.Add(10100060);
+                //GameLogic.Instance.Add(10100061);
+                //GameLogic.Instance.Add(10100070);
+
+                //GameLogic.Instance.Add(20100000);
+                //GameLogic.Instance.Add(20100001);
+                //GameLogic.Instance.Add(20100002);
+                //GameLogic.Instance.Add(20100003);
+                //GameLogic.Instance.Add(20100004);
+
+                //GameLogic.Instance.Add(20100005);
+                //GameLogic.Instance.Add(20100006);
+                //GameLogic.Instance.Add(20100007);
+
+                //GameLogic.Instance.Add(30100000);
+
+
+            });
 
 
 			////var d = DataManager.StatDict;
@@ -320,10 +356,33 @@ namespace Server
 
 		}
 
+		static List<string> GetFileNamesWithoutExtension(string folderPath)
+		{
+			List<string> result = new List<string>();
+			try
+			{
+				string[] files = Directory.GetFiles(folderPath);
+				foreach (string file in files)
+				{
+					string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
+					string extension = Path.GetExtension(file);
 
+					// 파일명이 "Map_"으로 시작하고 확장자가 ".meta"가 아닌 경우에만 리스트에 추가
+					if (fileNameWithoutExtension.StartsWith("Map_") && !extension.Equals(".meta", StringComparison.OrdinalIgnoreCase))
+					{
+						result.Add(fileNameWithoutExtension);
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine($"An error occurred: {ex.Message}");
+			}
+			return result;
+		}
 
 		//public void ItemTEST()
-  //      {
+		//      {
 		//	// TEST CODE
 		//	using (AppDbContext db = new AppDbContext())
 		//	{

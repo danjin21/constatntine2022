@@ -319,7 +319,23 @@
       "name": "하이네겐 전직소",
       "townName": "하이네겐",
       "townId": "20100000",
-      "soundPath": "Sounds/Bgm/2",
+      "soundPath": "Sounds/Bgm/2"
+    },
+
+    {
+      "mapId": "1001",
+      "name": "지하연구소",
+      "townName": "소마르 북부",
+      "townId": "1001",
+      "soundPath": "Sounds/Bgm/2"
+    },
+
+    {
+      "mapId": "1002",
+      "name": "소마르 북부",
+      "townName": "소마르 북부",
+      "townId": "1001",
+      "soundPath": "Sounds/Bgm/2"
     }
   ]
 } 

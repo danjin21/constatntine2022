@@ -12,7 +12,7 @@ public class PortalTile : MonoBehaviour
     public int map;
     public int posX;
     public int posY;
-    public int portaId;
+    // public int portaId;
     public int destPortal;
     public int destMap;
     public int destPosX;

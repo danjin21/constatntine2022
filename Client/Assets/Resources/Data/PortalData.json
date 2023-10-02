@@ -1,22 +1,106 @@
 {
  "portals":[ 
 {
- "portalId": "201000001", "posX": "-18", "posY": "5", "map": "20100000", "destPortal": "0",  "destPosX": "-1", "destPosY": "-2", "destMap": "30100000",
+ "portalId": "1001001", "posX": "10", "posY": "5", "map": "1001", "destPortal": "1002001",  "destPosX": "-5", "destPosY": "-2", "destMap": "1002","direction": "2",
 },
 {
- "portalId": "201000002", "posX": "-17", "posY": "5", "map": "20100000", "destPortal": "0",  "destPosX": "0", "destPosY": "-2", "destMap": "30100000",
+ "portalId": "1001002", "posX": "10", "posY": "4", "map": "1001", "destPortal": "1002002",  "destPosX": "-5", "destPosY": "-3", "destMap": "1002","direction": "2",
 },
 {
- "portalId": "201000003", "posX": "-16", "posY": "5", "map": "20100000", "destPortal": "0",  "destPosX": "1", "destPosY": "-2", "destMap": "30100000",
+ "portalId": "1001003", "posX": "10", "posY": "3", "map": "1001", "destPortal": "1002003",  "destPosX": "-5", "destPosY": "-4", "destMap": "1002","direction": "2",
 },
 {
- "portalId": "301000001", "posX": "-1", "posY": "-3", "map": "30100000", "destPortal": "0",  "destPosX": "-18", "destPosY": "4", "destMap": "20100000",
+ "portalId": "1001004", "posX": "10", "posY": "2", "map": "1001", "destPortal": "1002004",  "destPosX": "-5", "destPosY": "-5", "destMap": "1002","direction": "2",
 },
 {
- "portalId": "301000002", "posX": "0", "posY": "-3", "map": "30100000", "destPortal": "0",  "destPosX": "-17", "destPosY": "4", "destMap": "20100000",
+ "portalId": "1002001", "posX": "-6", "posY": "-2", "map": "1002", "destPortal": "1001001",  "destPosX": "9", "destPosY": "5", "destMap": "0","direction": "4",
 },
 {
- "portalId": "301000003", "posX": "1", "posY": "-3", "map": "30100000", "destPortal": "0",  "destPosX": "-16", "destPosY": "4", "destMap": "20100000",
+ "portalId": "1002002", "posX": "-6", "posY": "-3", "map": "1002", "destPortal": "1001002",  "destPosX": "9", "destPosY": "4", "destMap": "0","direction": "4",
+},
+{
+ "portalId": "1002003", "posX": "-6", "posY": "-4", "map": "1002", "destPortal": "1001003",  "destPosX": "9", "destPosY": "3", "destMap": "0","direction": "4",
+},
+{
+ "portalId": "1002004", "posX": "-6", "posY": "-5", "map": "1002", "destPortal": "1001004",  "destPosX": "9", "destPosY": "2", "destMap": "1001","direction": "4",
+},
+{
+ "portalId": "1002005", "posX": "31", "posY": "-34", "map": "1002", "destPortal": "1004001",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002006", "posX": "32", "posY": "-34", "map": "1002", "destPortal": "1004002",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002007", "posX": "33", "posY": "-34", "map": "1002", "destPortal": "1004003",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002008", "posX": "34", "posY": "-34", "map": "1002", "destPortal": "1004001",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002009", "posX": "40", "posY": "-24", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002010", "posX": "41", "posY": "-24", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002011", "posX": "42", "posY": "-24", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002012", "posX": "43", "posY": "-24", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002013", "posX": "44", "posY": "-24", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "1",
+},
+{
+ "portalId": "1002014", "posX": "5", "posY": "-57", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1002015", "posX": "6", "posY": "-57", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1002016", "posX": "7", "posY": "-57", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1002017", "posX": "8", "posY": "-57", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1002018", "posX": "9", "posY": "-57", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1002019", "posX": "-12", "posY": "-41", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "4",
+},
+{
+ "portalId": "1002020", "posX": "-12", "posY": "-42", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "4",
+},
+{
+ "portalId": "1002021", "posX": "-12", "posY": "-43", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "4",
+},
+{
+ "portalId": "1002022", "posX": "-12", "posY": "-44", "map": "1002", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "4",
+},
+{
+ "portalId": "1004001", "posX": "-12", "posY": "-3", "map": "1004", "destPortal": "1002005",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1004002", "posX": "-11", "posY": "-3", "map": "1004", "destPortal": "1002006",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1004003", "posX": "-10", "posY": "-3", "map": "1004", "destPortal": "1002007",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1004004", "posX": "-9", "posY": "-3", "map": "1004", "destPortal": "1002008",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "3",
+},
+{
+ "portalId": "1004005", "posX": "13", "posY": "-3", "map": "1004", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "2",
+},
+{
+ "portalId": "1004006", "posX": "13", "posY": "-2", "map": "1004", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "2",
+},
+{
+ "portalId": "1004007", "posX": "13", "posY": "-1", "map": "1004", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "2",
+},
+{
+ "portalId": "1004008", "posX": "13", "posY": "0", "map": "1004", "destPortal": "0",  "destPosX": "0", "destPosY": "0", "destMap": "0","direction": "2",
 },
 ]
 }

@@ -288,6 +288,8 @@ namespace Server.Data
         public int destMap;
         public int destPosX;
         public int destPosY;
+        public int destPortal;
+        public int direction;
     }
 
 

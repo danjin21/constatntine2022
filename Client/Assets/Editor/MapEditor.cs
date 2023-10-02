@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.IO;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -100,12 +101,37 @@ public class MapEditor : MonoBehaviour
                 {
                     for (int x = tmBase.cellBounds.xMin; x < tmBase.cellBounds.xMax; x++)
                     {
-                        // 오브젝트만
-                        TileBase tile = tm.GetTile(new Vector3Int(x, y, 0));
 
-                        if (tile != null)
+                        // Base 로 초기 구성
+                        TileBase tileBase = tmBase.GetTile(new Vector3Int(x, y, 0));
+
+                        
+                        if(tileBase != null)
                         {
+                            // Base 가 있으면 그 안에서 타일을 구분한다
 
+                            TileBase tile = tm.GetTile(new Vector3Int(x, y, 0));
+
+                            if (tile != null)
+                            {
+
+
+                                TileBase tile2 = tmPortal.GetTile(new Vector3Int(x, y, 0));
+
+                                if (tile2 != null)
+                                    writer.Write("2");
+                                else
+                                    writer.Write("1");
+                            }
+                            else
+                            {
+                                writer.Write("0");
+                            }
+
+
+                        }
+                        else
+                        {
 
                             TileBase tile2 = tmPortal.GetTile(new Vector3Int(x, y, 0));
 
@@ -113,11 +139,11 @@ public class MapEditor : MonoBehaviour
                                 writer.Write("2");
                             else
                                 writer.Write("1");
+
                         }
-                        else
-                        {
-                            writer.Write("0");
-                        }
+
+
+
 
 
                     }
@@ -131,7 +157,7 @@ public class MapEditor : MonoBehaviour
 
 
 
-    [MenuItem("Tools/GenerateMap_Portal")]
+    [MenuItem("Tools/GenerateMap_Portal_YiGwangSuk")]
     private static void GenerateMap_Portal()
     {
         //if (EditorUtility.DisplayDialog("Hello World", "Create?", "Create", "Cancel"))
@@ -163,7 +189,7 @@ public class MapEditor : MonoBehaviour
 
             foreach (GameObject go in gameObjects)
             {
-                Tilemap tmPortalInfo = Util.FindChild<Tilemap>(go, "Tilemap_PortalInfo", true);
+                Tilemap tmPortalInfo = Util.FindChild<Tilemap>(go, "Tilemap_Portal", true);
 
                 if (tmPortalInfo == null)
                     continue;
@@ -174,9 +200,33 @@ public class MapEditor : MonoBehaviour
                 {
                     PortalTile pt = child.GetComponent<PortalTile>();
 
+                    // 위치만 가지고, posX 와 posY 와 map 정보를 가져온다.
+
+                    float posXF;
+                    float posYF;
+                    int mapId;
+                    int posX;
+                    int posY;
+
+                    posXF = (child.position.x / 32);
+                    posYF = (child.position.y / 32);
+                    string mapIdString = go.name.Substring(4);
+                    mapId = int.Parse(mapIdString);
+
+                    if (posXF >= 0)
+                        posX = (int)Math.Truncate(posXF);
+                    else
+                        posX = -(int)Math.Ceiling(-posXF);
+
+                    if (posYF >= 0)
+                        posY = (int)Math.Truncate(posYF);
+                    else
+                        posY = -(int)Math.Ceiling(-posYF);
+
+
                     writer.Write("{");
                     writer.WriteLine();
-                    writer.Write($" \"portalId\": \"{pt.portaId}\", \"posX\": \"{pt.posX}\", \"posY\": \"{pt.posY}\", \"map\": \"{pt.map}\", \"destPortal\": \"{pt.destPortal}\",  \"destPosX\": \"{pt.destPosX}\", \"destPosY\": \"{pt.destPosY}\", \"destMap\": \"{pt.destMap}\",");
+                    writer.Write($" \"portalId\": \"{child.name}\", \"posX\": \"{posX}\", \"posY\": \"{posY}\", \"map\": \"{mapId}\", \"destPortal\": \"{pt.destPortal}\",  \"destPosX\": \"{pt.destPosX}\", \"destPosY\": \"{pt.destPosY}\", \"destMap\": \"{pt.destMap}\",\"direction\": \"{pt.direction}\",");
                     writer.WriteLine();
                     writer.Write("},");
                     writer.WriteLine();

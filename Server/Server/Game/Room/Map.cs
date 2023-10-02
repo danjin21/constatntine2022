@@ -131,6 +131,8 @@ namespace Server.Game
         public PortalData IsPortal(Vector2Int cellPos)
         {
 
+
+
             // 진형쓰룰
             if (cellPos.x < MinX || cellPos.x >= MaxX)
                 return null;
@@ -371,9 +373,58 @@ namespace Server.Game
                             int MapX = portal.posX - MinX;
                             int MapY = MaxY - portal.posY-1;
 
+                            //Console.WriteLine($"MapX : {MapX} / x : {x}");
+                            //Console.WriteLine($"MapY : {MapY} / y : {y}" );
+
                             if (portal.map == mapId && MapX == x && MapY == y)
                             {
                                 portalData = portal;
+
+
+
+
+                                Console.WriteLine($"목적 포탈 ID : {portalData.destPortal} ");
+
+
+                                // destPortal을 찾기
+
+                                PortalData destPortalData = null;
+                                DataManager.PortalDict.TryGetValue(portalData.destPortal, out destPortalData);
+
+                                if (destPortalData == null)
+                                    continue;
+                                
+
+                                // destPos 찾아주기
+                                portalData.destMap = destPortalData.map;
+                                portalData.destPosX = destPortalData.posX;
+                                portalData.destPosY = destPortalData.posY;
+
+                                // destPortal 포지션에 그 destPortal의 direction 을 찾아 destPos 를 정해준다.
+
+                                switch (destPortalData.direction)
+                                {
+                                    case 1:
+                                        portalData.destPosY -= 1;
+                                        break;
+                                    case 2:
+                                        portalData.destPosX -= 1;
+                                        break;
+                                    case 3:
+                                        portalData.destPosY += 1;
+                                        break;
+                                    case 4:
+                                        portalData.destPosX += 1;
+                                        break;
+                                    default:                                        
+                                        break;
+                                }
+
+                                Console.WriteLine($"내 포탈 ID : {portalData.portalId} / 다음 맵 : {portalData.destMap} / 목적지 포탈 ID : {destPortalData.portalId} / {portalData.destPosX} / {portalData.destPosY}");
+
+
+
+                                Console.WriteLine("뾰로롱");
                             }
                         }
 

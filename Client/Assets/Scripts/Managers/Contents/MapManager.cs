@@ -189,7 +189,7 @@ public class MapManager
         go.name = "Map";
 
         // 포탈은 삭제
-        go.transform.Find("Tilemap_Portal").gameObject.SetActive(false);
+        // go.transform.Find("Tilemap_Portal").gameObject.SetActive(false);
 
         GameObject collision = Util.FindChild(go, "Tilemap_Collision", true);
         if (collision != null)

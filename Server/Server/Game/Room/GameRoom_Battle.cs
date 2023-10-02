@@ -109,6 +109,11 @@ namespace Server.Game
                 
                 PortalData A = Map.IsPortal(new Vector2Int(movePosInfo.PosX, movePosInfo.PosY));
 
+                // 아직 목적 포탈이 없는 포탈
+                if(A.destPortal == 0)
+                {
+                    return;
+                }
                 
                 Console.WriteLine("이동합니다.");
                 Console.WriteLine($"다음맵 : {A.destMap}");

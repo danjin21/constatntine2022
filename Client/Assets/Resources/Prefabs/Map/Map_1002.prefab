@@ -17277,6 +17277,11 @@ PrefabInstance:
       propertyPath: direction
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1003007
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -17381,6 +17386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1100002
       objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
@@ -17616,6 +17626,11 @@ PrefabInstance:
         type: 3}
       propertyPath: direction
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1003005
       objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
@@ -17972,6 +17987,11 @@ PrefabInstance:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1100004
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -18152,6 +18172,11 @@ PrefabInstance:
       propertyPath: direction
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1003009
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -18256,6 +18281,11 @@ PrefabInstance:
         type: 3}
       propertyPath: direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1100003
       objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
@@ -18365,7 +18395,7 @@ PrefabInstance:
     - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: destPortal
-      value: 1004001
+      value: 1004004
       objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
@@ -18472,6 +18502,11 @@ PrefabInstance:
       propertyPath: direction
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1009004
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -18576,6 +18611,11 @@ PrefabInstance:
         type: 3}
       propertyPath: direction
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1009003
       objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
@@ -18682,6 +18722,11 @@ PrefabInstance:
       propertyPath: direction
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1009002
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -18786,6 +18831,11 @@ PrefabInstance:
         type: 3}
       propertyPath: direction
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1003006
       objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
@@ -19277,6 +19327,11 @@ PrefabInstance:
       propertyPath: direction
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1100005
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -19532,6 +19587,11 @@ PrefabInstance:
       propertyPath: direction
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1003008
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -19747,6 +19807,11 @@ PrefabInstance:
       propertyPath: direction
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1009001
+      objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}
       propertyPath: m_Enabled
@@ -19851,6 +19916,11 @@ PrefabInstance:
         type: 3}
       propertyPath: direction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2408723146635241276, guid: d6a9261d8f1fe65488b314dee8d114eb,
+        type: 3}
+      propertyPath: destPortal
+      value: 1100001
       objectReference: {fileID: 0}
     - target: {fileID: 3018381744837961192, guid: d6a9261d8f1fe65488b314dee8d114eb,
         type: 3}

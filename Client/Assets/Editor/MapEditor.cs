@@ -125,7 +125,13 @@ public class MapEditor : MonoBehaviour
                             }
                             else
                             {
-                                writer.Write("0");
+
+                                TileBase tile2 = tmPortal.GetTile(new Vector3Int(x, y, 0));
+
+                                if (tile2 != null)
+                                    writer.Write("2");
+                                else
+                                    writer.Write("0");
                             }
 
 

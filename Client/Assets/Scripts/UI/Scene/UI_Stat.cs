@@ -222,20 +222,27 @@ public class UI_Stat : UI_Base
         MapInfoData mapData = null;
         Managers.Data.MapDict.TryGetValue(player.Stat.Map, out mapData);
 
-        string AsIsMapName = Get<Text>((int)Texts.MapNameText).text;
-        string ToBeMapName = mapData.name;
-
-        if(AsIsMapName != ToBeMapName)
+        if (mapData != null)
         {
-            // 코루틴 초기화
-            if(_coMapAlert != null)
-                StopCoroutine(_coMapAlert);
-            _coMapAlert = null;
-            _coMapAlert = StartCoroutine(MapAlert(mapData.name));
+            string AsIsMapName = Get<Text>((int)Texts.MapNameText).text;
+            string ToBeMapName = mapData.name;
+
+            if (AsIsMapName != ToBeMapName)
+            {
+                // 코루틴 초기화
+                if (_coMapAlert != null)
+                    StopCoroutine(_coMapAlert);
+                _coMapAlert = null;
+                _coMapAlert = StartCoroutine(MapAlert(mapData.name));
+            }
+
+            Get<Text>((int)Texts.MapNameText).text = $"{mapData.name}";
         }
 
 
-        Get<Text>((int)Texts.MapNameText).text = $"{mapData.name}";
+
+
+
   
 
         

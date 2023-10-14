@@ -21,8 +21,8 @@ public class PortalTile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (sprites.Length != 0)
-            GetComponent<SpriteRenderer>().sprite = sprites[direction];
+        //if (sprites.Length != 0)
+        //    GetComponent<SpriteRenderer>().sprite = sprites[direction];
 
 
         Debug.Log("포탈 고유 아이디 : " + gameObject.GetInstanceID());

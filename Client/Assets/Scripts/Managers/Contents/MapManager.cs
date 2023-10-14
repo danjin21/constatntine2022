@@ -185,7 +185,9 @@ public class MapManager
         DestroyMap();
 
         string mapName = "Map_" + mapId.ToString("000");
-        GameObject go = Managers.Resource.Instantiate($"Map/{mapName}");
+        string mapFolder = "Map_" + ((int)(mapId / 1000) * 1000).ToString("000");
+
+        GameObject go = Managers.Resource.Instantiate($"Map/{mapFolder}/{mapName}");
         go.name = "Map";
 
         // 포탈은 삭제

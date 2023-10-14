@@ -207,7 +207,7 @@ namespace Server
 				string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
 				// 상위 디렉토리로 이동합니다.
-				string targetDirectory = Path.GetFullPath(Path.Combine(exeDirectory, @"..\..\..\..\..\Client\Assets\Resources\Prefabs\Map"));
+				string targetDirectory = Path.GetFullPath(Path.Combine(exeDirectory, @"..\..\..\..\..\Client\Assets\Resources\Map"));
 
 				List<string> fileNames = GetFileNamesWithoutExtension(targetDirectory);
 

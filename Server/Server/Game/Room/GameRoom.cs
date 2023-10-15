@@ -770,7 +770,7 @@ namespace Server.Game
 
             Data.MapInfoData mapData = null;
 
-            // 스킬 데이터가 없으면 return 
+            // 맵 데이터가 없으면 return 
             if (DataManager.MapDict.TryGetValue(mapId, out mapData) == false)
                 return;
 
@@ -783,15 +783,18 @@ namespace Server.Game
 
             foreach(MapInfoMonsterData monstersData in mapData.monsters)
             {
-                TotalMonster += monstersData.count;
 
-                for(int i = 0; i < monstersData.count; i ++)
-                {
-                    Monster monsters = ObjectManager.Instance.Add<Monster>();
+                    TotalMonster += monstersData.count;
 
-                    monsters.Init(monstersData.monsterId);
-                    Push(EnterGame, monsters, true);
-                }
+                    for (int i = 0; i < monstersData.count; i++)
+                    {
+                        Monster monsters = ObjectManager.Instance.Add<Monster>();
+
+                        monsters.Init(monstersData.monsterId);
+                        Push(EnterGame, monsters, true);
+                    }
+
+                   
 
             }
 

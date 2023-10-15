@@ -2,8 +2,8 @@ import pandas as pd
 import json
 
 # 엑셀 파일과 원하는 시트의 이름을 지정합니다.
-excel_file = '몬스터.xlsm'
-sheet_name = 'Sheet3'  # 원하는 시트의 이름으로 변경하세요.
+excel_file = 'MonsterExel.xlsm'
+sheet_name = 'DataCreate'  # 원하는 시트의 이름으로 변경하세요.
 # 엑셀 파일을 pandas DataFrame으로 읽어옵니다.
 df = pd.read_excel(excel_file, sheet_name=sheet_name)
 

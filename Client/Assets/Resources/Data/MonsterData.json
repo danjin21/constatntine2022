@@ -2,11 +2,11 @@
     "monsters": [
         {
             "id": "1",
-            "name": "무르",
+            "name": "슬라임",
             "stat": {
                 "level": "1",
-                "maxHp": "8",
-                "attack": "22",
+                "maxHp": "3",
+                "attack": "5",
                 "speed": "100",
                 "exp": "3",
                 "dex": "1600"
@@ -32,13 +32,13 @@
         },
         {
             "id": "2",
-            "name": "블루무르",
+            "name": "블루슬라임",
             "stat": {
-                "level": "2",
-                "maxHp": "30",
-                "attack": "27",
+                "level": "3",
+                "maxHp": "9",
+                "attack": "7",
                 "speed": "100",
-                "exp": "5",
+                "exp": "4",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -52,13 +52,13 @@
         },
         {
             "id": "3",
-            "name": "레드무르",
+            "name": "레드슬라임",
             "stat": {
-                "level": "4",
-                "maxHp": "80",
-                "attack": "35",
+                "level": "5",
+                "maxHp": "21",
+                "attack": "11",
                 "speed": "100",
-                "exp": "10",
+                "exp": "6",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -82,13 +82,13 @@
         },
         {
             "id": "4",
-            "name": "무르윙",
+            "name": "화이트슬라임",
             "stat": {
-                "level": "6",
-                "maxHp": "30",
-                "attack": "40",
+                "level": "7",
+                "maxHp": "39",
+                "attack": "17",
                 "speed": "100",
-                "exp": "15",
+                "exp": "8",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -96,27 +96,27 @@
         },
         {
             "id": "5",
-            "name": "고블린",
+            "name": "블랙슬라임",
             "stat": {
-                "level": "7",
-                "maxHp": "60",
-                "attack": "50",
+                "level": "9",
+                "maxHp": "63",
+                "attack": "25",
                 "speed": "100",
-                "exp": "20",
-                "dex": "800"
+                "exp": "11",
+                "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
             "rewards": []
         },
         {
             "id": "6",
-            "name": "고블린주술사",
+            "name": "양",
             "stat": {
-                "level": "8",
-                "maxHp": "50",
-                "attack": "30",
+                "level": "13",
+                "maxHp": "129",
+                "attack": "47",
                 "speed": "100",
-                "exp": "25",
+                "exp": "20",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -124,27 +124,27 @@
         },
         {
             "id": "7",
-            "name": "고블린 전사",
+            "name": "회양",
             "stat": {
-                "level": "10",
-                "maxHp": "100",
-                "attack": "60",
-                "speed": "160",
-                "exp": "30",
-                "dex": "0"
+                "level": "15",
+                "maxHp": "171",
+                "attack": "61",
+                "speed": "100",
+                "exp": "26",
+                "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
             "rewards": []
         },
         {
             "id": "8",
-            "name": "고블린 사냥꾼",
+            "name": "적양",
             "stat": {
-                "level": "10",
-                "maxHp": "60",
-                "attack": "60",
+                "level": "17",
+                "maxHp": "219",
+                "attack": "77",
                 "speed": "100",
-                "exp": "30",
+                "exp": "32",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -152,13 +152,13 @@
         },
         {
             "id": "9",
-            "name": "황금고블린",
+            "name": "청양",
             "stat": {
-                "level": "6",
-                "maxHp": "60",
-                "attack": "40",
+                "level": "19",
+                "maxHp": "273",
+                "attack": "95",
                 "speed": "100",
-                "exp": "15",
+                "exp": "39",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -166,13 +166,13 @@
         },
         {
             "id": "10",
-            "name": "킹 고블린",
+            "name": "흑양",
             "stat": {
-                "level": "15",
-                "maxHp": "300",
-                "attack": "100",
+                "level": "23",
+                "maxHp": "399",
+                "attack": "137",
                 "speed": "100",
-                "exp": "80",
+                "exp": "56",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -180,13 +180,13 @@
         },
         {
             "id": "11",
-            "name": "발록",
+            "name": "돼지",
             "stat": {
-                "level": "20",
-                "maxHp": "1000",
-                "attack": "150",
+                "level": "25",
+                "maxHp": "471",
+                "attack": "161",
                 "speed": "100",
-                "exp": "100",
+                "exp": "66",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -194,13 +194,13 @@
         },
         {
             "id": "12",
-            "name": "민달팽이",
+            "name": "백돼지",
             "stat": {
-                "level": "4",
-                "maxHp": "80",
-                "attack": "35",
+                "level": "27",
+                "maxHp": "549",
+                "attack": "187",
                 "speed": "100",
-                "exp": "10",
+                "exp": "76",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",
@@ -208,13 +208,531 @@
         },
         {
             "id": "13",
-            "name": "주황버섯",
+            "name": "자돼지",
             "stat": {
-                "level": "4",
-                "maxHp": "80",
-                "attack": "35",
+                "level": "29",
+                "maxHp": "633",
+                "attack": "215",
                 "speed": "100",
-                "exp": "10",
+                "exp": "87",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "14",
+            "name": "흑돼지",
+            "stat": {
+                "level": "33",
+                "maxHp": "819",
+                "attack": "277",
+                "speed": "100",
+                "exp": "112",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "15",
+            "name": "사슴",
+            "stat": {
+                "level": "35",
+                "maxHp": "921",
+                "attack": "311",
+                "speed": "100",
+                "exp": "126",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "16",
+            "name": "청사슴",
+            "stat": {
+                "level": "37",
+                "maxHp": "1029",
+                "attack": "347",
+                "speed": "100",
+                "exp": "140",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "17",
+            "name": "백사슴",
+            "stat": {
+                "level": "39",
+                "maxHp": "1143",
+                "attack": "385",
+                "speed": "100",
+                "exp": "155",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "18",
+            "name": "흑사슴",
+            "stat": {
+                "level": "43",
+                "maxHp": "1389",
+                "attack": "467",
+                "speed": "100",
+                "exp": "188",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "19",
+            "name": "사슴왕",
+            "stat": {
+                "level": "43",
+                "maxHp": "1389",
+                "attack": "467",
+                "speed": "100",
+                "exp": "188",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "20",
+            "name": "황소",
+            "stat": {
+                "level": "45",
+                "maxHp": "1521",
+                "attack": "511",
+                "speed": "100",
+                "exp": "206",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "21",
+            "name": "젖소",
+            "stat": {
+                "level": "47",
+                "maxHp": "1659",
+                "attack": "557",
+                "speed": "100",
+                "exp": "224",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "22",
+            "name": "백소",
+            "stat": {
+                "level": "49",
+                "maxHp": "1803",
+                "attack": "605",
+                "speed": "100",
+                "exp": "243",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "23",
+            "name": "흑소",
+            "stat": {
+                "level": "51",
+                "maxHp": "1953",
+                "attack": "655",
+                "speed": "100",
+                "exp": "263",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "24",
+            "name": "뿔소",
+            "stat": {
+                "level": "51",
+                "maxHp": "1953",
+                "attack": "655",
+                "speed": "100",
+                "exp": "263",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "25",
+            "name": "소왕",
+            "stat": {
+                "level": "54",
+                "maxHp": "2189",
+                "attack": "734",
+                "speed": "100",
+                "exp": "295",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "26",
+            "name": "말",
+            "stat": {
+                "level": "56",
+                "maxHp": "2354",
+                "attack": "789",
+                "speed": "100",
+                "exp": "317",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "27",
+            "name": "얼룩말",
+            "stat": {
+                "level": "57",
+                "maxHp": "2439",
+                "attack": "817",
+                "speed": "100",
+                "exp": "328",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "28",
+            "name": "백마",
+            "stat": {
+                "level": "59",
+                "maxHp": "2613",
+                "attack": "875",
+                "speed": "100",
+                "exp": "351",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "29",
+            "name": "흑마",
+            "stat": {
+                "level": "61",
+                "maxHp": "2793",
+                "attack": "935",
+                "speed": "100",
+                "exp": "375",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "30",
+            "name": "곰",
+            "stat": {
+                "level": "63",
+                "maxHp": "2979",
+                "attack": "997",
+                "speed": "100",
+                "exp": "400",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "31",
+            "name": "적곰",
+            "stat": {
+                "level": "65",
+                "maxHp": "3171",
+                "attack": "1061",
+                "speed": "100",
+                "exp": "426",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "32",
+            "name": "백곰",
+            "stat": {
+                "level": "67",
+                "maxHp": "3369",
+                "attack": "1127",
+                "speed": "100",
+                "exp": "452",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "33",
+            "name": "흑곰",
+            "stat": {
+                "level": "70",
+                "maxHp": "3677",
+                "attack": "1230",
+                "speed": "100",
+                "exp": "493",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "34",
+            "name": "랜드버드",
+            "stat": {
+                "level": "72",
+                "maxHp": "3890",
+                "attack": "1301",
+                "speed": "100",
+                "exp": "521",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "35",
+            "name": "블루버드",
+            "stat": {
+                "level": "74",
+                "maxHp": "4109",
+                "attack": "1374",
+                "speed": "100",
+                "exp": "551",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "36",
+            "name": "핑크버드",
+            "stat": {
+                "level": "76",
+                "maxHp": "4334",
+                "attack": "1449",
+                "speed": "100",
+                "exp": "581",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "37",
+            "name": "퍼플버드",
+            "stat": {
+                "level": "78",
+                "maxHp": "4565",
+                "attack": "1526",
+                "speed": "100",
+                "exp": "611",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "38",
+            "name": "화이트버드",
+            "stat": {
+                "level": "80",
+                "maxHp": "4802",
+                "attack": "1605",
+                "speed": "100",
+                "exp": "643",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "39",
+            "name": "블랙버드",
+            "stat": {
+                "level": "83",
+                "maxHp": "5169",
+                "attack": "1727",
+                "speed": "100",
+                "exp": "692",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "40",
+            "name": "범호",
+            "stat": {
+                "level": "85",
+                "maxHp": "5421",
+                "attack": "1811",
+                "speed": "100",
+                "exp": "726",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "41",
+            "name": "적호",
+            "stat": {
+                "level": "87",
+                "maxHp": "5679",
+                "attack": "1897",
+                "speed": "100",
+                "exp": "760",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "42",
+            "name": "백호",
+            "stat": {
+                "level": "89",
+                "maxHp": "5943",
+                "attack": "1985",
+                "speed": "100",
+                "exp": "795",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "43",
+            "name": "흑호",
+            "stat": {
+                "level": "91",
+                "maxHp": "6213",
+                "attack": "2075",
+                "speed": "100",
+                "exp": "831",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "44",
+            "name": "대늑대",
+            "stat": {
+                "level": "93",
+                "maxHp": "6489",
+                "attack": "2167",
+                "speed": "100",
+                "exp": "868",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "45",
+            "name": "암사자",
+            "stat": {
+                "level": "95",
+                "maxHp": "6771",
+                "attack": "2261",
+                "speed": "100",
+                "exp": "906",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "46",
+            "name": "숫사자",
+            "stat": {
+                "level": "97",
+                "maxHp": "7059",
+                "attack": "2357",
+                "speed": "100",
+                "exp": "944",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "47",
+            "name": "백사자",
+            "stat": {
+                "level": "99",
+                "maxHp": "7353",
+                "attack": "2455",
+                "speed": "100",
+                "exp": "983",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "48",
+            "name": "백숫사자",
+            "stat": {
+                "level": "101",
+                "maxHp": "7653",
+                "attack": "2555",
+                "speed": "100",
+                "exp": "1023",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "49",
+            "name": "흑사자",
+            "stat": {
+                "level": "105",
+                "maxHp": "8271",
+                "attack": "2761",
+                "speed": "100",
+                "exp": "1106",
+                "dex": "1600"
+            },
+            "HitSoundPath": "Sounds/Hit/2",
+            "rewards": []
+        },
+        {
+            "id": "50",
+            "name": "검숫사자",
+            "stat": {
+                "level": "110",
+                "maxHp": "9077",
+                "attack": "3030",
+                "speed": "100",
+                "exp": "1213",
                 "dex": "1600"
             },
             "HitSoundPath": "Sounds/Hit/2",

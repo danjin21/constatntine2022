@@ -19,6 +19,7 @@ public class Managers : MonoBehaviour
     public ChatManager _chat = new ChatManager();
     SkillManager _skill = new SkillManager();
     QuestManager _quest = new QuestManager();
+    AnimationManager _anim = new AnimationManager();
 
     public static InventoryManager Inven { get { return Instance._inven; } }
     public static KeySettingManager KeySetting { get { return Instance._keysetting; } }
@@ -29,6 +30,7 @@ public class Managers : MonoBehaviour
     public static ChatManager Chat {  get { return Instance._chat; } }
     public static SkillManager Skill { get { return Instance._skill; } }
     public static QuestManager Quest { get { return Instance._quest; } }
+    public static AnimationManager Anim { get { return Instance._anim; } }
 
     #endregion
 
@@ -79,6 +81,8 @@ public class Managers : MonoBehaviour
             s_instance._data.Init();
             s_instance._pool.Init();
             s_instance._sound.Init();
+
+            s_instance._anim.Init();
         }		
 	}
 

@@ -80,7 +80,7 @@ public class ObjectManager
         }
         else if(objectType == GameObjectType.Monster)
         {
-            string A = "Creature/Monster_"+ info.StatInfo.TemplateId;
+            string A = "Creature/Monster/Monster_"+ info.StatInfo.TemplateId;
 
             GameObject go = Managers.Resource.Instantiate(A);
             go.name = info.Name;

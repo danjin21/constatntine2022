@@ -118,7 +118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Blocked: 0
   IsDead: 0
+  _hpBar: {fileID: 0}
   DamagePocket: {fileID: 0}
+  _getShot: 0
+  _getDie: 0
   HitSoundPath: 
   _skillId: -1
 --- !u!1001 &7711755002126598308

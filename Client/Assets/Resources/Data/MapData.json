@@ -336,6 +336,88 @@
       "townName": "소마르 북부",
       "townId": "1001",
       "soundPath": "Sounds/Bgm/2"
+    },
+
+    {
+      "mapId": "3101",
+      "name": "양굴 1-1",
+      "townName": "콜드필드",
+      "townId": "3001",
+      "soundPath": "Sounds/Bgm/2",
+      "spawnTime": "5",
+      "monsters": [
+        {
+          "monsterId": "6",
+          "count": "8"
+        } // 양
+
+      ]
+    },
+
+    {
+      "mapId": "3102",
+      "name": "양굴 1-2",
+      "townName": "콜드필드",
+      "townId": "3001",
+      "soundPath": "Sounds/Bgm/2",
+      "spawnTime": "5",
+      "monsters": [
+        {
+          "monsterId": "7",
+          "count": "8"
+        } // 양
+
+      ]
+    },
+
+    {
+      "mapId": "3103",
+      "name": "양굴 1-3",
+      "townName": "콜드필드",
+      "townId": "3001",
+      "soundPath": "Sounds/Bgm/2",
+      "spawnTime": "5",
+      "monsters": [
+        {
+          "monsterId": "8",
+          "count": "8"
+        } // 양
+
+      ]
+    },
+
+    {
+      "mapId": "3104",
+      "name": "양굴 1-4",
+      "townName": "콜드필드",
+      "townId": "3001",
+      "soundPath": "Sounds/Bgm/2",
+      "spawnTime": "5",
+      "monsters": [
+        {
+          "monsterId": "9",
+          "count": "8"
+        } // 양
+
+      ]
+    },
+
+    {
+      "mapId": "3105",
+      "name": "양굴 1-5",
+      "townName": "콜드필드",
+      "townId": "3001",
+      "soundPath": "Sounds/Bgm/2",
+      "spawnTime": "5",
+      "monsters": [
+        {
+          "monsterId": "10",
+          "count": "8"
+        } // 양
+
+      ]
     }
+
+
   ]
 } 

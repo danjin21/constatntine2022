@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: -5361767761384371793, guid: 080da9ddec0c4684eb3139785dec4bba,
+  m_Sprite: {fileID: -930248684975294565, guid: f0c6d07ad87718a4abf3c20621208756,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -95,7 +95,7 @@ Animator:
   m_GameObject: {fileID: 8506895583476857784}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 402f73b3048a4444f950d2f0575a95e7, type: 2}
+  m_Controller: {fileID: 9100000, guid: bb8d785ae182a1848a706f2dd5592ce0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -117,7 +117,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Blocked: 0
+  IsDead: 0
+  _hpBar: {fileID: 0}
   DamagePocket: {fileID: 0}
+  _getShot: 0
+  _getDie: 0
+  HitSoundPath: 
+  _skillId: -1
 --- !u!1001 &7711755002126598308
 PrefabInstance:
   m_ObjectHideFlags: 0

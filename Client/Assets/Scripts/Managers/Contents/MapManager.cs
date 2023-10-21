@@ -190,8 +190,16 @@ public class MapManager
 
         if( go == null)
         {
+            // 1차 디렉토리
             string mapFolder = "Map_" + ((int)(mapId / 1000) * 1000).ToString("000");
             go = Managers.Resource.Instantiate($"Map/{mapFolder}/{mapName}");
+
+            // 2차 디렉토리
+            if ( go == null)
+            {
+                string mapFolder_2 = ((int)(mapId / 100) * 100).ToString("000");
+                go = Managers.Resource.Instantiate($"Map/{mapFolder}/{mapFolder_2}/{mapName}");
+            }
         }
 
 

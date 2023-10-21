@@ -347,8 +347,8 @@
       "spawnTime": "5",
       "monsters": [
         {
-          "monsterId": "6",
-          "count": "8"
+          "monsterId": "19",
+          "count": "18"
         } // 양
 
       ]
@@ -363,8 +363,8 @@
       "spawnTime": "5",
       "monsters": [
         {
-          "monsterId": "7",
-          "count": "8"
+          "monsterId": "23",
+          "count": "18"
         } // 양
 
       ]
@@ -380,7 +380,7 @@
       "monsters": [
         {
           "monsterId": "8",
-          "count": "8"
+          "count": "18"
         } // 양
 
       ]
@@ -396,7 +396,7 @@
       "monsters": [
         {
           "monsterId": "9",
-          "count": "8"
+          "count": "18"
         } // 양
 
       ]
@@ -412,7 +412,7 @@
       "monsters": [
         {
           "monsterId": "10",
-          "count": "8"
+          "count": "18"
         } // 양
 
       ]

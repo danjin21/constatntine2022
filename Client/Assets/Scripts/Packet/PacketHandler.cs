@@ -379,6 +379,8 @@ class PacketHandler
 
     public static void S_SkillHandler(PacketSession session, IMessage packet)
     {
+
+
         S_Skill skillPacket = packet as S_Skill;
 
 
@@ -438,6 +440,19 @@ class PacketHandler
 
             }
 
+
+
+
+            if ( cc.GetType() == typeof(MonsterController))
+            {
+                // cc.Dir = skillPacket.Info.MoveDir;
+                cc.UseSkill(skillPacket.Info.SkillId);
+
+
+                Debug.Log($"++ 스킬 +2 : { skillPacket.Info.MoveDir} / { cc.Dir}");
+            }
+
+
             //// 순보일 경우
             //if(skillPacket.Info.SkillId == 4001000)
             //{
@@ -453,7 +468,7 @@ class PacketHandler
             // 스킬 쓸때만큼은 즉각적으로 방향 전환하게 ( 이동하는 도중에 방향전환 스킬 쓴거는 바로 되게. )
             // 멈춘상태에서 방향전환후 바로 쏘는건, move 쪽에서 처리함
 
-         
+
         }
 
         // 사전에서 Skill ID 찾아서 Projectile 있는지 확인
@@ -508,6 +523,7 @@ class PacketHandler
                 mc.SyncPos();
             }
             mc.UseSkill(skillPacket.Info.SkillId);
+
 
         }
 

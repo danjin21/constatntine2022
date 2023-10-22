@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class mapInfo : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int mapId;
+    public string mapName;
+    public string townName;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

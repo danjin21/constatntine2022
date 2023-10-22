@@ -22,11 +22,6 @@
                     "probability": "50",
                     "itemId": "100001",
                     "count": "1"
-                },
-                {
-                    "probability": "50",
-                    "itemId": "100001",
-                    "count": "1"
                 }
             ]
         },
@@ -71,11 +66,6 @@
                 {
                     "probability": "50",
                     "itemId": "100003",
-                    "count": "1"
-                },
-                {
-                    "probability": "50",
-                    "itemId": "100001",
                     "count": "1"
                 }
             ]
@@ -604,7 +594,7 @@
         },
         {
             "id": "39",
-            "name": "블루버드",
+            "name": "그린버드",
             "stat": {
                 "level": "83",
                 "maxHp": "5169",
@@ -618,7 +608,7 @@
         },
         {
             "id": "40",
-            "name": "핑크버드",
+            "name": "블루버드",
             "stat": {
                 "level": "85",
                 "maxHp": "5421",
@@ -632,7 +622,7 @@
         },
         {
             "id": "41",
-            "name": "퍼플버드",
+            "name": "레드버드",
             "stat": {
                 "level": "87",
                 "maxHp": "5679",

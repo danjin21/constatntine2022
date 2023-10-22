@@ -448,8 +448,6 @@ class PacketHandler
                 // cc.Dir = skillPacket.Info.MoveDir;
                 cc.UseSkill(skillPacket.Info.SkillId);
 
-
-                Debug.Log($"++ 스킬 +2 : { skillPacket.Info.MoveDir} / { cc.Dir}");
             }
 
 

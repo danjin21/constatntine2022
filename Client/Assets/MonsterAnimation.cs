@@ -29,22 +29,22 @@ public class MonsterAnimation : MonoBehaviour
     public void Walk_Down_1()
     {
         GetComponent<SpriteRenderer>().sprite = Managers.Anim.MobSprites[kind - 1][0];
-        Debug.Log("바뀌고 있냐?" + Managers.Anim.MobSprites[kind - 1][0]);
-        Debug.Log("응" + GetComponent<SpriteRenderer>().sprite);
+        //Debug.Log("바뀌고 있냐?" + Managers.Anim.MobSprites[kind - 1][0]);
+        //Debug.Log("응" + GetComponent<SpriteRenderer>().sprite);
     }
 
     public void Walk_Down_2()
     {
         GetComponent<SpriteRenderer>().sprite = Managers.Anim.MobSprites[kind - 1][1];
-        Debug.Log("바뀌고 있냐?" + Managers.Anim.MobSprites[kind - 1][1]);
-        Debug.Log("응" + GetComponent<SpriteRenderer>().sprite);
+        //Debug.Log("바뀌고 있냐?" + Managers.Anim.MobSprites[kind - 1][1]);
+        //Debug.Log("응" + GetComponent<SpriteRenderer>().sprite);
     }
 
     public void Walk_Down_3()
     {
         GetComponent<SpriteRenderer>().sprite = Managers.Anim.MobSprites[kind - 1][2];
-        Debug.Log("바뀌고 있냐?" + Managers.Anim.MobSprites[kind - 1][2]);
-        Debug.Log("응" + GetComponent<SpriteRenderer>().sprite);
+        //Debug.Log("바뀌고 있냐?" + Managers.Anim.MobSprites[kind - 1][2]);
+        //Debug.Log("응" + GetComponent<SpriteRenderer>().sprite);
     }
 
     //========================================//

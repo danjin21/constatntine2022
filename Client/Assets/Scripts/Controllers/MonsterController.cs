@@ -288,6 +288,7 @@ public class MonsterController : CreatureController
     {
         State = CreatureState.Idle;
 
+
     }
 
     public override void UseSkill(int skillId)
@@ -301,6 +302,8 @@ public class MonsterController : CreatureController
             return;
         }
 
+ 
+
         // 먼저 몬스터 방향 갱신
         UpdateAnimation();
 
@@ -312,6 +315,7 @@ public class MonsterController : CreatureController
         {
             //_coSkill = StartCoroutine("CoStartPunch");
             State = CreatureState.Skill;
+     
 
         }
         else if (skillId == 2001000)

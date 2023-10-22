@@ -28,16 +28,32 @@ for index, row in df.iterrows():
         "rewards": []
     }
     
+    # # rewards 항목을 처리합니다.
+    # for i in range(1, 4):  # rewards 열의 개수에 따라 범위를 조절하세요.
+    #     reward_str = row[f'rewards{i}']
+
+    #     if pd.notna(reward_str):
+    #         probability, itemId, count = map(str, reward_str.split('/'))
+    #         record["rewards"].append({
+    #             "probability": probability,
+    #             "itemId": itemId,
+    #             "count": count
+    #         })
+
     # rewards 항목을 처리합니다.
-    for i in range(1, 4):  # rewards 열의 개수에 따라 범위를 조절하세요.
-        reward_str = row[f'rewards{i}']
-        if pd.notna(reward_str):
-            probability, itemId, count = map(str, reward_str.split('/'))
+    for i in range(1, 4):  # 열(column) 번호에 따라 범위를 조절하세요.
+        reward_probability = row[f'rC{i}']
+        reward_itemId = row[f'rID{i}']
+        reward_count = row[f'rQ{i}']
+        
+        if pd.notna(reward_probability) and pd.notna(reward_itemId) and pd.notna(reward_count):
             record["rewards"].append({
-                "probability": probability,
-                "itemId": itemId,
-                "count": count
+                "probability": str(int(reward_probability)),
+                "itemId": str(int(reward_itemId)),
+                "count": str(int(reward_count)),
             })
+
+
     
     data.append(record)
 

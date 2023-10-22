@@ -39,9 +39,9 @@ public class AnimationManager
 
                 Sprite[] MobSpritesElement = Resources.LoadAll<Sprite>($"Textures/Monster/MonsterSprites/{sprites[i].name}");
 
-                Debug.Log("경로 : " + $"Textures/Monster/MonsterSprites/{sprites[i].name}");
-                Debug.Log("순서 " + sprites[i].ToString());
-                Debug.Log("팟 " + MobSpritesElement.Length);
+                //Debug.Log("경로 : " + $"Textures/Monster/MonsterSprites/{sprites[i].name}");
+                //Debug.Log("순서 " + sprites[i].ToString());
+                //Debug.Log("팟 " + MobSpritesElement.Length);
 
                 //foreach (Sprite p in MobSpritesElement)
                 //{

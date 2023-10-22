@@ -163,7 +163,7 @@ public class MapEditor : MonoBehaviour
 
 
 
-    [MenuItem("Tools/GenerateMap_Portal_YiGwangSuk")]
+    [MenuItem("Tools/GenerateMap_Portal")]
     private static void GenerateMap_Portal()
     {
         //if (EditorUtility.DisplayDialog("Hello World", "Create?", "Create", "Cancel"))
@@ -195,6 +195,7 @@ public class MapEditor : MonoBehaviour
 
             foreach (GameObject go in gameObjects)
             {
+
                 Tilemap tmPortalInfo = Util.FindChild<Tilemap>(go, "Tilemap_Portal", true);
 
                 if (tmPortalInfo == null)
@@ -229,10 +230,14 @@ public class MapEditor : MonoBehaviour
                     else
                         posY = -(int)Math.Ceiling(-posYF);
 
+                    int portalId = int.Parse(child.name);
+
+
+
 
                     writer.Write("{");
                     writer.WriteLine();
-                    writer.Write($" \"portalId\": \"{child.name}\", \"posX\": \"{posX}\", \"posY\": \"{posY}\", \"map\": \"{mapId}\", \"destPortal\": \"{pt.destPortal}\",  \"destPosX\": \"{pt.destPosX}\", \"destPosY\": \"{pt.destPosY}\", \"destMap\": \"{pt.destMap}\",\"direction\": \"{pt.direction}\",");
+                    writer.Write($" \"portalId\": \"{mapId}{ portalId.ToString("000") }\", \"posX\": \"{posX}\", \"posY\": \"{posY}\", \"map\": \"{mapId}\", \"destPortal\": \" {pt.destMap}{(pt.destPortal).ToString("000")}\",  \"destPosX\": \"{pt.destPosX}\", \"destPosY\": \"{pt.destPosY}\", \"destMap\": \"{pt.destMap}\",\"direction\": \"{pt.direction}\",");
                     writer.WriteLine();
                     writer.Write("},");
                     writer.WriteLine();

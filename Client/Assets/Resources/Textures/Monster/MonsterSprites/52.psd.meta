@@ -1,229 +1,46 @@
 fileFormatVersion: 2
-guid: 77fdbb91dba7bc348863088cbf65fd87
+guid: f7be9c6c5c75033459611996d3c4091a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -785947402007467771
-    second: monster_6_0
+      213: -1783808350427418317
+    second: 50_0
   - first:
-      213: 167719900323862419
-    second: monster_6_1
+      213: -7127183229904908337
+    second: 50_1
   - first:
-      213: -8473965112771519656
-    second: monster_6_2
+      213: -1863436029972793218
+    second: 50_2
   - first:
-      213: -6600317412944682927
-    second: monster_6_3
+      213: 8391201705393809717
+    second: 50_3
   - first:
-      213: -6508581784224172245
-    second: monster_6_4
+      213: 3333028370373077375
+    second: 50_4
   - first:
-      213: -2612074893349588128
-    second: monster_6_5
+      213: 1185505086726035912
+    second: 50_5
   - first:
-      213: -5001547461852221426
-    second: monster_6_6
+      213: 6183571064705775335
+    second: 50_6
   - first:
-      213: 4278294341288211792
-    second: monster_6_7
+      213: -555600398340750627
+    second: 50_7
   - first:
-      213: 9137514721380417653
-    second: monster_6_8
+      213: 9141027573579174082
+    second: 50_8
   - first:
-      213: 7847445977719517886
-    second: monster_6_9
+      213: 7532623737340482626
+    second: 50_9
   - first:
-      213: -6852896356483568664
-    second: monster_6_10
+      213: 1316646768581148431
+    second: 50_10
   - first:
-      213: 4768419478760957483
-    second: monster_6_11
+      213: 7840038524909539844
+    second: 50_11
   - first:
-      213: 6681056175369821841
-    second: monster_6_12
-  - first:
-      213: 5335971371151022612
-    second: monster_6_13
-  - first:
-      213: 5434023243959681919
-    second: monster_6_14
-  - first:
-      213: 3428340773405255779
-    second: monster_6_15
-  - first:
-      213: -166488493881861287
-    second: monster_6_16
-  - first:
-      213: -4810411598636431137
-    second: monster_6_17
-  - first:
-      213: -988582411614205299
-    second: monster_6_18
-  - first:
-      213: 2516120125521788775
-    second: monster_6_19
-  - first:
-      213: -9154793167483157202
-    second: monster_6_20
-  - first:
-      213: 2078775597382565383
-    second: monster_6_21
-  - first:
-      213: 2644006431083207577
-    second: monster_6_22
-  - first:
-      213: -963913370795954828
-    second: monster_6_23
-  - first:
-      213: 3861045932159552923
-    second: monster_6_24
-  - first:
-      213: -7374442047744431020
-    second: monster_6_25
-  - first:
-      213: 1125784970069024779
-    second: monster_6_26
-  - first:
-      213: 675475080661707171
-    second: monster_6_27
-  - first:
-      213: 3761496247810082511
-    second: monster_6_28
-  - first:
-      213: 9011360024895949348
-    second: monster_6_29
-  - first:
-      213: -8979134715527656913
-    second: monster_6_30
-  - first:
-      213: 234477158841837016
-    second: monster_6_31
-  - first:
-      213: 3944909693309090058
-    second: monster_6_32
-  - first:
-      213: 1586634128271214705
-    second: monster_6_33
-  - first:
-      213: 4266167361398409180
-    second: monster_6_34
-  - first:
-      213: -4025490293679471186
-    second: monster_6_0
-  - first:
-      213: 4352850223291214297
-    second: monster_6_1
-  - first:
-      213: 5216507339362012001
-    second: monster_6_2
-  - first:
-      213: 4520397842942064563
-    second: monster_6_3
-  - first:
-      213: 8375114545031578219
-    second: monster_6_4
-  - first:
-      213: -6270540189540270099
-    second: monster_6_5
-  - first:
-      213: -2435924699742772447
-    second: monster_6_6
-  - first:
-      213: -5196598006014726379
-    second: monster_6_7
-  - first:
-      213: 4948587443957738591
-    second: monster_6_8
-  - first:
-      213: 8423398799911450726
-    second: monster_6_9
-  - first:
-      213: -4642234513169919116
-    second: monster_6_10
-  - first:
-      213: -1245078109606475889
-    second: monster_6_11
-  - first:
-      213: -6334008298230273426
-    second: monster_6_12
-  - first:
-      213: -2429800542238928213
-    second: monster_11_0
-  - first:
-      213: -3747162951798779405
-    second: monster_11_1
-  - first:
-      213: 2583996610139187790
-    second: monster_11_2
-  - first:
-      213: 9157584717335552690
-    second: monster_11_3
-  - first:
-      213: -9058051796058566113
-    second: monster_11_4
-  - first:
-      213: 3042487922204621097
-    second: monster_11_5
-  - first:
-      213: -329104106357713969
-    second: monster_11_6
-  - first:
-      213: 147362452580331275
-    second: monster_11_7
-  - first:
-      213: 454927109301685642
-    second: monster_11_8
-  - first:
-      213: 6442162133612757602
-    second: monster_11_9
-  - first:
-      213: 2858568885195742091
-    second: monster_11_10
-  - first:
-      213: -7287476087984559352
-    second: monster_11_11
-  - first:
-      213: -4566969722590669011
-    second: monster_11_12
-  - first:
-      213: 7680820834086852892
-    second: 16_0
-  - first:
-      213: 7659589428111286360
-    second: 16_1
-  - first:
-      213: 5031490351088644884
-    second: 16_2
-  - first:
-      213: -7034903797900576970
-    second: 16_3
-  - first:
-      213: -8969894098572876156
-    second: 16_4
-  - first:
-      213: 8196746768006037445
-    second: 16_5
-  - first:
-      213: -3323231656683008281
-    second: 16_6
-  - first:
-      213: -4055777152626986250
-    second: 16_7
-  - first:
-      213: -1088222644432758662
-    second: 16_8
-  - first:
-      213: -857560214446342272
-    second: 16_9
-  - first:
-      213: 1375098349612677612
-    second: 16_10
-  - first:
-      213: -2631965185948493917
-    second: 16_11
-  - first:
-      213: 8277470460009927815
-    second: 16_12
+      213: -7964215773366745963
+    second: 50_12
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -321,7 +138,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 16_0
+      name: 50_0
       rect:
         serializedVersion: 2
         x: 0
@@ -335,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c199a279ad1c79a60800000000000000
-      internalID: 7680820834086852892
+      spriteID: 331f56d91c3ae37e0800000000000000
+      internalID: -1783808350427418317
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_1
+      name: 50_1
       rect:
         serializedVersion: 2
         x: 84
@@ -356,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 85029eba0045c4a60800000000000000
-      internalID: 7659589428111286360
+      spriteID: fcf85642d98271d90800000000000000
+      internalID: -7127183229904908337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_2
+      name: 50_2
       rect:
         serializedVersion: 2
         x: 168
@@ -377,14 +194,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 413b17bf0d173d540800000000000000
-      internalID: 5031490351088644884
+      spriteID: e78becbbdceb326e0800000000000000
+      internalID: -1863436029972793218
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_3
+      name: 50_3
       rect:
         serializedVersion: 2
         x: 0
@@ -398,14 +215,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 637f611b4400f5e90800000000000000
-      internalID: -7034903797900576970
+      spriteID: 53966a81e79837470800000000000000
+      internalID: 8391201705393809717
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_4
+      name: 50_4
       rect:
         serializedVersion: 2
         x: 84
@@ -419,14 +236,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 486e0b587d8848380800000000000000
-      internalID: -8969894098572876156
+      spriteID: f79e26ac4ab414e20800000000000000
+      internalID: 3333028370373077375
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_5
+      name: 50_5
       rect:
         serializedVersion: 2
         x: 168
@@ -440,14 +257,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5cfb4dcd1c1b0c170800000000000000
-      internalID: 8196746768006037445
+      spriteID: 8c959b56892c37010800000000000000
+      internalID: 1185505086726035912
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_6
+      name: 50_6
       rect:
         serializedVersion: 2
         x: 0
@@ -461,14 +278,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7ee831d5a6281e1d0800000000000000
-      internalID: -3323231656683008281
+      spriteID: 7e6fb231f1570d550800000000000000
+      internalID: 6183571064705775335
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_7
+      name: 50_7
       rect:
         serializedVersion: 2
         x: 84
@@ -482,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f2f5890b2cf6b7c0800000000000000
-      internalID: -4055777152626986250
+      spriteID: dd285d3a16c1a48f0800000000000000
+      internalID: -555600398340750627
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_8
+      name: 50_8
       rect:
         serializedVersion: 2
         x: 168
@@ -503,14 +320,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a789c02454bd5e0f0800000000000000
-      internalID: -1088222644432758662
+      spriteID: 2c0dc3d95247bde70800000000000000
+      internalID: 9141027573579174082
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_9
+      name: 50_9
       rect:
         serializedVersion: 2
         x: 0
@@ -524,14 +341,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 08ffa6c47855914f0800000000000000
-      internalID: -857560214446342272
+      spriteID: 244dada2161498860800000000000000
+      internalID: 7532623737340482626
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_10
+      name: 50_10
       rect:
         serializedVersion: 2
         x: 84
@@ -545,14 +362,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ce9b3e3d9a4551310800000000000000
-      internalID: 1375098349612677612
+      spriteID: f0ff1f7924ba54210800000000000000
+      internalID: 1316646768581148431
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_11
+      name: 50_11
       rect:
         serializedVersion: 2
         x: 168
@@ -566,14 +383,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3a7585eab91697bd0800000000000000
-      internalID: -2631965185948493917
+      spriteID: 4025c9600896dcc60800000000000000
+      internalID: 7840038524909539844
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 16_12
+      name: 50_12
       rect:
         serializedVersion: 2
         x: 0
@@ -587,8 +404,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7845ea7078b7fd270800000000000000
-      internalID: 8277470460009927815
+      spriteID: 59489e943fb697190800000000000000
+      internalID: -7964215773366745963
       vertices: []
       indices: 
       edges: []

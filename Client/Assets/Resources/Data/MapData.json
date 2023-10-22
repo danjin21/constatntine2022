@@ -745,6 +745,1033 @@
                     "count": "16"
                 }
             ]
+        },
+        {
+            "mapId": "3300",
+            "name": "사슴굴 입구",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": []
+        },
+        {
+            "mapId": "3301",
+            "name": "사슴굴 1-1",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "17",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3302",
+            "name": "사슴굴 1-2",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "17",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "18",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3303",
+            "name": "사슴굴 1-3",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "18",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "19",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3304",
+            "name": "사슴굴 1-4",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "18",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "19",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "20",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3305",
+            "name": "사슴굴 1-5",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "19",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "20",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "21",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3306",
+            "name": "사슴굴 1-6",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "20",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "21",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "22",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3307",
+            "name": "사슴굴 1-7",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "21",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "22",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "23",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3308",
+            "name": "사슴굴 1-8",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "23",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3400",
+            "name": "소굴 입구",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": []
+        },
+        {
+            "mapId": "3401",
+            "name": "소굴 1-1",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "24",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3402",
+            "name": "소굴 1-2",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "24",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "25",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3403",
+            "name": "소굴 1-3",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "24",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "25",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "26",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3404",
+            "name": "소굴 1-4",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "25",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "26",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "27",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3405",
+            "name": "소굴 1-5",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "26",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "27",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "28",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3406",
+            "name": "소굴 1-6",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "27",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "28",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3407",
+            "name": "소굴 1-7",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "28",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3408",
+            "name": "소굴 1-8",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "28",
+                    "count": "16"
+                },
+                {
+                    "monsterId": "29",
+                    "count": "1"
+                }
+            ]
+        },
+        {
+            "mapId": "3500",
+            "name": "말굴 입구",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": []
+        },
+        {
+            "mapId": "3501",
+            "name": "말굴 1-1",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "30",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3502",
+            "name": "말굴 1-2",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "30",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "31",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3503",
+            "name": "말굴 1-3",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "31",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3504",
+            "name": "말굴 1-4",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "31",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "32",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3505",
+            "name": "말굴 1-5",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "32",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3506",
+            "name": "말굴 1-6",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "32",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "33",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3507",
+            "name": "말굴 1-7",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "33",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3508",
+            "name": "말굴 1-8",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "33",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3600",
+            "name": "새굴 입구",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": []
+        },
+        {
+            "mapId": "3601",
+            "name": "새굴 1-1",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "34",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3602",
+            "name": "새굴 1-2",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "34",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "35",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3603",
+            "name": "새굴 1-3",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "34",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "35",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "36",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3604",
+            "name": "새굴 1-4",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "35",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "36",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "37",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3605",
+            "name": "새굴 1-5",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "36",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "37",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "38",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3606",
+            "name": "새굴 1-6",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "37",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "38",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "39",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3607",
+            "name": "새굴 1-7",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "38",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "39",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3608",
+            "name": "새굴 1-8",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "39",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3700",
+            "name": "곰굴 입구",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": []
+        },
+        {
+            "mapId": "3701",
+            "name": "곰굴 1-1",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "40",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3702",
+            "name": "곰굴 1-2",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "40",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "41",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3703",
+            "name": "곰굴 1-3",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "41",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3704",
+            "name": "곰굴 1-4",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "41",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "42",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3705",
+            "name": "곰굴 1-5",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "42",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3706",
+            "name": "곰굴 1-6",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "42",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "43",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3707",
+            "name": "곰굴 1-7",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "43",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3708",
+            "name": "곰굴 1-8",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "43",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3800",
+            "name": "호랑이굴 입구",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": []
+        },
+        {
+            "mapId": "3801",
+            "name": "호랑이굴 1-1",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "44",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3802",
+            "name": "호랑이굴 1-2",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "44",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "45",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3803",
+            "name": "호랑이굴 1-3",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "45",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3804",
+            "name": "호랑이굴 1-4",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "45",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "46",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3805",
+            "name": "호랑이굴 1-5",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "46",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3806",
+            "name": "호랑이굴 1-6",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "46",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "47",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3807",
+            "name": "호랑이굴 1-7",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "47",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3808",
+            "name": "호랑이굴 1-8",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "47",
+                    "count": "16"
+                },
+                {
+                    "monsterId": "48",
+                    "count": "1"
+                }
+            ]
+        },
+        {
+            "mapId": "3900",
+            "name": "사자굴 입구",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": []
+        },
+        {
+            "mapId": "3901",
+            "name": "사자굴 1-1",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "49",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3902",
+            "name": "사자굴 1-2",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "49",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "50",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3903",
+            "name": "사자굴 1-3",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "50",
+                    "count": "16"
+                }
+            ]
+        },
+        {
+            "mapId": "3904",
+            "name": "사자굴 1-4",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "50",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "51",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3905",
+            "name": "사자굴 1-5",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "51",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "52",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3906",
+            "name": "사자굴 1-6",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "51",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "52",
+                    "count": "6"
+                },
+                {
+                    "monsterId": "53",
+                    "count": "6"
+                }
+            ]
+        },
+        {
+            "mapId": "3907",
+            "name": "사자굴 1-7",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "53",
+                    "count": "8"
+                },
+                {
+                    "monsterId": "54",
+                    "count": "8"
+                }
+            ]
+        },
+        {
+            "mapId": "3908",
+            "name": "사자굴 1-8",
+            "townName": "콜드필드",
+            "townId": 3001,
+            "soundPath": "Sounds/Bgm/1",
+            "spawnTime": 5,
+            "monsters": [
+                {
+                    "monsterId": "54",
+                    "count": "16"
+                }
+            ]
         }
     ]
 }

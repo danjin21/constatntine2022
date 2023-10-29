@@ -6,6 +6,7 @@ using UnityEngine;
 using static Define;
 using WindowsInput;
 using System;
+using UnityEngine.Tilemaps;
 
 public class MyPlayerController : PlayerController
 {
@@ -70,6 +71,13 @@ public class MyPlayerController : PlayerController
     protected override void Init()
     {
         base.Init();
+
+
+
+
+
+
+
         Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
 
 
@@ -90,6 +98,14 @@ public class MyPlayerController : PlayerController
         key_window_active = true;
 
         IsTargetChoice = - 1;
+
+
+
+
+        height = Camera.main.orthographicSize;
+        width = height * Screen.width / Screen.height;
+
+
     }
 
     bool key_window_active;
@@ -107,10 +123,90 @@ public class MyPlayerController : PlayerController
     //}
 
 
-  
+    public bool hold1 = false;
+    public bool hold2 = false;
+    public bool hold3 = false;
+    public bool hold4 = false;
+
+    public Tilemap tmBase;
+
+    int CameraRange = 8;
+
+    public Vector2 cameraCenter;
+    public Vector2 size;
+
+    float height;
+    float width;
+
+
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(cameraCenter, size);
+    }
 
     private void LateUpdate()
     {
+
+        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+
+
+
+
+        float lx = size.x * 0.5f - width;
+        float clampX = Mathf.Clamp(Camera.main.transform.position.x, -lx + cameraCenter.x, lx + cameraCenter.x);
+
+        float ly = size.y * 0.5f - height;
+        float clampY = Mathf.Clamp(Camera.main.transform.position.y, -ly + cameraCenter.y, ly + cameraCenter.y);
+
+      
+        Camera.main.transform.position = new Vector3(clampX,clampY, -1000);
+
+
+        //Vector3 clampedPosition = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+
+        //clampedPosition.x = Mathf.Clamp(clampedPosition.x, Managers.Map.MinX+ CameraRange, Managers.Map.MaxX- CameraRange);
+        //clampedPosition.y = Mathf.Clamp(clampedPosition.y, Managers.Map.MinY+ CameraRange, Managers.Map.MaxY- CameraRange);
+
+        //Camera.main.transform.position = clampedPosition;
+
+        //if (CellPos.x > Managers.Map.MaxX - CameraRange)
+        //{
+        //    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y - 96.0f, -1000);
+        //}
+        //else
+        //{
+        //    if (Dir == MoveDir.Left)
+        //    {
+        //        if (Camera.main.transform.position.x > transform.position.x + 128.0f)
+        //            Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, Camera.main.transform.position.y, -1000);
+        //    }
+        //    else
+        //    {
+        //        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+        //    }
+
+        //    //Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+        //}
+
+
+
+
+        //if (CellPos.x > Managers.Map.MaxX - CameraRange || CellPos.x < Managers.Map.MinX + CameraRange)
+        //{
+        //    Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+        //}
+
+        //if (CellPos.y > Managers.Map.MaxY - CameraRange || CellPos.x < Managers.Map.MinY + CameraRange)
+        //{
+        //    Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+        //}
+
+        // 현재맵의 
+
+
+
 
         //float A = 32 * 4;
         //float B = 32 * 3;
@@ -127,7 +223,22 @@ public class MyPlayerController : PlayerController
         //    Camera.main.transform.position = new Vector3(transform.position.x - xRange * 32 + A, Camera.main.transform.position.y, -10);
         //}
 
-        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+
+
+
+
+        //CameraMove();
+
+        //else
+        //{
+        //    Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+
+
+        //}
+
+
+
+
 
 
 
@@ -149,6 +260,45 @@ public class MyPlayerController : PlayerController
         //float clampY = Mathf.Clamp(Camera.main.transform.position.y, -ly + center.y, ly + center.y);
 
         //Camera.main.transform.position = new Vector3(clampX, clampY, -10f);
+    }
+
+
+    public void CameraMove()
+    {
+        UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+
+        // 미니맵 제목 바꾸기
+        UI_MiniMap miniMapUI = gameSceneUI.MiniMapUI;
+
+        if (!miniMapUI.holdCamera4 && !miniMapUI.holdCamera2)
+        {
+            if (Dir == MoveDir.Right)
+            {
+                if (Camera.main.transform.position.x <= transform.position.x + 128.0f)
+                    Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, Camera.main.transform.position.y, -1000);
+            }
+            else if (Dir == MoveDir.Left)
+            {
+                if (Camera.main.transform.position.x > transform.position.x + 128.0f)
+                    Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, Camera.main.transform.position.y, -1000);
+            }
+        }
+
+
+        if (!miniMapUI.holdCamera3 && !miniMapUI.holdCamera1)
+        {
+            if (Dir == MoveDir.Up)
+            {
+                if (Camera.main.transform.position.y <= transform.position.y - 96.0f)
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y - 96.0f, -1000);
+            }
+            else if (Dir == MoveDir.Down)
+            {
+                if (Camera.main.transform.position.y > transform.position.y - 96.0f)
+                    Camera.main.transform.position = new Vector3(Camera.main.transform.position.x, transform.position.y - 96.0f, -1000);
+            }
+        }
+
     }
 
 

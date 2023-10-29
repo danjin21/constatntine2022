@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class UI_Stat : UI_Base
@@ -234,6 +235,7 @@ public class UI_Stat : UI_Base
                     StopCoroutine(_coMapAlert);
                 _coMapAlert = null;
                 _coMapAlert = StartCoroutine(MapAlert(mapData.name));
+
             }
 
             Get<Text>((int)Texts.MapNameText).text = $"{mapData.name}";

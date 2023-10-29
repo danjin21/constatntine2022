@@ -10,6 +10,12 @@ public class UI_MiniMap : UI_Base
     MyPlayerController player;
     MyPlayerController_SkillTarget MySkillTarget;
 
+    public bool holdCamera1 = false;
+    public bool holdCamera2 = false;
+    public bool holdCamera3 = false;
+    public bool holdCamera4 = false;
+    public bool holdCameraAll = false;
+
     enum Texts
     {
         mapText,
@@ -96,7 +102,8 @@ public class UI_MiniMap : UI_Base
         bool[,] portals = Managers.Map.GetPortal();
         GameObject[,] objects = Managers.Map.GetObject();
 
-        string arrayText_center = GetPartialArrayText(col, portals, objects, x, y, 20, 22);
+        //string arrayText_center = GetPartialArrayText(col, portals, objects, x, y, 20, 22);
+        string arrayText_center = GetPartialArrayText(col, portals, objects, x, y, 15, 16);
 
         // Debug.Log(arrayText_center);
 
@@ -140,6 +147,39 @@ public class UI_MiniMap : UI_Base
                 //startX += (array.GetLength(0) - 1) - (startX + endX);
             }
         }
+
+        Debug.Log($"맵 닿았을때 테스트 startY:{startY}/endY:{endY}//{centerY + rangeY}//{array.GetLength(1) - 1}// startX:{startX}/endX:{endX}");
+
+        //if (startY == 0)
+        //{
+        //    holdCamera4 = true;
+        //}
+        //else
+        //    holdCamera4 = false;
+
+        //if (startX == 0)
+        //{
+        //    holdCamera1 = true;
+        //}
+        //else
+        //    holdCamera1 = false;
+
+
+        //if (endY == array.GetLength(1) - 1)
+        //{
+        //    holdCamera2 = true;
+        //}
+        //else
+        //    holdCamera2 = false;
+
+        //if (endX == array.GetLength(0) - 1)
+        //{
+        //    holdCamera3 = true;
+        //}
+        //else
+        //    holdCamera3 = false;
+
+
 
         // Debug.Log($"startX:{startX} / endX:{endX} / startY:{startY} / endY:{endY} / X Length : {array.GetLength(0) } / Y Length : {array.GetLength(1) }");
 

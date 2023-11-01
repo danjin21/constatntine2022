@@ -114,19 +114,7 @@ public class MyPlayerController : PlayerController
         key_window_active = b;
     }
 
-    // 카메라부분
 
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireCube(center, size);
-    //}
-
-
-    public bool hold1 = false;
-    public bool hold2 = false;
-    public bool hold3 = false;
-    public bool hold4 = false;
 
     public Tilemap tmBase;
 
@@ -149,19 +137,26 @@ public class MyPlayerController : PlayerController
     private void LateUpdate()
     {
 
-        Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
+        //Camera.main.transform.position = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);
 
 
 
 
-        float lx = size.x * 0.5f - width;
-        float clampX = Mathf.Clamp(Camera.main.transform.position.x, -lx + cameraCenter.x, lx + cameraCenter.x);
+        //float lx = size.x * 0.5f - width;
+        //float clampX = Mathf.Clamp(Camera.main.transform.position.x, -lx + cameraCenter.x, lx + cameraCenter.x);
 
-        float ly = size.y * 0.5f - height;
-        float clampY = Mathf.Clamp(Camera.main.transform.position.y, -ly + cameraCenter.y, ly + cameraCenter.y);
+        //float ly = size.y * 0.5f - height;
+        //float clampY = Mathf.Clamp(Camera.main.transform.position.y, -ly + cameraCenter.y, ly + cameraCenter.y);
 
       
-        Camera.main.transform.position = new Vector3(clampX,clampY, -1000);
+        //Camera.main.transform.position = new Vector3(clampX,clampY, -1000);
+
+
+
+
+
+
+
 
 
         //Vector3 clampedPosition = new Vector3(transform.position.x + 128.0f, transform.position.y - 96.0f, -1000);

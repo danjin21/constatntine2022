@@ -148,36 +148,8 @@ public class UI_MiniMap : UI_Base
             }
         }
 
-        Debug.Log($"맵 닿았을때 테스트 startY:{startY}/endY:{endY}//{centerY + rangeY}//{array.GetLength(1) - 1}// startX:{startX}/endX:{endX}");
+        //Debug.Log($"맵 닿았을때 테스트 startY:{startY}/endY:{endY}//{centerY + rangeY}//{array.GetLength(1) - 1}// startX:{startX}/endX:{endX}");
 
-        //if (startY == 0)
-        //{
-        //    holdCamera4 = true;
-        //}
-        //else
-        //    holdCamera4 = false;
-
-        //if (startX == 0)
-        //{
-        //    holdCamera1 = true;
-        //}
-        //else
-        //    holdCamera1 = false;
-
-
-        //if (endY == array.GetLength(1) - 1)
-        //{
-        //    holdCamera2 = true;
-        //}
-        //else
-        //    holdCamera2 = false;
-
-        //if (endX == array.GetLength(0) - 1)
-        //{
-        //    holdCamera3 = true;
-        //}
-        //else
-        //    holdCamera3 = false;
 
 
 

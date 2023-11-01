@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d5751a2c961df945a34295ccf5e576d, type: 3}
-  m_Name: Mob Prefab Brush
+  m_Name: Object Prefab Brush
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
@@ -36,5 +36,5 @@ MonoBehaviour:
   m_Pivot: {x: 0, y: 0, z: 0}
   m_CanChangeZPosition: 0
   m_Anchor: {x: 0.5, y: 0.5, z: 0.5}
-  m_Prefab: {fileID: 3018381744837961206, guid: fc1f7c06b40bdeb4393f30b5fd638559,
+  m_Prefab: {fileID: 3018381744837961206, guid: 669f0b0bb463f4a499e9a084ba8a8823,
     type: 3}

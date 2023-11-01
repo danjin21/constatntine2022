@@ -1,5 +1,6 @@
-{
+﻿{
   "npcs": [
+
     {
       "npcId": "1001",
       "name": "린다",
@@ -24,14 +25,13 @@
         {
           "index": "331",
           "chat": "엇 아이템 받을 공간을 마련하고 다시 한번 말을 걸어줘!"
-        }
+        },
+
       ],
       "quest": "-1",
       "posX": "-11",
       "posY": "6",
-      "iconPath": "Textures/Npc/1001/0",
-      "products": [],
-      "merchant": "0"
+      "iconPath": "Textures/Npc/1001/0"
     },
     {
       "npcId": "1002",
@@ -50,19 +50,21 @@
           "index": "231",
           "chat": "음.. 손수건이 없는 것 같은데?"
         }
+
       ],
       "quest": "-1",
       "posX": "11",
       "posY": "-8",
-      "iconPath": "Textures/Npc/1002/0",
-      "products": [],
-      "merchant": "0"
+      "iconPath": "Textures/Npc/1002/0"
     },
+
+
     {
       "npcId": "1006",
       "name": "루크",
       "map": "20100007",
       "chats": [
+
         {
           "index": "011",
           "chat": "언제까지 남 위한 일만 할거야?"
@@ -83,18 +85,18 @@
           "index": "241",
           "chat": "엇... 아이템 받을 공간은 마련해두라고?"
         }
+
       ],
       "quest": "-1",
       "posX": "-1",
       "posY": "-1",
-      "iconPath": "Textures/Npc/1006/0",
-      "products": [],
-      "merchant": "0"
+      "iconPath": "Textures/Npc/1006/0"
     },
+
     {
       "npcId": "1009",
       "name": "톰",
-      "map": "3001",
+      "map": "20100000",
       "chats": [
         {
           "index": "011",
@@ -102,30 +104,70 @@
         }
       ],
       "quest": "-1",
-      "posX": "-10",
-      "posY": "4",
-      "iconPath": "Textures/Npc/10000/0",
+      "posX": "-7",
+      "posY": "-1",
       "products": [
-        { "templateId": "1" },
-        { "templateId": "2" },
-        { "templateId": "1000" },
-        { "templateId": "2000" },
-        { "templateId": "90000" },
-        { "templateId": "90001" },
-        { "templateId": "90002" },
-        { "templateId": "90003" },
-        { "templateId": "90100" },
-        { "templateId": "91001" },
-        { "templateId": "92000" },
-        { "templateId": "93012" },
-        { "templateId": "93112" },
-        { "templateId": "93010" },
-        { "templateId": "94000" },
-        { "templateId": "90004" },
-        { "templateId": "4" },
-        { "templateId": "3" }
+        {
+          "templateId": "1"
+        },
+        {
+          "templateId": "2"
+        },
+        {
+          "templateId": "1000"
+        },
+        {
+          "templateId": "2000"
+        },
+        {
+          "templateId": "90000"
+        },
+        {
+          "templateId": "90001"
+        },
+        {
+          "templateId": "90002"
+        },
+        {
+          "templateId": "90003"
+        },
+        {
+          "templateId": "90100"
+        },
+        {
+          "templateId": "91001"
+        },
+        {
+          "templateId": "92000"
+        },
+        {
+          "templateId": "93012"
+        },
+        {
+          "templateId": "93112"
+        },
+        {
+          "templateId": "93010"
+        },
+        {
+          "templateId": "94000"
+        },
+        {
+          "templateId": "90004"
+        },
+        {
+          "templateId": "4"
+        },
+        {
+          "templateId": "3"
+        }
+
       ],
-      "merchant": "1"
+      "merchant": "1",
+      "iconPath": "Textures/Npc/10000/0"
     }
+
+
+
   ]
 }

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapObjectTile : MonoBehaviour
+public class ObjectTile : MonoBehaviour
 {
-    public int Kind;
+    public int Id;
+    public bool Npc;
+    public bool Monster;
 
     // Start is called before the first frame update
     void Start()

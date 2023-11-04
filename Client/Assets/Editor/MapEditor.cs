@@ -358,7 +358,7 @@ public class MapEditor : MonoBehaviour
 
                 posXF = (child.position.x / 32);
                 posYF = (child.position.y / 32);
-                Id = Object.Id;
+                Id = int.Parse(Object.name);
 
                 if (posXF >= 0)
                     posX = (int)Math.Truncate(posXF);

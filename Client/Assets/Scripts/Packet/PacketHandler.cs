@@ -1255,8 +1255,32 @@ class PacketHandler
                 //Debug.Log($"NPC 대화 : {chatData.chat}");
 
                 npcChat = chatData.chat;
+
+                Debug.Log("*1");
             }
         }
+
+        // 만약에 기본 데이터에 없는거라면?
+        // 퀘스트 쪽의 데이터를 가지고온다.
+
+        if(npcChat == "")
+        {
+            Data.QuestData questData = null;
+            Managers.Data.QuestDict.TryGetValue(Dialogue.QuestId, out questData);
+
+            Debug.Log("*2");
+
+            foreach (DialogueData dialogueData in questData.dialogue)
+            {
+                if(dialogueData.index == Dialogue.Dialogue)
+                {
+                    npcChat = dialogueData.script;
+                    Debug.Log("*3");
+                }
+            }
+        }
+
+
 
   
 

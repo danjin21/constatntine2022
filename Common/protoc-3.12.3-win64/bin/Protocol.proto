@@ -443,6 +443,7 @@ message S_Npc{
     repeated ItemInfo rewards = 3;
     // 퀘스트 정보
     repeated QuestInfo quests = 4;
+    int32 questId = 5; // 이거는.. 퀘스트 쪽에 다이얼로그를 찾기 위함
 }
 
 message S_Shop{

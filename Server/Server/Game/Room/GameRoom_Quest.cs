@@ -85,6 +85,7 @@ namespace Server.Game
             if (questData == null)
                 return;
 
+
             bool IsNormal = true;
             bool IsAlreadyPacket = false;
 
@@ -95,6 +96,8 @@ namespace Server.Game
 
                 S_Npc snpcPacket = new S_Npc();
                 snpcPacket.NpcInfo = npc.Info;
+                snpcPacket.QuestId = questData.questId;
+                
 
                 // 아이템을 갖고있는지 없는지 확인한다.
                 bool checkItem = true;
@@ -259,6 +262,8 @@ namespace Server.Game
 
                 S_Npc snpcPacket = new S_Npc();
                 snpcPacket.NpcInfo = npc.Info;
+                snpcPacket.QuestId = questData.questId;
+
 
                 int GetItemCount = questData.dialogue[Order].getItem.Count;
 
@@ -389,6 +394,7 @@ namespace Server.Game
             {
                 S_Npc snpcPacket = new S_Npc();
                 snpcPacket.NpcInfo = npc.Info;
+                snpcPacket.QuestId = questData.questId;
                 snpcPacket.Dialogue = questData.dialogue[Order].index;
                 player.Session.Send(snpcPacket);
             }

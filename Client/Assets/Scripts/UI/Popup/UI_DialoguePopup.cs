@@ -153,7 +153,6 @@ public class UI_DialoguePopup : UI_Popup
 
 
 
-
         // 첫 시작할때만 (0일때만) 퀘스트를 만들어준다. 그외에는 텍스트만
         if ((index / 100) < 1)
         {
@@ -171,6 +170,7 @@ public class UI_DialoguePopup : UI_Popup
 
                 if( A  == null)
                 {
+
                     // 최후의 보루까지 왔을때도 0이라면
                     if (questDatas.Count == 0)
                     {
@@ -229,8 +229,11 @@ public class UI_DialoguePopup : UI_Popup
                 }
                 else
                 {
+
+
+
                     // Quest가 내 Quest의 Status랑 같은 것만 보내준다.
-                    if(A.Status == p.status)
+                    if (A.Status == p.status)
                     {
                         questDatas.Add(p);
                     }
@@ -258,7 +261,6 @@ public class UI_DialoguePopup : UI_Popup
 
             SetQuests(questDatas);
         }
-
 
 
         SendAction();

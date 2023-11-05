@@ -89,6 +89,60 @@ namespace Server.Game
             bool IsNormal = true;
             bool IsAlreadyPacket = false;
 
+
+
+            // 전직을 하는 경우
+            if(questData.dialogue[Order].getJob != null )
+            {
+                IsNormal = false;
+
+                S_Npc snpcPacket = new S_Npc();
+                snpcPacket.NpcInfo = npc.Info;
+                snpcPacket.QuestId = questData.questId;
+
+
+                // 레벨이 맞는지, 직업이 초보자인지 확인한다.
+
+                bool checkLevel = true;
+                bool checkJob = true;
+
+                if (player.Stat.Level >= 10)
+                    checkLevel = true;
+                else
+                    checkLevel = false;
+
+                // DB 확인
+
+                if (player.Stat.Job == 0)
+                    checkJob = true;
+                else
+                    checkJob = false;
+
+
+
+                // 전직 불가할때
+                if (checkLevel == false || checkJob == false)
+                {
+                    snpcPacket.Dialogue = questData.dialogue[Order + 1].index;
+
+                    player.Session.Send(snpcPacket);
+                    return;
+                }
+                else // 전직 가능할때
+                {
+                   
+                    DbTransaction.GetJob(player, questData.dialogue[Order].getJob[0].itemId, this);
+
+                    snpcPacket.Dialogue = questData.dialogue[Order].index;
+                    player.Session.Send(snpcPacket);
+        
+                }
+
+
+
+            }
+
+
             // 아이템을 잃는 경우
             if (questData.dialogue[Order].loseItem != null && questData.dialogue[Order].loseItem.Count != 0)
             {
@@ -407,11 +461,20 @@ namespace Server.Game
 
             if (PlayerQuest == null)
             {
+                // 안 갖고 있어도, 원큐에 끝나는 퀘스트라면 Complete 를 해준다.
+                int newStatus = questData.dialogue[Order].statusChange;
+                bool Complete = false;
+
+                if(newStatus == -1)
+                {
+                    Complete = true;
+                }
+
                 // 안 갖고 있다면 퀘스트를 갖게 만든다.
                 Quest quest = Quest.MakeQuestFromId(player, QuestId);
 
                 // 퀘스트 획득 ( 서버 메모리 저장 및 DB 저장  )
-                if (DbTransaction.GetQuest(player, room, quest) == true)
+                if (DbTransaction.GetQuest(player, room, quest, Complete) == true)
                 {
 
                 }

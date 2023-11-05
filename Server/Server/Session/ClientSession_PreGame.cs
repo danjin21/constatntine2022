@@ -118,7 +118,8 @@ namespace Server
 								Pants = -1,
 								Shoes = -1,
 								StatPoint = playerDb.StatPoint,
-								HairColor = playerDb.HairColor
+								HairColor = playerDb.HairColor,
+								Job = playerDb.Job
 
                             }
 						};
@@ -545,6 +546,7 @@ namespace Server
 						//Pants = -1,
 						//Shoes = -1,
 						StatPoint = 0,
+						Job = 0,
 
 					};
 
@@ -594,6 +596,7 @@ namespace Server
                             Pants = -1,
                             Shoes = -1,
 							StatPoint = 0,
+							Job = 0,
 
 						}
 					};

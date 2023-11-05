@@ -454,6 +454,7 @@ namespace Server.Data
         public List<QuestItemData> checkItem;
         public List<QuestItemData> loseItem;
         public List<QuestItemData> reqItem;
+        public List<QuestItemData> getJob;
     }
 
     [Serializable]

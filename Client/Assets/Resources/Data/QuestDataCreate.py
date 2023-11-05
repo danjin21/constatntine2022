@@ -47,6 +47,14 @@ for quest in quests_data:
                         "itemId": str(reward['itemId']),
                         "quantity": str(reward['quantity'])
                     })
+                elif reward['kind'] == 'getJob':
+                    if 'getJob' not in dialogue_entry:
+                        dialogue_entry['getJob'] = []
+                    dialogue_entry['getJob'].append({
+                        "itemId": str(reward['itemId']),
+                        "quantity": str(reward['quantity'])
+                    })
+
         dialogue_list.append(dialogue_entry)
     
     # 퀘스트 정보 추가

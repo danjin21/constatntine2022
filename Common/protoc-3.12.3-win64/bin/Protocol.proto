@@ -586,6 +586,7 @@ message StatInfo{
     int32 Shoes = 29;
     int32 statPoint = 30;
     int32 hairColor = 31;
+    int32 job =32;
 
 }
 

@@ -97,6 +97,7 @@ public class UI_Stat : UI_Base
         MapNameText,
         GoldText,
         PosText,
+        JobText,
     }
 
     enum Buttons
@@ -219,6 +220,19 @@ public class UI_Stat : UI_Base
         Get<Text>((int)Texts.StatPointValueText).text = $"{player.Stat.StatPoint}";
         Get<Text>((int)Texts.LevelValueText).text = $"{player.Stat.Level}";
         Get<Text>((int)Texts.GoldText).text = $"{player.Stat.Gold}";
+
+        switch (player.Stat.Job)
+        {
+            case 0:
+                Get<Text>((int)Texts.JobText).text = "초보자";
+                break;
+            case 100:
+                Get<Text>((int)Texts.JobText).text = "전사";
+                break;
+        }
+
+
+    
 
         MapInfoData mapData = null;
         Managers.Data.MapDict.TryGetValue(player.Stat.Map, out mapData);

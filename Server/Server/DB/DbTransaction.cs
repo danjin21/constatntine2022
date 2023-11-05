@@ -932,7 +932,7 @@ namespace Server.DB
         // 퀘스트 넣어주는 부분
 
 
-        public static bool GetQuest(Player player, GameRoom room, Quest quest)
+        public static bool GetQuest(Player player, GameRoom room, Quest quest, bool Complete)
         {
             if (player == null || room == null || quest == null)
                 return false;
@@ -944,9 +944,19 @@ namespace Server.DB
                 QuestDbTemplateId = quest.QuestTemplateId + 1,
                 //Status = quest.Status,
                 // 일단 status도 +1 해준다.
-                Status = 2,
+                Status = quest.Status + 1,
                 OwnerDbId = player.PlayerDbId
             };
+
+            // Complete 퀘스트라면 바로 컴플리트를 해준다.
+            if (Complete == true)
+            {
+                questDb.QuestDbTemplateId = quest.QuestTemplateId;
+                questDb.Status = -1;
+            }
+
+
+
 
             bool success = false;
             Instance.Push(() =>
@@ -1280,6 +1290,72 @@ namespace Server.DB
             });
 
         }
+
+
+
+
+
+        // 경험치 올려주는 부분
+        public static void GetJob(Player player, int jobCode, GameRoom room)
+        {
+            if (player == null || room == null)
+                return;
+
+            bool LevelUp = false;
+
+
+            player.Stat.Job = jobCode;
+
+            // 레벨업한 사실과, MaxHp, MaxMp 변동 된 것을 '다른' 클라'들'한테 보여준다.
+
+            S_LevelUp levelupPacket = new S_LevelUp();
+            levelupPacket.ObjectId = player.Info.ObjectId;
+            levelupPacket.StatInfo = new StatInfo();
+            levelupPacket.StatInfo.Job = player.Stat.Job;
+            levelupPacket.StatInfo.MaxHp = player.Stat.MaxHp;
+            levelupPacket.StatInfo.MaxMp = player.Stat.MaxMp;
+
+            room.Broadcast(player.CellPos, levelupPacket);
+
+            // Me (GameROom)
+            PlayerDb playerDb = new PlayerDb();
+            playerDb.PlayerDbId = player.PlayerDbId;
+            playerDb.Job = player.Stat.Job;
+
+
+            // You : 야 장부담당, 니가 해주고, 마지막 결과만 나한테 보내줘
+            // 장부는 Program.cs 에서 만들어줘야함.
+            Instance.Push(() =>
+            {
+                using (AppDbContext db = new AppDbContext())
+                {
+
+                    db.Entry(playerDb).State = EntityState.Unchanged; // Hp만 변경되게 해서 효율적으로 처리한다.
+                    db.Entry(playerDb).Property(nameof(playerDb.Job)).IsModified = true; // "Hp"
+
+
+                    //db.SaveChanges();
+                    bool success = db.SaveChangesEx(); // 예외 처리
+
+                    if (success)
+                    {
+                        // Me : 나한테 결과 보내는 부분
+                        room.Push(() =>    // 바로 데이터를 받는다고 가정
+                        {
+
+
+                        }
+                        );
+                    }
+                }
+            });
+
+
+
+        }
+
+
+
 
 
 

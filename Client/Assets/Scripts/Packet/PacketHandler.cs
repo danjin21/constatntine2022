@@ -1528,6 +1528,22 @@ class PacketHandler
 
         if (pc != null)
         {
+            if(levelupPacket.StatInfo.Job >0)
+            {
+                // 직업을 얻은거라면
+                pc.GetJob();
+
+                Managers.Object.MyPlayer.Stat.Job = levelupPacket.StatInfo.Job;
+                Managers.Chat.ChatRPC("<color=#F7D358>전직에 성공하였습니다! </color>");
+
+                // 리프레쉬
+                UI_GameScene gameSceneUI = Managers.UI.SceneUI as UI_GameScene;
+                gameSceneUI.StatUI.RefreshUI(); // 스텟도 리프레쉬 해준다.
+                return;
+
+            
+            }
+
             // Stat을 통해 바꿔주면 안되고, 바로 Hp 로 바꿔줘야 업데이트가 됨.
             //cc.Stat.Hp = changePacket.Hp;
             pc.MaxHp = levelupPacket.StatInfo.MaxHp;

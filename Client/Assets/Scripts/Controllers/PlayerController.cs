@@ -255,6 +255,31 @@ public class PlayerController : CreatureController
             UpdateAnimation();
     }
 
+    public void GetJob()
+    {
+        GameObject effect = Managers.Resource.Instantiate("Effect/LevelUp/LevelUp_Effect");
+        effect.transform.position = transform.position + new Vector3(0, 0, -9);
+        effect.transform.GetChild(0).position += new Vector3(0, 0, -9);
+        effect.transform.GetChild(0).GetComponent<ParticleSystemRenderer>().sortingOrder = _sprite.sortingOrder;
+        effect.transform.SetParent(this.transform);
+
+        // 게임 이펙트를 몇초 후에 삭제
+        GameObject.Destroy(effect, 4.0f);
+
+        // 레벨업 텍스트
+
+        GameObject hudText = Managers.Resource.Instantiate("Effect/LevelUpText");
+
+        Color color;
+        ColorUtility.TryParseHtmlString("#FFFFFF", out color);
+        hudText.transform.GetChild(0).GetComponent<Text>().color = color;
+
+        hudText.GetComponent<LevelUpText>().LevelUpMessage = "Get job";
+        hudText.transform.position = transform.position + new Vector3(0, 30, 0);
+        hudText.transform.SetParent(transform);
+    }
+
+
 
     public void LevelUp()
     {

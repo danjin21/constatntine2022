@@ -1268,16 +1268,21 @@ class PacketHandler
             Data.QuestData questData = null;
             Managers.Data.QuestDict.TryGetValue(Dialogue.QuestId, out questData);
 
-            Debug.Log("*2");
-
-            foreach (DialogueData dialogueData in questData.dialogue)
+            if (questData != null)
             {
-                if(dialogueData.index == Dialogue.Dialogue)
+
+                Debug.Log("*2");
+
+                foreach (DialogueData dialogueData in questData.dialogue)
                 {
-                    npcChat = dialogueData.script;
-                    Debug.Log("*3");
+                    if (dialogueData.index == Dialogue.Dialogue)
+                    {
+                        npcChat = dialogueData.script;
+                        Debug.Log("*3");
+                    }
                 }
             }
+
         }
 
 

@@ -1080,7 +1080,7 @@ namespace Server.Game
 
 
 
-            if(skillPacket.Info.SkillId == 3101000)
+            if(skillPacket.Info.SkillId == 3101000) // 텔레포트
             {
                 // ＃＃텔레포트 쿨타임 주기. Idle 로 인해 return 되는데 먼저 실행되면 안되지!
 
@@ -1088,7 +1088,7 @@ namespace Server.Game
                 player.TeleportCool = true;
                 room.PushAfter(1000, player.TeleportCooltime);
             }
-            else if(skillPacket.Info.SkillId == 3111002)
+            else if(skillPacket.Info.SkillId == 3111002) // 썬더볼트
             {
                 // ＃＃스킬 쿨타임 주기. Idle 로 인해 return 되는데 먼저 실행되면 안되지!
                 player.SkillCool = true;
@@ -1096,10 +1096,10 @@ namespace Server.Game
 
 
             }
-            else if (skillPacket.Info.SkillId == 4001000)
+            else if (skillPacket.Info.SkillId == 4001000) // 순보
             {
                 player.SoonboCool = true;
-                room.PushAfter(700, player.SoonboCooltime);
+                room.PushAfter(800, player.SoonboCooltime);
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
@@ -1108,11 +1108,11 @@ namespace Server.Game
 
 
             }
-            else if(skillPacket.Info.SkillId == 1001001)
+            else if(skillPacket.Info.SkillId == 1001001) // 삼격
             {
 
                 player.SkillCool = true;
-                room.PushAfter(700, player.SkillCooltime);
+                room.PushAfter(800, player.SkillCooltime);
 
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )

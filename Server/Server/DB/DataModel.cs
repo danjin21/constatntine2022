@@ -35,6 +35,7 @@ namespace Server.DB
         public int Attack { get; set; }
         public float Speed { get; set; }
         public int TotalExp { get; set; }
+        public int Job { get; set; }
         public int Map { get; set; } = 1;
         public int PosX { get; set; }
         public int PosY { get; set; }

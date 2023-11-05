@@ -100,20 +100,25 @@ public class mapInfo : MonoBehaviour
 
     public void LateUpdate()
     {
-        if(mc !=null)
-        {
-            Camera.main.transform.position = new Vector3(mc.transform.position.x + 128.0f, mc.transform.position.y - 96.0f, -1000);
 
-            float lx = size.x * 0.5f - width;
-            float clampX = Mathf.Clamp(Camera.main.transform.position.x, -lx + cameraCenter.x, lx + cameraCenter.x);
-
-            float ly = size.y * 0.5f - height;
-            float clampY = Mathf.Clamp(Camera.main.transform.position.y, -ly + cameraCenter.y, ly + cameraCenter.y);
+        Camera.main.transform.position = new Vector3(mc.transform.position.x + 128.0f, mc.transform.position.y - 96.0f, -1000);
 
 
-            Camera.main.transform.position = new Vector3((int)clampX, (int)clampY, -1000);
 
-        }
+        //if (mc !=null)
+        //{
+        //    Camera.main.transform.position = new Vector3(mc.transform.position.x + 128.0f, mc.transform.position.y - 96.0f, -1000);
+
+        //    float lx = size.x * 0.5f - width;
+        //    float clampX = Mathf.Clamp(Camera.main.transform.position.x, -lx + cameraCenter.x, lx + cameraCenter.x);
+
+        //    float ly = size.y * 0.5f - height;
+        //    float clampY = Mathf.Clamp(Camera.main.transform.position.y, -ly + cameraCenter.y, ly + cameraCenter.y);
+
+
+        //    Camera.main.transform.position = new Vector3((int)clampX, (int)clampY, -1000);
+
+        //}
 
 
 

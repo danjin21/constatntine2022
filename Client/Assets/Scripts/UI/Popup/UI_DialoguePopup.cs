@@ -116,6 +116,9 @@ public class UI_DialoguePopup : UI_Popup
 
         RefreshDialogue(CurrentQuest.dialogue[Order].script, CurrentQuest.dialogue[Order].index, Npc);
 
+
+        // 99 면, merchant 1인 애를 가지고 온다.
+
         //UI_DialoguePopup.RefreshDialogue(questData.dialogue[0].script, questData.dialogue[0].index, UI_DialoguePopup.Npc);
 
 
@@ -223,6 +226,18 @@ public class UI_DialoguePopup : UI_Popup
                         {
                             questDatas.Add(p);
                         }
+
+                    }
+                    else
+                    {
+                        // 다른퀘스트가 있음
+
+                        // Quest가 status 1인 것만 보내준다.
+                        if (p.status == 1)
+                        {
+                            questDatas.Add(p);
+                        }
+
 
                     }
 

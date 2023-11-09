@@ -74,6 +74,11 @@ public class UI_DialoguePopup : UI_Popup
     void OnClickCloseButton(PointerEventData evt)
     {
 
+        Close();
+    }
+
+    void Close()
+    {
         Managers.UI.ClosePopupUI(this);
 
 
@@ -91,7 +96,6 @@ public class UI_DialoguePopup : UI_Popup
 
 
         }
-
     }
 
     void OnClickYesButton(PointerEventData evt)
@@ -112,12 +116,34 @@ public class UI_DialoguePopup : UI_Popup
 
     void OnClickNextButton(PointerEventData evt)
     {
+
+        // 99 면, merchant 1인 애를 가지고 온다.
+
+        if(CurrentQuest.dialogue.Count <= Order)
+        {
+            if(CurrentQuest.dialogue[Order-1].statusChange== 99)
+            {
+                Debug.Log("상점창 나와~!");
+
+                C_Npc npcPacket = new C_Npc();
+
+                npcPacket.ObjectId = npcInfo.ObjectId;
+                npcPacket.Order = 99;
+                Managers.Network.Send(npcPacket);
+
+                Close();
+
+            }
+
+            return;
+        }
+
         // 다음 대화창 나오게 하기.
 
         RefreshDialogue(CurrentQuest.dialogue[Order].script, CurrentQuest.dialogue[Order].index, Npc);
 
 
-        // 99 면, merchant 1인 애를 가지고 온다.
+        
 
         //UI_DialoguePopup.RefreshDialogue(questData.dialogue[0].script, questData.dialogue[0].index, UI_DialoguePopup.Npc);
 

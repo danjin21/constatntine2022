@@ -57,7 +57,7 @@ namespace Server.Game
             npc.Info.Name = npcData.name;
 
             // 상인일 경우
-            if (npcData.merchant == 1)
+            if (npcData.merchant == 1 || npcPacket.Order == 99) // 대화 후 상점층 Order가 99
             {
                 // 상인 정보를 준다.
                 // 아이템 templateId List를 준다.

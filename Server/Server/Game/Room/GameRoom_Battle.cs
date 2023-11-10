@@ -171,6 +171,7 @@ namespace Server.Game
                 return;
             }
 
+
             // 순보 쿨 타임
 
             if (player.SoonboCool == true && skillPacket.Info.SkillId == 4001000)
@@ -243,7 +244,11 @@ namespace Server.Game
             }
 
 
-
+            // 스킬 쓰는동안의 텔레포트 막기
+            if ((info.PosInfo.State == CreatureState.Skill) && skillPacket.Info.SkillId == 3101000)
+            {
+                return;
+            }
 
 
             Console.WriteLine("텔레포트 쓸때 유저의 상태 :" + player.State + " -> Skill");
@@ -1117,7 +1122,7 @@ namespace Server.Game
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
-                room.PushAfter(200, player.SkillWalkCooltime);
+                room.PushAfter(400, player.SkillWalkCooltime);
             }
             else // 그외 스킬 쿨타임 주기
             {
@@ -1131,7 +1136,7 @@ namespace Server.Game
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
-                room.PushAfter(200, player.SkillWalkCooltime);
+                room.PushAfter(400, player.SkillWalkCooltime);
 
             }
 

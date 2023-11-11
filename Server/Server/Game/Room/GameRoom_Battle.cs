@@ -189,7 +189,7 @@ namespace Server.Game
             if (player.SoonboCool == true && skillPacket.Info.SkillId != 4001000)
             {
                 TimeSpan term = DateTime.Now - player.Soonbo_skillTime;
-                if (term.Milliseconds >= 200)
+                if (term.Milliseconds >= 200) // 늘리면 늦게 눌러도 발동된다.
                 {
                     return;
                 }
@@ -703,7 +703,7 @@ namespace Server.Game
 
                                     // Int만큼 체력을 올려준다.
 
-                                    target.OnHealed(player, player.TotalInt, skillPacket.Info.SkillId);
+                                    target.OnHealed(player, (int)(target.Stat.MaxHp  *0.1f) + player.TotalInt, skillPacket.Info.SkillId);
                                     Console.WriteLine($"Heal!! + {player.TotalInt} ");
                        
                                     realDamage = player.Stat.Int;

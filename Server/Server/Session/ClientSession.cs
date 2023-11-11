@@ -46,7 +46,7 @@ namespace Server
             {
 				long delta = (System.Environment.TickCount64 - _pingpongTick);
 
-				Console.WriteLine($"User : {SessionId} delta : {delta}");
+				// Console.WriteLine($"User : {SessionId} delta : {delta}");
 				if (delta > 60* 1000) // 50초
                 {
 					SaveAndDisconnect();
@@ -58,7 +58,7 @@ namespace Server
 			Send(pingPacket);
 
 			GameLogic.Instance.PushAfter(5000, Ping);  // 5초마다 한번씩 핑 체크
-			Console.WriteLine("Ping~");
+			// Console.WriteLine("Ping~");
 		}
 
 		public void HandlePong()

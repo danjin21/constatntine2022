@@ -302,7 +302,8 @@ public class MonsterController : CreatureController
             return;
         }
 
- 
+
+        Debug.Log($"{Id} 몬스터 방향 : {Dir}");
 
         // 먼저 몬스터 방향 갱신
         UpdateAnimation();

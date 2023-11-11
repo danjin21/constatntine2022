@@ -83,7 +83,7 @@ public class ObjectManager
             string A = "Creature/Monster/Monster_"+ info.StatInfo.TemplateId;
 
             GameObject go = Managers.Resource.Instantiate(A);
-            go.name = info.Name;
+            go.name = info.ObjectId.ToString();
             _objects.Add(info.ObjectId, go);
 
             MonsterController mc = go.GetComponent<MonsterController>();

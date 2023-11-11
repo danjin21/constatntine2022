@@ -128,10 +128,10 @@ namespace Server.Game
         }
 
 
-        public void HandleSkill(Player player, C_Skill skillPacket)
+        public void HandleSkill(Player player, C_Skill skillPacket, bool isBooked = false)
         {
 
-            Console.WriteLine("(1)스킬분기 : " + player.Id);
+            // Console.WriteLine("(1)스킬분기 : " + player.Id);
             if (player == null)
                 return;
 
@@ -147,23 +147,35 @@ namespace Server.Game
             skill_dummy.Info.SkillId = -1;
             player.Session.Send(skill_dummy);
 
-            Console.WriteLine($"★ / {player.State}");
+            Console.WriteLine($"●스킬은 나왔어 {skillPacket.Info.SkillId}");
+
+            //Console.WriteLine($"★ / {player.State}");
             // 스킬을 가지고 있는지 확인
 
             Skills PlayerSkill = player.SkillInven.Find(i =>  i.SkillId == skillPacket.Info.SkillId);
             if (PlayerSkill == null)
                 return;
 
-            int termValue = 400;
+            // 쿨타임일때 0.1초이후 까지 누르면 예약이된다.
+            // 너무 길면, 스킬이 씹힐때가 있다.
+            // 너무 짧으면.. 조금만 눌러도 다음 공격키가 나감
+            int termValue = 100;
 
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
             if (player.SkillCool == true && skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
             {
-
+                // 예약으로 쓴 스킬은 순보와의 차이를.. 어떻게 설정해야한다/.
 
                 TimeSpan term = DateTime.Now - player.skillTime;
-                if(term.Milliseconds >= termValue)
+
+                Console.WriteLine($"※ 임시 저장 전 : {term.Milliseconds}");
+
+                if (term.Milliseconds >= termValue)
+                {
                     player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
+
+                    Console.WriteLine("※ 임시 저장~");
+                }
 
                 // 전과의 시간을 비교
                 // 1
@@ -179,22 +191,35 @@ namespace Server.Game
 
 
                 TimeSpan term = DateTime.Now - player.Soonbo_skillTime;
+
+                Console.WriteLine($"※ 임시 저장 전(순보) : {term.Milliseconds}");
+
                 if (term.Milliseconds >= termValue)
+                {
                     player.C_Skill_Soonbo_Book = skillPacket;
+
+                    Console.WriteLine("※ 임시 저장~  순보");
+                }
 
                 return;
             }
-
+          
 
             if (player.SoonboCool == true && skillPacket.Info.SkillId != 4001000)
             {
                 TimeSpan term = DateTime.Now - player.Soonbo_skillTime;
-                if (term.Milliseconds >= 200) // 늘리면 늦게 눌러도 발동된다.
+                Console.WriteLine($"순보 후 {1} / {term.Milliseconds} / ");
+
+                // 예약되서 스킬 쓴거면 무조건 발동되게한다.
+                // 늘리면 늦게 눌러도 발동된다.
+                if (term.Milliseconds >= 200 && isBooked == false) 
                 {
                     return;
                 }
-            }
 
+                Console.WriteLine($"순보 후 {2}");
+            }
+    
 
 
             Console.WriteLine($"★★  / {player.State}");
@@ -204,12 +229,12 @@ namespace Server.Game
             if (player.TeleportCool == true && skillPacket.Info.SkillId == 3101000)
                 return;
 
-            Console.WriteLine($"★★★  / {player.State}");
+            //Console.WriteLine($"★★★  / {player.State}");
 
 
 
 
-            Console.WriteLine($"★★★★  / {player.State}");
+            //Console.WriteLine($"★★★★  / {player.State}");
 
             // 마나 없으면 리턴하기
             if (player.Stat.Mp < PlayerSkill.Mp)
@@ -238,11 +263,12 @@ namespace Server.Game
 
             Console.WriteLine($"★★★★★★  / {player.State}");
 
-            if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000)
+            // 20231111 4001000 도 추가함. 스킬 쓸때 순보 나가는것도 허용
+            if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
             {
                 return;       
             }
-
+            Console.WriteLine($"★★★★★★★  / {player.State}");
 
             // 스킬 쓰는동안의 텔레포트 막기
             if ((info.PosInfo.State == CreatureState.Skill) && skillPacket.Info.SkillId == 3101000)
@@ -251,7 +277,8 @@ namespace Server.Game
             }
 
 
-            Console.WriteLine("텔레포트 쓸때 유저의 상태 :" + player.State + " -> Skill");
+            // Console.WriteLine("텔레포트 쓸때 유저의 상태 :" + player.State + " -> Skill");
+            
             // TODO : 스킬 사용 가능 여부 체크
 
             // 텔레포트 아닌 경우에만 스킬 State
@@ -1074,16 +1101,16 @@ namespace Server.Game
             skill.Info.MoveDir = player.Info.PosInfo.MoveDir; // 스킬쓴 방향 저장 
             skill.ProjectileInfo = tempProjectileInfo;
             skill.PosInfo = player.Info.PosInfo; // 스킬쓴 위치 저장
-            Console.WriteLine($"후보 : {player.PosInfo} / {player.Info.PosInfo}");
+            // Console.WriteLine($"후보 : {player.PosInfo} / {player.Info.PosInfo}");
 
             if (target != null)
                  skill.TargetId = target.Id;
             else
                 skill.TargetId = -1;
               Broadcast(player.CellPos,skill);
-           
 
 
+            int skillCoolBase = 1000;
 
             if(skillPacket.Info.SkillId == 3101000) // 텔레포트
             {
@@ -1097,14 +1124,15 @@ namespace Server.Game
             {
                 // ＃＃스킬 쿨타임 주기. Idle 로 인해 return 되는데 먼저 실행되면 안되지!
                 player.SkillCool = true;
-                room.PushAfter(800, player.SkillCooltime);
+                room.PushAfter(skillCoolBase, player.SkillCooltime);
 
 
             }
             else if (skillPacket.Info.SkillId == 4001000) // 순보
             {
+                Console.WriteLine("순보");
                 player.SoonboCool = true;
-                room.PushAfter(800, player.SoonboCooltime);
+                room.PushAfter(skillCoolBase, player.SoonboCooltime);
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
@@ -1115,9 +1143,9 @@ namespace Server.Game
             }
             else if(skillPacket.Info.SkillId == 1001001) // 삼격
             {
-
+                Console.WriteLine("삼격 ★★");
                 player.SkillCool = true;
-                room.PushAfter(800, player.SkillCooltime);
+                room.PushAfter(skillCoolBase, player.SkillCooltime);
 
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
@@ -1131,7 +1159,7 @@ namespace Server.Game
 
 
                 player.SkillCool = true;
-                room.PushAfter(800, player.SkillCooltime);
+                room.PushAfter(skillCoolBase, player.SkillCooltime);
 
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
@@ -1141,10 +1169,15 @@ namespace Server.Game
             }
 
 
-            if(skillPacket.Info.SkillId != 4001000)
+            if (skillPacket.Info.SkillId != 4001000)
                 player.skillTime = DateTime.Now;
             else
+            {
+
                 player.Soonbo_skillTime = DateTime.Now;
+
+                Console.WriteLine("순보 저장★");
+            }
 
 
 
@@ -1171,6 +1204,8 @@ namespace Server.Game
             Broadcast(player.CellPos, IdleMovePacket);
 
 
+            // 서버단에서는 그냥 바로 Idle 처리
+            player.State = CreatureState.Idle;
 
             //Console.WriteLine("스킬 사용");
 

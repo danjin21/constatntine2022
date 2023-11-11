@@ -126,7 +126,7 @@ namespace Server.Game
 
             if (C_Skill_Book != null)
             {
-                Room.HandleSkill(this, C_Skill_Book);
+                Room.HandleSkill(this, C_Skill_Book, true);
                 C_Skill_Book = null;
             }
         }
@@ -158,7 +158,7 @@ namespace Server.Game
 
             if (C_Skill_Soonbo_Book != null)
             {
-                Room.HandleSkill(this, C_Skill_Soonbo_Book);
+                Room.HandleSkill(this, C_Skill_Soonbo_Book, true);
                 C_Skill_Soonbo_Book = null;
             }
         }

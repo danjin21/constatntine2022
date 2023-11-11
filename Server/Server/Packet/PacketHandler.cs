@@ -61,7 +61,7 @@ class PacketHandler
 			return;
 
 		//room.HandleSkill(player, skillPacket);
-		room.Push(room.HandleSkill, player, skillPacket); // => JobQueue화
+		room.Push(room.HandleSkill, player, skillPacket, false); // => JobQueue화
 	}
 
 

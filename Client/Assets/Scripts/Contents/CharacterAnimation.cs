@@ -106,7 +106,7 @@ public class CharacterAnimation : MonoBehaviour
         else
         {
 
-            Debug.Log("오른손무기 정보 : " + ((Weapon)weaponItem).WeaponType);
+            //Debug.Log("오른손무기 정보 : " + ((Weapon)weaponItem).WeaponType);
 
             switch (WeaponData.weaponType)
             {

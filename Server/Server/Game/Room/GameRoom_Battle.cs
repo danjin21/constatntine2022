@@ -22,10 +22,15 @@ namespace Server.Game
             {
 
                 // 바로 못 걷더라도... 스킬에서의 Idle은.. 받게하기
-                player.PosInfo.State = movePacket.PosInfo.State;
-                player.PosInfo.MoveDir = movePacket.PosInfo.MoveDir;
+                if (player.State == CreatureState.Skill && movePacket.PosInfo.State == CreatureState.Idle)
+                {
+                    player.PosInfo.State = movePacket.PosInfo.State;
+                    player.PosInfo.MoveDir = movePacket.PosInfo.MoveDir;
+                    Console.WriteLine("스킬쓴 바로 직후 C_Move: " + player.State + "->" + movePacket.PosInfo.State);
+                }
+         
 
-                Console.WriteLine("스킬쓴 바로 직후 C_Move: " + player.State + "->" + movePacket.PosInfo.State);
+            
 
                 return;
             }
@@ -135,6 +140,7 @@ namespace Server.Game
             if (player == null)
                 return;
 
+
             GameRoom room = player.Room;
 
             if (room == null)
@@ -156,10 +162,12 @@ namespace Server.Game
             if (PlayerSkill == null)
                 return;
 
+
+
             // 쿨타임일때 0.1초이후 까지 누르면 예약이된다.
             // 너무 길면, 스킬이 씹힐때가 있다.
             // 너무 짧으면.. 조금만 눌러도 다음 공격키가 나감
-            int termValue = 100;
+            int termValue = 400;
 
             // 쿨확인 - 텔레포트는 쿨 상관 안한다. 우선 스킬 쓰자마자 바로 텔포 쓰는건 막아두자
             if (player.SkillCool == true && skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
@@ -176,6 +184,17 @@ namespace Server.Game
 
                     Console.WriteLine("※ 임시 저장~");
                 }
+                else
+                {
+                    // 혹시라도 순보 저장이 된 상태에서 스킬은 쓴거면, 같이 저장하게해주자
+                    // 순보가 456인데, 슼리이 387 이여서 같이 저장안되는 경우가 생김
+                    if (player.C_Skill_Soonbo_Book != null)
+                    {
+                        player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
+
+                        Console.WriteLine("※ 임시 저장~ 구원의 손길");
+                    }
+                }
 
                 // 전과의 시간을 비교
                 // 1
@@ -183,6 +202,8 @@ namespace Server.Game
                 return;
             }
 
+
+     
 
             // 순보 쿨 타임
 
@@ -212,14 +233,37 @@ namespace Server.Game
 
                 // 예약되서 스킬 쓴거면 무조건 발동되게한다.
                 // 늘리면 늦게 눌러도 발동된다.
-                if (term.Milliseconds >= 200 && isBooked == false) 
+                if (term.Milliseconds >= 200 /*&& isBooked == false*/) 
                 {
+                    // 혹시라도 순보가 예약되는 식이라면, 얘도 저장해준다.
+                    if (player.C_Skill_Soonbo_Book != null)
+                    {
+                        player.C_Skill_Book = skillPacket; // 예약을 걸어둔다.
+
+                        Console.WriteLine("※ 임시 저장~ 구원의 손길22");
+                    }
+
                     return;
                 }
 
                 Console.WriteLine($"순보 후 {2}");
             }
-    
+
+
+
+            // ※※다른 스킬 쓰자마자 순보 쓰는건 막기
+            if (player.SkillCool == true && skillPacket.Info.SkillId == 4001000)
+            {
+
+                TimeSpan term = DateTime.Now - player.skillTime;
+
+                if (term.Milliseconds <= 500)
+                {
+                    return;
+                }
+            }
+
+
 
 
             Console.WriteLine($"★★  / {player.State}");
@@ -265,9 +309,11 @@ namespace Server.Game
 
             // 20231111 4001000 도 추가함. 스킬 쓸때 순보 나가는것도 허용
             if ((info.PosInfo.State != CreatureState.Idle) && skillPacket.Info.SkillId != 3101000 && skillPacket.Info.SkillId != 4001000)
-            {
+            {  
                 return;       
             }
+
+
             Console.WriteLine($"★★★★★★★  / {player.State}");
 
             // 스킬 쓰는동안의 텔레포트 막기
@@ -669,7 +715,7 @@ namespace Server.Game
                         // 삼격일 경우
                         if (skillPacket.Info.SkillId == 1001001)
                         {
-
+                            Console.WriteLine("로양");
                             for (int i = 0; i < 3; i++)
                             {
                                 if(i == 0)
@@ -684,7 +730,7 @@ namespace Server.Game
 
                                 if (target != null)
                                 {
-
+                                    Console.WriteLine("호양");
 
                                     // 멈춰있는 상태 ( movetick은 가만히 있고, 환경시간만 증가하므로 계속 음수가 될수밖에 없다.)
                                     if ((target._nextMoveTick - Environment.TickCount64) < (int)((32 * 1000 / target.Speed) / 2.0f))
@@ -1110,7 +1156,7 @@ namespace Server.Game
               Broadcast(player.CellPos,skill);
 
 
-            int skillCoolBase = 1000;
+            int skillCoolBase = 800;
 
             if(skillPacket.Info.SkillId == 3101000) // 텔레포트
             {
@@ -1150,7 +1196,7 @@ namespace Server.Game
 
                 // 스킬쓰자마자 걷지 못하게 ( 텔레포트는 제외 )
                 player.SkillWalkCool = true;
-                room.PushAfter(400, player.SkillWalkCooltime);
+                room.PushAfter(700, player.SkillWalkCooltime);
             }
             else // 그외 스킬 쿨타임 주기
             {

@@ -124,11 +124,20 @@ namespace Server.Game
             //Console.WriteLine("끝 쿨 시간 : " + Environment.TickCount64);
             //Console.WriteLine("시간차이 : " + (Environment.TickCount64- yes));
 
+
+            // 순보 쓸때
             if (C_Skill_Book != null)
             {
                 Room.HandleSkill(this, C_Skill_Book, true);
                 C_Skill_Book = null;
             }
+
+            if (C_Skill_Soonbo_Book != null)
+            {
+                Room.HandleSkill(this, C_Skill_Soonbo_Book, true);
+                C_Skill_Soonbo_Book = null;
+            }
+
         }
         public void ConsumeCooltime()
         {
@@ -156,11 +165,25 @@ namespace Server.Game
         {
             SoonboCool = false;
 
+
+            // 순보에 밀려서 계쏙 스킬 안나갈떄
+            if (C_Skill_Book != null && SkillCool == false)
+            {
+                Room.HandleSkill(this, C_Skill_Book, true);
+                C_Skill_Book = null;
+            }
+
+
             if (C_Skill_Soonbo_Book != null)
             {
                 Room.HandleSkill(this, C_Skill_Soonbo_Book, true);
                 C_Skill_Soonbo_Book = null;
             }
+
+
+       
+
+
         }
 
         protected virtual void UpdateMoving()
